@@ -63,11 +63,11 @@ def fix_html_file(file_path):
         fact_video_pattern = r'<video class="bcc-fact-video" data-bcc-fact-video[^>]*>.*?</video>'
         fact_video_replacement = (
             '<video class="bcc-fact-video" data-bcc-fact-video '
-            'src="./_bpc/assets/base-core-concept/sky-hvac-all-seasons.mp4" '
-            'poster="./sm/ambar/urunler/hava-kanallari-ve-havalandirma-B.jpg" '
+            'src="./_bpc/assets/base-core-concept/sky-factory-manufacturing-flow.mp4" '
+            'poster="./_bpc/assets/base-core-concept/sky-factory-manufacturing-poster.jpg" '
             'autoplay muted loop playsinline preload="auto" '
             'style="opacity: 1 !important; visibility: visible !important; object-fit: cover; width: 100%; height: 100%;">'
-            '<source src="./_bpc/assets/base-core-concept/sky-hvac-all-seasons.mp4" type="video/mp4">'
+            '<source src="./_bpc/assets/base-core-concept/sky-factory-manufacturing-flow.mp4" type="video/mp4">'
             '</video>'
         )
         content = re.sub(fact_video_pattern, fact_video_replacement, content, flags=re.DOTALL)
