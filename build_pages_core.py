@@ -54,7 +54,7 @@ MODAL_HTML = """
     <!-- Header -->
     <div class="flex items-center gap-3 mb-2.5">
       <div class="w-10 h-10 rounded-lg bg-[#061527] flex items-center justify-center p-2 shadow-sm shrink-0">
-        <img src="/assets/sky-group-logo-s.png" alt="Sky Group" class="w-full h-full object-contain" width="40" height="40">
+        <img src="./assets/sky-group-logo-s.png" alt="Sky Group" class="w-full h-full object-contain" width="40" height="40">
       </div>
       <div>
         <span class="text-[10px] font-bold uppercase tracking-widest text-[#0284c7] block">MÜHENDİSLİK &amp; PROJELENDİRME</span>
@@ -154,22 +154,22 @@ def extract_base_components():
     topnav_html = html[topnav_start:runway_pos].strip()
 
     # Ensure topnav desktop items are direct <a> links!
-    topnav_html = re.sub(r'<button\s+type="button"\s+aria-expanded="false"\s+aria-controls="fullnav-panel-products"[^>]*>Ürünlerimiz', r'<a href="/urunlerimiz.html" aria-controls="fullnav-panel-products" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Ürünlerimiz', topnav_html)
-    topnav_html = re.sub(r'<button\s+type="button"\s+aria-expanded="false"\s+aria-controls="fullnav-panel-pricing"[^>]*>Çözümlerimiz', r'<a href="/cozumlerimiz.html" aria-controls="fullnav-panel-pricing" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Çözümlerimiz', topnav_html)
-    topnav_html = re.sub(r'<button\s+type="button"\s+aria-expanded="false"\s+aria-controls="fullnav-panel-resources"[^>]*>Hizmetlerimiz', r'<a href="/hizmetlerimiz.html" aria-controls="fullnav-panel-resources" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Hizmetlerimiz', topnav_html)
-    topnav_html = re.sub(r'<button\s+type="button"\s+aria-expanded="false"\s+aria-controls="fullnav-panel-company"[^>]*>Kurumsal', r'<a href="/kurumsal.html" aria-controls="fullnav-panel-company" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Kurumsal', topnav_html)
-    topnav_html = topnav_html.replace('</button></li><li><a href="/cozumlerimiz.html"', '</a></li><li><a href="/cozumlerimiz.html"')
-    topnav_html = topnav_html.replace('</button></li><li><a href="/hizmetlerimiz.html"', '</a></li><li><a href="/hizmetlerimiz.html"')
-    topnav_html = topnav_html.replace('</button></li><li><a href="/referanslar.html"', '</a></li><li><a href="/referanslar.html"')
+    topnav_html = re.sub(r'<button\s+type="button"\s+aria-expanded="false"\s+aria-controls="fullnav-panel-products"[^>]*>Ürünlerimiz', r'<a href="./urunlerimiz.html" aria-controls="fullnav-panel-products" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Ürünlerimiz', topnav_html)
+    topnav_html = re.sub(r'<button\s+type="button"\s+aria-expanded="false"\s+aria-controls="fullnav-panel-pricing"[^>]*>Çözümlerimiz', r'<a href="./cozumlerimiz.html" aria-controls="fullnav-panel-pricing" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Çözümlerimiz', topnav_html)
+    topnav_html = re.sub(r'<button\s+type="button"\s+aria-expanded="false"\s+aria-controls="fullnav-panel-resources"[^>]*>Hizmetlerimiz', r'<a href="./hizmetlerimiz.html" aria-controls="fullnav-panel-resources" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Hizmetlerimiz', topnav_html)
+    topnav_html = re.sub(r'<button\s+type="button"\s+aria-expanded="false"\s+aria-controls="fullnav-panel-company"[^>]*>Kurumsal', r'<a href="./kurumsal.html" aria-controls="fullnav-panel-company" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Kurumsal', topnav_html)
+    topnav_html = topnav_html.replace('</button></li><li><a href="./cozumlerimiz.html"', '</a></li><li><a href="./cozumlerimiz.html"')
+    topnav_html = topnav_html.replace('</button></li><li><a href="./hizmetlerimiz.html"', '</a></li><li><a href="./hizmetlerimiz.html"')
+    topnav_html = topnav_html.replace('</button></li><li><a href="./referanslar.html"', '</a></li><li><a href="./referanslar.html"')
     topnav_html = topnav_html.replace('</button></li></ul>', '</a></li></ul>')
 
     # Ensure mega-menu inside links point to dedicated pages
-    topnav_html = topnav_html.replace('href="#bcc-bp"', 'href="/urunlerimiz.html"')
-    topnav_html = topnav_html.replace('href="#bcc-how"', 'href="/hizmetlerimiz.html"')
-    topnav_html = topnav_html.replace('href="#bcc-stress"', 'href="/cozumlerimiz.html"')
-    topnav_html = topnav_html.replace('href="#bcc-specs"', 'href="/kurumsal.html"')
-    topnav_html = topnav_html.replace('href="#bcc-pricing"', 'href="/hizmetlerimiz.html"')
-    topnav_html = topnav_html.replace('href="#bcc-fact"', 'href="/kurumsal.html"')
+    topnav_html = topnav_html.replace('href="#bcc-bp"', 'href="./urunlerimiz.html"')
+    topnav_html = topnav_html.replace('href="#bcc-how"', 'href="./hizmetlerimiz.html"')
+    topnav_html = topnav_html.replace('href="#bcc-stress"', 'href="./cozumlerimiz.html"')
+    topnav_html = topnav_html.replace('href="#bcc-specs"', 'href="./kurumsal.html"')
+    topnav_html = topnav_html.replace('href="#bcc-pricing"', 'href="./hizmetlerimiz.html"')
+    topnav_html = topnav_html.replace('href="#bcc-fact"', 'href="./kurumsal.html"')
 
     # Extract footer
     footer_start = html.find('<div class="bcc-footer">')
@@ -182,12 +182,12 @@ def extract_base_components():
     footer_html = re.sub(old_social_pattern, new_social_replacement, footer_html)
 
     # Ensure footer links navigate to new dedicated pages!
-    footer_html = footer_html.replace('href="#bcc-bp"', 'href="/urunlerimiz.html"')
-    footer_html = footer_html.replace('href="#bcc-how"', 'href="/hizmetlerimiz.html"')
-    footer_html = footer_html.replace('href="#bcc-stress"', 'href="/cozumlerimiz.html"')
-    footer_html = footer_html.replace('href="#bcc-fact"', 'href="/kurumsal.html"')
-    footer_html = footer_html.replace('href="/homebuilders"', 'href="/urunlerimiz.html"')
-    footer_html = footer_html.replace('href="/install-partners"', 'href="/cozumlerimiz.html"')
+    footer_html = footer_html.replace('href="#bcc-bp"', 'href="./urunlerimiz.html"')
+    footer_html = footer_html.replace('href="#bcc-how"', 'href="./hizmetlerimiz.html"')
+    footer_html = footer_html.replace('href="#bcc-stress"', 'href="./cozumlerimiz.html"')
+    footer_html = footer_html.replace('href="#bcc-fact"', 'href="./kurumsal.html"')
+    footer_html = footer_html.replace('href="/homebuilders"', 'href="./urunlerimiz.html"')
+    footer_html = footer_html.replace('href="/install-partners"', 'href="./cozumlerimiz.html"')
 
     return topnav_html, footer_html
 
@@ -229,11 +229,13 @@ def generate_page(title, meta_desc, active_nav, showcase_col1, showcase_col2, sh
     cards_html = []
     for c in cards:
         slug = c.get('slug') or slugify(c['title'], nav_prefix)
+        raw_img = c.get('image', '')
+        img_src = '.' + raw_img if raw_img.startswith('/') else raw_img
         card = f"""
-        <a href="/{slug}.html" class="sky-project-card group block text-left" 
+        <a href="./{slug}.html" class="sky-project-card group block text-left" 
              data-category="{c['category']}">
           <div class="sky-project-photo">
-            <img src="{c['image']}" alt="{c['title']}" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
+            <img src="{img_src}" alt="{c['title']}" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
             <span class="sky-card-cat-badge">{c['badge_cat']}</span>
             <span class="sky-card-loc-badge">{c['badge_loc']}</span>
           </div>
@@ -257,7 +259,7 @@ def generate_page(title, meta_desc, active_nav, showcase_col1, showcase_col2, sh
         for i in range(1, 32):
             logos_html.append(f"""
             <div class="sky-logo-card group">
-              <img src="/sm/ambar/t/{i}.png" alt="Sky Group Teknik Belge &amp; Standart {i}" loading="lazy" />
+              <img src="./sm/ambar/t/{i}.png" alt="Sky Group Teknik Belge &amp; Standart {i}" loading="lazy" />
             </div>
             """)
         logos_title = "TEKNİK VE İMALAT STANDARTLARI"
@@ -267,7 +269,7 @@ def generate_page(title, meta_desc, active_nav, showcase_col1, showcase_col2, sh
         for i in range(1, 31):
             logos_html.append(f"""
             <div class="sky-logo-card group">
-              <img src="/sm/ambar/r/{i}.png" alt="Sky Group Referans Marka {i}" loading="lazy" />
+              <img src="./sm/ambar/r/{i}.png" alt="Sky Group Referans Marka {i}" loading="lazy" />
             </div>
             """)
         logos_title = "İŞ ORTAKLARIMIZ VE REFERANSLAR"
@@ -282,10 +284,10 @@ def generate_page(title, meta_desc, active_nav, showcase_col1, showcase_col2, sh
   <title>{title} | Sky Group İklimlendirme ve Havalandırma</title>
   <meta name="description" content="{meta_desc}">
   
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -293,9 +295,9 @@ def generate_page(title, meta_desc, active_nav, showcase_col1, showcase_col2, sh
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   
   <!-- Core Base Power Layout Styles -->
-  <link rel="stylesheet" href="/_bpc/assets/BaseCoreSpecs.DESLp_Zg.css">
-  <link rel="stylesheet" href="/_bpc/assets/core.KFUJ36fi.css">
-  <link rel="stylesheet" href="/_bpc/assets/MarketingLayout.CLOcHXtv.css">
+  <link rel="stylesheet" href="./_bpc/assets/BaseCoreSpecs.DESLp_Zg.css">
+  <link rel="stylesheet" href="./_bpc/assets/core.KFUJ36fi.css">
+  <link rel="stylesheet" href="./_bpc/assets/MarketingLayout.CLOcHXtv.css">
 
   <style>
     :root {{

@@ -46,10 +46,10 @@ def build_faithful_site():
 <link rel="canonical" href="https://skymekanik.com">
 <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,{fav_32_b64}">
 <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,{fav_16_b64}">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=20261016">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=20261016">
-<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=20261016">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20261016">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png?v=20261016">
+<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png?v=20261016">
+<link rel="shortcut icon" type="image/x-icon" href="./favicon.ico?v=20261016">
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=20261016">
 <meta name="theme-color" content="#061527">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Sky Group | Endüstriyel Havalandırma &amp; İklimlendirme Sistemleri">
@@ -57,7 +57,7 @@ def build_faithful_site():
 <meta property="og:url" content="https://skymekanik.com">
 <meta property="og:site_name" content="Sky Group">
 <meta property="og:locale" content="tr_TR">
-<meta property="og:image" content="/sm/ambar/banner/sky-mekanik-459.jpg">
+<meta property="og:image" content="./sm/ambar/banner/sky-mekanik-459.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -65,7 +65,7 @@ def build_faithful_site():
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Sky Group | Endüstriyel Havalandırma &amp; İklimlendirme Sistemleri">
 <meta name="twitter:description" content="Endüstriyel tesisler ve modern yapılar için yüksek verimli mekanik tesisat ve iklimlendirme çözümleri.">
-<meta name="twitter:image" content="/sm/ambar/banner/sky-mekanik-459.jpg">
+<meta name="twitter:image" content="./sm/ambar/banner/sky-mekanik-459.jpg">
 <meta name="twitter:image:alt" content="Sky Group Endüstriyel Havalandırma ve İklimlendirme Sistemleri">"""
 
     # Replace old Base Power meta block in <head>
@@ -666,7 +666,7 @@ def build_faithful_site():
 
     # Hero Eyebrow Tape & Subtitle
     hero_tape_old = '<span class="bcc-hero-tape" data-bcc-seasons-egg><span class="bpc-tape-eyebrow">Meet</span></span>'
-    hero_tape_new = '<span class="bcc-hero-tape" data-bcc-seasons-egg><span class="bpc-tape-eyebrow inline-flex items-center gap-1.5"><img src="/assets/sky-group-logo-arrow.png" alt="Sky Group" class="w-4 h-4 object-contain inline-block filter brightness-110 drop-shadow" width="16" height="16">MÜHENDİSLİK &amp; İKLİMLENDİRME</span></span>'
+    hero_tape_new = '<span class="bcc-hero-tape" data-bcc-seasons-egg><span class="bpc-tape-eyebrow inline-flex items-center gap-1.5"><img src="./assets/sky-group-logo-arrow.png" alt="Sky Group" class="w-4 h-4 object-contain inline-block filter brightness-110 drop-shadow" width="16" height="16">MÜHENDİSLİK &amp; İKLİMLENDİRME</span></span>'
     html = html.replace(hero_tape_old, hero_tape_new)
     html = html.replace(
         '<span class="bpc-tape-eyebrow">Meet</span>',
@@ -691,7 +691,7 @@ def build_faithful_site():
     html = html.replace('See Base Factory 1', 'İmalat Sahasını İnceleyin')
 
     # 6. TOPNAV LOGO & BRANDING
-    sky_logo_html = """<a href="/" aria-label="Sky Group" class="inline-flex min-h-11 shrink-0 touch-manipulation items-center gap-2.5"><img src="/assets/sky-group-logo-s.png" alt="Sky Group" class="h-9 w-9 object-contain drop-shadow" width="36" height="36"><span class="text-xl font-black tracking-tight text-white sky-brand-logo">SKY <span class="text-[#09bde3]">GROUP</span></span></a>"""
+    sky_logo_html = """<a href="./index.html" aria-label="Sky Group" class="inline-flex min-h-11 shrink-0 touch-manipulation items-center gap-2.5"><img src="./assets/sky-group-logo-s.png" alt="Sky Group" class="h-9 w-9 object-contain drop-shadow" width="36" height="36"><span class="text-xl font-black tracking-tight text-white sky-brand-logo">SKY <span class="text-[#09bde3]">GROUP</span></span></a>"""
     
     html = re.sub(
         r'<a href=\"/\" aria-label=\"Base Power\" class=\"[^\"]*\">.*?</a>',
@@ -703,7 +703,7 @@ def build_faithful_site():
     # Topnav desktop links
     desktop_nav_old = '<ul class="hidden lg:flex items-center gap-1"><li><button type="button" aria-expanded="false" aria-controls="fullnav-panel-products" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Products<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down shrink-0 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button></li><li><button type="button" aria-expanded="false" aria-controls="fullnav-panel-pricing" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Pricing<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down shrink-0 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button></li><li><button type="button" aria-expanded="false" aria-controls="fullnav-panel-resources" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Resources<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down shrink-0 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button></li><li><a href="/utilities" class="inline-flex items-center rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft text-text-inverse hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground">Utilities</a></li><li><button type="button" aria-expanded="false" aria-controls="fullnav-panel-company" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Company<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down shrink-0 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button></li></ul>'
 
-    desktop_nav_new = '<ul class="hidden lg:flex items-center gap-1"><li><a href="/urunlerimiz.html" aria-controls="fullnav-panel-products" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Ürünlerimiz<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down shrink-0 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></a></li><li><a href="/cozumlerimiz.html" aria-controls="fullnav-panel-pricing" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Çözümlerimiz<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down shrink-0 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></a></li><li><a href="/hizmetlerimiz.html" aria-controls="fullnav-panel-resources" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Hizmetlerimiz<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down shrink-0 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></a></li><li><a href="/referanslar.html" class="inline-flex items-center rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft text-text-inverse hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground">Referanslar</a></li><li><a href="/kurumsal.html" aria-controls="fullnav-panel-company" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Kurumsal<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down shrink-0 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></a></li></ul>'
+    desktop_nav_new = '<ul class="hidden lg:flex items-center gap-1"><li><a href="./urunlerimiz.html" aria-controls="fullnav-panel-products" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Ürünlerimiz<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down shrink-0 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></a></li><li><a href="./cozumlerimiz.html" aria-controls="fullnav-panel-pricing" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Çözümlerimiz<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down shrink-0 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></a></li><li><a href="./hizmetlerimiz.html" aria-controls="fullnav-panel-resources" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Hizmetlerimiz<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down shrink-0 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></a></li><li><a href="./referanslar.html" class="inline-flex items-center rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft text-text-inverse hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground">Referanslar</a></li><li><a href="./kurumsal.html" aria-controls="fullnav-panel-company" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Kurumsal<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down shrink-0 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></a></li></ul>'
     html = html.replace(desktop_nav_old, desktop_nav_new)
 
     html = html.replace('>Sign in<', '>0 (541) 922 19 91<')
@@ -730,79 +730,79 @@ def build_faithful_site():
           <!-- 1. Ürünlerimiz -->
           <div class="border-b border-white/10 py-2.5">
             <div class="flex items-center justify-between">
-              <a href="/urunlerimiz.html" class="font-bold text-lg py-1 text-white hover:text-[#09bde3] flex-1">Ürünlerimiz</a>
+              <a href="./urunlerimiz.html" class="font-bold text-lg py-1 text-white hover:text-[#09bde3] flex-1">Ürünlerimiz</a>
               <button type="button" class="p-2 text-gray-400 hover:text-white cursor-pointer" onclick="const p=this.closest('div').nextElementSibling; p.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180');" aria-label="Ürünlerimiz alt menüsünü aç">
                 <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
               </button>
             </div>
             <div class="hidden pl-3 pt-2 pb-1 space-y-2.5 text-sm text-gray-300">
-              <a href="/urunlerimiz.html" class="block py-1 text-[#09bde3] font-semibold">Tüm Ürünlerimiz Sayfası →</a>
-              <a href="/urunlerimiz.html" class="block py-1 hover:text-[#09bde3]">Klima Santralleri (AHU)</a>
-              <a href="/urunlerimiz.html" class="block py-1 hover:text-[#09bde3]">Kendinden Flanşlı Galvaniz Kanal</a>
-              <a href="/urunlerimiz.html" class="block py-1 hover:text-[#09bde3]">Spiromatic Spiral Yuvarlak Kanal</a>
-              <a href="/urunlerimiz.html" class="block py-1 hover:text-[#09bde3]">VRV / VRF İklimlendirme</a>
-              <a href="/urunlerimiz.html" class="block py-1 hover:text-[#09bde3]">Yangın &amp; Duman Damperleri</a>
-              <a href="/urunlerimiz.html" class="block py-1 hover:text-[#09bde3]">Isı Geri Kazanım Cihazları (HRV)</a>
+              <a href="./urunlerimiz.html" class="block py-1 text-[#09bde3] font-semibold">Tüm Ürünlerimiz Sayfası →</a>
+              <a href="./urunlerimiz.html" class="block py-1 hover:text-[#09bde3]">Klima Santralleri (AHU)</a>
+              <a href="./urunlerimiz.html" class="block py-1 hover:text-[#09bde3]">Kendinden Flanşlı Galvaniz Kanal</a>
+              <a href="./urunlerimiz.html" class="block py-1 hover:text-[#09bde3]">Spiromatic Spiral Yuvarlak Kanal</a>
+              <a href="./urunlerimiz.html" class="block py-1 hover:text-[#09bde3]">VRV / VRF İklimlendirme</a>
+              <a href="./urunlerimiz.html" class="block py-1 hover:text-[#09bde3]">Yangın &amp; Duman Damperleri</a>
+              <a href="./urunlerimiz.html" class="block py-1 hover:text-[#09bde3]">Isı Geri Kazanım Cihazları (HRV)</a>
             </div>
           </div>
 
           <!-- 2. Çözümlerimiz -->
           <div class="border-b border-white/10 py-2.5">
             <div class="flex items-center justify-between">
-              <a href="/cozumlerimiz.html" class="font-bold text-lg py-1 text-white hover:text-[#09bde3] flex-1">Çözümlerimiz</a>
+              <a href="./cozumlerimiz.html" class="font-bold text-lg py-1 text-white hover:text-[#09bde3] flex-1">Çözümlerimiz</a>
               <button type="button" class="p-2 text-gray-400 hover:text-white cursor-pointer" onclick="const p=this.closest('div').nextElementSibling; p.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180');" aria-label="Çözümlerimiz alt menüsünü aç">
                 <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
               </button>
             </div>
             <div class="hidden pl-3 pt-2 pb-1 space-y-2.5 text-sm text-gray-300">
-              <a href="/cozumlerimiz.html" class="block py-1 text-[#09bde3] font-semibold">Tüm Çözümlerimiz Sayfası →</a>
-              <a href="/cozumlerimiz.html" class="block py-1 hover:text-[#09bde3]">Endüstriyel Tesisler &amp; Fabrikalar</a>
-              <a href="/cozumlerimiz.html" class="block py-1 hover:text-[#09bde3]">Hastaneler &amp; Temiz Odalar</a>
-              <a href="/cozumlerimiz.html" class="block py-1 hover:text-[#09bde3]">Ticari Yapılar &amp; Plazalar</a>
-              <a href="/cozumlerimiz.html" class="block py-1 hover:text-[#09bde3]">AVM &amp; Sosyal Tesisler</a>
-              <a href="/cozumlerimiz.html" class="block py-1 hover:text-[#09bde3]">Restoran &amp; Otel Mutfak Egzozu</a>
-              <a href="/cozumlerimiz.html" class="block py-1 hover:text-[#09bde3]">Otopark Jet Fan Sistemleri</a>
+              <a href="./cozumlerimiz.html" class="block py-1 text-[#09bde3] font-semibold">Tüm Çözümlerimiz Sayfası →</a>
+              <a href="./cozumlerimiz.html" class="block py-1 hover:text-[#09bde3]">Endüstriyel Tesisler &amp; Fabrikalar</a>
+              <a href="./cozumlerimiz.html" class="block py-1 hover:text-[#09bde3]">Hastaneler &amp; Temiz Odalar</a>
+              <a href="./cozumlerimiz.html" class="block py-1 hover:text-[#09bde3]">Ticari Yapılar &amp; Plazalar</a>
+              <a href="./cozumlerimiz.html" class="block py-1 hover:text-[#09bde3]">AVM &amp; Sosyal Tesisler</a>
+              <a href="./cozumlerimiz.html" class="block py-1 hover:text-[#09bde3]">Restoran &amp; Otel Mutfak Egzozu</a>
+              <a href="./cozumlerimiz.html" class="block py-1 hover:text-[#09bde3]">Otopark Jet Fan Sistemleri</a>
             </div>
           </div>
 
           <!-- 3. Hizmetlerimiz -->
           <div class="border-b border-white/10 py-2.5">
             <div class="flex items-center justify-between">
-              <a href="/hizmetlerimiz.html" class="font-bold text-lg py-1 text-white hover:text-[#09bde3] flex-1">Hizmetlerimiz</a>
+              <a href="./hizmetlerimiz.html" class="font-bold text-lg py-1 text-white hover:text-[#09bde3] flex-1">Hizmetlerimiz</a>
               <button type="button" class="p-2 text-gray-400 hover:text-white cursor-pointer" onclick="const p=this.closest('div').nextElementSibling; p.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180');" aria-label="Hizmetlerimiz alt menüsünü aç">
                 <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
               </button>
             </div>
             <div class="hidden pl-3 pt-2 pb-1 space-y-2.5 text-sm text-gray-300">
-              <a href="/hizmetlerimiz.html" class="block py-1 text-[#09bde3] font-semibold">Tüm Hizmetlerimiz Sayfası →</a>
-              <a href="/hizmetlerimiz.html" class="block py-1 hover:text-[#09bde3]">Yerinde Keşif &amp; Debi Simülasyonu</a>
-              <a href="/hizmetlerimiz.html" class="block py-1 hover:text-[#09bde3]">3D Projelendirme &amp; Metraj</a>
-              <a href="/hizmetlerimiz.html" class="block py-1 hover:text-[#09bde3]">CNC Plazma Kanal İmalatı</a>
-              <a href="/hizmetlerimiz.html" class="block py-1 hover:text-[#09bde3]">Anahtar Teslim Saha Montajı</a>
-              <a href="/hizmetlerimiz.html" class="block py-1 hover:text-[#09bde3]">TAB Test, Ayar &amp; Dengeleme</a>
+              <a href="./hizmetlerimiz.html" class="block py-1 text-[#09bde3] font-semibold">Tüm Hizmetlerimiz Sayfası →</a>
+              <a href="./hizmetlerimiz.html" class="block py-1 hover:text-[#09bde3]">Yerinde Keşif &amp; Debi Simülasyonu</a>
+              <a href="./hizmetlerimiz.html" class="block py-1 hover:text-[#09bde3]">3D Projelendirme &amp; Metraj</a>
+              <a href="./hizmetlerimiz.html" class="block py-1 hover:text-[#09bde3]">CNC Plazma Kanal İmalatı</a>
+              <a href="./hizmetlerimiz.html" class="block py-1 hover:text-[#09bde3]">Anahtar Teslim Saha Montajı</a>
+              <a href="./hizmetlerimiz.html" class="block py-1 hover:text-[#09bde3]">TAB Test, Ayar &amp; Dengeleme</a>
               <a href="tel:+905419221991" class="block py-1 hover:text-[#09bde3]">7/24 Teknik Servis &amp; Bakım</a>
             </div>
           </div>
 
           <!-- 4. Referanslar -->
           <div class="border-b border-white/10 py-3">
-            <a href="/referanslar.html" class="block font-bold text-lg text-white hover:text-[#09bde3]">Referanslar (250+ Proje)</a>
+            <a href="./referanslar.html" class="block font-bold text-lg text-white hover:text-[#09bde3]">Referanslar (250+ Proje)</a>
           </div>
 
           <!-- 5. Kurumsal -->
           <div class="border-b border-white/10 py-2.5">
             <div class="flex items-center justify-between">
-              <a href="/kurumsal.html" class="font-bold text-lg py-1 text-white hover:text-[#09bde3] flex-1">Kurumsal</a>
+              <a href="./kurumsal.html" class="font-bold text-lg py-1 text-white hover:text-[#09bde3] flex-1">Kurumsal</a>
               <button type="button" class="p-2 text-gray-400 hover:text-white cursor-pointer" onclick="const p=this.closest('div').nextElementSibling; p.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180');" aria-label="Kurumsal alt menüsünü aç">
                 <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
               </button>
             </div>
             <div class="hidden pl-3 pt-2 pb-1 space-y-2.5 text-sm text-gray-300">
-              <a href="/kurumsal.html" class="block py-1 text-[#09bde3] font-semibold">Tüm Kurumsal Bilgiler →</a>
-              <a href="/kurumsal.html" class="block py-1 hover:text-[#09bde3]">Hakkımızda &amp; 20+ Yıllık Tecrübe</a>
-              <a href="/kurumsal.html" class="block py-1 hover:text-[#09bde3]">Ankara İvedik OSB Üretim Tesisimiz</a>
-              <a href="/kurumsal.html" class="block py-1 hover:text-[#09bde3]">TSE, Eurovent, CE Kalite Belgeleri</a>
-              <a href="/kurumsal.html" class="block py-1 hover:text-[#09bde3]">İSG ve Sıfır Kaza Politikası</a>
+              <a href="./kurumsal.html" class="block py-1 text-[#09bde3] font-semibold">Tüm Kurumsal Bilgiler →</a>
+              <a href="./kurumsal.html" class="block py-1 hover:text-[#09bde3]">Hakkımızda &amp; 20+ Yıllık Tecrübe</a>
+              <a href="./kurumsal.html" class="block py-1 hover:text-[#09bde3]">Ankara İvedik OSB Üretim Tesisimiz</a>
+              <a href="./kurumsal.html" class="block py-1 hover:text-[#09bde3]">TSE, Eurovent, CE Kalite Belgeleri</a>
+              <a href="./kurumsal.html" class="block py-1 hover:text-[#09bde3]">İSG ve Sıfır Kaza Politikası</a>
               <a href="#sky-quote-modal" data-sky-modal-trigger="katalog" class="block py-1 hover:text-[#09bde3]">Ürün &amp; Hizmet Kataloğu İndir</a>
             </div>
           </div>
@@ -891,29 +891,29 @@ def build_faithful_site():
     html = html.replace('>We need smart people solving hard problems.<', '>Geleceğin tesisleri için yüksek verimli mekanik çözümler üretiyoruz.<')
 
     # Mega-menu link destinations (connect directly to dedicated pages)
-    html = html.replace('href="/core"', 'href="/urunlerimiz.html"')
-    html = html.replace('href="/how-it-works"', 'href="/hizmetlerimiz.html"')
-    html = html.replace('href="/with-solar"', 'href="/urunlerimiz.html"')
-    html = html.replace('href="/with-generator"', 'href="/urunlerimiz.html"')
-    html = html.replace('href="/duration-calculator"', 'href="/urunlerimiz.html"')
-    html = html.replace('href="/energy"', 'href="/cozumlerimiz.html"')
-    html = html.replace('href="/compare"', 'href="/kurumsal.html"')
-    html = html.replace('href="/business"', 'href="/cozumlerimiz.html"')
-    html = html.replace('href="/pricing"', 'href="/cozumlerimiz.html"')
-    html = html.replace('href="/watt"', 'href="/kurumsal.html"')
-    html = html.replace('href="/reviews"', 'href="/referanslar.html"')
-    html = html.replace('href="/stories"', 'href="/kurumsal.html"')
-    html = html.replace('href="/blog"', 'href="/kurumsal.html"')
-    html = html.replace('href="/about"', 'href="/kurumsal.html"')
+    html = html.replace('href="/core"', 'href="./urunlerimiz.html"')
+    html = html.replace('href="/how-it-works"', 'href="./hizmetlerimiz.html"')
+    html = html.replace('href="/with-solar"', 'href="./urunlerimiz.html"')
+    html = html.replace('href="/with-generator"', 'href="./urunlerimiz.html"')
+    html = html.replace('href="/duration-calculator"', 'href="./urunlerimiz.html"')
+    html = html.replace('href="/energy"', 'href="./cozumlerimiz.html"')
+    html = html.replace('href="/compare"', 'href="./kurumsal.html"')
+    html = html.replace('href="/business"', 'href="./cozumlerimiz.html"')
+    html = html.replace('href="/pricing"', 'href="./cozumlerimiz.html"')
+    html = html.replace('href="/watt"', 'href="./kurumsal.html"')
+    html = html.replace('href="/reviews"', 'href="./referanslar.html"')
+    html = html.replace('href="/stories"', 'href="./kurumsal.html"')
+    html = html.replace('href="/blog"', 'href="./kurumsal.html"')
+    html = html.replace('href="/about"', 'href="./kurumsal.html"')
     html = html.replace('href="/press"', 'href="/kurumsal.html#iletisim"')
-    html = html.replace('href="/learn"', 'href="/kurumsal.html"')
-    html = html.replace('href="/careers"', 'href="/kurumsal.html"')
-    html = html.replace('href="/field"', 'href="/referanslar.html"')
-    html = html.replace('href="/open-roles"', 'href="/referanslar.html"')
+    html = html.replace('href="/learn"', 'href="./kurumsal.html"')
+    html = html.replace('href="/careers"', 'href="./kurumsal.html"')
+    html = html.replace('href="/field"', 'href="./referanslar.html"')
+    html = html.replace('href="/open-roles"', 'href="./referanslar.html"')
     html = html.replace('href="/get-started"', 'href="#sky-quote-modal" data-sky-modal-trigger="teklif"')
     html = html.replace('href="/waitlist"', 'href="#sky-quote-modal" data-sky-modal-trigger="kesif"')
-    html = html.replace('href="/oncor"', 'href="/cozumlerimiz.html"')
-    html = html.replace('href="/utilities"', 'href="/cozumlerimiz.html"')
+    html = html.replace('href="/oncor"', 'href="./cozumlerimiz.html"')
+    html = html.replace('href="/utilities"', 'href="./cozumlerimiz.html"')
 
     # Section IDs for smooth in-page scrolling
     html = re.sub(r'<section\s+class=\"bcc-witness\"', '<section id="bcc-witness" class="bcc-witness"', html)
@@ -952,11 +952,11 @@ def build_faithful_site():
     # Hero video replacement with Sky Group All Seasons 1080p video
     html = html.replace(
         '<video class="bcc-hero-video" data-bcc-hero-video data-stream-uid="887a0aa809b4053c0cc21f414c9bb3b5" autoplay muted loop playsinline preload="none"></video>',
-        '<video class="bcc-hero-video bcc-hero-video-live" data-bcc-hero-video src="/_bpc/assets/base-core-concept/sky-hvac-all-seasons.mp4" autoplay muted loop playsinline preload="auto" style="opacity: 1 !important; visibility: visible !important; object-fit: cover;"></video>'
+        '<video class="bcc-hero-video bcc-hero-video-live" data-bcc-hero-video src="./_bpc/assets/base-core-concept/sky-hvac-all-seasons.mp4" autoplay muted loop playsinline preload="auto" style="opacity: 1 !important; visibility: visible !important; object-fit: cover;"></video>'
     )
     html = html.replace(
-        'data-src="/_bpc/assets/base-core-concept/all-seasons.mp4"',
-        'src="/_bpc/assets/base-core-concept/sky-hvac-all-seasons.mp4" data-src="/_bpc/assets/base-core-concept/sky-hvac-all-seasons.mp4" preload="auto"'
+        'data-src="./_bpc/assets/base-core-concept/all-seasons.mp4"',
+        'src="./_bpc/assets/base-core-concept/sky-hvac-all-seasons.mp4" data-src="./_bpc/assets/base-core-concept/sky-hvac-all-seasons.mp4" preload="auto"'
     )
 
     # Mosaic card titles
@@ -966,7 +966,7 @@ def build_faithful_site():
 
     # 7b. SECTION BCC-GRID: "Meet Base Core" and "Built in the USA."
     grid_title_pattern = r'<h2 class=\"bcc-grid-title\"[^>]*><span class=\"bcc-grid-meet\">Meet</span> Base Core[\s\S]*?</h2>\s*<p class=\"bcc-grid-sub\"[^>]*>Built in the USA\.</p>'
-    grid_title_replacement = """<h2 class="bcc-grid-title" style="--ws:0.8931"><span class="bcc-grid-meet">Keşfedin:</span> Sky Group<img src="/assets/sky-group-logo-arrow.png" alt="Sky Group" class="inline-block w-8 h-8 align-middle ml-2 object-contain filter drop-shadow-[0_2px_8px_rgba(9,189,227,0.4)]" width="32" height="32"></h2> <p class="bcc-grid-sub" style="--ws:0.9094">Türkiye'de Yerli İmalat &amp; Yüksek Standartlarda Mühendislik.</p>"""
+    grid_title_replacement = """<h2 class="bcc-grid-title" style="--ws:0.8931"><span class="bcc-grid-meet">Keşfedin:</span> Sky Group<img src="./assets/sky-group-logo-arrow.png" alt="Sky Group" class="inline-block w-8 h-8 align-middle ml-2 object-contain filter drop-shadow-[0_2px_8px_rgba(9,189,227,0.4)]" width="32" height="32"></h2> <p class="bcc-grid-sub" style="--ws:0.9094">Türkiye'de Yerli İmalat &amp; Yüksek Standartlarda Mühendislik.</p>"""
     html = re.sub(grid_title_pattern, grid_title_replacement, html, count=1)
 
     # 8. SECTION 2: BCC-MEET WORDS
@@ -1098,12 +1098,12 @@ def build_faithful_site():
     html = html.replace('Featured across national news and media', 'REFERANSLARIMIZ &amp; PROJELERİMİZDEN BAZILARI')
     
     reference_logos_html = """
-    <li> <img src="/sm/ambar/r/12.png" alt="Dragon Restaurant" style="--il:0; --ir:0; object-fit:contain; max-height:55px;" width="180" height="70" loading="lazy"> </li>
-    <li> <img src="/sm/ambar/r/14.png" alt="ECE Türkiye" style="--il:0; --ir:0; object-fit:contain; max-height:55px;" width="180" height="70" loading="lazy"> </li>
-    <li> <img src="/sm/ambar/r/21.png" alt="Köşebaşı" style="--il:0; --ir:0; object-fit:contain; max-height:55px;" width="180" height="70" loading="lazy"> </li>
-    <li> <img src="/sm/ambar/r/22.png" alt="İnci Deri" style="--il:0; --ir:0; object-fit:contain; max-height:55px;" width="180" height="70" loading="lazy"> </li>
-    <li> <img src="/sm/ambar/r/10.png" alt="Faik Sönmez" style="--il:0; --ir:0; object-fit:contain; max-height:55px;" width="180" height="70" loading="lazy"> </li>
-    <li> <img src="/sm/ambar/r/32.png" alt="Tavuk Dünyası" style="--il:0; --ir:0; object-fit:contain; max-height:55px;" width="180" height="70" loading="lazy"> </li>
+    <li> <img src="./sm/ambar/r/12.png" alt="Dragon Restaurant" style="--il:0; --ir:0; object-fit:contain; max-height:55px;" width="180" height="70" loading="lazy"> </li>
+    <li> <img src="./sm/ambar/r/14.png" alt="ECE Türkiye" style="--il:0; --ir:0; object-fit:contain; max-height:55px;" width="180" height="70" loading="lazy"> </li>
+    <li> <img src="./sm/ambar/r/21.png" alt="Köşebaşı" style="--il:0; --ir:0; object-fit:contain; max-height:55px;" width="180" height="70" loading="lazy"> </li>
+    <li> <img src="./sm/ambar/r/22.png" alt="İnci Deri" style="--il:0; --ir:0; object-fit:contain; max-height:55px;" width="180" height="70" loading="lazy"> </li>
+    <li> <img src="./sm/ambar/r/10.png" alt="Faik Sönmez" style="--il:0; --ir:0; object-fit:contain; max-height:55px;" width="180" height="70" loading="lazy"> </li>
+    <li> <img src="./sm/ambar/r/32.png" alt="Tavuk Dünyası" style="--il:0; --ir:0; object-fit:contain; max-height:55px;" width="180" height="70" loading="lazy"> </li>
     """
     html = re.sub(
         r'<ul class=\"bcc-witness-press-row\">\s*<li>[\s\S]*?</ul>',
@@ -1537,7 +1537,7 @@ def build_faithful_site():
     badges_html = """
     <div class="flex flex-col items-start gap-2.5 lg:items-end">
       <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-sky-500/10 border border-sky-400/30 text-sky-200 text-xs font-semibold shadow-sm mb-1">
-        <img src="/assets/sky-group-logo-arrow.png" alt="Mühendislik & İklimlendirme" class="w-4 h-4 object-contain" width="16" height="16">
+        <img src="./assets/sky-group-logo-arrow.png" alt="Mühendislik & İklimlendirme" class="w-4 h-4 object-contain" width="16" height="16">
         Mühendislik &amp; İklimlendirme Çözümleri
       </div>
       <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/10 border border-white/15 text-white text-xs font-semibold shadow-sm">
@@ -1605,7 +1605,7 @@ def build_faithful_site():
     sky_legal_html = """
     <div class="text-body-sm text-text-disabled max-w-3xl space-y-3">
       <div class="flex items-center gap-3 pb-1">
-        <img src="/assets/sky-group-logo-s.png" alt="Sky Group" class="h-10 w-10 object-contain drop-shadow" width="40" height="40">
+        <img src="./assets/sky-group-logo-s.png" alt="Sky Group" class="h-10 w-10 object-contain drop-shadow" width="40" height="40">
         <span class="text-2xl font-black tracking-tight text-white">SKY <span class="text-[#09bde3]">GROUP</span></span>
       </div>
       <p><strong class="font-semibold text-text-disabled">Sky Group İklimlendirme ve Havalandırma Sistemleri San. ve Tic. Ltd. Şti.</strong></p>
@@ -1634,13 +1634,13 @@ def build_faithful_site():
 
     # Replace AICPA SOC badge with TSE & CE badge
     html = html.replace(
-        '<img src="/_bpc/assets/badges/aicpa-soc.png" alt="AICPA SOC for Service Organizations" class="w-24 h-auto" loading="lazy"/>',
+        '<img src="./_bpc/assets/badges/aicpa-soc.png" alt="AICPA SOC for Service Organizations" class="w-24 h-auto" loading="lazy"/>',
         '<div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 border border-white/20 text-white font-bold text-xs tracking-wider shadow-sm"><span class="text-[#09bde3]">TSE</span> EN 1886 &bull; CE</div>'
     )
     # Replace small Base circular logo near footer copyright with Sky Group logo
     html = re.sub(
         r'<div class=\"w-7\"><svg viewBox=\"0 0 380 380\"[\s\S]*?</svg></div>',
-        '<div class="w-8 h-8"><img src="/assets/sky-group-logo-s.png" alt="Sky Group" class="w-full h-full object-contain" width="32" height="32"></div>',
+        '<div class="w-8 h-8"><img src="./assets/sky-group-logo-s.png" alt="Sky Group" class="w-full h-full object-contain" width="32" height="32"></div>',
         html,
         count=1
     )
@@ -1744,7 +1744,7 @@ def build_faithful_site():
         <!-- Header -->
         <div class="flex items-center gap-3 mb-2.5">
           <div class="w-10 h-10 rounded-xl bg-[#061527] flex items-center justify-center p-2 shadow-sm shrink-0">
-            <img src="/assets/sky-group-logo-s.png" alt="Sky Group" class="w-full h-full object-contain" width="40" height="40">
+            <img src="./assets/sky-group-logo-s.png" alt="Sky Group" class="w-full h-full object-contain" width="40" height="40">
           </div>
           <div>
             <span class="text-[10px] font-bold uppercase tracking-widest text-[#0284c7] block">Mühendislik &amp; Projelendirme</span>
@@ -2174,7 +2174,7 @@ def build_faithful_site():
     });
 
     // Logo click smooth scroll to top
-    document.querySelectorAll('a[href="/"], .sky-brand-logo').forEach(logo => {
+    document.querySelectorAll('a[href="./index.html"], .sky-brand-logo').forEach(logo => {
       logo.addEventListener('click', function(e) {
         if (window.location.pathname === '/' || window.location.pathname.endsWith('index.html')) {
           e.preventDefault();

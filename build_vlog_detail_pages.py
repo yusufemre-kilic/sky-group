@@ -137,7 +137,7 @@ Sky Group mühendislik ekibi tarafından mimari DWG çizimleri üzerinde debi ve
 
     gallery_html = "\n".join([f"""
     <div class="sky-vlog-gallery-item">
-      <img src="{img}" alt="{title_clean} Detay Görseli" loading="lazy">
+      <img src="{'.' + img if img.startswith('/') else img}" alt="{title_clean} Detay Görseli" loading="lazy">
     </div>
     """ for img in gallery_images[:2]])
 
@@ -148,9 +148,9 @@ Sky Group mühendislik ekibi tarafından mimari DWG çizimleri üzerinde debi ve
         rel_loc = rel.get('location', rel.get('badge_loc', ''))
         rel_specs = escape_html(rel.get('specs', ''))
         related_cards_html += f"""
-        <a href="/{rel_slug}.html" class="sky-project-card">
+        <a href="./{rel_slug}.html" class="sky-project-card">
           <div class="sky-project-photo">
-            <img src="{rel['image']}" alt="{rel['title']}" loading="lazy">
+            <img src="{'.' + rel['image'] if rel['image'].startswith('/') else rel['image']}" alt="{rel['title']}" loading="lazy">
             <span class="sky-card-cat-badge">{rel_cat}</span>
             <span class="sky-card-loc-badge">{rel_loc}</span>
           </div>
@@ -173,15 +173,15 @@ Sky Group mühendislik ekibi tarafından mimari DWG çizimleri üzerinde debi ve
   <title>{title_clean} | Sky Group İklimlendirme & Havalandırma</title>
   <meta name="description" content="{desc_clean[:155]}">
   
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="apple-touch-icon" href="/favicon.png">
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="apple-touch-icon" href="./favicon.png">
 
   <!-- Core Base Power Layout Styles -->
-  <link rel="stylesheet" href="/_bpc/assets/BaseCoreSpecs.DESLp_Zg.css">
-  <link rel="stylesheet" href="/_bpc/assets/core.KFUJ36fi.css">
-  <link rel="stylesheet" href="/_bpc/assets/MarketingLayout.CLOcHXtv.css">
+  <link rel="stylesheet" href="./_bpc/assets/BaseCoreSpecs.DESLp_Zg.css">
+  <link rel="stylesheet" href="./_bpc/assets/core.KFUJ36fi.css">
+  <link rel="stylesheet" href="./_bpc/assets/MarketingLayout.CLOcHXtv.css">
 
   <style>
     :root {{
@@ -946,7 +946,7 @@ Sky Group mühendislik ekibi tarafından mimari DWG çizimleri üzerinde debi ve
       
       <!-- Back Link -->
       <div>
-        <a href="{back_url}" class="sky-vlog-back-link">
+        <a href="{'.' + back_url if back_url.startswith('/') else back_url}" class="sky-vlog-back-link">
           <span>←</span>
           <span>{back_label}</span>
         </a>
@@ -974,7 +974,7 @@ Sky Group mühendislik ekibi tarafından mimari DWG çizimleri üzerinde debi ve
     <!-- FULL HERO IMAGE -->
     <section class="sky-vlog-container">
       <div class="sky-vlog-hero">
-        <img src="{image}" alt="{title_clean}">
+        <img src="{'.' + image if image.startswith('/') else image}" alt="{title_clean}">
         <div class="sky-vlog-hero-badge">
           <span>{location_clean} • Sky Group Mühendislik &amp; İmalat Güvencesi</span>
         </div>
@@ -1129,7 +1129,7 @@ Sky Group mühendislik ekibi tarafından mimari DWG çizimleri üzerinde debi ve
     <section class="sky-vlog-related-section">
       <div class="sky-vlog-related-header">
         <h2 class="sky-vlog-related-title">İlgili Diğer Sistem ve Projeler</h2>
-        <a href="{back_url}" class="sky-vlog-related-link">
+        <a href="{'.' + back_url if back_url.startswith('/') else back_url}" class="sky-vlog-related-link">
           Tümünü Gör →
         </a>
       </div>

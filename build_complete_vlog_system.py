@@ -754,7 +754,7 @@ def build_all_vlog_pages():
         related = [r for i, r in enumerate(REFERANSLAR) if i != idx]
         html = render_vlog_page(
             item=p,
-            back_url="/referanslar.html",
+            back_url="./referanslar.html",
             back_label="Referanslar Kataloğuna Dön",
             related_items=related,
             topnav_html=topnav_html,
@@ -770,7 +770,7 @@ def build_all_vlog_pages():
         related = [r for i, r in enumerate(URUNLER) if i != idx]
         html = render_vlog_page(
             item=u,
-            back_url="/urunlerimiz.html",
+            back_url="./urunlerimiz.html",
             back_label="Ürünler Kataloğuna Dön",
             related_items=related,
             topnav_html=topnav_html,
@@ -786,7 +786,7 @@ def build_all_vlog_pages():
         related = [r for i, r in enumerate(COZUMLER) if i != idx]
         html = render_vlog_page(
             item=c,
-            back_url="/cozumlerimiz.html",
+            back_url="./cozumlerimiz.html",
             back_label="Çözümler Kataloğuna Dön",
             related_items=related,
             topnav_html=topnav_html,
@@ -802,7 +802,7 @@ def build_all_vlog_pages():
         related = [r for i, r in enumerate(HIZMETLER) if i != idx]
         html = render_vlog_page(
             item=h,
-            back_url="/hizmetlerimiz.html",
+            back_url="./hizmetlerimiz.html",
             back_label="Hizmetler Kataloğuna Dön",
             related_items=related,
             topnav_html=topnav_html,
@@ -818,7 +818,7 @@ def build_all_vlog_pages():
         related = [r for i, r in enumerate(KURUMSAL) if i != idx]
         html = render_vlog_page(
             item=k,
-            back_url="/kurumsal.html",
+            back_url="./kurumsal.html",
             back_label="Kurumsal Kataloğa Dön",
             related_items=related,
             topnav_html=topnav_html,

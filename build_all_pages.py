@@ -64,9 +64,9 @@ def build_urunlerimiz():
     """
 
     showcase_col3 = """
-    <a href="/urun-thks-hijyenik-klima-santrali.html" class="group block cursor-pointer">
+    <a href="./urun-thks-hijyenik-klima-santrali.html" class="group block cursor-pointer">
       <div class="relative block overflow-hidden aspect-[4/3] bg-slate-100 border border-slate-200/80 shadow-xs" style="border-radius: 4px !important;">
-        <img src="/sm/ambar/urunler/thks-hijyenik-klima-santral.jpg" alt="Hijyenik Klima Santrali" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy">
+        <img src="./sm/ambar/urunler/thks-hijyenik-klima-santral.jpg" alt="Hijyenik Klima Santrali" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy">
         <span class="sky-card-cat-badge">Öne Çıkan Ürün</span>
         <span class="sky-card-loc-badge">DIN 1946-4 Hijyenik</span>
       </div>
@@ -319,9 +319,9 @@ def build_cozumlerimiz():
     """
 
     showcase_col3 = """
-    <a href="/cozum-endustriyel-ve-ticari-proje-muhendisligi.html" class="group block cursor-pointer">
+    <a href="./cozum-endustriyel-ve-ticari-proje-muhendisligi.html" class="group block cursor-pointer">
       <div class="relative block overflow-hidden aspect-[4/3] bg-slate-100 border border-slate-200/80 shadow-xs" style="border-radius: 4px !important;">
-        <img src="/sm/ambar/koca_fotogal_910f18c72e6d8ef46ca92734073d84ef.jpg" alt="Endüstriyel Tesis İklimlendirme" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy">
+        <img src="./sm/ambar/koca_fotogal_910f18c72e6d8ef46ca92734073d84ef.jpg" alt="Endüstriyel Tesis İklimlendirme" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy">
         <span class="sky-card-cat-badge">Öne Çıkan Çözüm</span>
         <span class="sky-card-loc-badge">Anahtar Teslim</span>
       </div>
@@ -519,9 +519,9 @@ def build_hizmetlerimiz():
     """
 
     showcase_col3 = """
-    <a href="/hizmet-anahtar-teslim-saha-montaji-ve-santiye-yonetimi.html" class="group block cursor-pointer">
+    <a href="./hizmet-anahtar-teslim-saha-montaji-ve-santiye-yonetimi.html" class="group block cursor-pointer">
       <div class="relative block overflow-hidden aspect-[4/3] bg-slate-100 border border-slate-200/80 shadow-xs" style="border-radius: 4px !important;">
-        <img src="/sm/ambar/koca_fotogal_9b3b64a50f65c40087de050ab79832fd.jpg" alt="Mühendislik ve Montaj Sahası" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy">
+        <img src="./sm/ambar/koca_fotogal_9b3b64a50f65c40087de050ab79832fd.jpg" alt="Mühendislik ve Montaj Sahası" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy">
         <span class="sky-card-cat-badge">Uçtan Uca</span>
         <span class="sky-card-loc-badge">Fabrikadan Şantiyeye</span>
       </div>
@@ -681,9 +681,9 @@ def build_kurumsal():
     """
 
     showcase_col3 = """
-    <a href="/kurumsal-cnc-plazma-kesim-otomatik-flans-parkuru.html" class="group block cursor-pointer">
+    <a href="./kurumsal-cnc-plazma-kesim-otomatik-flans-parkuru.html" class="group block cursor-pointer">
       <div class="relative block overflow-hidden aspect-[4/3] bg-slate-100 border border-slate-200/80 shadow-xs" style="border-radius: 4px !important;">
-        <img src="/sm/ambar/banner/sky-mekanik-723.jpg" alt="Sky Group Genel Merkez" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy">
+        <img src="./sm/ambar/banner/sky-mekanik-723.jpg" alt="Sky Group Genel Merkez" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy">
         <span class="sky-card-cat-badge">Genel Merkez &amp; Fabrika</span>
         <span class="sky-card-loc-badge">Ankara İvedik OSB</span>
       </div>
@@ -828,12 +828,12 @@ def update_referanslar():
     html = re.sub(old_social_pattern, new_social_replacement, html)
 
     # 3. Update footer navigation links
-    html = html.replace('href="#bcc-bp"', 'href="/urunlerimiz.html"')
-    html = html.replace('href="#bcc-how"', 'href="/hizmetlerimiz.html"')
-    html = html.replace('href="#bcc-stress"', 'href="/cozumlerimiz.html"')
-    html = html.replace('href="#bcc-fact"', 'href="/kurumsal.html"')
-    html = html.replace('href="/homebuilders"', 'href="/urunlerimiz.html"')
-    html = html.replace('href="/install-partners"', 'href="/cozumlerimiz.html"')
+    html = html.replace('href="#bcc-bp"', 'href="./urunlerimiz.html"')
+    html = html.replace('href="#bcc-how"', 'href="./hizmetlerimiz.html"')
+    html = html.replace('href="#bcc-stress"', 'href="./cozumlerimiz.html"')
+    html = html.replace('href="#bcc-fact"', 'href="./kurumsal.html"')
+    html = html.replace('href="/homebuilders"', 'href="./urunlerimiz.html"')
+    html = html.replace('href="/install-partners"', 'href="./cozumlerimiz.html"')
 
     with open(ref_path, 'w', encoding='utf-8') as f:
         f.write(html)
@@ -851,22 +851,22 @@ def update_index():
     html = re.sub(old_social_pattern, new_social_replacement, html)
 
     # 2. Update footer navigation links
-    html = html.replace('href="#bcc-bp"', 'href="/urunlerimiz.html"')
-    html = html.replace('href="#bcc-how"', 'href="/hizmetlerimiz.html"')
-    html = html.replace('href="#bcc-stress"', 'href="/cozumlerimiz.html"')
-    html = html.replace('href="#bcc-fact"', 'href="/kurumsal.html"')
-    html = html.replace('href="/homebuilders"', 'href="/urunlerimiz.html"')
-    html = html.replace('href="/install-partners"', 'href="/cozumlerimiz.html"')
+    html = html.replace('href="#bcc-bp"', 'href="./urunlerimiz.html"')
+    html = html.replace('href="#bcc-how"', 'href="./hizmetlerimiz.html"')
+    html = html.replace('href="#bcc-stress"', 'href="./cozumlerimiz.html"')
+    html = html.replace('href="#bcc-fact"', 'href="./kurumsal.html"')
+    html = html.replace('href="/homebuilders"', 'href="./urunlerimiz.html"')
+    html = html.replace('href="/install-partners"', 'href="./cozumlerimiz.html"')
 
     # 3. In mobile drawer, add direct prominent link for each page
     html = html.replace('<li><a href="#bcc-bp" data-target-step="0" class="block py-1 hover:text-[#09bde3]">Klima Santralleri (AHU)</a></li>',
-                        '<li><a href="/urunlerimiz.html" class="block py-1 font-bold text-[#09bde3]">Tüm Ürünler Sayfası &rarr;</a></li><li><a href="/urunlerimiz.html#santral" class="block py-1 hover:text-[#09bde3]">Klima Santralleri (AHU)</a></li>')
+                        '<li><a href="./urunlerimiz.html" class="block py-1 font-bold text-[#09bde3]">Tüm Ürünler Sayfası &rarr;</a></li><li><a href="/urunlerimiz.html#santral" class="block py-1 hover:text-[#09bde3]">Klima Santralleri (AHU)</a></li>')
     html = html.replace('<li><a href="#bcc-stress" class="block py-1 hover:text-[#09bde3]">Endüstriyel Tesisler &amp; Fabrikalar</a></li>',
-                        '<li><a href="/cozumlerimiz.html" class="block py-1 font-bold text-[#09bde3]">Tüm Çözümlerimiz Sayfası &rarr;</a></li><li><a href="/cozumlerimiz.html#endustriyel" class="block py-1 hover:text-[#09bde3]">Endüstriyel Tesisler &amp; Fabrikalar</a></li>')
+                        '<li><a href="./cozumlerimiz.html" class="block py-1 font-bold text-[#09bde3]">Tüm Çözümlerimiz Sayfası &rarr;</a></li><li><a href="/cozumlerimiz.html#endustriyel" class="block py-1 hover:text-[#09bde3]">Endüstriyel Tesisler &amp; Fabrikalar</a></li>')
     html = html.replace('<li><a href="#bcc-how" class="block py-1 hover:text-[#09bde3]">Mühendislik &amp; Projelendirme</a></li>',
-                        '<li><a href="/hizmetlerimiz.html" class="block py-1 font-bold text-[#09bde3]">Tüm Hizmetlerimiz Sayfası &rarr;</a></li><li><a href="/hizmetlerimiz.html#proje" class="block py-1 hover:text-[#09bde3]">Mühendislik &amp; Projelendirme</a></li>')
+                        '<li><a href="./hizmetlerimiz.html" class="block py-1 font-bold text-[#09bde3]">Tüm Hizmetlerimiz Sayfası &rarr;</a></li><li><a href="/hizmetlerimiz.html#proje" class="block py-1 hover:text-[#09bde3]">Mühendislik &amp; Projelendirme</a></li>')
     html = html.replace('<li><a href="#bcc-fact" class="block py-1 hover:text-[#09bde3]">Hakkımızda</a></li>',
-                        '<li><a href="/kurumsal.html" class="block py-1 font-bold text-[#09bde3]">Tüm Kurumsal Bilgiler &rarr;</a></li><li><a href="/kurumsal.html#hakkimizda" class="block py-1 hover:text-[#09bde3]">Hakkımızda</a></li>')
+                        '<li><a href="./kurumsal.html" class="block py-1 font-bold text-[#09bde3]">Tüm Kurumsal Bilgiler &rarr;</a></li><li><a href="/kurumsal.html#hakkimizda" class="block py-1 hover:text-[#09bde3]">Hakkımızda</a></li>')
 
     with open(index_path, 'w', encoding='utf-8') as f:
         f.write(html)

@@ -23,17 +23,17 @@ def build_skygroup_html():
     sky_custom_styles = """
     <title>Sky Group | Havalandırma, İklimlendirme ve Mekanik Tesisat Çözümleri</title>
     <meta name="description" content="Sky Group; havalandırma sistemleri, klima santralleri, VRF/VRV iklimlendirme, ısı geri kazanım ve yangın söndürme projelerinde yüksek mühendislik güvencesi sunar.">
-    <link rel="icon" type="image/png" href="/tema/sg/images/favicon.png">
-    <link rel="apple-touch-icon" href="/tema/sg/images/favicon.png">
+    <link rel="icon" type="image/png" href="./tema/sg/images/favicon.png">
+    <link rel="apple-touch-icon" href="./tema/sg/images/favicon.png">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Sky Group | Havalandırma ve İklimlendirme Çözümleri">
     <meta property="og:description" content="Endüstriyel tesisler ve modern yapılar için yüksek verimli mekanik tesisat ve iklimlendirme çözümleri.">
-    <meta property="og:image" content="/sm/ambar/banner/sky-mekanik.jpg">
+    <meta property="og:image" content="./sm/ambar/banner/sky-mekanik.jpg">
     <meta property="og:site_name" content="Sky Group">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Sky Group | Havalandırma ve İklimlendirme">
     <meta name="twitter:description" content="Yüksek enerji tasarruflu havalandırma ve iklimlendirme sistemleri.">
-    <meta name="twitter:image" content="/sm/ambar/banner/sky-mekanik.jpg">
+    <meta name="twitter:image" content="./sm/ambar/banner/sky-mekanik.jpg">
     <style>
       :root {
         --sky-blue: #0d5ca9;
@@ -354,7 +354,7 @@ def build_skygroup_html():
         <div class="max-w-[1376px] mx-auto px-4 md:px-8 h-[60px] md:h-[72px] flex items-center justify-between gap-4">
           
           <!-- Brand Logo -->
-          <a href="/" class="flex items-center gap-3 group focus:outline-none" aria-label="Sky Group Ana Sayfa">
+          <a href="./index.html" class="flex items-center gap-3 group focus:outline-none" aria-label="Sky Group Ana Sayfa">
             <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#0d5ca9] to-[#09bde3] p-0.5 shadow-lg shadow-sky-500/30 flex items-center justify-center">
               <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
                 <svg class="w-6 h-6 text-[#09bde3] group-hover:rotate-180 transition-transform duration-700 ease-out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -432,8 +432,8 @@ def build_skygroup_html():
         <!-- Hero Stage -->
         <div class="bcc-stage bcc-stage-hero">
           <div class="bcc-hero-media" aria-hidden="true">
-            <img class="bcc-hero-poster" src="/sm/ambar/banner/sky-mekanik.jpg" alt="Sky Group Havalandırma ve İklimlendirme Tesisatı" width="1920" height="1080" loading="eager" fetchpriority="high">
-            <img class="bcc-hero-soft" src="/sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async">
+            <img class="bcc-hero-poster" src="./sm/ambar/banner/sky-mekanik.jpg" alt="Sky Group Havalandırma ve İklimlendirme Tesisatı" width="1920" height="1080" loading="eager" fetchpriority="high">
+            <img class="bcc-hero-soft" src="./sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async">
             <div class="bcc-hero-scrim"></div>
           </div>
           
@@ -470,14 +470,14 @@ def build_skygroup_html():
                   <span class="bcc-word" style="--ws:0.0881">Enerji</span>
                   <span class="bcc-word" style="--ws:0.103">ve</span>
                   <span class="bcc-word" style="--ws:0.1179">iklimlendirme</span>
-                  <img class="bcc-stroke bcc-stroke-seg1" style="--ws:0.1179" src="/_bpc/assets/base-core-concept/underline-brush.avif" alt="" width="2721" height="27" loading="lazy" decoding="async">
+                  <img class="bcc-stroke bcc-stroke-seg1" style="--ws:0.1179" src="./_bpc/assets/base-core-concept/underline-brush.avif" alt="" width="2721" height="27" loading="lazy" decoding="async">
                 </span>
                 <br class="bcc-br-m">
                 <span class="bcc-useg">
                   <span class="bcc-word" style="--ws:0.1328">yönetimi.</span>
-                  <img class="bcc-stroke bcc-stroke-seg2" style="--ws:0.1328" src="/_bpc/assets/base-core-concept/underline-brush.avif" alt="" width="2721" height="27" loading="lazy" decoding="async">
+                  <img class="bcc-stroke bcc-stroke-seg2" style="--ws:0.1328" src="./_bpc/assets/base-core-concept/underline-brush.avif" alt="" width="2721" height="27" loading="lazy" decoding="async">
                 </span>
-                <img class="bcc-stroke bcc-stroke-whole" style="--ws:0.1328" src="/_bpc/assets/base-core-concept/underline-brush.avif" alt="" width="2721" height="27" loading="lazy" decoding="async">
+                <img class="bcc-stroke bcc-stroke-whole" style="--ws:0.1328" src="./_bpc/assets/base-core-concept/underline-brush.avif" alt="" width="2721" height="27" loading="lazy" decoding="async">
               </span>
               <br>
               <span class="bcc-word" style="--ws:0.1477">Doğru</span>
@@ -515,25 +515,25 @@ def build_skygroup_html():
         <div class="bcc-stage bcc-stage-grid">
           <div class="bcc-grid-final" aria-hidden="true">
             <picture>
-              <img src="/sm/ambar/banner/sky-mekanik-250.jpg" alt="Sky Group Havalandırma İmalatı" width="2560" height="1440" loading="lazy" decoding="async">
+              <img src="./sm/ambar/banner/sky-mekanik-250.jpg" alt="Sky Group Havalandırma İmalatı" width="2560" height="1440" loading="lazy" decoding="async">
             </picture>
           </div>
           <div class="bcc-grid-tiles bcc-grid-tiles-desktop" aria-hidden="true">
-            <div class="bcc-grid-tile" style="--c:2; --r:1; --ws:0.535"><img src="/sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
-            <div class="bcc-grid-tile" style="--c:2; --r:0; --ws:0.5478"><img src="/sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
-            <div class="bcc-grid-tile" style="--c:4; --r:1; --ws:0.5606"><img src="/sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
-            <div class="bcc-grid-tile bcc-grid-tile-tl" style="--c:0; --r:0; --ws:0.5734"><img src="/sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
-            <div class="bcc-grid-tile" style="--c:1; --r:2; --ws:0.5862"><img src="/sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
-            <div class="bcc-grid-tile bcc-grid-tile-br" style="--c:4; --r:2; --ws:0.599"><img src="/sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
-            <div class="bcc-grid-tile" style="--c:3; --r:1; --ws:0.6338"><img src="/sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
-            <div class="bcc-grid-tile bcc-grid-tile-bl" style="--c:0; --r:2; --ws:0.6466"><img src="/sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
-            <div class="bcc-grid-tile" style="--c:1; --r:0; --ws:0.6594"><img src="/sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
-            <div class="bcc-grid-tile" style="--c:3; --r:2; --ws:0.6722"><img src="/sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
-            <div class="bcc-grid-tile" style="--c:0; --r:1; --ws:0.685"><img src="/sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
-            <div class="bcc-grid-tile bcc-grid-tile-tr" style="--c:4; --r:0; --ws:0.6978"><img src="/sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
-            <div class="bcc-grid-tile" style="--c:2; --r:2; --ws:0.7106"><img src="/sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
-            <div class="bcc-grid-tile" style="--c:1; --r:1; --ws:0.7234"><img src="/sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
-            <div class="bcc-grid-tile" style="--c:3; --r:0; --ws:0.7362"><img src="/sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
+            <div class="bcc-grid-tile" style="--c:2; --r:1; --ws:0.535"><img src="./sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
+            <div class="bcc-grid-tile" style="--c:2; --r:0; --ws:0.5478"><img src="./sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
+            <div class="bcc-grid-tile" style="--c:4; --r:1; --ws:0.5606"><img src="./sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
+            <div class="bcc-grid-tile bcc-grid-tile-tl" style="--c:0; --r:0; --ws:0.5734"><img src="./sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
+            <div class="bcc-grid-tile" style="--c:1; --r:2; --ws:0.5862"><img src="./sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
+            <div class="bcc-grid-tile bcc-grid-tile-br" style="--c:4; --r:2; --ws:0.599"><img src="./sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
+            <div class="bcc-grid-tile" style="--c:3; --r:1; --ws:0.6338"><img src="./sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
+            <div class="bcc-grid-tile bcc-grid-tile-bl" style="--c:0; --r:2; --ws:0.6466"><img src="./sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
+            <div class="bcc-grid-tile" style="--c:1; --r:0; --ws:0.6594"><img src="./sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
+            <div class="bcc-grid-tile" style="--c:3; --r:2; --ws:0.6722"><img src="./sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
+            <div class="bcc-grid-tile" style="--c:0; --r:1; --ws:0.685"><img src="./sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
+            <div class="bcc-grid-tile bcc-grid-tile-tr" style="--c:4; --r:0; --ws:0.6978"><img src="./sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
+            <div class="bcc-grid-tile" style="--c:2; --r:2; --ws:0.7106"><img src="./sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
+            <div class="bcc-grid-tile" style="--c:1; --r:1; --ws:0.7234"><img src="./sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
+            <div class="bcc-grid-tile" style="--c:3; --r:0; --ws:0.7362"><img src="./sm/ambar/banner/sky-mekanik-250.jpg" alt="" width="2560" height="1440" loading="lazy" decoding="async"></div>
           </div>
           <div class="bcc-grid-plate">
             <div class="bcc-grid-scrim" aria-hidden="true"></div>
@@ -559,7 +559,7 @@ def build_skygroup_html():
                 <span class="bcc-meet-w" style="--cd:0.21s">modern</span>
                 <span class="bcc-meet-mark">
                   <span class="bcc-meet-w" style="--cd:0.29s">yapılara</span>
-                  <img class="bcc-meet-pic" src="/_bpc/assets/base-core-concept/meet-battery.avif" alt="" width="190" height="222" loading="lazy" decoding="async">
+                  <img class="bcc-meet-pic" src="./_bpc/assets/base-core-concept/meet-battery.avif" alt="" width="190" height="222" loading="lazy" decoding="async">
                 </span>
               </span>
             </span>
@@ -569,7 +569,7 @@ def build_skygroup_html():
             <span class="bcc-meet-w" style="--ws:0.2000">klima</span>
             <span class="bcc-meet-mark">
               <span class="bcc-meet-w" style="--ws:0.2200">santralleri</span>
-              <img class="bcc-meet-ico bcc-meet-ico-house" style="--ws:0.2500" src="/_bpc/assets/base-core-concept/meet-house.avif" alt="" width="268" height="162" loading="lazy" decoding="async">
+              <img class="bcc-meet-ico bcc-meet-ico-house" style="--ws:0.2500" src="./_bpc/assets/base-core-concept/meet-house.avif" alt="" width="268" height="162" loading="lazy" decoding="async">
             </span>
             <span class="bcc-meet-w" style="--ws:0.2400">ile</span>
             <span class="bcc-meet-w" style="--ws:0.2600">taze</span>
@@ -577,14 +577,14 @@ def build_skygroup_html():
             <span class="bcc-meet-w" style="--ws:0.3000">sağlarken</span>
             <span class="bcc-meet-mark">
               <span class="bcc-meet-w" style="--ws:0.3200">,</span>
-              <img class="bcc-meet-ico bcc-meet-ico-bolt" style="--ws:0.3500" src="/_bpc/assets/base-core-concept/meet-icon-bolt.avif" alt="" width="112" height="186" loading="lazy" decoding="async">
+              <img class="bcc-meet-ico bcc-meet-ico-bolt" style="--ws:0.3500" src="./_bpc/assets/base-core-concept/meet-icon-bolt.avif" alt="" width="112" height="186" loading="lazy" decoding="async">
             </span>
             <span class="bcc-meet-w" style="--ws:0.3400">enerji</span>
             <span class="bcc-meet-w" style="--ws:0.3600">maliyetlerini</span>
             <span class="bcc-meet-w" style="--ws:0.3800">düşüren</span>
             <span class="bcc-meet-mark">
               <span class="bcc-meet-w" style="--ws:0.4000">tasarruf</span>
-              <img class="bcc-meet-ico bcc-meet-ico-dollar" style="--ws:0.4300" src="/_bpc/assets/base-core-concept/meet-icon-dollar.avif" alt="" width="189" height="182" loading="lazy" decoding="async">
+              <img class="bcc-meet-ico bcc-meet-ico-dollar" style="--ws:0.4300" src="./_bpc/assets/base-core-concept/meet-icon-dollar.avif" alt="" width="189" height="182" loading="lazy" decoding="async">
               <span class="bcc-meet-w" style="--ws:0.4000">,</span>
             </span>
             <span class="bcc-meet-w" style="--ws:0.4200">ve</span>
@@ -593,7 +593,7 @@ def build_skygroup_html():
             <span class="bcc-meet-w" style="--ws:0.4800">güvencesi</span>
             <span class="bcc-meet-mark">
               <span class="bcc-meet-w" style="--ws:0.5000">sunuyoruz</span>
-              <img class="bcc-meet-ico bcc-meet-ico-tower" style="--ws:0.5300" src="/_bpc/assets/base-core-concept/meet-icon-tower.avif" alt="" width="152" height="156" loading="lazy" decoding="async">
+              <img class="bcc-meet-ico bcc-meet-ico-tower" style="--ws:0.5300" src="./_bpc/assets/base-core-concept/meet-icon-tower.avif" alt="" width="152" height="156" loading="lazy" decoding="async">
               <span class="bcc-meet-w" style="--ws:0.5000">.</span>
             </span>
           </h2>
@@ -629,10 +629,10 @@ def build_skygroup_html():
           
           <!-- Left: Pinned crossfading product images -->
           <div class="bcc-bp-card" data-bcc-reveal style="--rd:0.06s">
-            <img class="bcc-bp-img object-cover" data-shot="battery" src="/sm/ambar/urunler/tks-standart-klima-santrali.jpg" alt="Klima Santralleri AHU" width="1360" height="1338" loading="lazy" decoding="async">
-            <img class="bcc-bp-img object-cover" data-shot="install" style="--wb:0.2500" src="/sm/ambar/urunler/vrvvrf-sistemler.jpg" alt="VRV VRF Sistemleri" width="1360" height="1338" loading="lazy" decoding="async">
-            <img class="bcc-bp-img object-cover" data-shot="winter" style="--wb:0.5000" src="/sm/ambar/urunler/isi-geri-kazanim-cihazlari-hrv.jpg" alt="Isı Geri Kazanım Cihazları HRV" width="1360" height="1338" loading="lazy" decoding="async">
-            <img class="bcc-bp-img object-cover" data-shot="hand" style="--wb:0.7500" src="/sm/ambar/urunler/yangin-sondurme-sistemleri.jpg" alt="Yangın Söndürme Sistemleri" width="1360" height="1338" loading="lazy" decoding="async">
+            <img class="bcc-bp-img object-cover" data-shot="battery" src="./sm/ambar/urunler/tks-standart-klima-santrali.jpg" alt="Klima Santralleri AHU" width="1360" height="1338" loading="lazy" decoding="async">
+            <img class="bcc-bp-img object-cover" data-shot="install" style="--wb:0.2500" src="./sm/ambar/urunler/vrvvrf-sistemler.jpg" alt="VRV VRF Sistemleri" width="1360" height="1338" loading="lazy" decoding="async">
+            <img class="bcc-bp-img object-cover" data-shot="winter" style="--wb:0.5000" src="./sm/ambar/urunler/isi-geri-kazanim-cihazlari-hrv.jpg" alt="Isı Geri Kazanım Cihazları HRV" width="1360" height="1338" loading="lazy" decoding="async">
+            <img class="bcc-bp-img object-cover" data-shot="hand" style="--wb:0.7500" src="./sm/ambar/urunler/yangin-sondurme-sistemleri.jpg" alt="Yangın Söndürme Sistemleri" width="1360" height="1338" loading="lazy" decoding="async">
           </div>
 
           <!-- Right: 4 Interactive steps with animated progress bar -->
@@ -743,10 +743,10 @@ def build_skygroup_html():
             <!-- Interactive visual comparison card with switch -->
             <div class="bcc-witness-card" data-bcc-reveal>
               <picture class="bcc-witness-img bcc-witness-img-day">
-                <img src="/sm/ambar/banner/sky-mekanik-719.jpg" alt="Merkezi Soğutma Chiller Grubu" width="1348" height="1312" loading="lazy" decoding="async" class="object-cover w-full h-full">
+                <img src="./sm/ambar/banner/sky-mekanik-719.jpg" alt="Merkezi Soğutma Chiller Grubu" width="1348" height="1312" loading="lazy" decoding="async" class="object-cover w-full h-full">
               </picture>
               <picture class="bcc-witness-img bcc-witness-img-night">
-                <img src="/sm/ambar/banner/sky-mekanik-459.jpg" alt="Klima Santrali ve Isıtma" width="1348" height="1312" loading="lazy" decoding="async" class="object-cover w-full h-full">
+                <img src="./sm/ambar/banner/sky-mekanik-459.jpg" alt="Klima Santrali ve Isıtma" width="1348" height="1312" loading="lazy" decoding="async" class="object-cover w-full h-full">
               </picture>
               
               <label class="bcc-witness-toggle">
@@ -784,18 +784,18 @@ def build_skygroup_html():
             <div class="bcc-witness-press-window">
               <div class="bcc-witness-press-track">
                 <ul class="bcc-witness-press-row flex items-center gap-8">
-                  <li><img src="/sm/ambar/t/1.png" alt="Supplier Logo" class="h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"></li>
-                  <li><img src="/sm/ambar/t/2.png" alt="Supplier Logo" class="h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"></li>
-                  <li><img src="/sm/ambar/t/3.png" alt="Supplier Logo" class="h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"></li>
-                  <li><img src="/sm/ambar/t/4.png" alt="Supplier Logo" class="h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"></li>
-                  <li><img src="/sm/ambar/t/5.png" alt="Supplier Logo" class="h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"></li>
-                  <li><img src="/sm/ambar/t/6.png" alt="Supplier Logo" class="h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"></li>
-                  <li><img src="/sm/ambar/t/7.png" alt="Supplier Logo" class="h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"></li>
-                  <li><img src="/sm/ambar/t/8.png" alt="Supplier Logo" class="h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"></li>
-                  <li><img src="/sm/ambar/t/9.png" alt="Supplier Logo" class="h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"></li>
-                  <li><img src="/sm/ambar/t/10.png" alt="Supplier Logo" class="h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"></li>
-                  <li><img src="/sm/ambar/t/11.png" alt="Supplier Logo" class="h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"></li>
-                  <li><img src="/sm/ambar/t/12.png" alt="Supplier Logo" class="h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"></li>
+                  <li><img src="./sm/ambar/t/1.png" alt="Supplier Logo" class="h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"></li>
+                  <li><img src="./sm/ambar/t/2.png" alt="Supplier Logo" class="h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"></li>
+                  <li><img src="./sm/ambar/t/3.png" alt="Supplier Logo" class="h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"></li>
+                  <li><img src="./sm/ambar/t/4.png" alt="Supplier Logo" class="h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"></li>
+                  <li><img src="./sm/ambar/t/5.png" alt="Supplier Logo" class="h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"></li>
+                  <li><img src="./sm/ambar/t/6.png" alt="Supplier Logo" class="h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"></li>
+                  <li><img src="./sm/ambar/t/7.png" alt="Supplier Logo" class="h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"></li>
+                  <li><img src="./sm/ambar/t/8.png" alt="Supplier Logo" class="h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"></li>
+                  <li><img src="./sm/ambar/t/9.png" alt="Supplier Logo" class="h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"></li>
+                  <li><img src="./sm/ambar/t/10.png" alt="Supplier Logo" class="h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"></li>
+                  <li><img src="./sm/ambar/t/11.png" alt="Supplier Logo" class="h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"></li>
+                  <li><img src="./sm/ambar/t/12.png" alt="Supplier Logo" class="h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"></li>
                 </ul>
               </div>
             </div>
@@ -859,7 +859,7 @@ def build_skygroup_html():
         <div class="bcc-fact-box" id="imalat">
           <div class="bcc-fact-media">
             <picture>
-              <img src="/sm/ambar/banner/sky-mekanik-723.jpg" alt="Sky Group Havalandırma İmalat Sahası" width="2560" height="1920" loading="lazy" decoding="async">
+              <img src="./sm/ambar/banner/sky-mekanik-723.jpg" alt="Sky Group Havalandırma İmalat Sahası" width="2560" height="1920" loading="lazy" decoding="async">
             </picture>
             <div class="bcc-fact-scrim" aria-hidden="true"></div>
           </div>
@@ -897,45 +897,45 @@ def build_skygroup_html():
             
             <div class="bcc-crew-piece bcc-crew-shop bcc-sw">
               <div class="bcc-crew-art">
-                <img src="/sm/ambar/banner/sky-mekanik-925.jpg" alt="Saha Montajı" width="540" height="449" loading="lazy" decoding="async">
+                <img src="./sm/ambar/banner/sky-mekanik-925.jpg" alt="Saha Montajı" width="540" height="449" loading="lazy" decoding="async">
               </div>
             </div>
 
             <div class="bcc-crew-piece bcc-crew-robots bcc-sw">
               <div class="bcc-crew-art">
-                <img class="bcc-crew-inphoto" src="/sm/ambar/banner/sky-mekanik-723.jpg" alt="Kanal İmalatı" width="620" height="684" loading="lazy" decoding="async">
-                <img class="bcc-crew-frame" src="/_bpc/assets/base-core-concept/crew-polaroid-660.avif" alt="" width="660" height="723" loading="lazy" decoding="async">
+                <img class="bcc-crew-inphoto" src="./sm/ambar/banner/sky-mekanik-723.jpg" alt="Kanal İmalatı" width="620" height="684" loading="lazy" decoding="async">
+                <img class="bcc-crew-frame" src="./_bpc/assets/base-core-concept/crew-polaroid-660.avif" alt="" width="660" height="723" loading="lazy" decoding="async">
               </div>
             </div>
 
             <div class="bcc-crew-piece bcc-crew-group bcc-sw">
               <div class="bcc-crew-art bcc-crew-card">
-                <img class="bcc-crew-inphoto" src="/sm/ambar/banner/sky-mekanik.jpg" alt="Mühendislik Ekibi" width="620" height="699" loading="lazy" decoding="async">
+                <img class="bcc-crew-inphoto" src="./sm/ambar/banner/sky-mekanik.jpg" alt="Mühendislik Ekibi" width="620" height="699" loading="lazy" decoding="async">
               </div>
             </div>
 
             <div class="bcc-crew-piece bcc-crew-tape-a bcc-sw">
               <div class="bcc-crew-art">
-                <img src="/_bpc/assets/base-core-concept/crew-tape-a-420.avif" alt="" width="420" height="514" loading="lazy" decoding="async">
+                <img src="./_bpc/assets/base-core-concept/crew-tape-a-420.avif" alt="" width="420" height="514" loading="lazy" decoding="async">
               </div>
             </div>
 
             <div class="bcc-crew-piece bcc-crew-bench bcc-sw">
               <div class="bcc-crew-art">
-                <img src="/sm/ambar/banner/sky-mekanik-459.jpg" alt="Tesis Montajı" width="480" height="662" loading="lazy" decoding="async">
+                <img src="./sm/ambar/banner/sky-mekanik-459.jpg" alt="Tesis Montajı" width="480" height="662" loading="lazy" decoding="async">
               </div>
             </div>
 
             <div class="bcc-crew-piece bcc-crew-battery bcc-sw">
               <div class="bcc-crew-art">
-                <img class="bcc-crew-inphoto" src="/sm/ambar/banner/sky-mekanik-719.jpg" alt="Chiller Soğutma" width="640" height="705" loading="lazy" decoding="async">
-                <img class="bcc-crew-frame" src="/_bpc/assets/base-core-concept/crew-polaroid-660.avif" alt="" width="660" height="723" loading="lazy" decoding="async">
+                <img class="bcc-crew-inphoto" src="./sm/ambar/banner/sky-mekanik-719.jpg" alt="Chiller Soğutma" width="640" height="705" loading="lazy" decoding="async">
+                <img class="bcc-crew-frame" src="./_bpc/assets/base-core-concept/crew-polaroid-660.avif" alt="" width="660" height="723" loading="lazy" decoding="async">
               </div>
             </div>
 
             <div class="bcc-crew-piece bcc-crew-tape-b bcc-sw">
               <div class="bcc-crew-art">
-                <img src="/_bpc/assets/base-core-concept/crew-tape-b-520.avif" alt="" width="520" height="287" loading="lazy" decoding="async">
+                <img src="./_bpc/assets/base-core-concept/crew-tape-b-520.avif" alt="" width="520" height="287" loading="lazy" decoding="async">
               </div>
             </div>
 
@@ -1153,22 +1153,22 @@ def build_skygroup_html():
             <h3 class="text-center text-xl font-bold text-slate-900 mb-2">Kurumsal Referans Markalarımız</h3>
             <p class="text-center text-sm text-slate-600 mb-8">Projelerinde Sky Group kalitesini tercih eden saygın kuruluşlar</p>
             <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6 items-center">
-              <img src="/sm/ambar/r/1.png" alt="Referans Logo" class="h-10 w-auto mx-auto opacity-80 hover:opacity-100 transition-opacity">
-              <img src="/sm/ambar/r/2.png" alt="Referans Logo" class="h-10 w-auto mx-auto opacity-80 hover:opacity-100 transition-opacity">
-              <img src="/sm/ambar/r/3.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
-              <img src="/sm/ambar/r/4.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
-              <img src="/sm/ambar/r/5.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
-              <img src="/sm/ambar/r/6.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
-              <img src="/sm/ambar/r/7.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
-              <img src="/sm/ambar/r/8.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
-              <img src="/sm/ambar/r/9.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
-              <img src="/sm/ambar/r/10.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
-              <img src="/sm/ambar/r/11.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
-              <img src="/sm/ambar/r/12.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
-              <img src="/sm/ambar/r/13.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
-              <img src="/sm/ambar/r/14.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
-              <img src="/sm/ambar/r/15.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
-              <img src="/sm/ambar/r/16.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
+              <img src="./sm/ambar/r/1.png" alt="Referans Logo" class="h-10 w-auto mx-auto opacity-80 hover:opacity-100 transition-opacity">
+              <img src="./sm/ambar/r/2.png" alt="Referans Logo" class="h-10 w-auto mx-auto opacity-80 hover:opacity-100 transition-opacity">
+              <img src="./sm/ambar/r/3.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
+              <img src="./sm/ambar/r/4.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
+              <img src="./sm/ambar/r/5.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
+              <img src="./sm/ambar/r/6.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
+              <img src="./sm/ambar/r/7.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
+              <img src="./sm/ambar/r/8.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
+              <img src="./sm/ambar/r/9.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
+              <img src="./sm/ambar/r/10.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
+              <img src="./sm/ambar/r/11.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
+              <img src="./sm/ambar/r/12.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
+              <img src="./sm/ambar/r/13.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
+              <img src="./sm/ambar/r/14.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
+              <img src="./sm/ambar/r/15.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
+              <img src="./sm/ambar/r/16.png" alt="Referans Logo" class="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity">
             </div>
           </div>
 
@@ -1305,7 +1305,7 @@ def build_skygroup_html():
       <div class="bcc-nf-screen" data-bcc-screen>
         <div class="bcc-nf-stage">
           <div class="bcc-nf-layer" style="--sky:#072b4d">
-            <img class="bcc-nf-fit" src="/sm/ambar/banner/sky-mekanik.jpg" alt="" width="1920" height="1080" loading="eager" fetchpriority="high">
+            <img class="bcc-nf-fit" src="./sm/ambar/banner/sky-mekanik.jpg" alt="" width="1920" height="1080" loading="eager" fetchpriority="high">
           </div>
           <div class="bcc-nf-dim" aria-hidden="true"></div>
           <div class="bcc-nf-scrim" aria-hidden="true"></div>
@@ -1503,7 +1503,7 @@ def build_skygroup_html():
   </main>
 </body>
 </html>
-<script type="module" src="/_bpc/assets/core.astro_astro_type_script_index_0_lang.BTqtMorG.js"></script>
+<script type="module" src="./_bpc/assets/core.astro_astro_type_script_index_0_lang.BTqtMorG.js"></script>
 """
 
     with open('/home/emre/Desktop/sky-group-new/index.html', 'w', encoding='utf-8') as f:

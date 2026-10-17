@@ -45,22 +45,22 @@ def generate_referanslar():
     topnav_html = index_html[topnav_start:runway_pos].strip()
 
     # Ensure topnav desktop items are direct <a> links!
-    topnav_html = re.sub(r'<button\s+type="button"\s+aria-expanded="false"\s+aria-controls="fullnav-panel-products"[^>]*>Ürünlerimiz', r'<a href="/urunlerimiz.html" aria-controls="fullnav-panel-products" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Ürünlerimiz', topnav_html)
-    topnav_html = re.sub(r'<button\s+type="button"\s+aria-expanded="false"\s+aria-controls="fullnav-panel-pricing"[^>]*>Çözümlerimiz', r'<a href="/cozumlerimiz.html" aria-controls="fullnav-panel-pricing" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Çözümlerimiz', topnav_html)
-    topnav_html = re.sub(r'<button\s+type="button"\s+aria-expanded="false"\s+aria-controls="fullnav-panel-resources"[^>]*>Hizmetlerimiz', r'<a href="/hizmetlerimiz.html" aria-controls="fullnav-panel-resources" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Hizmetlerimiz', topnav_html)
-    topnav_html = re.sub(r'<button\s+type="button"\s+aria-expanded="false"\s+aria-controls="fullnav-panel-company"[^>]*>Kurumsal', r'<a href="/kurumsal.html" aria-controls="fullnav-panel-company" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Kurumsal', topnav_html)
-    topnav_html = topnav_html.replace('</button></li><li><a href="/cozumlerimiz.html"', '</a></li><li><a href="/cozumlerimiz.html"')
-    topnav_html = topnav_html.replace('</button></li><li><a href="/hizmetlerimiz.html"', '</a></li><li><a href="/hizmetlerimiz.html"')
-    topnav_html = topnav_html.replace('</button></li><li><a href="/referanslar.html"', '</a></li><li><a href="/referanslar.html"')
+    topnav_html = re.sub(r'<button\s+type="button"\s+aria-expanded="false"\s+aria-controls="fullnav-panel-products"[^>]*>Ürünlerimiz', r'<a href="./urunlerimiz.html" aria-controls="fullnav-panel-products" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Ürünlerimiz', topnav_html)
+    topnav_html = re.sub(r'<button\s+type="button"\s+aria-expanded="false"\s+aria-controls="fullnav-panel-pricing"[^>]*>Çözümlerimiz', r'<a href="./cozumlerimiz.html" aria-controls="fullnav-panel-pricing" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Çözümlerimiz', topnav_html)
+    topnav_html = re.sub(r'<button\s+type="button"\s+aria-expanded="false"\s+aria-controls="fullnav-panel-resources"[^>]*>Hizmetlerimiz', r'<a href="./hizmetlerimiz.html" aria-controls="fullnav-panel-resources" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Hizmetlerimiz', topnav_html)
+    topnav_html = re.sub(r'<button\s+type="button"\s+aria-expanded="false"\s+aria-controls="fullnav-panel-company"[^>]*>Kurumsal', r'<a href="./kurumsal.html" aria-controls="fullnav-panel-company" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Kurumsal', topnav_html)
+    topnav_html = topnav_html.replace('</button></li><li><a href="./cozumlerimiz.html"', '</a></li><li><a href="./cozumlerimiz.html"')
+    topnav_html = topnav_html.replace('</button></li><li><a href="./hizmetlerimiz.html"', '</a></li><li><a href="./hizmetlerimiz.html"')
+    topnav_html = topnav_html.replace('</button></li><li><a href="./referanslar.html"', '</a></li><li><a href="./referanslar.html"')
     topnav_html = topnav_html.replace('</button></li></ul>', '</a></li></ul>')
 
     # Ensure mega-menu inside links point to dedicated pages
-    topnav_html = topnav_html.replace('href="#bcc-bp"', 'href="/urunlerimiz.html"')
-    topnav_html = topnav_html.replace('href="#bcc-how"', 'href="/hizmetlerimiz.html"')
-    topnav_html = topnav_html.replace('href="#bcc-stress"', 'href="/cozumlerimiz.html"')
-    topnav_html = topnav_html.replace('href="#bcc-specs"', 'href="/kurumsal.html"')
-    topnav_html = topnav_html.replace('href="#bcc-pricing"', 'href="/hizmetlerimiz.html"')
-    topnav_html = topnav_html.replace('href="#bcc-fact"', 'href="/kurumsal.html"')
+    topnav_html = topnav_html.replace('href="#bcc-bp"', 'href="./urunlerimiz.html"')
+    topnav_html = topnav_html.replace('href="#bcc-how"', 'href="./hizmetlerimiz.html"')
+    topnav_html = topnav_html.replace('href="#bcc-stress"', 'href="./cozumlerimiz.html"')
+    topnav_html = topnav_html.replace('href="#bcc-specs"', 'href="./kurumsal.html"')
+    topnav_html = topnav_html.replace('href="#bcc-pricing"', 'href="./hizmetlerimiz.html"')
+    topnav_html = topnav_html.replace('href="#bcc-fact"', 'href="./kurumsal.html"')
 
     # 2. EXTRACT EXACT FOOTER FROM INDEX.HTML
     footer_start = index_html.find('<div class="bcc-footer">')
@@ -160,7 +160,7 @@ def generate_referanslar():
     for i in range(1, 31):
         logos_html.append(f"""
         <div class="sky-logo-card group">
-          <img src="/sm/ambar/r/{i}.png" alt="Sky Group Referans Marka {i}" loading="lazy" />
+          <img src="./sm/ambar/r/{i}.png" alt="Sky Group Referans Marka {i}" loading="lazy" />
         </div>
         """)
     logos_grid_html = "\n".join(logos_html)
@@ -337,11 +337,13 @@ def generate_referanslar():
     cards_html = []
     for p in projects:
         slug = p.get('slug') or slugify(p['title'], 'proje')
+        raw_img = p.get('image', '')
+        img_src = '.' + raw_img if raw_img.startswith('/') else raw_img
         card = f"""
-        <a href="/{slug}.html" class="sky-project-card group block text-left" 
+        <a href="./{slug}.html" class="sky-project-card group block text-left" 
              data-category="{p['category']}">
           <div class="sky-project-photo">
-            <img src="{p['image']}" alt="{p['title']}" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
+            <img src="{img_src}" alt="{p['title']}" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
             <span class="sky-card-cat-badge">{p['category_label']}</span>
             <span class="sky-card-loc-badge">{p['location']}</span>
           </div>
@@ -371,16 +373,16 @@ def generate_referanslar():
   
   <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,{fav_32_b64}">
   <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,{fav_16_b64}">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=20261016">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=20261016">
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=20261016">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20261016">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png?v=20261016">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png?v=20261016">
+  <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico?v=20261016">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=20261016">
   <meta name="theme-color" content="#061527">
 
   <!-- Core Base Power Layout Styles -->
-  <link rel="stylesheet" href="/_bpc/assets/BaseCoreSpecs.DESLp_Zg.css">
-  <link rel="stylesheet" href="/_bpc/assets/core.KFUJ36fi.css">
-  <link rel="stylesheet" href="/_bpc/assets/MarketingLayout.CLOcHXtv.css">
+  <link rel="stylesheet" href="./_bpc/assets/BaseCoreSpecs.DESLp_Zg.css">
+  <link rel="stylesheet" href="./_bpc/assets/core.KFUJ36fi.css">
+  <link rel="stylesheet" href="./_bpc/assets/MarketingLayout.CLOcHXtv.css">
 
   <style>
     :root {{
@@ -789,13 +791,13 @@ def generate_referanslar():
           <p class="text-slate-900 font-bold tracking-wider text-xs uppercase mb-8">SKY GROUP</p>
           <ul class="flex flex-col gap-8">
             <li>
-              <a href="/kurumsal.html" class="block group">
+              <a href="./kurumsal.html" class="block group">
                 <span class="block text-xl md:text-2xl font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">Hakkımızda</span>
                 <span class="block text-sm md:text-base text-slate-500 mt-1.5 leading-relaxed">Köklü tecrübe, yetkin mühendis ve saha kadrosu.</span>
               </a>
             </li>
             <li>
-              <a href="/kurumsal.html#iletisim" class="block group">
+              <a href="./kurumsal.html#iletisim" class="block group">
                 <span class="block text-xl md:text-2xl font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">İletişim &amp; Adres</span>
                 <span class="block text-sm md:text-base text-slate-500 mt-1.5 leading-relaxed">0 (541) 922 19 91 | info@skymekanik.com</span>
               </a>
@@ -820,7 +822,7 @@ def generate_referanslar():
               </button>
             </li>
             <li>
-              <a href="/kurumsal.html" class="block group">
+              <a href="./kurumsal.html" class="block group">
                 <span class="block text-xl md:text-2xl font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">Saha Güvenliği</span>
                 <span class="block text-sm md:text-base text-slate-500 mt-1.5 leading-relaxed">İş sağlığı ve güvenliğinde sıfır kaza prensibi.</span>
               </a>
@@ -836,9 +838,9 @@ def generate_referanslar():
 
         <!-- Col 3: Photo Card -->
         <div class="sky-showcase-col-3 flex flex-col justify-start">
-          <a href="/proje-maslak-hub-lounge-restoran.html" class="group block cursor-pointer">
+          <a href="./proje-maslak-hub-lounge-restoran.html" class="group block cursor-pointer">
             <div class="relative block overflow-hidden aspect-[4/3] bg-slate-100 border border-slate-200/80 shadow-xs" style="border-radius: 4px !important;">
-              <img src="/sm/ambar/koca_fotogal_6b5abdb48c204fe45d4b71af4bf3015c.jpg" alt="Doğru İklimlendirme" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy">
+              <img src="./sm/ambar/koca_fotogal_6b5abdb48c204fe45d4b71af4bf3015c.jpg" alt="Doğru İklimlendirme" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy">
               <span class="sky-card-cat-badge">Öne Çıkan Proje</span>
               <span class="sky-card-loc-badge">Maslak 42</span>
             </div>
