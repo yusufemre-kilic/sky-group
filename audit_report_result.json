@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-10-17T16:09:30.192Z",
+  "testedPages": 69,
+  "mainPagesPassed": 6,
+  "detailPagesPassed": 63,
+  "totalDetailPages": 63,
+  "brokenImages": [],
+  "brokenLinks": [],
+  "consoleErrors": [],
+  "zeroArrowCheckPassed": true,
+  "modalQuotePassed": true,
+  "modalSubmissionPassed": true,
+  "mobileDrawerPassed": true,
+  "megaMenuPassed": true,
+  "buildPassed": true
+}

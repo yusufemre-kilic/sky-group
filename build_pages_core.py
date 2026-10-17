@@ -70,7 +70,7 @@ MODAL_HTML = """
     <form id="sky-quote-form" class="space-y-2.5 sm:space-y-3">
       <div>
         <label class="block text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Ad Soyad / Firma Adı *</label>
-        <input type="text" name="fullName" required placeholder="Örn: Ahmet Yılmaz / ABC İnşaat A.Ş." class="w-full px-3 py-1.5 sm:py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#09bde3] focus:ring-2 focus:ring-[#09bde3]/20 transition-all font-medium">
+        <input type="text" name="name" id="sky-modal-name" required placeholder="Örn: Ahmet Yılmaz / ABC İnşaat A.Ş." class="w-full px-3 py-1.5 sm:py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#09bde3] focus:ring-2 focus:ring-[#09bde3]/20 transition-all font-medium">
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
@@ -191,96 +191,7 @@ def extract_base_components():
 
     return topnav_html, footer_html
 
-DETAIL_MODAL_HTML = """
-<!-- Sky Group Detaylı Teknik İnceleme Modal (Product / Project Detail Inspector) -->
-<div id="sky-detail-modal" role="dialog" aria-modal="true" aria-hidden="true">
-  <div class="sky-detail-card">
-    <!-- Header with Badges and Close button -->
-    <div class="sky-detail-header">
-      <div style="display: flex; align-items: center; gap: 8px;">
-        <span id="detail-badge-cat" style="padding: 3px 8px; font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; border-radius: 3px; background: #e0f2fe; color: #0284c7; border: 1px solid #bae6fd;">Kategori</span>
-        <span id="detail-badge-loc" style="padding: 3px 8px; font-size: 0.6875rem; font-weight: 600; border-radius: 3px; background: #e2e8f0; color: #334155;">Standart / Konum</span>
-      </div>
-      <button type="button" onclick="closeDetailModal()" style="width: 28px; height: 28px; border-radius: 9999px; border: 1px solid #e2e8f0; background: #ffffff; color: #64748b; display: flex; align-items: center; justify-content: center; cursor: pointer;" aria-label="Kapat">
-        <svg style="width: 16px; height: 16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-    </div>
-    
-    <!-- Body: Scrollable -->
-    <div class="sky-detail-body">
-      <!-- Image & Specs Grid -->
-      <div class="sky-detail-grid">
-        <div class="sky-detail-img-box">
-          <img id="detail-image" src="" alt="">
-        </div>
-        <div class="sky-detail-info">
-          <h2 id="detail-title" class="sky-detail-title">Ürün Başlığı</h2>
-          <div class="sky-detail-specs-badge">
-            <span class="sky-detail-specs-dot"></span>
-            <span id="detail-specs">Kapasite ve Standart Verisi</span>
-          </div>
-          <p id="detail-desc" class="sky-detail-desc">Teknik açıklama verileri buraya yüklenecektir.</p>
-        </div>
-      </div>
-      
-      <!-- Technical Highlights Grid -->
-      <div class="sky-detail-features-box">
-        <div class="sky-detail-features-title">
-          <svg style="width: 14px; height: 14px; color: #0284c7;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          <span>MÜHENDİSLİK VE İMALAT STANDARTLARI</span>
-        </div>
-        <div class="sky-detail-features-list">
-          <div class="sky-detail-feature-item">
-            <svg style="width: 14px; height: 14px; color: #0284c7; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            <span>TSE EN 1886 ve DIN 1946-4 Normları</span>
-          </div>
-          <div class="sky-detail-feature-item">
-            <svg style="width: 14px; height: 14px; color: #0284c7; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            <span>CNC Plazma Kesim &amp; Sızdırmaz Contalama</span>
-          </div>
-          <div class="sky-detail-feature-item">
-            <svg style="width: 14px; height: 14px; color: #0284c7; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            <span>Hassas Test, Ayar ve Balanslama (TAB)</span>
-          </div>
-          <div class="sky-detail-feature-item">
-            <svg style="width: 14px; height: 14px; color: #0284c7; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            <span>2 Yıl Sky Group Üretici Garantisi</span>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Standards Note -->
-      <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: #f0f9ff; border: 1px solid #e0f2fe; border-radius: 6px; font-size: 0.6875rem; color: #0369a1;">
-        <span style="font-weight: 700;">✓ TSE • Eurovent • CE • ISO 9001:2015 Belgeli</span>
-        <span style="color: #64748b;">Kendi Tesisimizde İmalat ve Doğrudan Teslim</span>
-      </div>
-    </div>
-    
-    <!-- Footer Actions -->
-    <div class="sky-detail-footer">
-      <div class="sky-detail-contact-links">
-        <a href="tel:+905419221991">
-          <svg style="width: 14px; height: 14px; color: #0284c7;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-          0 (541) 922 19 91
-        </a>
-        <span>•</span>
-        <a href="https://wa.me/905419221991" target="_blank" rel="noopener noreferrer" style="color: #059669;">
-          WhatsApp Destek
-        </a>
-      </div>
-      <div class="sky-detail-btn-group">
-        <button type="button" onclick="closeDetailModal()" class="sky-detail-btn-close">
-          Kapat
-        </button>
-        <button type="button" onclick="openQuoteForCurrentDetail()" class="sky-detail-btn-quote">
-          <span>Bu Sistem İçin Bilgi / Fiyat Al</span>
-          <svg style="width: 14px; height: 14px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-"""
+DETAIL_MODAL_HTML = ""
 
 def generate_page(title, meta_desc, active_nav, showcase_col1, showcase_col2, showcase_col3, filter_tabs, cards, logos_type="clients"):
     """
@@ -748,221 +659,6 @@ def generate_page(title, meta_desc, active_nav, showcase_col1, showcase_col2, sh
       transform: scale(1) !important;
     }}
 
-    /* Detail Inspector Modal */
-    #sky-detail-modal {{
-      position: fixed !important;
-      inset: 0 !important;
-      z-index: 999999 !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      padding: 16px !important;
-      background: rgba(6, 21, 39, 0.78) !important;
-      backdrop-filter: blur(14px) !important;
-      -webkit-backdrop-filter: blur(14px) !important;
-      opacity: 0 !important;
-      visibility: hidden !important;
-      pointer-events: none !important;
-      transition: opacity 0.25s ease, visibility 0.25s ease !important;
-    }}
-    #sky-detail-modal.active {{
-      opacity: 1 !important;
-      visibility: visible !important;
-      pointer-events: auto !important;
-    }}
-    #sky-detail-modal .sky-detail-card {{
-      background-color: #ffffff !important;
-      color: #1e293b !important;
-      border: 1px solid rgba(0, 0, 0, 0.08) !important;
-      border-radius: 12px !important;
-      box-shadow: 0 25px 60px -15px rgba(6, 21, 39, 0.35) !important;
-      width: 100% !important;
-      max-width: 680px !important;
-      max-height: 90vh !important;
-      display: flex !important;
-      flex-direction: column !important;
-      overflow: hidden !important;
-      transform: scale(0.96);
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    }}
-    #sky-detail-modal.active .sky-detail-card {{
-      transform: scale(1) !important;
-    }}
-    .sky-detail-header {{
-      display: flex !important;
-      align-items: center !important;
-      justify-content: space-between !important;
-      padding: 14px 20px !important;
-      border-bottom: 1px solid #f1f5f9 !important;
-      background: #fafbfc !important;
-    }}
-    .sky-detail-body {{
-      padding: 20px !important;
-      overflow-y: auto !important;
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 16px !important;
-    }}
-    .sky-detail-grid {{
-      display: grid !important;
-      grid-template-columns: 1fr 1fr !important;
-      gap: 16px !important;
-    }}
-    @media (max-width: 640px) {{
-      .sky-detail-grid {{
-        grid-template-columns: 1fr !important;
-      }}
-    }}
-    .sky-detail-img-box {{
-      width: 100% !important;
-      aspect-ratio: 4/3 !important;
-      border-radius: 8px !important;
-      overflow: hidden !important;
-      background: #f1f5f9 !important;
-      border: 1px solid #e2e8f0 !important;
-    }}
-    .sky-detail-img-box img {{
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      display: block !important;
-    }}
-    .sky-detail-info {{
-      display: flex !important;
-      flex-direction: column !important;
-      justify-content: center !important;
-      gap: 10px !important;
-    }}
-    .sky-detail-title {{
-      font-size: 1.25rem !important;
-      font-weight: 700 !important;
-      color: #0f172a !important;
-      line-height: 1.3 !important;
-      margin: 0 !important;
-    }}
-    .sky-detail-specs-badge {{
-      display: inline-flex !important;
-      align-items: center !important;
-      gap: 6px !important;
-      padding: 4px 10px !important;
-      background: #f0fdf4 !important;
-      color: #166534 !important;
-      border: 1px solid #bbf7d0 !important;
-      border-radius: 4px !important;
-      font-size: 0.75rem !important;
-      font-weight: 600 !important;
-      width: fit-content !important;
-    }}
-    .sky-detail-specs-dot {{
-      width: 6px !important;
-      height: 6px !important;
-      border-radius: 9999px !important;
-      background: #22c55e !important;
-      display: inline-block !important;
-    }}
-    .sky-detail-desc {{
-      font-size: 0.8125rem !important;
-      line-height: 1.5 !important;
-      color: #475569 !important;
-      margin: 0 !important;
-    }}
-    .sky-detail-features-box {{
-      background: #f8fafc !important;
-      border: 1px solid #e2e8f0 !important;
-      border-radius: 8px !important;
-      padding: 12px 14px !important;
-    }}
-    .sky-detail-features-title {{
-      display: flex !important;
-      align-items: center !important;
-      gap: 6px !important;
-      font-size: 0.6875rem !important;
-      font-weight: 700 !important;
-      text-transform: uppercase !important;
-      letter-spacing: 0.05em !important;
-      color: #0284c7 !important;
-      margin-bottom: 8px !important;
-    }}
-    .sky-detail-features-list {{
-      display: grid !important;
-      grid-template-columns: 1fr 1fr !important;
-      gap: 8px 12px !important;
-    }}
-    @media (max-width: 640px) {{
-      .sky-detail-features-list {{
-        grid-template-columns: 1fr !important;
-      }}
-    }}
-    .sky-detail-feature-item {{
-      display: flex !important;
-      align-items: center !important;
-      gap: 6px !important;
-      font-size: 0.75rem !important;
-      color: #334155 !important;
-      font-weight: 500 !important;
-    }}
-    .sky-detail-footer {{
-      display: flex !important;
-      align-items: center !important;
-      justify-content: space-between !important;
-      padding: 12px 20px !important;
-      border-top: 1px solid #f1f5f9 !important;
-      background: #fafbfc !important;
-      gap: 12px !important;
-      flex-wrap: wrap !important;
-    }}
-    .sky-detail-contact-links {{
-      display: flex !important;
-      align-items: center !important;
-      gap: 8px !important;
-      font-size: 0.75rem !important;
-      font-weight: 600 !important;
-      color: #64748b !important;
-    }}
-    .sky-detail-contact-links a {{
-      display: inline-flex !important;
-      align-items: center !important;
-      gap: 4px !important;
-      color: #0284c7 !important;
-      text-decoration: none !important;
-    }}
-    .sky-detail-btn-group {{
-      display: flex !important;
-      align-items: center !important;
-      gap: 8px !important;
-    }}
-    .sky-detail-btn-close {{
-      padding: 7px 14px !important;
-      border-radius: 6px !important;
-      border: 1px solid #cbd5e1 !important;
-      background: #ffffff !important;
-      color: #475569 !important;
-      font-size: 0.75rem !important;
-      font-weight: 600 !important;
-      cursor: pointer !important;
-      transition: all 0.2s !important;
-    }}
-    .sky-detail-btn-close:hover {{
-      background: #f1f5f9 !important;
-      color: #0f172a !important;
-    }}
-    .sky-detail-btn-quote {{
-      padding: 7px 14px !important;
-      border-radius: 6px !important;
-      border: none !important;
-      background: #09bde3 !important;
-      color: #04111f !important;
-      font-size: 0.75rem !important;
-      font-weight: 700 !important;
-      cursor: pointer !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      gap: 6px !important;
-      transition: background 0.2s !important;
-    }}
-    .sky-detail-btn-quote:hover {{
-      background: #38bdf8 !important;
-    }}
   </style>
 </head>
 <body class="bpc-theme">
@@ -1048,8 +744,6 @@ def generate_page(title, meta_desc, active_nav, showcase_col1, showcase_col2, sh
     {footer_html}
   </div>
 
-  <!-- TECHNICAL DETAIL INSPECTOR MODAL -->
-  {DETAIL_MODAL_HTML}
 
   <!-- EXECUTIVE QUOTE MODAL -->
   {MODAL_HTML}
@@ -1207,79 +901,7 @@ def generate_page(title, meta_desc, active_nav, showcase_col1, showcase_col2, sh
         }}
       }};
 
-      // 4. Detail Inspector Modal Open & Close Logic
-      const detailModal = document.getElementById('sky-detail-modal');
-      let currentDetailTitle = '';
-
-      window.openItemDetail = function(el) {{
-        if (!el) return;
-        const title = el.getAttribute('data-title') || el.querySelector('h3')?.innerText || '';
-        const specs = el.getAttribute('data-specs') || '';
-        const desc = el.getAttribute('data-desc') || '';
-        const image = el.getAttribute('data-image') || el.querySelector('img')?.src || '';
-        const badgeCat = el.getAttribute('data-badge-cat') || '';
-        const badgeLoc = el.getAttribute('data-badge-loc') || '';
-
-        currentDetailTitle = title;
-
-        if (!detailModal) return;
-
-        const titleEl = document.getElementById('detail-title');
-        const specsEl = document.getElementById('detail-specs');
-        const descEl = document.getElementById('detail-desc');
-        const imgEl = document.getElementById('detail-image');
-        const catEl = document.getElementById('detail-badge-cat');
-        const locEl = document.getElementById('detail-badge-loc');
-
-        if (titleEl) titleEl.innerText = title;
-        if (specsEl) specsEl.innerText = specs || 'Mühendislik Standartlarına Uygun';
-        if (descEl) descEl.innerText = desc;
-        if (imgEl) {{
-          imgEl.src = image;
-          imgEl.alt = title;
-        }}
-        if (catEl) catEl.innerText = badgeCat || 'Teknik Detay';
-        if (locEl) locEl.innerText = badgeLoc || 'Sky Group Güvencesi';
-
-        detailModal.classList.add('active');
-        detailModal.classList.remove('opacity-0', 'pointer-events-none');
-        const cardEl = detailModal.querySelector('.modal-card');
-        if (cardEl) {{
-          cardEl.classList.remove('scale-95');
-          cardEl.classList.add('scale-100');
-        }}
-        document.body.style.overflow = 'hidden';
-      }};
-
-      window.closeDetailModal = function() {{
-        if (!detailModal) return;
-        detailModal.classList.remove('active');
-        detailModal.classList.add('opacity-0', 'pointer-events-none');
-        const cardEl = detailModal.querySelector('.modal-card');
-        if (cardEl) {{
-          cardEl.classList.add('scale-95');
-          cardEl.classList.remove('scale-100');
-        }}
-        document.body.style.overflow = '';
-      }};
-
-      window.openQuoteForCurrentDetail = function() {{
-        const title = currentDetailTitle;
-        closeDetailModal();
-        if (window.openQuoteModal) {{
-          window.openQuoteModal(title ? (title + ' Bilgi & Teklif Talebi') : 'Mühendislik Teklifi');
-        }}
-      }};
-
-      if (detailModal) {{
-        detailModal.addEventListener('click', function(e) {{
-          if (e.target === detailModal) {{
-            closeDetailModal();
-          }}
-        }});
-      }}
-
-      // 5. Quote Modal Open & Close Logic
+      // 4. Quote Modal Open & Close Logic
       const modal = document.getElementById('sky-quote-modal');
       const modalClose = document.getElementById('sky-modal-close');
       const modalNotes = document.getElementById('sky-modal-notes');
@@ -1317,7 +939,6 @@ def generate_page(title, meta_desc, active_nav, showcase_col1, showcase_col2, sh
 
       document.addEventListener('keydown', function(e) {{
         if (e.key === 'Escape') {{
-          closeDetailModal();
           closeModal();
           closeNav();
         }}

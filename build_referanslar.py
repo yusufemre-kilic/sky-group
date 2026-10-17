@@ -15,7 +15,7 @@ Generates referanslar.html adhering strictly to:
 import os
 import re
 import base64
-from build_pages_core import DETAIL_MODAL_HTML
+from build_pages_core import MODAL_HTML
 from build_vlog_detail_pages import slugify
 
 def generate_referanslar():
@@ -768,221 +768,6 @@ def generate_referanslar():
       transform: scale(1) !important;
     }}
 
-    /* Detail Inspector Modal */
-    #sky-detail-modal {{
-      position: fixed !important;
-      inset: 0 !important;
-      z-index: 999999 !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      padding: 16px !important;
-      background: rgba(6, 21, 39, 0.78) !important;
-      backdrop-filter: blur(14px) !important;
-      -webkit-backdrop-filter: blur(14px) !important;
-      opacity: 0 !important;
-      visibility: hidden !important;
-      pointer-events: none !important;
-      transition: opacity 0.25s ease, visibility 0.25s ease !important;
-    }}
-    #sky-detail-modal.active {{
-      opacity: 1 !important;
-      visibility: visible !important;
-      pointer-events: auto !important;
-    }}
-    #sky-detail-modal .sky-detail-card {{
-      background-color: #ffffff !important;
-      color: #1e293b !important;
-      border: 1px solid rgba(0, 0, 0, 0.08) !important;
-      border-radius: 12px !important;
-      box-shadow: 0 25px 60px -15px rgba(6, 21, 39, 0.35) !important;
-      width: 100% !important;
-      max-width: 680px !important;
-      max-height: 90vh !important;
-      display: flex !important;
-      flex-direction: column !important;
-      overflow: hidden !important;
-      transform: scale(0.96);
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    }}
-    #sky-detail-modal.active .sky-detail-card {{
-      transform: scale(1) !important;
-    }}
-    .sky-detail-header {{
-      display: flex !important;
-      align-items: center !important;
-      justify-content: space-between !important;
-      padding: 14px 20px !important;
-      border-bottom: 1px solid #f1f5f9 !important;
-      background: #fafbfc !important;
-    }}
-    .sky-detail-body {{
-      padding: 20px !important;
-      overflow-y: auto !important;
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 16px !important;
-    }}
-    .sky-detail-grid {{
-      display: grid !important;
-      grid-template-columns: 1fr 1fr !important;
-      gap: 16px !important;
-    }}
-    @media (max-width: 640px) {{
-      .sky-detail-grid {{
-        grid-template-columns: 1fr !important;
-      }}
-    }}
-    .sky-detail-img-box {{
-      width: 100% !important;
-      aspect-ratio: 4/3 !important;
-      border-radius: 8px !important;
-      overflow: hidden !important;
-      background: #f1f5f9 !important;
-      border: 1px solid #e2e8f0 !important;
-    }}
-    .sky-detail-img-box img {{
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      display: block !important;
-    }}
-    .sky-detail-info {{
-      display: flex !important;
-      flex-direction: column !important;
-      justify-content: center !important;
-      gap: 10px !important;
-    }}
-    .sky-detail-title {{
-      font-size: 1.25rem !important;
-      font-weight: 700 !important;
-      color: #0f172a !important;
-      line-height: 1.3 !important;
-      margin: 0 !important;
-    }}
-    .sky-detail-specs-badge {{
-      display: inline-flex !important;
-      align-items: center !important;
-      gap: 6px !important;
-      padding: 4px 10px !important;
-      background: #f0fdf4 !important;
-      color: #166534 !important;
-      border: 1px solid #bbf7d0 !important;
-      border-radius: 4px !important;
-      font-size: 0.75rem !important;
-      font-weight: 600 !important;
-      width: fit-content !important;
-    }}
-    .sky-detail-specs-dot {{
-      width: 6px !important;
-      height: 6px !important;
-      border-radius: 9999px !important;
-      background: #22c55e !important;
-      display: inline-block !important;
-    }}
-    .sky-detail-desc {{
-      font-size: 0.8125rem !important;
-      line-height: 1.5 !important;
-      color: #475569 !important;
-      margin: 0 !important;
-    }}
-    .sky-detail-features-box {{
-      background: #f8fafc !important;
-      border: 1px solid #e2e8f0 !important;
-      border-radius: 8px !important;
-      padding: 12px 14px !important;
-    }}
-    .sky-detail-features-title {{
-      display: flex !important;
-      align-items: center !important;
-      gap: 6px !important;
-      font-size: 0.6875rem !important;
-      font-weight: 700 !important;
-      text-transform: uppercase !important;
-      letter-spacing: 0.05em !important;
-      color: #0284c7 !important;
-      margin-bottom: 8px !important;
-    }}
-    .sky-detail-features-list {{
-      display: grid !important;
-      grid-template-columns: 1fr 1fr !important;
-      gap: 8px 12px !important;
-    }}
-    @media (max-width: 640px) {{
-      .sky-detail-features-list {{
-        grid-template-columns: 1fr !important;
-      }}
-    }}
-    .sky-detail-feature-item {{
-      display: flex !important;
-      align-items: center !important;
-      gap: 6px !important;
-      font-size: 0.75rem !important;
-      color: #334155 !important;
-      font-weight: 500 !important;
-    }}
-    .sky-detail-footer {{
-      display: flex !important;
-      align-items: center !important;
-      justify-content: space-between !important;
-      padding: 12px 20px !important;
-      border-top: 1px solid #f1f5f9 !important;
-      background: #fafbfc !important;
-      gap: 12px !important;
-      flex-wrap: wrap !important;
-    }}
-    .sky-detail-contact-links {{
-      display: flex !important;
-      align-items: center !important;
-      gap: 8px !important;
-      font-size: 0.75rem !important;
-      font-weight: 600 !important;
-      color: #64748b !important;
-    }}
-    .sky-detail-contact-links a {{
-      display: inline-flex !important;
-      align-items: center !important;
-      gap: 4px !important;
-      color: #0284c7 !important;
-      text-decoration: none !important;
-    }}
-    .sky-detail-btn-group {{
-      display: flex !important;
-      align-items: center !important;
-      gap: 8px !important;
-    }}
-    .sky-detail-btn-close {{
-      padding: 7px 14px !important;
-      border-radius: 6px !important;
-      border: 1px solid #cbd5e1 !important;
-      background: #ffffff !important;
-      color: #475569 !important;
-      font-size: 0.75rem !important;
-      font-weight: 600 !important;
-      cursor: pointer !important;
-      transition: all 0.2s !important;
-    }}
-    .sky-detail-btn-close:hover {{
-      background: #f1f5f9 !important;
-      color: #0f172a !important;
-    }}
-    .sky-detail-btn-quote {{
-      padding: 7px 14px !important;
-      border-radius: 6px !important;
-      border: none !important;
-      background: #09bde3 !important;
-      color: #04111f !important;
-      font-size: 0.75rem !important;
-      font-weight: 700 !important;
-      cursor: pointer !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      gap: 6px !important;
-      transition: background 0.2s !important;
-    }}
-    .sky-detail-btn-quote:hover {{
-      background: #38bdf8 !important;
-    }}
   </style>
 </head>
 <body class="bpc-theme">
@@ -1117,8 +902,6 @@ def generate_referanslar():
   <!-- ================= FOOTER (100% IDENTICAL TO HOMEPAGE) ================= -->
   {footer_html}
 
-  <!-- ================= TECHNICAL DETAIL INSPECTOR MODAL ================= -->
-  {DETAIL_MODAL_HTML}
 
   <!-- ================= QUOTE MODAL HOST ================= -->
   {modal_html}
@@ -1297,79 +1080,7 @@ def generate_referanslar():
         }});
       }});
 
-      // 4. Detail Inspector Modal Logic
-      const detailModal = document.getElementById('sky-detail-modal');
-      let currentDetailTitle = '';
-
-      window.openItemDetail = function(el) {{
-        if (!el) return;
-        const title = el.getAttribute('data-title') || el.querySelector('h3')?.innerText || '';
-        const specs = el.getAttribute('data-specs') || '';
-        const desc = el.getAttribute('data-desc') || '';
-        const image = el.getAttribute('data-image') || el.querySelector('img')?.src || '';
-        const badgeCat = el.getAttribute('data-badge-cat') || '';
-        const badgeLoc = el.getAttribute('data-badge-loc') || '';
-
-        currentDetailTitle = title;
-
-        if (!detailModal) return;
-
-        const titleEl = document.getElementById('detail-title');
-        const specsEl = document.getElementById('detail-specs');
-        const descEl = document.getElementById('detail-desc');
-        const imgEl = document.getElementById('detail-image');
-        const catEl = document.getElementById('detail-badge-cat');
-        const locEl = document.getElementById('detail-badge-loc');
-
-        if (titleEl) titleEl.innerText = title;
-        if (specsEl) specsEl.innerText = specs || 'Referans Proje Mühendisliği';
-        if (descEl) descEl.innerText = desc;
-        if (imgEl) {{
-          imgEl.src = image;
-          imgEl.alt = title;
-        }}
-        if (catEl) catEl.innerText = badgeCat || 'Referans';
-        if (locEl) locEl.innerText = badgeLoc || 'Sky Group İmzası';
-
-        detailModal.classList.add('active');
-        detailModal.classList.remove('opacity-0', 'pointer-events-none');
-        const cardEl = detailModal.querySelector('.modal-card');
-        if (cardEl) {{
-          cardEl.classList.remove('scale-95');
-          cardEl.classList.add('scale-100');
-        }}
-        document.body.style.overflow = 'hidden';
-      }};
-
-      window.closeDetailModal = function() {{
-        if (!detailModal) return;
-        detailModal.classList.remove('active');
-        detailModal.classList.add('opacity-0', 'pointer-events-none');
-        const cardEl = detailModal.querySelector('.modal-card');
-        if (cardEl) {{
-          cardEl.classList.add('scale-95');
-          cardEl.classList.remove('scale-100');
-        }}
-        document.body.style.overflow = '';
-      }};
-
-      window.openQuoteForCurrentDetail = function() {{
-        const title = currentDetailTitle;
-        closeDetailModal();
-        if (window.openQuoteModal) {{
-          window.openQuoteModal(title ? (title + ' Referans Projesi Detay Talebi') : 'Mühendislik Teklifi');
-        }}
-      }};
-
-      if (detailModal) {{
-        detailModal.addEventListener('click', function(e) {{
-          if (e.target === detailModal) {{
-            closeDetailModal();
-          }}
-        }});
-      }}
-
-      // 5. Quote Modal Logic
+      // 4. Quote Modal Logic
       const quoteModal = document.getElementById('sky-quote-modal');
       const modalCloseBtn = document.getElementById('sky-modal-close');
       const quoteForm = document.getElementById('sky-quote-form');
@@ -1413,7 +1124,6 @@ def generate_referanslar():
 
       document.addEventListener('keydown', function(e) {{
         if (e.key === 'Escape') {{
-          closeDetailModal();
           closeQuoteModal();
           closeNav();
           toggleMobileMenu(true);

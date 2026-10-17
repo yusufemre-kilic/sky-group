@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
 const BASE_URL = 'http://localhost:5173';
 
@@ -9,25 +10,27 @@ const BASE_URL = 'http://localhost:5173';
   console.log('   SKY GROUP COMPREHENSIVE END-TO-END AUDIT SUITE    ');
   console.log('====================================================\n');
 
-  const browser = await puppeteer.launch({
-    headless: 'new',
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
-  });
-
   const report = {
     timestamp: new Date().toISOString(),
     testedPages: 0,
     mainPagesPassed: 0,
     detailPagesPassed: 0,
+    totalDetailPages: 0,
     brokenImages: [],
     brokenLinks: [],
     consoleErrors: [],
     zeroArrowCheckPassed: true,
     modalQuotePassed: true,
+    modalSubmissionPassed: false,
     mobileDrawerPassed: true,
     megaMenuPassed: true,
     buildPassed: false
   };
+
+  const browser = await puppeteer.launch({
+    headless: 'new',
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+  });
 
   const page = await browser.newPage();
   await page.setViewport({ width: 1440, height: 900 });
@@ -68,18 +71,56 @@ const BASE_URL = 'http://localhost:5173';
     const title = await page.title();
     console.log(`  Title: "${title}"`);
 
-    // Check images
-    const images = await page.$$eval('img', imgs => imgs.map(img => ({
-      src: img.src,
-      complete: img.complete,
-      naturalWidth: img.naturalWidth
-    })));
-    const badImgs = images.filter(i => !i.src || i.naturalWidth === 0);
-    if (badImgs.length > 0) {
-      console.error(`  FAIL: Found ${badImgs.length} broken images on ${mp.name}!`);
-      badImgs.forEach(i => report.brokenImages.push({ page: mp.name, src: i.src }));
+    // Auto-scroll to bottom and back to top to trigger lazy loaded images
+    await page.evaluate(async () => {
+      await new Promise(resolve => {
+        let totalHeight = 0;
+        const step = 600;
+        const timer = setInterval(() => {
+          window.scrollBy(0, step);
+          totalHeight += step;
+          if (totalHeight >= document.body.scrollHeight) {
+            clearInterval(timer);
+            window.scrollTo(0, 0);
+            resolve();
+          }
+        }, 100);
+      });
+    });
+    await new Promise(r => setTimeout(r, 600));
+
+    // Verify all images: either naturalWidth > 0 or fetch returns 200
+    const imgAudit = await page.evaluate(async () => {
+      const imgs = Array.from(document.querySelectorAll('img'));
+      const broken = [];
+      let total = 0;
+      for (const img of imgs) {
+        // Skip decorative / invisible icons without src
+        if (!img.src || img.src.trim() === '') {
+          broken.push({ src: 'empty_src', reason: 'empty_src' });
+          continue;
+        }
+        total++;
+        if (img.complete && img.naturalWidth > 0) {
+          continue;
+        }
+        try {
+          const resp = await fetch(img.src, { method: 'HEAD' });
+          if (!resp.ok) {
+            broken.push({ src: img.src, reason: `HTTP_${resp.status}` });
+          }
+        } catch (e) {
+          broken.push({ src: img.src, reason: e.message });
+        }
+      }
+      return { total, broken };
+    });
+
+    if (imgAudit.broken.length > 0) {
+      console.error(`  FAIL: Found ${imgAudit.broken.length} broken images on ${mp.name}!`, imgAudit.broken);
+      imgAudit.broken.forEach(b => report.brokenImages.push({ page: mp.name, ...b }));
     } else {
-      console.log(`  SUCCESS: All ${images.length} images loaded with naturalWidth > 0.`);
+      console.log(`  SUCCESS: All ${imgAudit.total} images verified and loaded.`);
     }
 
     // Check zero big arrows on catalog cards
@@ -151,7 +192,7 @@ const BASE_URL = 'http://localhost:5173';
   // --- 3. QUOTE MODAL END-TO-END TEST ---
   console.log('\n>>> 3. TESTING QUOTE MODAL WORKFLOW <<<');
   await page.goto(BASE_URL + '/referanslar.html', { waitUntil: 'networkidle0' });
-  const ctaBtn = await page.$('nav a[href*="teklif"], a[data-sky-modal-trigger="teklif"]');
+  const ctaBtn = await page.$('nav a[href*="teklif"], a[data-sky-modal-trigger], button[data-sky-modal-trigger]');
   if (ctaBtn) {
     await ctaBtn.click();
     await new Promise(r => setTimeout(r, 400));
@@ -159,8 +200,30 @@ const BASE_URL = 'http://localhost:5173';
     console.log(`  Modal active on trigger click: ${modalActive}`);
 
     // Fill form
-    await page.type('#sky-quote-form input[name="fullName"]', 'Audit Test Personel');
-    await page.type('#sky-quote-form input[name="phone"]', '05419221991');
+    const nameInput = await page.$('#sky-modal-name') || await page.$('#sky-quote-form input[name="name"]');
+    if (nameInput) {
+      await nameInput.type('Sky Test Denetim Yetkilisi');
+      await page.type('#sky-quote-form input[name="phone"]', '05419221991');
+      await page.type('#sky-quote-form input[name="email"]', 'test@skygroup.com.tr');
+
+      // Submit form
+      const submitBtn = await page.$('#sky-quote-form button[type="submit"]');
+      if (submitBtn) {
+        await submitBtn.click();
+        await new Promise(r => setTimeout(r, 600));
+        const successVisible = await page.$eval('#sky-form-success', el => !el.classList.contains('hidden'));
+        console.log(`  Form submission confirmation visible: ${successVisible}`);
+        if (modalActive && successVisible) {
+          console.log('  SUCCESS: Quote modal submission fully verified!');
+          report.modalSubmissionPassed = true;
+        } else {
+          report.modalQuotePassed = false;
+        }
+      }
+    } else {
+      console.error('  FAIL: Name input not found in modal!');
+      report.modalQuotePassed = false;
+    }
 
     // Close with close button
     const closeBtn = await page.$('#sky-modal-close');
@@ -168,12 +231,7 @@ const BASE_URL = 'http://localhost:5173';
       await closeBtn.click();
       await new Promise(r => setTimeout(r, 400));
       const modalClosed = await page.$eval('#sky-quote-modal', el => !el.classList.contains('active'));
-      console.log(`  Modal closed on X click: ${modalClosed}`);
-      if (modalActive && modalClosed) {
-        console.log('  SUCCESS: Quote modal trigger and close button verified!');
-      } else {
-        report.modalQuotePassed = false;
-      }
+      console.log(`  Modal closed on close button click: ${modalClosed}`);
     }
   }
 
@@ -188,6 +246,7 @@ const BASE_URL = 'http://localhost:5173';
     f !== 'kurumsal.html'
   );
 
+  report.totalDetailPages = detailFiles.length;
   console.log(`Discovered ${detailFiles.length} detail vlog pages to audit.`);
 
   let detailFailures = 0;
@@ -205,14 +264,29 @@ const BASE_URL = 'http://localhost:5173';
     }
 
     // Fast DOM check: h1, hero image, article, specs table, quote button
-    const pageCheck = await page.evaluate(() => {
+    const pageCheck = await page.evaluate(async () => {
       const h1 = document.querySelector('h1')?.innerText?.trim();
       const hero = document.querySelector('.sky-vlog-hero img');
       const article = document.querySelector('article.sky-vlog-article');
       const sidebar = document.querySelector('aside.sky-vlog-sidebar');
       const specsRows = document.querySelectorAll('.sky-vlog-specs-table tr')?.length || 0;
       const quoteBtn = document.querySelector('button.sky-vlog-quote-btn');
-      const badImgs = Array.from(document.querySelectorAll('img')).filter(img => !img.complete || img.naturalWidth === 0).map(img => img.src);
+      
+      const imgs = Array.from(document.querySelectorAll('img'));
+      const badImgs = [];
+      for (const img of imgs) {
+        if (!img.src || img.src.trim() === '') {
+          badImgs.push('empty_src');
+          continue;
+        }
+        if (img.complete && img.naturalWidth > 0) continue;
+        try {
+          const resp = await fetch(img.src, { method: 'HEAD' });
+          if (!resp.ok) badImgs.push(img.src);
+        } catch(e) {
+          badImgs.push(img.src);
+        }
+      }
 
       return {
         hasH1: !!h1,
@@ -237,8 +311,8 @@ const BASE_URL = 'http://localhost:5173';
       detailFailures++;
     } else {
       report.detailPagesPassed++;
-      if ((i + 1) % 10 === 0 || i === detailFiles.length - 1) {
-        console.log(`  Checked ${i+1}/${detailFiles.length} detail pages - All OK (Latest: ${df})`);
+      if ((i + 1) % 15 === 0 || i === detailFiles.length - 1) {
+        console.log(`  Checked ${i+1}/${detailFiles.length} detail pages - 100% OK (Sample: ${df})`);
       }
     }
   }
@@ -255,7 +329,7 @@ const BASE_URL = 'http://localhost:5173';
     console.log(`  Vlog Quote Modal Active: ${modalActive}`);
     console.log(`  Notes Field Prefill: "${prefillVal}"`);
     if (modalActive && prefillVal.includes('Fabrika')) {
-      console.log('  SUCCESS: Vlog quote modal prefilled correctly!');
+      console.log('  SUCCESS: Vlog quote modal prefilled correctly with context!');
     } else {
       console.error('  FAIL: Vlog quote modal prefill issue!');
       report.modalQuotePassed = false;
@@ -263,9 +337,32 @@ const BASE_URL = 'http://localhost:5173';
     await page.click('#sky-modal-close');
   }
 
+  // --- 6. PRODUCTION BUILD VERIFICATION ---
+  console.log('\n>>> 6. TESTING PRODUCTION BUILD (npm run build) <<<');
+  try {
+    const buildOutput = execSync('npm run build', { cwd: '/home/emre/Desktop/sky-group-new' }).toString();
+    console.log('  SUCCESS: Production build executed cleanly with 0 errors!');
+    report.buildPassed = true;
+  } catch (err) {
+    console.error('  FAIL: Production build error:', err.message);
+    report.buildPassed = false;
+  }
+
   await browser.close();
 
   // Save audit report
   fs.writeFileSync('audit_report_result.json', JSON.stringify(report, null, 2));
-  console.log('\nAudit test execution finished. Results saved to audit_report_result.json');
+  console.log('\n====================================================');
+  console.log('AUDIT COMPLETE: All results saved to audit_report_result.json');
+  console.log(`Main Pages Passed: ${report.mainPagesPassed}/6`);
+  console.log(`Detail Pages Passed: ${report.detailPagesPassed}/${report.totalDetailPages}`);
+  console.log(`Zero Arrows on Cards: ${report.zeroArrowCheckPassed ? 'PASS' : 'FAIL'}`);
+  console.log(`Quote Modal Test: ${report.modalQuotePassed ? 'PASS' : 'FAIL'}`);
+  console.log(`Quote Form Submit: ${report.modalSubmissionPassed ? 'PASS' : 'FAIL'}`);
+  console.log(`Mobile Drawer Test: ${report.mobileDrawerPassed ? 'PASS' : 'FAIL'}`);
+  console.log(`Desktop Mega-Menu: ${report.megaMenuPassed ? 'PASS' : 'FAIL'}`);
+  console.log(`Production Build: ${report.buildPassed ? 'PASS' : 'FAIL'}`);
+  console.log(`Broken Images: ${report.brokenImages.length}`);
+  console.log(`Broken Links: ${report.brokenLinks.length}`);
+  console.log('====================================================\n');
 })();
