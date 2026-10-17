@@ -1,0 +1,12 @@
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+*.png
+!public/**/*.png
+!assets/**/*.png
+!dist/**/*.png
+!sm/**/*.png
+!_bpc/**/*.png
+!bpc/**/*.png
+!tema/**/*.png
