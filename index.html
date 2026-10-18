@@ -210,12 +210,27 @@
         pointer-events: none !important;
       }
 
-      /* Sky Group Conduit Background - Clean Classic Corporate Neutral */
-      [data-bpc-bg="conduit"] {
-        background-color: #f8fafc !important;
-        background-image: none !important;
-        border-top: 1px solid #e2e8f0 !important;
-        border-bottom: 1px solid #e2e8f0 !important;
+      /* Sky Group Blueprint Dot Background - Seamless Continuity Across Sections */
+      .bcc-dots {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        z-index: -1 !important;
+        width: 100% !important;
+        height: 110% !important;
+        background-color: #f4f3f0 !important;
+        background-image: radial-gradient(circle at center, #c8c5be 0 1.2px, transparent 1.3px) !important;
+        background-size: 11px 11px !important;
+        pointer-events: none !important;
+      }
+      [data-bpc-bg="conduit"],
+      #bcc-pricing {
+        background-color: #f4f3f0 !important;
+        background-image: radial-gradient(circle at center, #c8c5be 0 1.2px, transparent 1.3px) !important;
+        background-size: 11px 11px !important;
+        background-attachment: fixed !important;
+        border-top: 1px solid rgba(0, 0, 0, 0.06) !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
       }
 
       /* Mobile Navigation Drawer - Transparent Glassmorphic like Header */
@@ -699,6 +714,28 @@ Yangın algılama veya acil durumda sistem anında tahliye moduna geçer; yangı
     border: 1px solid #cbd5e1 !important;
     border-radius: 14px !important;
     box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.3) !important;
+  }
+  .sky-options-dropdown.hidden {
+    display: none !important;
+  }
+  .sky-options-dropdown:not(.hidden) {
+    display: block !important;
+  }
+  #sky-pricing-options svg {
+    width: 16px !important;
+    height: 16px !important;
+    max-width: 16px !important;
+    max-height: 16px !important;
+    flex-shrink: 0 !important;
+  }
+  .sky-gate-card svg.sky-gate-shield-svg,
+  .sky-gate-card > div:first-child svg {
+    width: 48px !important;
+    height: 48px !important;
+    max-width: 48px !important;
+    max-height: 48px !important;
+    display: block !important;
+    margin: 0 auto !important;
   }
 
   /* Base Power Style Unlocked Post-Selection Blue Theme */
@@ -1224,8 +1261,8 @@ Yangın algılama veya acil durumda sistem anında tahliye moduna geçer; yangı
       <div class="sky-gate-card relative w-full max-w-[578px] px-8 py-12 md:px-[52px] md:py-14 flex flex-col items-center gap-[32px] text-center" style="border-radius:28px">
         
         <div class="flex flex-col items-center gap-3 text-center">
-          <div class="w-12 h-12 flex items-center justify-center">
-            <svg viewBox="0 0 380 380" fill="none" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="--ic-bg:rgba(9, 189, 227, 0.22);--ic-fg:#09bde3">
+          <div class="w-12 h-12 flex items-center justify-center" style="width:48px;height:48px;margin:0 auto;">
+            <svg viewBox="0 0 380 380" fill="none" width="48" height="48" class="sky-gate-shield-svg" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="--ic-bg:rgba(9, 189, 227, 0.22);--ic-fg:#09bde3;width:48px;height:48px;display:block;">
               <path d="M92 114C92 82.5198 117.52 57 149 57H232C263.48 57 289 82.5198 289 114V265C289 296.48 263.48 322 232 322H149C117.52 322 92 296.48 92 265L92 114Z" fill="var(--ic-bg)"></path>
               <path d="M266.5 114C266.5 94.9462 251.054 79.5 232 79.5H149C129.946 79.5 114.5 94.9462 114.5 114L114.5 265L114.512 265.891C114.984 284.533 130.244 299.5 149 299.5H232C251.054 299.5 266.5 284.054 266.5 265V114ZM311.5 265C311.5 308.907 275.907 344.5 232 344.5H149C105.436 344.5 70.0569 309.461 69.5068 266.027L69.5 265L69.5 114C69.5 70.0934 105.093 34.5 149 34.5L232 34.5C275.907 34.5 311.5 70.0934 311.5 114V265Z" fill="var(--ic-bg)"></path>
               <path d="M232 299V322H149L149 299H232ZM266 265V114C266 95.2223 250.778 80 232 80H149C130.222 80 115 95.2223 115 114V265C115 283.778 130.222 299 149 299L149 322L148.264 321.995C117.368 321.604 92.396 296.632 92.0049 265.736L92 265L92 114C92 82.5198 117.52 57 149 57H232C263.48 57 289 82.5198 289 114V265C289 296.234 263.877 321.601 232.736 321.995L232 322V299C250.778 299 266 283.778 266 265Z" fill="var(--ic-fg)"></path>
