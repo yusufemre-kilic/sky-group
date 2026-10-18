@@ -406,6 +406,210 @@
       transform: scale(1) !important;
     }
 
+  
+    /* ==========================================================================
+       BASE POWER CASE-STUDIES REPLICA DESIGN (Cards, Filters, Typography)
+       ========================================================================== */
+    .sky-filter-bar-wrap {
+      display: flex !important;
+      align-items: center !important;
+      flex-wrap: wrap !important;
+      gap: 0.75rem 0.85rem !important;
+      margin-bottom: 2.5rem !important;
+      padding-bottom: 1.5rem !important;
+      border-bottom: 1px solid #f1f5f9 !important;
+    }
+    .sky-filter-label {
+      font-size: 0.9375rem !important;
+      font-weight: 700 !important;
+      color: #0f172a !important;
+      margin-right: 0.5rem !important;
+      white-space: nowrap !important;
+    }
+    .sky-filter-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 0.45rem 1.25rem !important;
+      border-radius: 9999px !important;
+      font-size: 0.875rem !important;
+      font-weight: 500 !important;
+      background-color: transparent !important;
+      color: #334155 !important;
+      border: 1px solid #cbd5e1 !important;
+      cursor: pointer !important;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      user-select: none !important;
+      white-space: nowrap !important;
+      text-decoration: none !important;
+    }
+    .sky-filter-btn:hover {
+      background-color: #f8fafc !important;
+      color: #0f172a !important;
+      border-color: #0f172a !important;
+    }
+    .sky-filter-btn.active {
+      background-color: #0f172a !important;
+      color: #ffffff !important;
+      border-color: #0f172a !important;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12) !important;
+    }
+
+    /* 3-Column BasePower Grid */
+    .sky-projects-grid {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      gap: 3rem 2rem !important;
+    }
+    @media (min-width: 640px) {
+      .sky-projects-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 3.25rem 2.25rem !important;
+      }
+    }
+    @media (min-width: 1024px) {
+      .sky-projects-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 3.75rem 2.5rem !important;
+      }
+    }
+
+    /* Clean Borderless BasePower Card */
+    .sky-project-card {
+      background-color: transparent !important;
+      border: none !important;
+      border-radius: 0 !important;
+      padding: 0 !important;
+      box-shadow: none !important;
+      transform: none !important;
+      display: flex !important;
+      flex-direction: column !important;
+      cursor: pointer !important;
+      text-decoration: none !important;
+      transition: none !important;
+      position: relative !important;
+    }
+    .sky-project-card:hover {
+      border: none !important;
+      box-shadow: none !important;
+      transform: none !important;
+    }
+
+    /* Card Photo */
+    .sky-project-photo {
+      position: relative !important;
+      display: block !important;
+      overflow: hidden !important;
+      border-radius: 12px !important;
+      aspect-ratio: 16 / 10 !important;
+      background-color: #f8fafc !important;
+      border: 1px solid rgba(0, 0, 0, 0.06) !important;
+      margin-bottom: 1.15rem !important;
+    }
+    .sky-project-photo img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    .sky-project-card:hover .sky-project-photo img {
+      transform: scale(1.045) !important;
+    }
+
+    /* Hide image overlay badges for clean BasePower photo parity */
+    .sky-card-cat-badge,
+    .sky-card-loc-badge {
+      display: none !important;
+    }
+
+    /* Card Body */
+    .sky-project-card .pt-3\.5,
+    .sky-project-card .sky-card-body {
+      padding: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      flex: 1 1 auto !important;
+    }
+
+    /* Card Title (Bold BasePower Heading) */
+    .sky-project-card h3,
+    .sky-project-card .sky-card-title {
+      font-size: 1.375rem !important;
+      font-weight: 700 !important;
+      color: #0f172a !important;
+      line-height: 1.3 !important;
+      letter-spacing: -0.018em !important;
+      margin: 0 0 0.35rem 0 !important;
+      transition: color 0.2s ease !important;
+    }
+    .sky-project-card:hover h3,
+    .sky-project-card:hover .sky-card-title {
+      color: #0284c7 !important;
+    }
+
+    /* Card Category / Subtitle Metadata */
+    .sky-project-card .sky-card-meta,
+    .sky-project-card .pt-3\.5 > p:first-of-type,
+    .sky-project-card [class*="text-[#0284c7]"] {
+      font-size: 0.8125rem !important;
+      font-weight: 500 !important;
+      color: #64748b !important;
+      margin: 0 0 0.65rem 0 !important;
+      letter-spacing: 0.015em !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 0.45rem !important;
+      text-transform: none !important;
+    }
+    .sky-project-card [class*="text-[#0284c7]"] span:first-child {
+      display: none !important;
+    }
+
+    /* Card Description Paragraph */
+    .sky-project-card .sky-card-desc,
+    .sky-project-card .pt-3\.5 > p:last-of-type,
+    .sky-project-card p.text-slate-500 {
+      font-size: 0.9375rem !important;
+      color: #475569 !important;
+      line-height: 1.6 !important;
+      margin: 0 0 1.25rem 0 !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 3 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+    }
+
+    /* "Read more →" Link (Exact BasePower styling) */
+    .sky-card-read-more,
+    .sky-card-link {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 0.45rem !important;
+      font-size: 0.9375rem !important;
+      font-weight: 600 !important;
+      color: #0f172a !important;
+      margin-top: auto !important;
+      padding-top: 0.25rem !important;
+      transition: color 0.2s ease, gap 0.2s ease !important;
+      text-decoration: none !important;
+    }
+    .sky-card-read-more svg,
+    .sky-card-link svg {
+      width: 16px !important;
+      height: 16px !important;
+      transition: transform 0.2s ease !important;
+      flex-shrink: 0 !important;
+    }
+    .sky-project-card:hover .sky-card-read-more,
+    .sky-project-card:hover .sky-card-link {
+      color: #0284c7 !important;
+      gap: 0.75rem !important;
+    }
+    .sky-project-card:hover .sky-card-read-more svg,
+    .sky-project-card:hover .sky-card-link svg {
+      transform: translateX(4px) !important;
+    }
+
   </style>
 </head>
 <body class="bpc-theme">
@@ -618,6 +822,7 @@
 
         <!-- Filter Buttons -->
         <div class="flex flex-wrap items-center gap-2.5" id="sky-filter-container">
+          <span class="sky-filter-label">Proje Türüne Göre Filtrele:</span>
           <button type="button" class="sky-filter-btn active" data-filter="all">Tümü (15)</button>
           <button type="button" class="sky-filter-btn" data-filter="restoran">Restoran &amp; Yeme-İçme (6)</button>
           <button type="button" class="sky-filter-btn" data-filter="avm">AVM &amp; Mağazacılık (5)</button>
@@ -643,6 +848,8 @@
               <span>18.000 m³/h Debi • Spiral Kanal</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Mimari konseptle bütünleşen görünür spiral galvaniz kanallar, açık mutfak davlumbaz egzoz hattı, elektrostatik duman-yağ tutucu filtreler ve salon taze hava besleme klima santrali.</p>
+            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+          
           </div>
         </a>
         
@@ -661,6 +868,8 @@
               <span>26.000 m³/h • Yangın Tahliye</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Özel mangal egzoz bacaları, 400°C/2h yangına dayanıklı kanal izolasyonu, aktif karbon filtre üniteleri ve hijyenik taze hava santral beslemesi.</p>
+            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+          
           </div>
         </a>
         
@@ -679,6 +888,8 @@
               <span>22.500 m³/h • HRV Isı Geri Kazanım</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Yüksek müşteri kapasiteli ana salon iklimlendirmesi, mutfak egzoz hatları, akustik menfez susturucuları ve ısı geri kazanımlı HRV taze hava besleme sistemi.</p>
+            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+          
           </div>
         </a>
         
@@ -697,6 +908,8 @@
               <span>12.000 m³/h • VRF Entegrasyonu</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">AVM tavan mimarisine uygun siyah elektrostatik fırın boyalı kanal imalatı, VRF kaset tipi iç üniteler, slot lineer difüzörler ve otomatik balans ayarları.</p>
+            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+          
           </div>
         </a>
         
@@ -715,6 +928,8 @@
               <span>14.000 m³/h • Akustik İzolasyon</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Özel konsept lüks mağaza mekanik iklimlendirme ve hava dağıtımı. Gizli tavan montajı, homojen hava dağılımı ve fancoil entegrasyonu.</p>
+            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+          
           </div>
         </a>
         
@@ -733,6 +948,8 @@
               <span>85.000 m³/h • Class C Sızdırmaz</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Ağır sanayi üretim holü havalandırması, toz ve partikül toplama siklon filtreleri, TSE EN 1507 Class C sızdırmaz galvaniz kanal montajı ve çatı tipi egzoz fanları.</p>
+            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+          
           </div>
         </a>
         
@@ -751,6 +968,8 @@
               <span>16.000 m³/h • Akustik Susturucu</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Seçkin İtalyan restoranı için sıfır ses kriterli iklimlendirme tasarımı, fancoil hava kanalları, difüzör montajı ve hassas test-balans (TAB) ölçümlemesi.</p>
+            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+          
           </div>
         </a>
         
@@ -769,6 +988,8 @@
               <span>34.000 m³/h • VRV İklimlendirme</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Tekstil genel merkezi ve mağaza zincirleri için VRV/VRF ısıtma-soğutma, kendinden flanşlı galvaniz hava kanalları ve enerji tasarruflu havalandırma santralleri.</p>
+            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+          
           </div>
         </a>
         
@@ -787,6 +1008,8 @@
               <span>15.000 m³/h • Mimari Tasarım</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Perakende mağaza hava dağıtım kanalları, fırın boyalı difüzörler, fancoil bağlantıları ve şık mimari asma tavan entegrasyonu.</p>
+            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+          
           </div>
         </a>
         
@@ -805,6 +1028,8 @@
               <span>20.000 m³/h • Karbon Filtrasyon</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Restoran zincirinin yoğun mutfak kapasitesine özel egzoz fanları, koku tutucu karbon filtreler ve açık teras hava perdeleri montajı.</p>
+            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+          
           </div>
         </a>
         
@@ -823,6 +1048,8 @@
               <span>45.000 m³/h • VAV Sistemleri</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Türkiye'nin en büyük AVM'lerinden Cevahir bünyesindeki mağazalar için merkezi santral bağlantı kanalları, VAV kutuları ve balans vanaları montajı.</p>
+            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+          
           </div>
         </a>
         
@@ -841,6 +1068,8 @@
               <span>18.500 m³/h • UV-C Filtre</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Şehrin merkezinde sıfır koku salınımı sağlayan UV-C ve elektrostatik mutfak filtrasyon sistemi ve müşteri konfor iklimlendirmesi.</p>
+            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+          
           </div>
         </a>
         
@@ -859,6 +1088,8 @@
               <span>28.000 m³/h • Fancoil & Egzoz</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Yönetim plazası ofis katları için 4 borulu fancoil tesisatı, taze hava santrali ve servis atölyesi egzoz gazı tahliye hattı.</p>
+            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+          
           </div>
         </a>
         
@@ -877,6 +1108,8 @@
               <span>60.000 m³/h • AISI 316 Paslanmaz</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Asit buharı ve kimyasal gazlara dayanıklı paslanmaz çelik (AISI 316) hava kanalları, ex-proof çatı fanları ve gaz algılama otomasyonu.</p>
+            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+          
           </div>
         </a>
         
@@ -895,6 +1128,8 @@
               <span>Günlük 2.500 m² Kanal İmalatı</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Kendi modern üretim atölyemizde CNC plazma kesim, otomatik flanş çakma ve dikiş kaynak hatları ile günlük 2.500 m² galvaniz hava kanalı imalat kapasitesi.</p>
+            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+          
           </div>
         </a>
         
