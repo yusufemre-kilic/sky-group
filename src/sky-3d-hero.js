@@ -99,9 +99,10 @@ export function initSky3DHero() {
   mainGroup.position.set(2.0, 0, 0);
   scene.add(mainGroup);
 
-  const groupBuilding = new THREE.Group();  // Slabs, Columns & BIM Envelope
+  const groupBuilding = new THREE.Group();  // Slabs, Columns & BIM Envelope & Partition Walls
   const groupRoof = new THREE.Group();      // Rooftop AHU, VRF & Chiller
   const groupFloors = new THREE.Group();    // 3F, 2F, 1F Ductwork & Diffusers
+  const groupPiping = new THREE.Group();    // Pinnacl-Grade Curving Hydronic Loops, Sprinkler Grid, VRF Copper, Cable Trays & Sleeves
   const groupBasement = new THREE.Group();  // B1 Pumps & Smoke Jet Fans
   const groupCfd = new THREE.Group();       // Multi-Story CFD Airflow Particles
   const groupPins = new THREE.Group();      // Hotspot Markers
@@ -109,6 +110,7 @@ export function initSky3DHero() {
   mainGroup.add(groupBuilding);
   mainGroup.add(groupRoof);
   mainGroup.add(groupFloors);
+  mainGroup.add(groupPiping);
   mainGroup.add(groupBasement);
   mainGroup.add(groupCfd);
   mainGroup.add(groupPins);
@@ -120,6 +122,7 @@ export function initSky3DHero() {
   const bldgPts = { pos: [], col: [] };
   const roofPts = { pos: [], col: [] };
   const floorPts = { pos: [], col: [] };
+  const pipePts = { pos: [], col: [] };
   const basePts = { pos: [], col: [] };
 
   function sampleBoxLiDAR(target, x, y, z, w, h, d, density, r, g, b) {
@@ -167,6 +170,34 @@ export function initSky3DHero() {
     }
   }
 
+  // Dense circular rings around any 3D spline curve (Pinnacl-style point cloud scan)
+  function sampleSplineLiDAR(target, curve, radius, density, r, g, b, steps = 80, radialSegments = 8) {
+    const pointsCount = Math.max(3, Math.floor(radialSegments * density));
+    for (let s = 0; s <= steps; s++) {
+      const t = s / steps;
+      const pt = curve.getPointAt(t);
+      const tangent = curve.getTangentAt(t).normalize();
+      
+      const arbitrary = Math.abs(tangent.y) < 0.95 ? new THREE.Vector3(0, 1, 0) : new THREE.Vector3(1, 0, 0);
+      const normal = new THREE.Vector3().crossVectors(tangent, arbitrary).normalize();
+      const binormal = new THREE.Vector3().crossVectors(tangent, normal).normalize();
+      
+      for (let c = 0; c < pointsCount; c++) {
+        const angle = (c / pointsCount) * Math.PI * 2 + (Math.random() - 0.5) * 0.25;
+        const cosA = Math.cos(angle);
+        const sinA = Math.sin(angle);
+        
+        const px = pt.x + (normal.x * cosA + binormal.x * sinA) * radius;
+        const py = pt.y + (normal.y * cosA + binormal.y * sinA) * radius;
+        const pz = pt.z + (normal.z * cosA + binormal.z * sinA) * radius;
+        
+        target.pos.push(px, py, pz);
+        const bright = 0.85 + Math.random() * 0.35;
+        target.col.push(Math.min(1, r * bright), Math.min(1, g * bright), Math.min(1, b * bright));
+      }
+    }
+  }
+
   function addWireBox(parent, x, y, z, w, h, d, color = 0x09bde3, opacity = 0.6) {
     const geo = new THREE.BoxGeometry(w, h, d);
     const edges = new THREE.EdgesGeometry(geo);
@@ -185,6 +216,143 @@ export function initSky3DHero() {
     if (rotZ) line.rotation.z = rotZ;
     parent.add(line);
     return line;
+  }
+
+  // Smooth 3D Tube + LiDAR Point Cloud along any 3D spline
+  function addPipeSpline(parent, targetPts, points, radius, colorHex, r, g, b, density = 1.0, tubeRadialSegs = 8) {
+    const curve = new THREE.CatmullRomCurve3(points);
+    const length = curve.getLength();
+    const tubeSteps = Math.max(20, Math.floor(length * 8));
+    const tubeGeo = new THREE.TubeGeometry(curve, tubeSteps, radius, tubeRadialSegs, false);
+    const edges = new THREE.EdgesGeometry(tubeGeo);
+    const tubeLine = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({
+      color: colorHex,
+      transparent: true,
+      opacity: 0.65
+    }));
+    parent.add(tubeLine);
+    
+    const lidarSteps = Math.max(25, Math.floor(length * 14));
+    sampleSplineLiDAR(targetPts, curve, radius, density, r, g, b, lidarSteps, tubeRadialSegs);
+    return { curve, tubeLine };
+  }
+
+  // Wall/Slab Penetration Sleeve (Geçiş Kovanı / Manşon) with Firestop Collar
+  function addPenetrationSleeve(parent, targetPts, x, y, z, axis, innerR, outerR, length, r = 1.0, g = 0.2, b = 0.15) {
+    const rotX = axis === 'z' ? Math.PI / 2 : 0;
+    const rotZ = axis === 'x' ? Math.PI / 2 : 0;
+    // Outer metal sleeve pipe
+    addWireCylinder(parent, x, y, z, outerR, outerR, length, 14, 0xef4444, 0.8, rotX, rotZ);
+    // Intumescent firestop mastic collar ring (yangın yalıtım mastiği yakası)
+    addWireCylinder(parent, x, y, z, outerR * 1.35, outerR * 1.35, length * 0.35, 14, 0xf97316, 0.9, rotX, rotZ);
+    
+    sampleCylinderLiDAR(targetPts, x, y, z, outerR, length, axis, 22, r, g, b);
+    sampleCylinderLiDAR(targetPts, x, y, z, outerR * 1.35, length * 0.35, axis, 26, 1.0, 0.55, 0.1);
+  }
+
+  // Architectural Partition Wall with Framed Door Opening
+  function addPartitionWallWithDoor(parent, targetPts, x1, z1, x2, z2, yBottom, yTop, thickness, doorCenterT, doorWidth, doorHeight, r, g, b) {
+    const dx = x2 - x1;
+    const dz = z2 - z1;
+    const wallLen = Math.hypot(dx, dz);
+    const angle = Math.atan2(dz, dx);
+    const midX = (x1 + x2) / 2;
+    const midZ = (z1 + z2) / 2;
+    const wallH = yTop - yBottom;
+    const midY = yBottom + wallH / 2;
+    
+    const doorW = Math.min(doorWidth, wallLen * 0.45);
+    const doorH = Math.min(doorHeight, wallH * 0.88);
+    const dPos = (doorCenterT - 0.5) * wallLen;
+    
+    // Left wall segment
+    const leftW = (wallLen / 2 + dPos) - doorW / 2;
+    if (leftW > 0.25) {
+      const lx = -wallLen / 2 + leftW / 2;
+      const lPos = new THREE.Vector3(lx, 0, 0).applyAxisAngle(new THREE.Vector3(0, 1, 0), -angle);
+      const grpL = new THREE.Group();
+      grpL.position.set(midX + lPos.x, midY, midZ + lPos.z);
+      grpL.rotation.y = -angle;
+      addWireBox(grpL, 0, 0, 0, leftW, wallH, thickness, 0x09bde3, 0.35);
+      sampleBoxLiDAR(targetPts, midX + lPos.x, midY, midZ + lPos.z, leftW, wallH, thickness, 9, r, g, b);
+      parent.add(grpL);
+    }
+    
+    // Right wall segment
+    const rightW = (wallLen / 2 - dPos) - doorW / 2;
+    if (rightW > 0.25) {
+      const rx = wallLen / 2 - rightW / 2;
+      const rPos = new THREE.Vector3(rx, 0, 0).applyAxisAngle(new THREE.Vector3(0, 1, 0), -angle);
+      const grpR = new THREE.Group();
+      grpR.position.set(midX + rPos.x, midY, midZ + rPos.z);
+      grpR.rotation.y = -angle;
+      addWireBox(grpR, 0, 0, 0, rightW, wallH, thickness, 0x09bde3, 0.35);
+      sampleBoxLiDAR(targetPts, midX + rPos.x, midY, midZ + rPos.z, rightW, wallH, thickness, 9, r, g, b);
+      parent.add(grpR);
+    }
+    
+    // Lintel above door
+    const lintelH = wallH - doorH;
+    if (lintelH > 0.1) {
+      const lintelY = wallH / 2 - lintelH / 2;
+      const tPos = new THREE.Vector3(dPos, lintelY, 0).applyAxisAngle(new THREE.Vector3(0, 1, 0), -angle);
+      const grpT = new THREE.Group();
+      grpT.position.set(midX + tPos.x, midY + lintelY, midZ + tPos.z);
+      grpT.rotation.y = -angle;
+      addWireBox(grpT, 0, 0, 0, doorW, lintelH, thickness, 0x09bde3, 0.45);
+      sampleBoxLiDAR(targetPts, midX + tPos.x, midY + lintelY, midZ + tPos.z, doorW, lintelH, thickness, 9, r, g, b);
+      parent.add(grpT);
+    }
+    
+    // Door casing wireframe
+    const fPos = new THREE.Vector3(dPos, -wallH / 2 + doorH / 2, 0).applyAxisAngle(new THREE.Vector3(0, 1, 0), -angle);
+    const grpF = new THREE.Group();
+    grpF.position.set(midX + fPos.x, yBottom + doorH / 2, midZ + fPos.z);
+    grpF.rotation.y = -angle;
+    addWireBox(grpF, 0, 0, 0, doorW, doorH, thickness * 1.25, 0x00f0ff, 0.85);
+    parent.add(grpF);
+  }
+
+  // Overhead Perforated Cable Tray (Delikli Kablo Tavası) with Suspended Rod Hangers
+  function addCableTray(parent, targetPts, p1, p2, width, depth, r, g, b) {
+    const dir = new THREE.Vector3().subVectors(p2, p1);
+    const len = dir.length();
+    const mid = new THREE.Vector3().addVectors(p1, p2).multiplyScalar(0.5);
+    const angle = Math.atan2(dir.z, dir.x);
+    
+    const grp = new THREE.Group();
+    grp.position.copy(mid);
+    grp.rotation.y = -angle;
+    
+    const halfW = width / 2;
+    // Side rails
+    [-halfW, halfW].forEach(sz => {
+      addWireBox(grp, 0, 0, sz, len, depth, 0.04, 0x00f0ff, 0.7);
+      sampleBoxLiDAR(targetPts, mid.x, mid.y, mid.z + sz, len, depth, 0.04, 14, r, g, b);
+    });
+    
+    // Cross rungs
+    const rungs = Math.floor(len / 0.7);
+    for (let i = 0; i <= rungs; i++) {
+      const rx = -len / 2 + (i / Math.max(1, rungs)) * len;
+      addWireBox(grp, rx, -depth / 2, 0, 0.04, 0.02, width, 0x09bde3, 0.6);
+    }
+    
+    // Ceiling drop rods (Tij Askıları)
+    const hangers = Math.floor(len / 2.4);
+    for (let h = 0; h <= hangers; h++) {
+      const hx = -len / 2 + (h / Math.max(1, hangers)) * len;
+      addWireCylinder(grp, hx, depth / 2 + 0.45, -halfW, 0.015, 0.015, 0.9, 6, 0x09bde3, 0.5);
+      addWireCylinder(grp, hx, depth / 2 + 0.45, halfW, 0.015, 0.015, 0.9, 6, 0x09bde3, 0.5);
+    }
+    
+    // Cable bundles resting inside
+    [-0.1, 0, 0.1].forEach((cz, cidx) => {
+      const cCol = cidx === 0 ? 0xf59e0b : (cidx === 1 ? 0x00f0ff : 0x10b981);
+      addWireCylinder(grp, 0, -depth / 2 + 0.03, cz, 0.025, 0.025, len, 8, cCol, 0.8, 0, Math.PI / 2);
+    });
+    
+    parent.add(grp);
   }
 
   // --- 3. BLUEPRINT SITE GROUND GRID ---
@@ -286,6 +454,41 @@ export function initSky3DHero() {
       }
     });
   }
+
+  // --- 4B. ARCHITECTURAL PARTITIONS, INTERIOR WALLS & DOORWAYS (BIM CUTAWAY) ---
+  // 3F Plaza Ofis Partition Walls
+  // Corridor Wall Segment A (x: -11.5 to -4.5 at z: 1.8) with Executive Office Door
+  addPartitionWallWithDoor(groupBuilding, bldgPts, -11.5, 1.8, -4.5, 1.8, 7.6, 10.4, 0.16, 0.5, 1.2, 2.3, 0.04, 0.42, 0.65);
+  // Corridor Wall Segment B (x: -4.5 to 2.5 at z: 1.8) with Boardroom Meeting Entrance
+  addPartitionWallWithDoor(groupBuilding, bldgPts, -4.5, 1.8, 2.5, 1.8, 7.6, 10.4, 0.16, 0.5, 1.2, 2.3, 0.04, 0.42, 0.65);
+  // Transverse division wall between executive suites (x: -4.5, z: 1.8 to 7.8) with doorway
+  addPartitionWallWithDoor(groupBuilding, bldgPts, -4.5, 1.8, -4.5, 7.8, 7.6, 10.4, 0.16, 0.45, 1.1, 2.3, 0.04, 0.42, 0.65);
+  // Riser Shaft Drywall Boundary Wall at 3F
+  addWireBox(groupBuilding, 2.4, 9.0, 0.0, 0.14, 2.8, 3.6, 0x0284c7, 0.4);
+  sampleBoxLiDAR(bldgPts, 2.4, 9.0, 0.0, 0.14, 2.8, 3.6, 10, 0.04, 0.45, 0.7);
+
+  // 2F Cleanroom / Lab Partition Walls (ISO Class 5 Envelope)
+  // Airlock / SAS (Sterile Air Lock) double-door partition at x: -2.0, z: -6.5 to 6.5
+  addPartitionWallWithDoor(groupBuilding, bldgPts, -2.0, -6.5, -2.0, 6.5, 3.8, 6.8, 0.14, 0.5, 2.0, 2.4, 0.05, 0.6, 0.85);
+  // Cleanroom inspection corridor wall at z: 1.8
+  addPartitionWallWithDoor(groupBuilding, bldgPts, -11.5, 1.8, -2.0, 1.8, 3.8, 6.8, 0.14, 0.4, 1.2, 2.3, 0.05, 0.6, 0.85);
+
+  // 1F Grand Lobby & Atrium Architectural Features
+  // Curved / angled reception feature wall (x: -6.5, z: -2.8 to x: -1.0, z: -2.8)
+  addWireBox(groupBuilding, -3.75, 1.4, -2.8, 5.5, 2.8, 0.22, 0x00f0ff, 0.55);
+  sampleBoxLiDAR(bldgPts, -3.75, 1.4, -2.8, 5.5, 2.8, 0.22, 14, 0.0, 0.75, 0.95);
+  // Concrete elevator core & fire escape stairwell walls behind riser shaft
+  addWireBox(groupBuilding, 6.0, 1.4, -3.2, 3.8, 2.8, 0.25, 0x0284c7, 0.4);
+  sampleBoxLiDAR(bldgPts, 6.0, 1.4, -3.2, 3.8, 2.8, 0.25, 12, 0.04, 0.45, 0.7);
+  addWireBox(groupBuilding, 7.9, 1.4, 0.0, 0.25, 2.8, 6.4, 0x0284c7, 0.4);
+  sampleBoxLiDAR(bldgPts, 7.9, 1.4, 0.0, 0.25, 2.8, 6.4, 12, 0.04, 0.45, 0.7);
+  // Elevator door openings at x: 4.1
+  [-1.5, 1.5].forEach(ez => {
+    addWireBox(groupBuilding, 4.1, 1.2, ez, 0.08, 2.4, 1.4, 0x00f0ff, 0.8);
+  });
+
+  // B1 Basement Pump Room Fire Wall (REI 120 Yangın Bölme Duvarı)
+  addPartitionWallWithDoor(groupBuilding, bldgPts, -12.0, -2.0, 2.0, -2.0, -3.0, 0.0, 0.25, 0.75, 1.4, 2.4, 0.03, 0.35, 0.6);
 
   // --- 5. CONTINUOUS CENTRAL VERTICAL MEP RISER SHAFT ---
   // Vertical mechanical shaft positioned at x: 4.5, z: 0.0 running from -3.0m to +13.5m
@@ -546,7 +749,222 @@ export function initSky3DHero() {
     rotatingElements.push({ obj: jImpeller, axis: 'x', speed: 0.14 });
   });
 
-  // --- 11. ASSEMBLE BUILDING & LEVEL POINT CLOUDS ---
+  // --- 11. INTRICATE CURVED PIPING RUNS, CONDUITS & PENETRATION SLEEVES (PINNACL BIM SYSTEM) ---
+  // Network 1: Dual Hydronic Chilled Water Loop (CHW-S & CHW-R - DN100 / DN80)
+  // Continuous 3D splines with mid-height thermal U-expansion loops and pump connections
+  const chwSupplyPoints = [
+    new THREE.Vector3(-5.0, 12.8, -5.2),  // Rooftop Chiller output
+    new THREE.Vector3(-2.8, 12.2, -5.2),
+    new THREE.Vector3(-0.5, 12.2, -4.0),
+    new THREE.Vector3(2.0, 12.2, -2.2),
+    new THREE.Vector3(3.6, 12.2, -0.6),   // Above shaft penetration
+    new THREE.Vector3(3.6, 11.4, -0.6),   // Penetrating roof slab
+    new THREE.Vector3(3.6, 7.6, -0.6),    // Penetrating 3F slab
+    // U-Expansion Loop (Genleşme Liri) mid-shaft (absorbs thermal strain)
+    new THREE.Vector3(3.6, 6.6, -0.6),
+    new THREE.Vector3(2.4, 6.6, -0.6),
+    new THREE.Vector3(2.4, 5.6, -0.6),
+    new THREE.Vector3(3.6, 5.6, -0.6),
+    new THREE.Vector3(3.6, 3.8, -0.6),    // Penetrating 2F slab
+    new THREE.Vector3(3.6, 0.0, -0.6),    // Penetrating 1F slab
+    new THREE.Vector3(3.6, -1.2, -0.6),   // In B1 Basement
+    new THREE.Vector3(0.5, -1.2, -2.2),
+    new THREE.Vector3(-3.5, -1.5, -3.8),
+    new THREE.Vector3(-7.5, -2.2, -3.8)   // B1 Pump suction header
+  ];
+  addPipeSpline(groupPiping, pipePts, chwSupplyPoints, 0.16, 0x00f0ff, 0.0, 0.95, 1.0, 1.2);
+
+  const chwReturnPoints = [
+    new THREE.Vector3(-5.0, 12.8, -4.6),  // Rooftop Chiller return
+    new THREE.Vector3(-2.8, 12.2, -4.6),
+    new THREE.Vector3(-0.5, 12.2, -3.5),
+    new THREE.Vector3(2.0, 12.2, -1.8),
+    new THREE.Vector3(3.6, 12.2, -0.2),   // Above shaft penetration
+    new THREE.Vector3(3.6, 11.4, -0.2),   // Penetrating roof slab
+    new THREE.Vector3(3.6, 7.6, -0.2),    // Penetrating 3F slab
+    // Parallel U-Expansion Loop
+    new THREE.Vector3(3.6, 6.5, -0.2),
+    new THREE.Vector3(2.5, 6.5, -0.2),
+    new THREE.Vector3(2.5, 5.7, -0.2),
+    new THREE.Vector3(3.6, 5.7, -0.2),
+    new THREE.Vector3(3.6, 3.8, -0.2),    // Penetrating 2F slab
+    new THREE.Vector3(3.6, 0.0, -0.2),    // Penetrating 1F slab
+    new THREE.Vector3(3.6, -1.5, -0.2),   // In B1 Basement
+    new THREE.Vector3(0.5, -1.5, -1.8),
+    new THREE.Vector3(-3.5, -1.8, -4.2),
+    new THREE.Vector3(-7.5, -2.2, -4.2)   // B1 Pump discharge header
+  ];
+  addPipeSpline(groupPiping, pipePts, chwReturnPoints, 0.16, 0x0284c7, 0.08, 0.52, 0.85, 1.1);
+
+  // Network 2: VRF Twin Refrigerant Copper Lines (Liquid 3/8" & Gas 5/8") with Refnet Branching
+  const vrfLine1 = [
+    new THREE.Vector3(-5.0, 13.5, 5.2),  // VRF outdoor bank
+    new THREE.Vector3(-1.5, 12.2, 5.4),
+    new THREE.Vector3(2.0, 12.2, 4.2),
+    new THREE.Vector3(3.8, 11.4, 0.8),   // Shaft penetration
+    new THREE.Vector3(3.8, 10.5, 0.8),   // 3F ceiling level
+    new THREE.Vector3(0.5, 10.5, 0.8)    // Refnet Joint 1
+  ];
+  addPipeSpline(groupPiping, pipePts, vrfLine1, 0.09, 0x10b981, 0.1, 0.85, 0.5, 1.2);
+  
+  // Refnet Branch A to Cassette 1 (x: 1.0, z: 0.0)
+  const vrfBranchA = [
+    new THREE.Vector3(0.5, 10.5, 0.8),
+    new THREE.Vector3(1.0, 10.5, 0.8),
+    new THREE.Vector3(1.0, 10.2, 0.0)
+  ];
+  addPipeSpline(groupPiping, pipePts, vrfBranchA, 0.06, 0x34d399, 0.2, 0.9, 0.6, 1.0);
+  
+  // Refnet Trunk to Joint 2
+  const vrfTrunk2 = [
+    new THREE.Vector3(0.5, 10.5, 0.8),
+    new THREE.Vector3(-3.8, 10.5, 0.8)
+  ];
+  addPipeSpline(groupPiping, pipePts, vrfTrunk2, 0.08, 0x10b981, 0.1, 0.85, 0.5, 1.1);
+  
+  // Refnet Branch B to Cassette 2 (x: -3.5, z: 3.8)
+  const vrfBranchB = [
+    new THREE.Vector3(-3.8, 10.5, 0.8),
+    new THREE.Vector3(-3.5, 10.5, 2.5),
+    new THREE.Vector3(-3.5, 10.2, 3.8)
+  ];
+  addPipeSpline(groupPiping, pipePts, vrfBranchB, 0.06, 0x34d399, 0.2, 0.9, 0.6, 1.0);
+  
+  // Refnet Branch C to Cassette 3 (x: -8.0, z: 0.0)
+  const vrfBranchC = [
+    new THREE.Vector3(-3.8, 10.5, 0.8),
+    new THREE.Vector3(-6.5, 10.5, 0.8),
+    new THREE.Vector3(-8.0, 10.5, 0.0),
+    new THREE.Vector3(-8.0, 10.2, 0.0)
+  ];
+  addPipeSpline(groupPiping, pipePts, vrfBranchC, 0.06, 0x34d399, 0.2, 0.9, 0.6, 1.0);
+
+  // Network 3: NFPA 13 Fire Sprinkler Grid (Kırmızı Yangın Sprinkler Şebekesi)
+  // Vertical Sprinkler Riser (DN100) running through shaft
+  const sprinklerRiser = [
+    new THREE.Vector3(5.2, -2.5, -1.0),
+    new THREE.Vector3(5.2, 0.0, -1.0),
+    new THREE.Vector3(5.2, 3.8, -1.0),
+    new THREE.Vector3(5.2, 7.6, -1.0),
+    new THREE.Vector3(5.2, 10.8, -1.0),
+    new THREE.Vector3(5.2, 11.4, -1.0)
+  ];
+  addPipeSpline(groupPiping, pipePts, sprinklerRiser, 0.14, 0xef4444, 1.0, 0.2, 0.2, 1.3);
+  
+  // Sprinkler Alarm Check Valve Station in B1
+  addWireBox(groupPiping, 5.2, -1.8, -1.0, 0.5, 0.7, 0.5, 0xef4444, 0.9);
+  // Water motor gong bell
+  addWireCylinder(groupPiping, 5.2, -1.8, -0.6, 0.25, 0.25, 0.12, 12, 0xf97316, 0.95);
+  
+  // 3F Sprinkler Cross-Main Pipe (DN65) traversing entire ceiling
+  const sprinklerCrossMain3F = [
+    new THREE.Vector3(5.2, 10.8, -1.0),
+    new THREE.Vector3(2.5, 10.8, -1.0),
+    new THREE.Vector3(-3.0, 10.8, -1.0),
+    new THREE.Vector3(-11.0, 10.8, -1.0)
+  ];
+  addPipeSpline(groupPiping, pipePts, sprinklerCrossMain3F, 0.09, 0xef4444, 1.0, 0.2, 0.2, 1.2);
+  
+  // 3F Sprinkler Branch Lines & Drops (iniş boruları ve pendant nozullar)
+  [-10.0, -6.5, -3.0, 0.5].forEach(bx => {
+    const branchPts = [
+      new THREE.Vector3(bx, 10.8, -5.5),
+      new THREE.Vector3(bx, 10.8, -1.0),
+      new THREE.Vector3(bx, 10.8, 5.5)
+    ];
+    addPipeSpline(groupPiping, pipePts, branchPts, 0.05, 0xef4444, 1.0, 0.2, 0.2, 0.8);
+    
+    // Pendant sprinkler head drops every 2.8m
+    [-4.5, -1.8, 1.8, 4.5].forEach(bz => {
+      // Drop tube (0.35m drop)
+      addWireCylinder(groupPiping, bx, 10.6, bz, 0.02, 0.02, 0.35, 6, 0xef4444, 0.85);
+      // Brass pendant sprinkler head & deflector plate
+      addWireCylinder(groupPiping, bx, 10.42, bz, 0.06, 0.06, 0.03, 10, 0xf59e0b, 0.95);
+      sampleCylinderLiDAR(pipePts, bx, 10.42, bz, 0.06, 0.03, 'y', 20, 1.0, 0.7, 0.1);
+    });
+  });
+  
+  // 2F Cleanroom Sprinkler Cross-Main
+  const sprinklerCrossMain2F = [
+    new THREE.Vector3(5.2, 7.0, -1.0),
+    new THREE.Vector3(2.0, 7.0, -1.0),
+    new THREE.Vector3(-9.0, 7.0, -1.0)
+  ];
+  addPipeSpline(groupPiping, pipePts, sprinklerCrossMain2F, 0.08, 0xef4444, 1.0, 0.2, 0.2, 1.1);
+
+  // Network 4: Overhead Perforated Cable Trays (Kablo Tavaları) & Conduit Bundles
+  // 3F Corridor suspended ladder tray (running x: -11.5 to 2.5 at z: 2.2, y: 10.5)
+  addCableTray(
+    groupPiping,
+    pipePts,
+    new THREE.Vector3(-11.5, 10.5, 2.2),
+    new THREE.Vector3(2.5, 10.5, 2.2),
+    0.5,
+    0.12,
+    0.0, 0.9, 1.0
+  );
+  
+  // 1F Lobby suspended cable tray
+  addCableTray(
+    groupPiping,
+    pipePts,
+    new THREE.Vector3(-9.5, 3.1, -1.5),
+    new THREE.Vector3(3.2, 3.1, -1.5),
+    0.45,
+    0.1,
+    0.0, 0.8, 1.0
+  );
+
+  // Network 5: Condensate Drain Lines with P-Traps
+  const ahuDrainPoints = [
+    new THREE.Vector3(-1.9, 12.0, 1.5),   // AHU drip tray outlet
+    new THREE.Vector3(-1.9, 11.7, 1.5),
+    // P-trap dip
+    new THREE.Vector3(-1.9, 11.45, 1.6),
+    new THREE.Vector3(-1.9, 11.58, 1.75),
+    // Drain pipe with 1% slope to shaft
+    new THREE.Vector3(0.5, 11.52, 1.75),
+    new THREE.Vector3(3.6, 11.45, 1.75),
+    new THREE.Vector3(3.6, 0.0, 1.75)     // Vertical drain stack
+  ];
+  addPipeSpline(groupPiping, pipePts, ahuDrainPoints, 0.06, 0x38bdf8, 0.2, 0.75, 1.0, 1.0);
+
+  // Network 6: Wall & Slab Penetration Sleeves (Manşonlar / Geçiş Kovanları)
+  // Roof slab penetrations (y: 11.4)
+  addPenetrationSleeve(groupPiping, pipePts, 3.6, 11.4, -0.6, 'y', 0.16, 0.24, 0.55); // CHW-S
+  addPenetrationSleeve(groupPiping, pipePts, 3.6, 11.4, -0.2, 'y', 0.16, 0.24, 0.55); // CHW-R
+  addPenetrationSleeve(groupPiping, pipePts, 3.8, 11.4, 0.8, 'y', 0.1, 0.18, 0.55);  // VRF
+  addPenetrationSleeve(groupPiping, pipePts, 5.2, 11.4, -1.0, 'y', 0.14, 0.22, 0.55); // Sprinkler
+  
+  // 3F slab penetrations (y: 7.6)
+  addPenetrationSleeve(groupPiping, pipePts, 3.6, 7.6, -0.6, 'y', 0.16, 0.24, 0.5);
+  addPenetrationSleeve(groupPiping, pipePts, 3.6, 7.6, -0.2, 'y', 0.16, 0.24, 0.5);
+  addPenetrationSleeve(groupPiping, pipePts, 5.2, 7.6, -1.0, 'y', 0.14, 0.22, 0.5);
+  
+  // 3F Corridor drywall penetrations (z: 1.8)
+  addPenetrationSleeve(groupPiping, pipePts, -4.0, 10.4, 1.8, 'z', 0.35, 0.42, 0.3); // Spiromatic duct
+  addPenetrationSleeve(groupPiping, pipePts, 2.5, 10.8, 1.8, 'z', 0.09, 0.15, 0.25); // Sprinkler
+  addPenetrationSleeve(groupPiping, pipePts, 0.5, 10.5, 1.8, 'z', 0.09, 0.15, 0.25); // VRF
+  
+  // 2F slab penetrations (y: 3.8)
+  addPenetrationSleeve(groupPiping, pipePts, 3.6, 3.8, -0.6, 'y', 0.16, 0.24, 0.5);
+  addPenetrationSleeve(groupPiping, pipePts, 3.6, 3.8, -0.2, 'y', 0.16, 0.24, 0.5);
+  addPenetrationSleeve(groupPiping, pipePts, 5.2, 3.8, -1.0, 'y', 0.14, 0.22, 0.5);
+  
+  // 2F Cleanroom sandwich panel wall penetrations (x: -2.0)
+  addPenetrationSleeve(groupPiping, pipePts, -2.0, 6.6, 0.0, 'x', 0.4, 0.48, 0.25);  // Cleanroom HEPA branch
+  addPenetrationSleeve(groupPiping, pipePts, -2.0, 7.0, -1.0, 'x', 0.08, 0.14, 0.25); // Cleanroom sprinkler
+  
+  // 1F slab penetrations (y: 0.0)
+  addPenetrationSleeve(groupPiping, pipePts, 3.6, 0.0, -0.6, 'y', 0.16, 0.24, 0.5);
+  addPenetrationSleeve(groupPiping, pipePts, 3.6, 0.0, -0.2, 'y', 0.16, 0.24, 0.5);
+  addPenetrationSleeve(groupPiping, pipePts, 5.2, 0.0, -1.0, 'y', 0.14, 0.22, 0.5);
+  
+  // B1 Pump Room REI 120 Fire Wall penetrations (z: -2.0)
+  addPenetrationSleeve(groupPiping, pipePts, -3.5, -1.5, -2.0, 'z', 0.16, 0.26, 0.45); // CHW-S
+  addPenetrationSleeve(groupPiping, pipePts, -3.5, -1.8, -2.0, 'z', 0.16, 0.26, 0.45); // CHW-R
+
+  // --- 11B. ASSEMBLE BUILDING & LEVEL POINT CLOUDS ---
   function buildPoints(target, pSize, opacity) {
     const geo = new THREE.BufferGeometry();
     geo.setAttribute('position', new THREE.Float32BufferAttribute(target.pos, 3));
@@ -565,6 +983,7 @@ export function initSky3DHero() {
   groupBuilding.add(buildPoints(bldgPts, 0.22, 0.65));
   groupRoof.add(buildPoints(roofPts, 0.20, 0.88));
   groupFloors.add(buildPoints(floorPts, 0.20, 0.88));
+  groupPiping.add(buildPoints(pipePts, 0.19, 0.92));
   groupBasement.add(buildPoints(basePts, 0.20, 0.88));
 
   // --- 12. MULTI-STORY AERODYNAMIC CFD AIRFLOW SIMULATION ---
@@ -817,6 +1236,32 @@ export function initSky3DHero() {
         { label: 'Nozullar', val: 'Her İki Uçta Akustik Susturucu Koni' },
         { label: 'Standart', val: 'EN 12101-3 F400 • CE Yangın Onaylı' }
       ]
+    },
+    {
+      id: 'bim_hydronic',
+      name: 'Pinnacl-Seviye Hidronik Borulama & U-Lir',
+      level: 'Merkezi Şaft & Kat Geçişleri',
+      target: new THREE.Vector3(3.0, 6.2, -0.6),
+      camPos: new THREE.Vector3(12.0, 7.5, 6.0),
+      specs: [
+        { label: 'Hidronik Hatlar', val: 'DN100 / DN80 Gidiş-Dönüş (7°C / 12°C)' },
+        { label: 'Genleşme Liri', val: 'Termal Gerilme Yutucu U-Loop Kompansatör' },
+        { label: 'Geçiş Kovanları', val: 'Döşeme & Duvar Yangın Yalıtımlı Manşonlar' },
+        { label: 'Pinnacl Standart', val: 'Lazer LiDAR Taramalı Hassas BIM Modelleme' }
+      ]
+    },
+    {
+      id: 'bim_sprinkler',
+      name: 'NFPA 13 Yangın Sprinkler Şebekesi & Kablo Tavası',
+      level: '3. Kat & Koridor Tavanı',
+      target: new THREE.Vector3(-4.0, 10.6, -1.0),
+      camPos: new THREE.Vector3(4.0, 12.5, 6.0),
+      specs: [
+        { label: 'Sprinkler Sistemi', val: 'Islak Borulu Yangın Söndürme Ağı • NFPA 13' },
+        { label: 'Nozullar', val: 'Pendant Pirinç Sprinkler Başlıkları (K-Faktör 80)' },
+        { label: 'Kablo Tavaları', val: 'Delikli Galvaniz Merdiven Tava + Yangına Dayanıklı Hat' },
+        { label: 'Duvar Geçişi', val: 'Yangın Kompartımanı İntümesan Mastik Kovan' }
+      ]
     }
   ];
 
@@ -939,31 +1384,44 @@ export function initSky3DHero() {
     groupBuilding.visible = true;
     groupRoof.visible = true;
     groupFloors.visible = true;
+    groupPiping.visible = true;
     groupBasement.visible = true;
     groupCfd.visible = true;
 
     if (mode === 'roof') {
       groupFloors.visible = false;
       groupBasement.visible = false;
+      groupPiping.visible = true;
       targetCamPos = new THREE.Vector3(22.0, 22.0, 24.0);
       targetLookAt = new THREE.Vector3(0.0, 13.0, 0.0);
       isLerpingCamera = true;
     } else if (mode === 'floors') {
       groupRoof.visible = false;
       groupBasement.visible = false;
+      groupPiping.visible = true;
       targetCamPos = new THREE.Vector3(26.0, 12.0, 26.0);
       targetLookAt = new THREE.Vector3(-1.0, 6.0, 0.0);
       isLerpingCamera = true;
     } else if (mode === 'basement') {
       groupRoof.visible = false;
       groupFloors.visible = false;
+      groupPiping.visible = true;
       targetCamPos = new THREE.Vector3(18.0, 4.0, 20.0);
       targetLookAt = new THREE.Vector3(-1.0, -1.5, 0.0);
+      isLerpingCamera = true;
+    } else if (mode === 'pipes') {
+      groupRoof.visible = true;
+      groupFloors.visible = false;
+      groupBasement.visible = true;
+      groupPiping.visible = true;
+      targetCamPos = new THREE.Vector3(16.0, 8.5, 17.0);
+      targetLookAt = new THREE.Vector3(0.0, 6.0, 0.0);
       isLerpingCamera = true;
     } else if (mode === 'cfd') {
       groupBuilding.visible = true;
       groupRoof.visible = true;
       groupFloors.visible = true;
+      groupPiping.visible = false;
       groupBasement.visible = true;
       groupCfd.visible = true;
       targetCamPos = new THREE.Vector3(34, 22, 36);
