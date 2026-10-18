@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Teknik Kütüphane &amp; Havalandırma Mühendisliği Rehberi | Sky Group</title>
-  <meta name="description" content="Mekanik tesisat mühendisliği için debi (m³/h) hesabı kılavuzları, TSE EN 1886 klima santrali seçim kriterleri, NFPA 96 mutfak egzozu, jet fan standartları ve interaktif debi hesaplayıcı.">
+  <title>Teknik Kütüphane & Havalandırma Debi Hesaplayıcı | Sky Group</title>
+  <meta name="description" content="İnteraktif debi (m³/h, CFM) ve kanal kesiti hesaplama aracı; TSE EN 1886 AHU, NFPA 96 mutfak ve EN 12101 jet fan mühendislik rehberi.">
   
   <link rel="icon" type="image/x-icon" href="./assets/favicon-CMbSLxqO.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32-CjObB0OI.png">
@@ -349,6 +349,25 @@
     }
   ]
   </script>
+  <!-- CANONICAL & SEO TAGS -->
+  <link rel="canonical" href="https://skymekanik.com/teknik-kutuphane.html">
+
+  <!-- OPEN GRAPH / FACEBOOK / LINKEDIN -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Teknik Kütüphane & Havalandırma Debi Hesaplayıcı | Sky Group">
+  <meta property="og:description" content="İnteraktif debi (m³/h, CFM) ve kanal kesiti hesaplama aracı; TSE EN 1886 AHU, NFPA 96 mutfak ve EN 12101 jet fan mühendislik rehberi.">
+  <meta property="og:url" content="https://skymekanik.com/teknik-kutuphane.html">
+  <meta property="og:site_name" content="Sky Group">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="./assets/images/commercial_rooftop_hvac_system_1792187202526.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- TWITTER CARDS -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Teknik Kütüphane & Havalandırma Debi Hesaplayıcı | Sky Group">
+  <meta name="twitter:description" content="İnteraktif debi (m³/h, CFM) ve kanal kesiti hesaplama aracı; TSE EN 1886 AHU, NFPA 96 mutfak ve EN 12101 jet fan mühendislik rehberi.">
+  <meta name="twitter:image" content="./assets/images/commercial_rooftop_hvac_system_1792187202526.jpg">
   <link rel="stylesheet" crossorigin href="./assets/MarketingLayout-9qZnFVC2.css">
 </head>
 <body class="bpc-theme">
@@ -1760,6 +1779,7 @@
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
           closeQuoteModal();
+          if (typeof closeGuideModal === 'function') closeGuideModal();
         }
       });
 

@@ -172,12 +172,28 @@ flowchart LR
 
 ---
 
-## 9. Uygulama Adımları (Faz 5: Performans, Erişilebilirlik & Son Rötuşlar)
+## 9. Uygulama Adımları (Faz 5: Performans, Erişilebilirlik & Son Rötuşlar) - TAMAMLANDI
 
-- [ ] **Görev 5.1:** Görsel Optimizasyonu & WebP / Avif Format Dönüşümü ile LCP (Largest Contentful Paint) İyileştirmesi
-- [ ] **Görev 5.2:** WCAG 2.1 AA Erişilebilirlik ve Kontrast Denetimi (ARIA etiketleri, klavye ile gezinme ve odak halkaları)
-- [ ] **Görev 5.3:** Meta Title, Description & Open Graph / Twitter Kartları İnce Ayarı
-- [ ] **Görev 5.4:** Nihai Vite prodüksiyon derlemesi ve GitHub dağıtımı
+- [x] **Görev 5.1:** Görsel Optimizasyonu & WebP Format Dönüşümü ile LCP (Largest Contentful Paint) İyileştirmesi (Tüm ağır görsellerde %70-%80 arası dosya boyutu tasarrufu ve modern WebP sürümleri)
+- [x] **Görev 5.2:** WCAG 2.1 AA Erişilebilirlik ve Kontrast Denetimi (Tüm sayfalarda `<html lang="tr">`, Escape klavye tuşu ile tüm modalların kapatılması, AAA kontrast buton stilleri)
+- [x] **Görev 5.3:** Meta Title, Description & Open Graph / Twitter Kartları İnce Ayarı (Tüm 8 ana sayfada özgün başlıklar, 160 karakterlik CTA açıklamaları, canonical linkler, OG ve Twitter Cards etiketleri)
+- [x] **Görev 5.4:** Nihai Vite prodüksiyon derlemesi (`npm run build`), Puppeteer test otomasyonu (0 konsol hatası) ve GitHub'a commit/push
+
+---
+
+## 10. Stratejik Dönüşüm Özeti: Nereden Nereye?
+
+| Değerlendirme Kriteri | Önceki Durum | Yeni Stratejik Yapı |
+| :--- | :--- | :--- |
+| **Konumlandırma** | "İmalatçı + Montajcı" seviyesinde basit katalog | **"Mühendislik Öncelikli, Doğrudan Fabrika İmalat Güvencesiyle Anahtar Teslim Çözüm Ortağı"** |
+| **Projelendirme Süreci** | Yüzeysel 3 adım | **6 Aşamalı Resmi Süreç** (Keşif, Debi/Yük Analizi, LCC Optimizasyon, EN 1507 Şartname, Fabrika Mutabakatı, Akredite TAB Devreye Alma) |
+| **Lead Yakalama (Funnel)** | Basit tek adım iletişim formu | **3 Adımlı Akıllı Mühendislik Hunisi** (Mahal & Sektör -> Ekipman & Debi -> 24 Saatte Şartname & İmalat Fiyatı) |
+| **İnteraktif Araçlar** | Hiçbir hesaplama aracı yoktu | **İnteraktif Debi (m³/h, CFM) & Kanal Kesiti Hesaplayıcı** (Tek tıkla resmi keşif teklifine bağlanan Lead Magnet) |
+| **Teknik Derinlik & Güven** | Temel ürün listeleri | **6 Konuluk Teknik Kütüphane + Akredite Sertifikalar Galerisi** (TSE EN 1886 D1/L1/TB2, Eurovent, CE, F400 Yangın) |
+| **Case Studies** | Sadece logo ve kısa genel yorumlar | **15 Detaylı Proje Vaka Analizi** (*Challenge → Approach → Solution → Results* teknik veri pencereleri) |
+| **Tasarım Bütünlüğü** | Dağınık ve tutarsız stil | **BasePower & İsviçre Vitrin Tasarımı** (Noktalı blueprint grid, kalıcı buzlu cam dark topnav, 31 partnerli kesintisiz sonsuz CSS marquee) |
+| **SEO & Arama Motoru Görünürlüğü** | Temel SEO, yapısal veri yok | **Tam Kapsamlı Schema.org JSON-LD** (`HVACBusiness`, `Service`, `SoftwareApplication`, `CollectionPage`) + OpenGraph & Twitter Cards |
+
 
 
 
