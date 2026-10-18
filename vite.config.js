@@ -25,7 +25,7 @@ export default defineConfig({
         server.middlewares.use((req, res, next) => {
           if (req.url) {
             const cleanUrl = req.url.split('?')[0];
-            const routes = ['referanslar', 'urunlerimiz', 'cozumlerimiz', 'hizmetlerimiz', 'kurumsal'];
+            const routes = ['referanslar', 'urunlerimiz', 'cozumlerimiz', 'hizmetlerimiz', 'kurumsal', 'projelendirme-muhendislik-danismanligi'];
             for (const r of routes) {
               if (cleanUrl === `/${r}` || cleanUrl === `/${r}/`) {
                 const query = req.url.includes('?') ? req.url.substring(req.url.indexOf('?')) : '';
