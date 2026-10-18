@@ -869,7 +869,7 @@
     ]
   }
   </script>
-  <script type="module" crossorigin src="./assets/index-Bk06l95L.js"></script>
+  <script type="module" crossorigin src="./assets/index-1JMX9j2X.js"></script>
   <link rel="stylesheet" crossorigin href="./assets/MarketingLayout-9qZnFVC2.css">
 </head> <body class="bpc-theme"> <!-- The GTM <noscript> iframe was removed for TDPSA: a JS-off browser can't run the
          window.__bpcPrivacy opt-out/GPC guard, so the iframe would load the ad container
@@ -993,30 +993,29 @@
 
   <!-- 3D HUD & Engineering Controls Overlay -->
   <div class="sky-3d-hud-wrap">
-    <!-- Multi-System Mode Selector -->
+    <!-- Multi-Story Floor & System Mode Selector -->
     <div class="sky-3d-mode-bar">
-      <button type="button" onclick="window.setSky3DMode('all')" data-mode="all" class="sky-3d-mode-btn active">TÜMÜ (MASTER)</button>
-      <button type="button" onclick="window.setSky3DMode('ahu')" data-mode="ahu" class="sky-3d-mode-btn">KLİMA SANTRALİ</button>
-      <button type="button" onclick="window.setSky3DMode('cooling')" data-mode="cooling" class="sky-3d-mode-btn">VRF &amp; SOĞUTMA</button>
-      <button type="button" onclick="window.setSky3DMode('duct')" data-mode="duct" class="sky-3d-mode-btn">KANAL &amp; DİFÜZÖR</button>
-      <button type="button" onclick="window.setSky3DMode('fire')" data-mode="fire" class="sky-3d-mode-btn">YANGIN DUMAN</button>
-      <button type="button" onclick="window.setSky3DMode('cfd')" data-mode="cfd" class="sky-3d-mode-btn">CFD SİMÜLASYONU</button>
+      <button type="button" onclick="window.setSky3DMode('all')" data-mode="all" class="sky-3d-mode-btn active">TÜM BİNA (MASTER)</button>
+      <button type="button" onclick="window.setSky3DMode('roof')" data-mode="roof" class="sky-3d-mode-btn">ÇATI MEKANİK</button>
+      <button type="button" onclick="window.setSky3DMode('floors')" data-mode="floors" class="sky-3d-mode-btn">KAT DAĞILIMI (3F/2F/1F)</button>
+      <button type="button" onclick="window.setSky3DMode('basement')" data-mode="basement" class="sky-3d-mode-btn">BODRUM &amp; YANGIN</button>
+      <button type="button" onclick="window.setSky3DMode('cfd')" data-mode="cfd" class="sky-3d-mode-btn">CFD HAVA AKIŞI</button>
     </div>
 
-    <!-- Realtime SCADA Telemetry HUD Pill -->
+    <!-- Realtime Multi-Story SCADA Telemetry HUD Pill -->
     <div class="sky-3d-telemetry-bar hidden sm:flex">
       <div class="flex items-center gap-1.5">
         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span class="text-white font-semibold">DEBİ:</span> <span id="sky-telemetry-flow" class="sky-3d-telemetry-val">52.400</span> m³/h
+        <span class="text-white font-semibold">TOPLAM DEBİ:</span> <span id="sky-telemetry-flow" class="sky-3d-telemetry-val">148.500</span> m³/h
       </div>
       <div class="border-l border-white/20 pl-3 flex items-center gap-1.5">
-        <span class="text-white font-semibold">ΔP:</span> <span id="sky-telemetry-press" class="sky-3d-telemetry-val">420</span> Pa
+        <span class="text-white font-semibold">KATLAR:</span> <span class="sky-3d-telemetry-val">5 SEVİYE</span>
       </div>
       <div class="border-l border-white/20 pl-3 flex items-center gap-1.5">
-        <span class="text-white font-semibold">BESLEME:</span> <span id="sky-telemetry-temp" class="sky-3d-telemetry-val">16.5</span> °C
+        <span class="text-white font-semibold">ΔP:</span> <span id="sky-telemetry-press" class="sky-3d-telemetry-val">460</span> Pa
       </div>
       <div class="border-l border-white/20 pl-3 flex items-center gap-1.5">
-        <span class="text-white font-semibold">COP:</span> <span id="sky-telemetry-cop" class="sky-3d-telemetry-val">4.82</span>
+        <span class="text-white font-semibold">COP:</span> <span id="sky-telemetry-cop" class="sky-3d-telemetry-val">4.88</span>
       </div>
       <div class="border-l border-white/20 pl-3">
         <button type="button" onclick="window.resetSky3DCamera()" class="text-cyan-400 hover:text-cyan-200 font-bold transition-colors cursor-pointer underline underline-offset-2">Sıfırla</button>
@@ -1031,7 +1030,7 @@
   <!-- 3D Spatial Prompt Badge -->
   <div class="sky-3d-prompt-badge hidden md:flex">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-pulse text-[#00f0ff]"><path d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>
-    <span>3D DİJİTAL İKİZ • DÖNDÜRMEK İÇİN SÜRÜKLEYİN • PİNLERİ İNCELEYİN</span>
+    <span>3D ÇOK KATLI BİNA DİJİTAL İKİZİ • DÖNDÜRMEK İÇİN SÜRÜKLEYİN • PİNLERİ İNCELEYİN</span>
   </div>
 
   <div class="bcc-hero-media" aria-hidden="true"> <img class="bcc-hero-poster" src="./assets/sky-rooftop-hvac-summer-C4YWlgdI.jpg" loading="eager" fetchpriority="high" srcset="./assets/sky-rooftop-hvac-summer-C4YWlgdI.jpg 820w, ./assets/sky-rooftop-hvac-summer-C4YWlgdI.jpg 1280w, ./assets/sky-rooftop-hvac-summer-C4YWlgdI.jpg 1920w, ./assets/sky-rooftop-hvac-summer-C4YWlgdI.jpg 2560w" sizes="max(100vw, 178vh)" alt="" width="1280" height="720" fetchpriority="high" decoding="async">  <video class="bcc-hero-video bcc-hero-video-live" data-bcc-hero-video src="./assets/sky-hvac-all-seasons-B_mx34Aa.mp4" autoplay muted loop playsinline preload="auto" style="opacity: 1 !important; visibility: visible !important; object-fit: cover;"></video>  <video class="bcc-hero-seasons-video" data-bcc-seasons-video src="./assets/sky-hvac-all-seasons-B_mx34Aa.mp4" data-src="./_bpc/assets/base-core-concept/sky-hvac-all-seasons.mp4" preload="auto" muted loop playsinline preload="none"></video> <img class="bcc-hero-soft" src="./assets/sky-rooftop-hvac-summer-C4YWlgdI.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"> <div class="bcc-hero-scrim"></div> </div> <div class="bcc-hero-content">   <span class="bcc-hero-tape" data-bcc-seasons-egg><span class="bpc-tape-eyebrow inline-flex items-center gap-1.5"><img src="./assets/sky-group-logo-arrow-DuDCeAh5.png" alt="Sky Group" class="w-4 h-4 object-contain inline-block filter brightness-110 drop-shadow" width="16" height="16">MÜHENDİSLİK &amp; İKLİMLENDİRME</span></span> <div class="bcc-hero-title-mask"> <h1 class="bcc-hero-title">Sky Group</h1> </div>  <p class="bcc-hero-sub"><span>Doğru İklimlendirme ve Havalandırma Çözümleriyle Geleceğin Tesislerini İnşa Ediyoruz.</span></p> <a class="inline-flex touch-manipulation items-center justify-center gap-2 font-semibold transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground disabled:pointer-events-none select-none whitespace-nowrap bg-brand-primary text-text-brand hover:bg-brand-primary-subtle disabled:bg-surface-subtle disabled:text-text-muted py-3 px-4 rounded text-body-lg bcc-hero-cta" href="./cozumlerimiz.html" data-bcc-learn-more>
