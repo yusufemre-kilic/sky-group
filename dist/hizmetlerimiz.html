@@ -229,31 +229,32 @@
     }
 
     .sky-project-card {
-      background-color: #ffffff !important;
-      border: 1px solid #e2e8f0 !important;
-      border-radius: 4px !important;
-      padding: 1rem !important;
+      background-color: transparent !important;
+      border: none !important;
+      border-radius: 0 !important;
+      padding: 0 0 1.5rem 0 !important;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease !important;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+      border-bottom: 1px solid rgba(226, 232, 240, 0.7) !important;
+      box-shadow: none !important;
       cursor: pointer;
+      transition: border-color 0.2s ease !important;
     }
     .sky-project-card:hover {
-      border-color: #0f172a !important;
-      box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.08) !important;
-      transform: translateY(-2px);
+      border-color: rgba(2, 132, 199, 0.6) !important;
+      box-shadow: none !important;
+      transform: none !important;
     }
 
     .sky-project-photo {
       position: relative;
       display: block;
       overflow: hidden;
-      border-radius: 2px !important;
+      border-radius: 4px !important;
       aspect-ratio: 16 / 10;
       background-color: #f1f5f9;
-      border: 1px solid #e2e8f0;
+      border: none !important;
     }
 
     /* Badges - 2px Radius */
@@ -886,210 +887,353 @@
       <div class="border-t border-slate-200"></div>
     </div>
 
-    <!-- CATALOG GRID & FILTERS SECTION -->
+    <!-- 6 AŞAMALI ANAHTAR TESLİM MÜHENDİSLİK & PROJELENDİRME METODOLOJİSİ -->
+    <section id="muhendislik-metodolojisi" class="max-w-[1376px] mx-auto px-6 md:px-12 py-12 md:py-20">
+      <div class="max-w-3xl mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-cyan-50 text-[#0284c7] border border-cyan-200 mb-3">
+          <span>★ 6 Aşamalı Mühendislik Metodolojisi</span>
+          <span>•</span>
+          <span>Uçtan Uca Somut Çıktılı Taahhüt</span>
+        </div>
+        <h2 class="text-2xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+          Projelendirme &amp; Mühendislik Danışmanlığı Sürecimiz
+        </h2>
+        <p class="text-sm md:text-base text-slate-600 mt-2.5 leading-relaxed">
+          Tüm projelerimizde şantiye aksaklıklarını ve gereksiz maliyetleri sıfıra indiren 6 aşamalı resmi mühendislik protokolü uyguluyoruz. Her aşamada müşterimize teslim edilen somut belgeler, kullanılan uluslararası standartlar ve kesin termin süreleriyle çalışıyoruz.
+        </p>
+      </div>
+
+      <!-- 6 Aşamalı Borderless Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
+        
+        <!-- Adım 1: Ön Değerlendirme & Keşif -->
+        <div class="group flex flex-col justify-between border-b border-slate-200/70 pb-6 transition-colors">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-cyan-50 text-[#0284c7] font-black text-sm border border-cyan-200">01</span>
+              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Süre: 24 – 48 Saat</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors mb-2">1. Ön Değerlendirme &amp; Keşif</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+              Mimari ve mekanik DWG/BIM çizimlerinin detaylı incelenmesi; şantiyede yerinde lazerli ölçüm ile tavan kotları, kiriş altı geçişleri, şaft rezervasyonları ve ortam temiz hava parametrelerinin tespiti.
+            </p>
+            <dl class="pt-3 border-t border-slate-200/50 space-y-2 text-xs">
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Standart / Araç:</dt>
+                <dd class="font-semibold text-slate-900 text-right">TS EN 12599, Lazer &amp; Termal Ölçüm</dd>
+              </div>
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Teslim Edilen Belge:</dt>
+                <dd class="font-bold text-[#0284c7] text-right">Saha Keşif Raporu + Fotoğraf/Video Seti</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        <!-- Adım 2: Mahal Bazlı Yük & Debi Analizi -->
+        <div class="group flex flex-col justify-between border-b border-slate-200/70 pb-6 transition-colors">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-cyan-50 text-[#0284c7] font-black text-sm border border-cyan-200">02</span>
+              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Süre: 2 – 3 İş Günü</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors mb-2">2. Yük &amp; Debi Analizi</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+              Mahal hacimleri, kişi yoğunluğu, aydınlatma &amp; makine ısı yükleri; taze hava debisi (m³/h, CFM), sürtünme kaybı ve CFD hava akış simülasyonu hesapları.
+            </p>
+            <dl class="pt-3 border-t border-slate-200/50 space-y-2 text-xs">
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Standart / Araç:</dt>
+                <dd class="font-semibold text-slate-900 text-right">ASHRAE 62.1, DIN 1946-4, EN 13779</dd>
+              </div>
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Teslim Edilen Belge:</dt>
+                <dd class="font-bold text-[#0284c7] text-right">Teknik Hesap Dosyası + Alternatif Senaryolar</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        <!-- Adım 3: Sistem Seçimi & Optimizasyon -->
+        <div class="group flex flex-col justify-between border-b border-slate-200/70 pb-6 transition-colors">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-cyan-50 text-[#0284c7] font-black text-sm border border-cyan-200">03</span>
+              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Süre: 1 – 2 İş Günü</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors mb-2">3. Sistem Seçimi &amp; Optimizasyon</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+              Klima Santrali (AHU), VRF, Isı Geri Kazanım (HRV) ve duman tahliye kombinasyonları arasında LCC ömür boyu enerji tüketimi ve yatırım maliyeti optimizasyonu.
+            </p>
+            <dl class="pt-3 border-t border-slate-200/50 space-y-2 text-xs">
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Standart / Araç:</dt>
+                <dd class="font-semibold text-slate-900 text-right">TSE EN 1886, Eurovent, ErP 2018 EcoDesign</dd>
+              </div>
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Teslim Edilen Belge:</dt>
+                <dd class="font-bold text-[#0284c7] text-right">Sistem Seçim Matrisi + Ön Maliyet Tablosu</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        <!-- Adım 4: Detaylı Projelendirme & Şartname -->
+        <div class="group flex flex-col justify-between border-b border-slate-200/70 pb-6 transition-colors">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-cyan-50 text-[#0284c7] font-black text-sm border border-cyan-200">04</span>
+              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Süre: 3 – 5 İş Günü</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors mb-2">4. Detaylı Projelendirme</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+              EN 1507 Class C standardında kanal güzergâhı, menfez/anemostad yerleşimleri, susturucu ve yangın damperleri çizimi; 3D Revit çakışma (clash) kontrolü.
+            </p>
+            <dl class="pt-3 border-t border-slate-200/50 space-y-2 text-xs">
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Standart / Araç:</dt>
+                <dd class="font-semibold text-slate-900 text-right">EN 1507 Class C, SMACNA, AutoCAD &amp; Revit MEP</dd>
+              </div>
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Teslim Edilen Belge:</dt>
+                <dd class="font-bold text-[#0284c7] text-right">Metrajlı Teknik Şartname + DWG/Revit Paftaları</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        <!-- Adım 5: Müşteri Onayı & Bütçe Mutabakatı -->
+        <div class="group flex flex-col justify-between border-b border-slate-200/70 pb-6 transition-colors">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-cyan-50 text-[#0284c7] font-black text-sm border border-cyan-200">05</span>
+              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Süre: 1 – 2 İş Günü</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors mb-2">5. Müşteri Onayı &amp; Bütçe</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+              Teknik koordinasyon toplantısı; yatırım bütçesine göre değer mühendisliği (Value Engineering), mimari revizyonlar ve aracı komisyonsuz fabrika imalat teklifi.
+            </p>
+            <dl class="pt-3 border-t border-slate-200/50 space-y-2 text-xs">
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Standart / Araç:</dt>
+                <dd class="font-semibold text-slate-900 text-right">ISO 9001:2015 Kalite Yönetimi</dd>
+              </div>
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Teslim Edilen Belge:</dt>
+                <dd class="font-bold text-[#0284c7] text-right">Nihai İmalat Projesi + Net Teklif &amp; Gantt Takvimi</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        <!-- Adım 6: Fabrika İmalatı, Montaj & TAB -->
+        <div class="group flex flex-col justify-between border-b border-slate-200/70 pb-6 transition-colors">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-cyan-50 text-[#0284c7] font-black text-sm border border-cyan-200">06</span>
+              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Süre: Şantiye Takvimine Göre</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors mb-2">6. İmalat, Montaj &amp; TAB</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+              Ankara fabrikamızda CNC üretim, sertifikalı montaj, diferansiyel basınç testleri, anemometre ile debi kalibrasyonu ve resmi kabul devri.
+            </p>
+            <dl class="pt-3 border-t border-slate-200/50 space-y-2 text-xs">
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Standart / Araç:</dt>
+                <dd class="font-semibold text-slate-900 text-right">EN 12599, TSE EN 1886 D1/L1, NEBB TAB</dd>
+              </div>
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Teslim Edilen Belge:</dt>
+                <dd class="font-bold text-[#0284c7] text-right">Akredite TAB Raporu + 2 Yıl Garanti + İşletme Eğitimi</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Action Bar -->
+      <div class="mt-10 flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-slate-200/70">
+        <div class="text-xs sm:text-sm text-slate-600">
+          Detaylı projelendirme aşamaları ve metrajlı teknik şartname dökümanları için amiral sayfamızı ziyaret edin.
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="./projelendirme-muhendislik-danismanligi.html" class="inline-flex items-center gap-2 py-2.5 px-4 rounded-lg bg-slate-900 text-white font-bold text-xs sm:text-sm hover:bg-[#0284c7] transition-colors">
+            <span>Ayrıntılı Projelendirme Sayfası &rarr;</span>
+          </a>
+          <button type="button" onclick="openQuoteModal('6 Aşamalı Süreç İçin Keşif ve Debi Analizi')" style="background-color: #09bde3 !important; color: #04111f !important;" class="inline-flex items-center gap-2 py-2.5 px-4 rounded-lg font-bold text-xs sm:text-sm hover:opacity-90 transition-opacity cursor-pointer">
+            <span>Ücretsiz Keşif &amp; Debi Analizi Talep Et</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- HORIZONTAL DIVIDER -->
+    <div class="max-w-[1376px] mx-auto px-6 md:px-12">
+      <div class="border-t border-slate-200"></div>
+    </div>
+
+    <!-- CATALOG GRID & FILTERS SECTION (6 CORE SERVICES) -->
     <section id="sky-catalog-section" class="max-w-[1376px] mx-auto px-6 md:px-12 py-12 md:py-16">
       
       <!-- Filter Bar -->
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
         <div>
-          <p class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">DETAYLI KATALOG</p>
-          <h2 class="text-xl md:text-2xl font-bold text-slate-900 tracking-tight">Kapsamlı Teknik İnceleme</h2>
-          <p class="text-xs sm:text-sm text-slate-500 mt-1">İlgili kategoriye göre filtreleyerek sistem detaylarını ve teknik şartnameleri inceleyin.</p>
+          <p class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">UZMANLIK ALANLARIMIZ</p>
+          <h2 class="text-xl md:text-2xl font-bold text-slate-900 tracking-tight">6 Temel Mühendislik &amp; İmalat Hizmetimiz</h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">İlgili kategoriye göre filtreleyerek imalat kapasitesini, normları ve uygulama detaylarını inceleyin.</p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
-          <span class="sky-filter-label">Hizmet Türüne Göre Filtrele:</span>
+          <span class="sky-filter-label">Hizmete Göre:</span>
           
-        <button type="button" class="sky-filter-btn active" onclick="filterCategory('all')">
-          Tümü (8)
-        </button>
-        
-
-        <button type="button" class="sky-filter-btn " onclick="filterCategory('proje')">
-          Keşif & Projelendirme (2)
-        </button>
-        
-
-        <button type="button" class="sky-filter-btn " onclick="filterCategory('imalat')">
-          İmalat & Sac İşleme (2)
-        </button>
-        
-
-        <button type="button" class="sky-filter-btn " onclick="filterCategory('montaj')">
-          Şantiye & Montaj (2)
-        </button>
-        
-
-        <button type="button" class="sky-filter-btn " onclick="filterCategory('servis')">
-          TAB & Teknik Servis (2)
-        </button>
-        
+          <button type="button" class="sky-filter-btn active" onclick="filterCategory('all')">
+            Tümü (6)
+          </button>
+          
+          <button type="button" class="sky-filter-btn" onclick="filterCategory('proje')">
+            Projelendirme &amp; Danışmanlık
+          </button>
+          
+          <button type="button" class="sky-filter-btn" onclick="filterCategory('ahu')">
+            Klima Santrali (AHU)
+          </button>
+          
+          <button type="button" class="sky-filter-btn" onclick="filterCategory('kanal')">
+            Hava Kanalı İmalatı
+          </button>
+          
+          <button type="button" class="sky-filter-btn" onclick="filterCategory('vrf')">
+            VRF / VRV Sistemleri
+          </button>
+          
+          <button type="button" class="sky-filter-btn" onclick="filterCategory('tab')">
+            TAB &amp; Devreye Alma
+          </button>
+          
+          <button type="button" class="sky-filter-btn" onclick="filterCategory('servis')">
+            Periyodik Bakım &amp; Servis
+          </button>
         </div>
       </div>
 
-      <!-- Cards Grid -->
+      <!-- Cards Grid (6 Core Services - Completely Borderless Swiss Style) -->
       <div class="sky-projects-grid">
         
-        <a href="./hizmet-yerinde-kesif-debi-ve-isi-yuku-simulasyonu.html" class="sky-project-card group block text-left" 
-             data-category="proje">
-          <div class="sky-project-photo">
-            <img src="./assets/koca_fotogal_1e1615508c69191e103635434b04190b-Bay0BtmJ.jpg" alt="Yerinde Keşif, Debi ve Isı Yükü Simülasyonu" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
-            <span class="sky-card-cat-badge">Projelendirme</span>
-            <span class="sky-card-loc-badge">Ankara & İstanbul</span>
-          </div>
-          <div class="pt-3.5 flex flex-col flex-1">
-            <h3 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">Yerinde Keşif, Debi ve Isı Yükü Simülasyonu</h3>
-            <p class="text-xs font-semibold text-[#0284c7] mt-1 flex items-center gap-1.5">
-              <span class="w-1.5 h-1.5 rounded-full bg-[#09bde3]"></span>
-              <span>CFD Simülasyonu • Psikrometrik Analiz</span>
-            </p>
-            <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Deneyimli makine mühendislerimiz mevcut tesisi veya mimari DWG çizimleri yerinde inceler; mahal bazlı taze hava debisi ve kanal sürtünme kayıplarını hesaplar.</p>
-            <div class="sky-card-read-more"><span>Hizmeti İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
-          
-          </div>
-        </a>
-        
-
+        <!-- Service 1: Projelendirme & Danışmanlık -->
         <a href="./projelendirme-muhendislik-danismanligi.html" class="sky-project-card group block text-left" 
-             data-category="proje">
+           data-category="proje">
           <div class="sky-project-photo">
             <img src="./assets/koca_fotogal_484c8b3a0660cbabdad309952e7d135b-CkJAlXkS.jpg" alt="Projelendirme & Mühendislik Danışmanlığı" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
             <span class="sky-card-cat-badge">Mühendislik Danışmanlığı</span>
-            <span class="sky-card-loc-badge">6 Aşamalı Metodoloji</span>
+            <span class="sky-card-loc-badge">6 Aşamalı Süreç</span>
           </div>
           <div class="pt-3.5 flex flex-col flex-1">
             <h3 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">Projelendirme &amp; Mühendislik Danışmanlığı</h3>
             <p class="text-xs font-semibold text-[#0284c7] mt-1 flex items-center gap-1.5">
               <span class="w-1.5 h-1.5 rounded-full bg-[#09bde3]"></span>
-              <span>6 Aşamalı Süreç • CFD Debi • Şartname • DWG/BIM</span>
+              <span>CFD Simülasyonu • DWG/BIM • Metrajlı Şartname</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Uygulama öncesi şantiye çakışmalarını sıfırlayan 6 aşamalı somut çıktılı mühendislik danışmanlığı, keşif özetleri, teknik şartnameler ve doğrudan imalat bütçesi.</p>
             <div class="sky-card-read-more"><span>Detaylı Süreci İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
-          
           </div>
         </a>
         
-
-        <a href="./hizmet-cnc-parkurumuzda-kanal-ve-flans-imalati.html" class="sky-project-card group block text-left" 
-             data-category="imalat">
+        <!-- Service 2: Klima Santrali (AHU) İmalatı -->
+        <a href="./hizmet-hijyenik-ve-standart-santral-imalat-montaji.html" class="sky-project-card group block text-left" 
+           data-category="ahu">
           <div class="sky-project-photo">
-            <img src="./assets/koca_fotogal_9b3b64a50f65c40087de050ab79832fd-CPFiGoPb.jpg" alt="CNC Parkurumuzda Kanal ve Flanş İmalatı" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
-            <span class="sky-card-cat-badge">İmalat</span>
+            <img src="./assets/koca_fotogal_5712a7e4518f2c1a74f50893e4faa7af-CFEz4i8T.jpg" alt="Klima Santrali (AHU) İmalatı" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
+            <span class="sky-card-cat-badge">Santral İmalatı</span>
+            <span class="sky-card-loc-badge">Sky Group Tesisleri</span>
+          </div>
+          <div class="pt-3.5 flex flex-col flex-1">
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">Klima Santrali (AHU) İmalatı</h3>
+            <p class="text-xs font-semibold text-[#0284c7] mt-1 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#09bde3]"></span>
+              <span>TSE EN 1886 (D1/L1/TB2) • Eurovent Normları</span>
+            </p>
+            <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Çift cidarlı, kaya yünü dolgulu, antibakteriyel iç yüzeyli hijyenik ve standart klima santrallerinin modüler montajı ve fabrika diferansiyel basınç testleri.</p>
+            <div class="sky-card-read-more"><span>Hizmeti İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+          </div>
+        </a>
+
+        <!-- Service 3: Hava Kanalı İmalatı & Montaj -->
+        <a href="./hizmet-cnc-parkurumuzda-kanal-ve-flans-imalati.html" class="sky-project-card group block text-left" 
+           data-category="kanal">
+          <div class="sky-project-photo">
+            <img src="./assets/koca_fotogal_9b3b64a50f65c40087de050ab79832fd-CPFiGoPb.jpg" alt="Hava Kanalı İmalatı & Montaj" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
+            <span class="sky-card-cat-badge">Kanal İmalatı</span>
             <span class="sky-card-loc-badge">İvedik OSB Fabrika</span>
           </div>
           <div class="pt-3.5 flex flex-col flex-1">
-            <h3 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">CNC Parkurumuzda Kanal ve Flanş İmalatı</h3>
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">Hava Kanalı İmalatı &amp; Montaj</h3>
             <p class="text-xs font-semibold text-[#0284c7] mt-1 flex items-center gap-1.5">
               <span class="w-1.5 h-1.5 rounded-full bg-[#09bde3]"></span>
               <span>Günlük 2.500 m² Kapasite • EN 1507 Class C</span>
             </p>
-            <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Kendi fabrikamızda CNC plazma kesim tezgahları ve otomatik kendinden flanşlı büküm hatlarıyla galvaniz, paslanmaz ve dikiş kaynaklı kanal üretimi.</p>
+            <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Kendi fabrikamızda CNC plazma kesim tezgahları ve otomatik kendinden flanşlı büküm hatlarıyla galvaniz, paslanmaz ve dikiş kaynaklı duman tahliye kanalı üretimi ve montajı.</p>
             <div class="sky-card-read-more"><span>Hizmeti İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
-          
           </div>
         </a>
-        
 
-        <a href="./hizmet-hijyenik-ve-standart-santral-imalat-montaji.html" class="sky-project-card group block text-left" 
-             data-category="imalat">
+        <!-- Service 4: VRF / VRV Sistemleri -->
+        <a href="./urun-vrv-vrf-degisken-debili-dis-uniteler.html" class="sky-project-card group block text-left" 
+           data-category="vrf">
           <div class="sky-project-photo">
-            <img src="./assets/koca_fotogal_5712a7e4518f2c1a74f50893e4faa7af-CFEz4i8T.jpg" alt="Hijyenik ve Standart Santral İmalat & Montajı" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
-            <span class="sky-card-cat-badge">İmalat</span>
-            <span class="sky-card-loc-badge">Sky Group Tesisleri</span>
+            <img src="./assets/sistem-klimalari-B-qUrGzT1D.jpg" alt="VRF / VRV Sistemleri" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
+            <span class="sky-card-cat-badge">Değişken Debili İklimlendirme</span>
+            <span class="sky-card-loc-badge">Yüksek Enerji Verimliliği</span>
           </div>
           <div class="pt-3.5 flex flex-col flex-1">
-            <h3 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">Hijyenik ve Standart Santral İmalat & Montajı</h3>
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">VRF / VRV Sistemleri</h3>
             <p class="text-xs font-semibold text-[#0284c7] mt-1 flex items-center gap-1.5">
               <span class="w-1.5 h-1.5 rounded-full bg-[#09bde3]"></span>
-              <span>TSE EN 1886 • Eurovent Normları</span>
+              <span>Bağımsız Mahal Kontrolü • İnverter Teknolojisi</span>
             </p>
-            <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Çift cidarlı, kaya yünü dolgulu, antibakteriyel iç yüzeyli klima santrallerinin ve ısı geri kazanım cihazlarının modüler montajı ve fabrika testleri.</p>
+            <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Otel, rezidans, plaza ve iş merkezlerinde her mahalin bağımsız iklimlendirilmesini sağlayan, taze hava ve egzoz santralleriyle entegre çalışan yüksek verimli VRF sistemleri.</p>
             <div class="sky-card-read-more"><span>Hizmeti İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
-          
           </div>
         </a>
-        
 
-        <a href="./hizmet-anahtar-teslim-saha-montaji-ve-santiye-yonetimi.html" class="sky-project-card group block text-left" 
-             data-category="montaj">
-          <div class="sky-project-photo">
-            <img src="./assets/koca_fotogal_38ce38c54201407528bf968fb7a6f6aa-D2HxcHWJ.jpg" alt="Anahtar Teslim Saha Montajı ve Şantiye Yönetimi" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
-            <span class="sky-card-cat-badge">Şantiye Montajı</span>
-            <span class="sky-card-loc-badge">Saha Ekipleri</span>
-          </div>
-          <div class="pt-3.5 flex flex-col flex-1">
-            <h3 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">Anahtar Teslim Saha Montajı ve Şantiye Yönetimi</h3>
-            <p class="text-xs font-semibold text-[#0284c7] mt-1 flex items-center gap-1.5">
-              <span class="w-1.5 h-1.5 rounded-full bg-[#09bde3]"></span>
-              <span>İSG Onaylı İskele & Vinç • Sertifikalı Kadro</span>
-            </p>
-            <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">İş sağlığı ve güvenliği kurallarına tam riayet ederek hava kanallarının, santrallerin, menfezlerin ve borulama hatlarının sahada kusursuz montajı.</p>
-            <div class="sky-card-read-more"><span>Hizmeti İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
-          
-          </div>
-        </a>
-        
-
-        <a href="./hizmet-yangin-duman-tahliye-ve-saft-izolasyon-uygulamasi.html" class="sky-project-card group block text-left" 
-             data-category="montaj">
-          <div class="sky-project-photo">
-            <img src="./assets/koca_fotogal_6bc7f77c0f5be682787f9ea34ea4b2fe-Crh6V8QU.jpg" alt="Yangın Duman Tahliye ve Şaft İzolasyon Uygulaması" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
-            <span class="sky-card-cat-badge">Yangın İzolasyon</span>
-            <span class="sky-card-loc-badge">EN 1366 Standardı</span>
-          </div>
-          <div class="pt-3.5 flex flex-col flex-1">
-            <h3 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">Yangın Duman Tahliye ve Şaft İzolasyon Uygulaması</h3>
-            <p class="text-xs font-semibold text-[#0284c7] mt-1 flex items-center gap-1.5">
-              <span class="w-1.5 h-1.5 rounded-full bg-[#09bde3]"></span>
-              <span>400°C / 2h Taşyünü İzolasyon • Yangın Mastikleri</span>
-            </p>
-            <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Duman tahliye kanallarının yangın dayanımlı taş yünü ile kaplanması, şaft geçişlerinde yangın durdurucu mastikleme ve otomatik damper bağlantıları.</p>
-            <div class="sky-card-read-more"><span>Hizmeti İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
-          
-          </div>
-        </a>
-        
-
+        <!-- Service 5: Test, Ayar, Balanslama (TAB) & Devreye Alma -->
         <a href="./hizmet-test-ayar-ve-balanslama-tab-hizmetleri.html" class="sky-project-card group block text-left" 
-             data-category="servis">
+           data-category="tab">
           <div class="sky-project-photo">
-            <img src="./assets/koca_fotogal_4df2b3096de6b454b45eda5ebebac697-DWL1jvRX.jpg" alt="Test, Ayar ve Balanslama (TAB) Hizmetleri" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
+            <img src="./assets/koca_fotogal_4df2b3096de6b454b45eda5ebebac697-DWL1jvRX.jpg" alt="Test, Ayar, Balanslama (TAB) & Devreye Alma" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
             <span class="sky-card-cat-badge">TAB Hizmetleri</span>
-            <span class="sky-card-loc-badge">Resmi Onaylı</span>
+            <span class="sky-card-loc-badge">Resmi Akredite Rapor</span>
           </div>
           <div class="pt-3.5 flex flex-col flex-1">
-            <h3 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">Test, Ayar ve Balanslama (TAB) Hizmetleri</h3>
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">Test, Ayar, Balanslama (TAB) &amp; Devreye Alma</h3>
             <p class="text-xs font-semibold text-[#0284c7] mt-1 flex items-center gap-1.5">
               <span class="w-1.5 h-1.5 rounded-full bg-[#09bde3]"></span>
-              <span>Kalibre Pitot ve Anemometre • TAB Raporlaması</span>
+              <span>EN 12599 Normu • Kalibre Pitot &amp; Anemometre</span>
             </p>
-            <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Montaj sonrası menfez bazında hava debisi ölçümü, kanal sızdırmazlık testleri ve santral fan basınç dengesinin sağlanarak resmi TAB raporunun sunulması.</p>
+            <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Montaj sonrası menfez bazında hava debisi ölçümü, kanal sızdırmazlık testleri ve santral fan basınç dengesinin sağlanarak resmi onaylı TAB kabul raporunun sunulması.</p>
             <div class="sky-card-read-more"><span>Hizmeti İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
-          
           </div>
         </a>
-        
 
+        <!-- Service 6: Periyodik Bakım & Servis -->
         <a href="./hizmet-724-periyodik-bakim-ve-acil-teknik-mudahale.html" class="sky-project-card group block text-left" 
-             data-category="servis">
+           data-category="servis">
           <div class="sky-project-photo">
-            <img src="./assets/koca_fotogal_a19c98a13b30cc3a7002daf12b94817b-CEYlbE9U.jpg" alt="7/24 Periyodik Bakım ve Acil Teknik Müdahale" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
+            <img src="./assets/koca_fotogal_a19c98a13b30cc3a7002daf12b94817b-CEYlbE9U.jpg" alt="Periyodik Bakım & Servis" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
             <span class="sky-card-cat-badge">Teknik Servis</span>
-            <span class="sky-card-loc-badge">7/24 Acil Hat</span>
+            <span class="sky-card-loc-badge">7/24 Acil Müdahale</span>
           </div>
           <div class="pt-3.5 flex flex-col flex-1">
-            <h3 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">7/24 Periyodik Bakım ve Acil Teknik Müdahale</h3>
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">Periyodik Bakım &amp; Servis</h3>
             <p class="text-xs font-semibold text-[#0284c7] mt-1 flex items-center gap-1.5">
               <span class="w-1.5 h-1.5 rounded-full bg-[#09bde3]"></span>
               <span>2 Saat İçinde Yerinde Müdahale • Orijinal Yedek Parça</span>
             </p>
-            <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Yıllık bakım sözleşmeleri kapsamında filtre değişimleri, V-kayış gerginlik testleri, motor izolasyon ölçümleri ve 7/24 acil arıza müdahale desteği.</p>
+            <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Yıllık sözleşmeli bakım kapsamında filtre değişimleri, V-kayış gerginlik testleri, motor izolasyon ölçümleri ve 7/24 kesintisiz arıza teknik servis desteği.</p>
             <div class="sky-card-read-more"><span>Hizmeti İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
-          
           </div>
         </a>
-        
-      </div>
 
+      </div>
     </section>
 
     <!-- LOGOS & STANDARDS SECTION -->

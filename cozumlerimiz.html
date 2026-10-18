@@ -899,131 +899,179 @@
         </p>
       </div>
 
-      <!-- 6 Sektör Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <!-- 6 Sektör Borderless Swiss Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
         <!-- 1. Endüstriyel & Fabrika -->
-        <div onclick="filterCategory('endustriyel', true)" class="group p-5 rounded-lg border border-slate-200 bg-white hover:border-[#09bde3] hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+        <div onclick="filterCategory('endustriyel', true)" class="group cursor-pointer flex flex-col justify-between border-b border-slate-200/70 pb-6 transition-colors">
           <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-2xl">🏭</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 border border-slate-200">Ağır Sanayi &amp; Tesis</span>
+            <div class="flex items-center gap-2 mb-2 text-xs font-bold text-[#0284c7]">
+              <span>🏭 AĞIR SANAYİ &amp; TESİS</span>
             </div>
-            <h3 class="text-base font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors">Endüstriyel &amp; Fabrika</h3>
-            <p class="text-xs text-slate-500 mt-1 leading-relaxed">Kimya, plastik, otomotiv ve talaşlı üretim hollerinde toz, duman ve toksik gaz tahliyesi.</p>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors">Endüstriyel &amp; Fabrika</h3>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1 leading-relaxed">Kimya, plastik, otomotiv ve talaşlı üretim hollerinde toz, duman ve toksik gaz tahliyesi.</p>
             
-            <div class="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-[11px]">
-              <div class="flex items-center justify-between"><strong class="text-slate-700">Standartlar:</strong> <span class="font-semibold text-slate-900">EN 1507 Class C/D, ErP 2018</span></div>
-              <div class="flex items-center justify-between"><strong class="text-slate-700">Kritik Kriter:</strong> <span class="text-[#0284c7] font-semibold">8–20 ACH Debi, Siklon Emiş</span></div>
-              <div class="flex items-center justify-between"><strong class="text-slate-700">Temel Sistem:</strong> <span class="text-slate-600">AHU + Çift Cidarlı Kanal + Filtre</span></div>
-            </div>
+            <dl class="mt-4 pt-3 border-t border-slate-200/50 space-y-2 text-xs">
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Standartlar:</dt>
+                <dd class="font-semibold text-slate-900 text-right">EN 1507 Class C/D, ErP 2018</dd>
+              </div>
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Kritik Kriter:</dt>
+                <dd class="text-[#0284c7] font-semibold text-right">8–20 ACH Debi, Siklon Emiş</dd>
+              </div>
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Temel Sistem:</dt>
+                <dd class="text-slate-700 text-right">AHU + Çift Cidarlı Kanal + Filtre</dd>
+              </div>
+            </dl>
           </div>
           <div class="mt-4 text-xs font-bold text-[#0284c7] group-hover:translate-x-1 transition-transform flex items-center gap-1">
-            <span>Çözümleri Filtrele &rarr;</span>
+            <span>Çözümleri İncele &rarr;</span>
           </div>
         </div>
 
         <!-- 2. Sağlık & Temiz Oda -->
-        <div onclick="filterCategory('saglik', true)" class="group p-5 rounded-lg border border-slate-200 bg-white hover:border-[#09bde3] hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+        <div onclick="filterCategory('saglik', true)" class="group cursor-pointer flex flex-col justify-between border-b border-slate-200/70 pb-6 transition-colors">
           <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-2xl">🏥</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-blue-50 text-[#0284c7] border border-blue-200">Hijyen &amp; GMP</span>
+            <div class="flex items-center gap-2 mb-2 text-xs font-bold text-[#0284c7]">
+              <span>🏥 HİJYEN &amp; GMP</span>
             </div>
-            <h3 class="text-base font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors">Sağlık &amp; Temiz Oda</h3>
-            <p class="text-xs text-slate-500 mt-1 leading-relaxed">Ameliyathaneler, yoğun bakım, ilaç fabrikaları ve biyoteknoloji laboratuvarları.</p>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors">Sağlık &amp; Temiz Oda</h3>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1 leading-relaxed">Ameliyathaneler, yoğun bakım, ilaç fabrikaları ve biyoteknoloji laboratuvarları.</p>
             
-            <div class="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-[11px]">
-              <div class="flex items-center justify-between"><strong class="text-slate-700">Standartlar:</strong> <span class="font-semibold text-slate-900">DIN 1946-4, ISO 14644-1</span></div>
-              <div class="flex items-center justify-between"><strong class="text-slate-700">Kritik Kriter:</strong> <span class="text-[#0284c7] font-semibold">+15 Pa Basınç, H14 HEPA (%99.995)</span></div>
-              <div class="flex items-center justify-between"><strong class="text-slate-700">Temel Sistem:</strong> <span class="text-slate-600">Hijyenik AHU + LAF Tavanı</span></div>
-            </div>
+            <dl class="mt-4 pt-3 border-t border-slate-200/50 space-y-2 text-xs">
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Standartlar:</dt>
+                <dd class="font-semibold text-slate-900 text-right">DIN 1946-4, ISO 14644-1</dd>
+              </div>
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Kritik Kriter:</dt>
+                <dd class="text-[#0284c7] font-semibold text-right">+15 Pa Basınç, H14 HEPA (%99.995)</dd>
+              </div>
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Temel Sistem:</dt>
+                <dd class="text-slate-700 text-right">Hijyenik AHU + LAF Tavanı</dd>
+              </div>
+            </dl>
           </div>
           <div class="mt-4 text-xs font-bold text-[#0284c7] group-hover:translate-x-1 transition-transform flex items-center gap-1">
-            <span>Çözümleri Filtrele &rarr;</span>
+            <span>Çözümleri İncele &rarr;</span>
           </div>
         </div>
 
         <!-- 3. Plaza / Ofis / Rezidans -->
-        <div onclick="filterCategory('plaza', true)" class="group p-5 rounded-lg border border-slate-200 bg-white hover:border-[#09bde3] hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+        <div onclick="filterCategory('plaza', true)" class="group cursor-pointer flex flex-col justify-between border-b border-slate-200/70 pb-6 transition-colors">
           <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-2xl">🏢</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 border border-slate-200">İş Merkezi &amp; Konfor</span>
+            <div class="flex items-center gap-2 mb-2 text-xs font-bold text-[#0284c7]">
+              <span>🏢 İŞ MERKEZİ &amp; KONFOR</span>
             </div>
-            <h3 class="text-base font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors">Plaza / Ofis / Rezidans</h3>
-            <p class="text-xs text-slate-500 mt-1 leading-relaxed">Çok katlı genel müdürlükler, A+ plazalar, lüks rezidans ve otel odaları konforu.</p>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors">Plaza / Ofis / Rezidans</h3>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1 leading-relaxed">Çok katlı genel müdürlükler, A+ plazalar, lüks rezidans ve otel odaları konforu.</p>
             
-            <div class="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-[11px]">
-              <div class="flex items-center justify-between"><strong class="text-slate-700">Standartlar:</strong> <span class="font-semibold text-slate-900">EN 13779 (IDA-2), ASHRAE 62.1</span></div>
-              <div class="flex items-center justify-between"><strong class="text-slate-700">Kritik Kriter:</strong> <span class="text-[#0284c7] font-semibold">36 m³/h Kişi Başı Debi, &lt;32 dBA</span></div>
-              <div class="flex items-center justify-between"><strong class="text-slate-700">Temel Sistem:</strong> <span class="text-slate-600">4 Borulu Fancoil + VRF + HRV</span></div>
-            </div>
+            <dl class="mt-4 pt-3 border-t border-slate-200/50 space-y-2 text-xs">
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Standartlar:</dt>
+                <dd class="font-semibold text-slate-900 text-right">EN 13779 (IDA-2), ASHRAE 62.1</dd>
+              </div>
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Kritik Kriter:</dt>
+                <dd class="text-[#0284c7] font-semibold text-right">36 m³/h Kişi Başı Debi, &lt;32 dBA</dd>
+              </div>
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Temel Sistem:</dt>
+                <dd class="text-slate-700 text-right">4 Borulu Fancoil + VRF + HRV</dd>
+              </div>
+            </dl>
           </div>
           <div class="mt-4 text-xs font-bold text-[#0284c7] group-hover:translate-x-1 transition-transform flex items-center gap-1">
-            <span>Çözümleri Filtrele &rarr;</span>
+            <span>Çözümleri İncele &rarr;</span>
           </div>
         </div>
 
         <!-- 4. AVM / Otel / Ticari -->
-        <div onclick="filterCategory('avm', true)" class="group p-5 rounded-lg border border-slate-200 bg-white hover:border-[#09bde3] hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+        <div onclick="filterCategory('avm', true)" class="group cursor-pointer flex flex-col justify-between border-b border-slate-200/70 pb-6 transition-colors">
           <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-2xl">🛍️</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 border border-slate-200">Geniş Hacim &amp; AVM</span>
+            <div class="flex items-center gap-2 mb-2 text-xs font-bold text-[#0284c7]">
+              <span>🛍️ GENİŞ HACİM &amp; AVM</span>
             </div>
-            <h3 class="text-base font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors">AVM / Otel / Ticari Alanlar</h3>
-            <p class="text-xs text-slate-500 mt-1 leading-relaxed">Yüksek tavanlı atriyumlar, mağazalar, sinema salonları ve spor kompleksleri.</p>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors">AVM / Otel / Ticari Alanlar</h3>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1 leading-relaxed">Yüksek tavanlı atriyumlar, mağazalar, sinema salonları ve spor kompleksleri.</p>
             
-            <div class="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-[11px]">
-              <div class="flex items-center justify-between"><strong class="text-slate-700">Standartlar:</strong> <span class="font-semibold text-slate-900">Eurovent Certified, TSE K 580</span></div>
-              <div class="flex items-center justify-between"><strong class="text-slate-700">Kritik Kriter:</strong> <span class="text-[#0284c7] font-semibold">Homojen Dağılım, Dinamik VAV Yükü</span></div>
-              <div class="flex items-center justify-between"><strong class="text-slate-700">Temel Sistem:</strong> <span class="text-slate-600">Rooftop Santral + Jet Nozullar</span></div>
-            </div>
+            <dl class="mt-4 pt-3 border-t border-slate-200/50 space-y-2 text-xs">
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Standartlar:</dt>
+                <dd class="font-semibold text-slate-900 text-right">Eurovent Certified, TSE K 580</dd>
+              </div>
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Kritik Kriter:</dt>
+                <dd class="text-[#0284c7] font-semibold text-right">Homojen Dağılım, Dinamik VAV Yükü</dd>
+              </div>
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Temel Sistem:</dt>
+                <dd class="text-slate-700 text-right">Rooftop Santral + Jet Nozullar</dd>
+              </div>
+            </dl>
           </div>
           <div class="mt-4 text-xs font-bold text-[#0284c7] group-hover:translate-x-1 transition-transform flex items-center gap-1">
-            <span>Çözümleri Filtrele &rarr;</span>
+            <span>Çözümleri İncele &rarr;</span>
           </div>
         </div>
 
         <!-- 5. Otopark & Yangın Duman Tahliye -->
-        <div onclick="filterCategory('otopark', true)" class="group p-5 rounded-lg border border-slate-200 bg-white hover:border-[#09bde3] hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+        <div onclick="filterCategory('otopark', true)" class="group cursor-pointer flex flex-col justify-between border-b border-slate-200/70 pb-6 transition-colors">
           <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-2xl">🚗</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-amber-50 text-amber-800 border border-amber-200">Yangın Güvenliği</span>
+            <div class="flex items-center gap-2 mb-2 text-xs font-bold text-[#0284c7]">
+              <span>🚗 YANGIN GÜVENLİĞİ</span>
             </div>
-            <h3 class="text-base font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors">Otopark &amp; Yangın Duman Tahliye</h3>
-            <p class="text-xs text-slate-500 mt-1 leading-relaxed">Yeraltı otoparkları, şaft yangın izolasyonu, basınçlandırma ve acil duman tahliyesi.</p>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors">Otopark &amp; Yangın Duman Tahliye</h3>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1 leading-relaxed">Yeraltı otoparkları, şaft yangın izolasyonu, basınçlandırma ve acil duman tahliyesi.</p>
             
-            <div class="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-[11px]">
-              <div class="flex items-center justify-between"><strong class="text-slate-700">Standartlar:</strong> <span class="font-semibold text-slate-900">EN 12101-3, BS 7346-7, EN 50545</span></div>
-              <div class="flex items-center justify-between"><strong class="text-slate-700">Kritik Kriter:</strong> <span class="text-[#0284c7] font-semibold">400°C / 2 Saat Yangın Dayanımı</span></div>
-              <div class="flex items-center justify-between"><strong class="text-slate-700">Temel Sistem:</strong> <span class="text-slate-600">Kanalsız Jet Fan + CO Algılama</span></div>
-            </div>
+            <dl class="mt-4 pt-3 border-t border-slate-200/50 space-y-2 text-xs">
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Standartlar:</dt>
+                <dd class="font-semibold text-slate-900 text-right">EN 12101-3, BS 7346-7, EN 50545</dd>
+              </div>
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Kritik Kriter:</dt>
+                <dd class="text-[#0284c7] font-semibold text-right">400°C / 2 Saat Yangın Dayanımı</dd>
+              </div>
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Temel Sistem:</dt>
+                <dd class="text-slate-700 text-right">Kanalsız Jet Fan + CO Algılama</dd>
+              </div>
+            </dl>
           </div>
           <div class="mt-4 text-xs font-bold text-[#0284c7] group-hover:translate-x-1 transition-transform flex items-center gap-1">
-            <span>Çözümleri Filtrele &rarr;</span>
+            <span>Çözümleri İncele &rarr;</span>
           </div>
         </div>
 
         <!-- 6. Mutfak / Restoran -->
-        <div onclick="filterCategory('restoran', true)" class="group p-5 rounded-lg border border-slate-200 bg-white hover:border-[#09bde3] hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+        <div onclick="filterCategory('restoran', true)" class="group cursor-pointer flex flex-col justify-between border-b border-slate-200/70 pb-6 transition-colors">
           <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-2xl">🍽️</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-800 border border-emerald-200">Koku &amp; Yağ Tutma</span>
+            <div class="flex items-center gap-2 mb-2 text-xs font-bold text-[#0284c7]">
+              <span>🍽️ KOKU &amp; YAĞ TUTMA</span>
             </div>
-            <h3 class="text-base font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors">Mutfak / Restoran Koku &amp; Egzoz</h3>
-            <p class="text-xs text-slate-500 mt-1 leading-relaxed">Açık mutfaklar, kebap &amp; ızgara ocakları, otel mutfakları ve elektrostatik filtrasyon.</p>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors">Mutfak / Restoran Koku &amp; Egzoz</h3>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1 leading-relaxed">Açık mutfaklar, kebap &amp; ızgara ocakları, otel mutfakları ve elektrostatik filtrasyon.</p>
             
-            <div class="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-[11px]">
-              <div class="flex items-center justify-between"><strong class="text-slate-700">Standartlar:</strong> <span class="font-semibold text-slate-900">NFPA 96, EN 16282, DIN 18869</span></div>
-              <div class="flex items-center justify-between"><strong class="text-slate-700">Kritik Kriter:</strong> <span class="text-[#0284c7] font-semibold">%99 Yağ &amp; Koku Ayrıştırma, UL 300</span></div>
-              <div class="flex items-center justify-between"><strong class="text-slate-700">Temel Sistem:</strong> <span class="text-slate-600">Elektrostatik Filtre + UV-C + Davlumbaz</span></div>
-            </div>
+            <dl class="mt-4 pt-3 border-t border-slate-200/50 space-y-2 text-xs">
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Standartlar:</dt>
+                <dd class="font-semibold text-slate-900 text-right">NFPA 96, EN 16282, DIN 18869</dd>
+              </div>
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Kritik Kriter:</dt>
+                <dd class="text-[#0284c7] font-semibold text-right">%99 Yağ &amp; Koku Ayrıştırma, UL 300</dd>
+              </div>
+              <div class="flex items-baseline justify-between gap-2">
+                <dt class="text-slate-500 shrink-0">Temel Sistem:</dt>
+                <dd class="text-slate-700 text-right">Elektrostatik Filtre + UV-C + Davlumbaz</dd>
+              </div>
+            </dl>
           </div>
           <div class="mt-4 text-xs font-bold text-[#0284c7] group-hover:translate-x-1 transition-transform flex items-center gap-1">
-            <span>Çözümleri Filtrele &rarr;</span>
+            <span>Çözümleri İncele &rarr;</span>
           </div>
         </div>
       </div>
