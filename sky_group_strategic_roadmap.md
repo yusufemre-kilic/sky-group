@@ -133,7 +133,7 @@ flowchart LR
 
 ---
 
-## 5. Uygulama Adımları (Faz 1 Canlıya Alma)
+## 5. Uygulama Adımları (Faz 1 Canlıya Alma) - TAMAMLANDI
 
 - [x] Stratejik Yol Haritası ve Mimari Tasarım
 - [x] [`projelendirme-muhendislik-danismanligi.html`](file:///home/emre/Desktop/sky-group-new/projelendirme-muhendislik-danismanligi.html) sayfasının üretilmesi (BasePower & İsviçre vitrin tasarımına %100 uyumlu)
@@ -141,3 +141,13 @@ flowchart LR
 - [x] Üst menü (Desktop mega-menü ve Mobil çekmece) navigasyon linklerinin yeni bilgi mimarisine uyarlanması
 - [x] Hero CTA ve form başlıklarının *"Ücretsiz Keşif & Debi Analizi"* formatına dönüştürülmesi
 - [x] Vite derlemesi (`npm run build`), medya yollarının kontrolü ve GitHub'a commit/push
+
+---
+
+## 6. Uygulama Adımları (Faz 2 Canlıya Alma: Nitelikli Lead, Case Study & Sektörel Derinlik) - TAMAMLANDI
+
+- [x] **Görev 2.1:** Multi-Step Akıllı Keşif & Debi Analizi Lead Hunisinin Entegrasyonu (Tüm sayfalardaki modalın 3 adımlı profesyonel mühendislik formuna dönüştürülmesi: 1. Adım: Sektör/Mahal Tipi & Alan m² -> 2. Adım: Cihaz & Kanal Kapsamı -> 3. Adım: İletişim & 24 Saatte Şartname/Teklif)
+- [x] **Görev 2.2:** Referanslar & Case Studies Derinleştirmesi (`referanslar.html` projelerine *Challenge → Approach → Solution → Results* teknik derinliği ve interaktif Case Study açılır panelinin eklenmesi)
+- [x] **Görev 2.3:** Sektörel Çözümler (`cozumlerimiz.html`) Sayfasının 6 Temel Sektör için Mühendislik Standartları ve Sistem Şemaları ile Güçlendirilmesi
+- [x] **Görev 2.4:** Sonsuz Kayan Marka & Referans Sponsor Logoları Marquee Bantının Optimize Edilmesi (Aradaki çizginin kaldırılması, 31 markalı kesintisiz CSS kayar bant)
+- [x] **Görev 2.5:** Vite derlemesi (`npm run build`), görsel testler ve GitHub'a commit/push

@@ -610,7 +610,170 @@
       transform: translateX(4px) !important;
     }
 
-  </style>
+  
+    /* Case Study Snapshot Badge Rows on Cards */
+    .sky-case-snapshot {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      gap: 0.35rem !important;
+      margin-top: 0.65rem !important;
+      margin-bottom: 0.85rem !important;
+      padding: 0.55rem 0.75rem !important;
+      background: #f8fafc !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 6px !important;
+    }
+    @media (min-width: 480px) {
+      .sky-case-snapshot {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.5rem !important;
+      }
+    }
+    .sky-snap-item {
+      font-size: 0.75rem !important;
+      line-height: 1.35 !important;
+      color: #475569 !important;
+      display: flex !important;
+      align-items: flex-start !important;
+      gap: 0.35rem !important;
+    }
+    .sky-snap-label {
+      font-weight: 700 !important;
+      white-space: nowrap !important;
+    }
+    .sky-snap-challenge .sky-snap-label {
+      color: #991b1b !important;
+    }
+    .sky-snap-result .sky-snap-label {
+      color: #0284c7 !important;
+    }
+
+    .sky-card-actions {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 0.75rem !important;
+      margin-top: auto !important;
+      padding-top: 0.5rem !important;
+    }
+    .sky-case-study-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 0.4rem !important;
+      font-size: 0.75rem !important;
+      font-weight: 700 !important;
+      color: #0284c7 !important;
+      background-color: #f0f9ff !important;
+      border: 1px solid #bae6fd !important;
+      padding: 0.35rem 0.65rem !important;
+      border-radius: 4px !important;
+      cursor: pointer !important;
+      transition: all 0.15s ease !important;
+    }
+    .sky-case-study-btn:hover {
+      background-color: #0284c7 !important;
+      color: #ffffff !important;
+      border-color: #0284c7 !important;
+    }
+
+    /* Modal Backdrop and Box */
+    #sky-case-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 999999;
+      background-color: rgba(6, 21, 39, 0.78);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    #sky-case-modal.active {
+      display: flex;
+      opacity: 1;
+    }
+    .sky-case-dialog {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      max-width: 960px;
+      width: 100%;
+      max-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(6, 21, 39, 0.35);
+      animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes modalSlideUp {
+      from { transform: translateY(20px) scale(0.98); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    /* Infinite Marquee Brand & Partner Logos */
+    @keyframes skyMarqueeScroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+    .sky-marquee-container {
+      position: relative !important;
+      overflow: hidden !important;
+      width: 100% !important;
+      padding: 0.5rem 0 !important;
+      mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent) !important;
+      -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent) !important;
+    }
+    .sky-marquee-track {
+      display: flex !important;
+      width: max-content !important;
+      gap: 1rem !important;
+      animation: skyMarqueeScroll 45s linear infinite !important;
+    }
+    .sky-marquee-container:hover .sky-marquee-track {
+      animation-play-state: paused !important;
+    }
+    .sky-marquee-item {
+      width: 145px !important;
+      height: 72px !important;
+      background: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 8px !important;
+      padding: 0.65rem 1rem !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex-shrink: 0 !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
+      transition: all 0.2s ease !important;
+    }
+    .sky-marquee-item:hover {
+      border-color: #09bde3 !important;
+      box-shadow: 0 4px 12px rgba(9, 189, 227, 0.12) !important;
+      transform: translateY(-2px) !important;
+    }
+    .sky-marquee-item img {
+      max-height: 2.25rem !important;
+      max-width: 85% !important;
+      width: auto !important;
+      height: auto !important;
+      object-fit: contain !important;
+      filter: grayscale(100%) !important;
+      opacity: 0.72 !important;
+      transition: all 0.2s ease !important;
+    }
+    .sky-marquee-item:hover img {
+      filter: grayscale(0%) !important;
+      opacity: 1 !important;
+      transform: scale(1.06) !important;
+    }
+</style>
 </head>
 <body class="bpc-theme">
 
@@ -848,8 +1011,27 @@
               <span>18.000 m³/h Debi • Spiral Kanal</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Mimari konseptle bütünleşen görünür spiral galvaniz kanallar, açık mutfak davlumbaz egzoz hattı, elektrostatik duman-yağ tutucu filtreler ve salon taze hava besleme klima santrali.</p>
-            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
-          
+            
+            <!-- Case Study Snapshot -->
+            <div class="sky-case-snapshot">
+              <div class="sky-snap-item sky-snap-challenge">
+                <span class="sky-snap-label">🎯 Problem:</span>
+                <span>Açık mutfak koku & yağ buharının salona kaçması</span>
+              </div>
+              <div class="sky-snap-item sky-snap-result">
+                <span class="sky-snap-label">📈 Sonuç:</span>
+                <span>%34 Enerji Tasarrufu & Sıfır Koku</span>
+              </div>
+            </div>
+
+            <!-- Card Action Row -->
+            <div class="sky-card-actions">
+              <button type="button" onclick="event.preventDefault(); event.stopPropagation(); openCaseStudy('maslak-hub');" class="sky-case-study-btn" title="Mühendislik Vaka Analizi">
+                <svg style="width: 14px !important; height: 14px !important; display: inline-block;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <span>Case Study (Rapor)</span>
+              </button>
+              <div class="sky-card-read-more"><span>İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+            </div>
           </div>
         </a>
         
@@ -868,8 +1050,27 @@
               <span>26.000 m³/h • Yangın Tahliye</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Özel mangal egzoz bacaları, 400°C/2h yangına dayanıklı kanal izolasyonu, aktif karbon filtre üniteleri ve hijyenik taze hava santral beslemesi.</p>
-            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
-          
+            
+            <!-- Case Study Snapshot -->
+            <div class="sky-case-snapshot">
+              <div class="sky-snap-item sky-snap-challenge">
+                <span class="sky-snap-label">🎯 Problem:</span>
+                <span>Odun kömürü ızgara dumanı & katı AVM yangın kuralları</span>
+              </div>
+              <div class="sky-snap-item sky-snap-result">
+                <span class="sky-snap-label">📈 Sonuç:</span>
+                <span>400°C/2h Yangın Onayı & %0 Duman</span>
+              </div>
+            </div>
+
+            <!-- Card Action Row -->
+            <div class="sky-card-actions">
+              <button type="button" onclick="event.preventDefault(); event.stopPropagation(); openCaseStudy('kosebasi-zorlu');" class="sky-case-study-btn" title="Mühendislik Vaka Analizi">
+                <svg style="width: 14px !important; height: 14px !important; display: inline-block;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <span>Case Study (Rapor)</span>
+              </button>
+              <div class="sky-card-read-more"><span>İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+            </div>
           </div>
         </a>
         
@@ -888,8 +1089,27 @@
               <span>22.500 m³/h • HRV Isı Geri Kazanım</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Yüksek müşteri kapasiteli ana salon iklimlendirmesi, mutfak egzoz hatları, akustik menfez susturucuları ve ısı geri kazanımlı HRV taze hava besleme sistemi.</p>
-            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
-          
+            
+            <!-- Case Study Snapshot -->
+            <div class="sky-case-snapshot">
+              <div class="sky-snap-item sky-snap-challenge">
+                <span class="sky-snap-label">🎯 Problem:</span>
+                <span>Sıcak tatlı pişirme nem yükü & açık teras basınç dengesi</span>
+              </div>
+              <div class="sky-snap-item sky-snap-result">
+                <span class="sky-snap-label">📈 Sonuç:</span>
+                <span>Sabit %50 Nem & %28 Elektrik Tasarrufu</span>
+              </div>
+            </div>
+
+            <!-- Card Action Row -->
+            <div class="sky-card-actions">
+              <button type="button" onclick="event.preventDefault(); event.stopPropagation(); openCaseStudy('emirgan-sutis');" class="sky-case-study-btn" title="Mühendislik Vaka Analizi">
+                <svg style="width: 14px !important; height: 14px !important; display: inline-block;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <span>Case Study (Rapor)</span>
+              </button>
+              <div class="sky-card-read-more"><span>İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+            </div>
           </div>
         </a>
         
@@ -908,8 +1128,27 @@
               <span>12.000 m³/h • VRF Entegrasyonu</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">AVM tavan mimarisine uygun siyah elektrostatik fırın boyalı kanal imalatı, VRF kaset tipi iç üniteler, slot lineer difüzörler ve otomatik balans ayarları.</p>
-            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
-          
+            
+            <!-- Case Study Snapshot -->
+            <div class="sky-case-snapshot">
+              <div class="sky-snap-item sky-snap-challenge">
+                <span class="sky-snap-label">🎯 Problem:</span>
+                <span>Deri giyimde koku hassasiyeti & sessiz iklimlendirme</span>
+              </div>
+              <div class="sky-snap-item sky-snap-result">
+                <span class="sky-snap-label">📈 Sonuç:</span>
+                <span>&lt;28 dBA Ses & ±0.5°C Sabit Sıcaklık</span>
+              </div>
+            </div>
+
+            <!-- Card Action Row -->
+            <div class="sky-card-actions">
+              <button type="button" onclick="event.preventDefault(); event.stopPropagation(); openCaseStudy('punto-akasya');" class="sky-case-study-btn" title="Mühendislik Vaka Analizi">
+                <svg style="width: 14px !important; height: 14px !important; display: inline-block;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <span>Case Study (Rapor)</span>
+              </button>
+              <div class="sky-card-read-more"><span>İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+            </div>
           </div>
         </a>
         
@@ -928,8 +1167,27 @@
               <span>14.000 m³/h • Akustik İzolasyon</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Özel konsept lüks mağaza mekanik iklimlendirme ve hava dağıtımı. Gizli tavan montajı, homojen hava dağılımı ve fancoil entegrasyonu.</p>
-            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
-          
+            
+            <!-- Case Study Snapshot -->
+            <div class="sky-case-snapshot">
+              <div class="sky-snap-item sky-snap-challenge">
+                <span class="sky-snap-label">🎯 Problem:</span>
+                <span>Kısıtlı tavan kotu & mimari aydınlatma çakışmaları</span>
+              </div>
+              <div class="sky-snap-item sky-snap-result">
+                <span class="sky-snap-label">📈 Sonuç:</span>
+                <span>Kot Kaybı Yok & 14.000 m³/h Tam Debi</span>
+              </div>
+            </div>
+
+            <!-- Card Action Row -->
+            <div class="sky-card-actions">
+              <button type="button" onclick="event.preventDefault(); event.stopPropagation(); openCaseStudy('punto-zorlu');" class="sky-case-study-btn" title="Mühendislik Vaka Analizi">
+                <svg style="width: 14px !important; height: 14px !important; display: inline-block;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <span>Case Study (Rapor)</span>
+              </button>
+              <div class="sky-card-read-more"><span>İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+            </div>
           </div>
         </a>
         
@@ -948,8 +1206,27 @@
               <span>85.000 m³/h • Class C Sızdırmaz</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Ağır sanayi üretim holü havalandırması, toz ve partikül toplama siklon filtreleri, TSE EN 1507 Class C sızdırmaz galvaniz kanal montajı ve çatı tipi egzoz fanları.</p>
-            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
-          
+            
+            <!-- Case Study Snapshot -->
+            <div class="sky-case-snapshot">
+              <div class="sky-snap-item sky-snap-challenge">
+                <span class="sky-snap-label">🎯 Problem:</span>
+                <span>Ağır kaynak dumanı, metal tozu & ISG limitleri</span>
+              </div>
+              <div class="sky-snap-item sky-snap-result">
+                <span class="sky-snap-label">📈 Sonuç:</span>
+                <span>%92 Partikül Düşüşü & %38 Gaz Tasarrufu</span>
+              </div>
+            </div>
+
+            <!-- Card Action Row -->
+            <div class="sky-card-actions">
+              <button type="button" onclick="event.preventDefault(); event.stopPropagation(); openCaseStudy('siemens-fabrika');" class="sky-case-study-btn" title="Mühendislik Vaka Analizi">
+                <svg style="width: 14px !important; height: 14px !important; display: inline-block;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <span>Case Study (Rapor)</span>
+              </button>
+              <div class="sky-card-read-more"><span>İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+            </div>
           </div>
         </a>
         
@@ -968,8 +1245,27 @@
               <span>16.000 m³/h • Akustik Susturucu</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Seçkin İtalyan restoranı için sıfır ses kriterli iklimlendirme tasarımı, fancoil hava kanalları, difüzör montajı ve hassas test-balans (TAB) ölçümlemesi.</p>
-            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
-          
+            
+            <!-- Case Study Snapshot -->
+            <div class="sky-case-snapshot">
+              <div class="sky-snap-item sky-snap-challenge">
+                <span class="sky-snap-label">🎯 Problem:</span>
+                <span>Taş fırın ısı yükünün salona taşması & gürültü kısıtı</span>
+              </div>
+              <div class="sky-snap-item sky-snap-result">
+                <span class="sky-snap-label">📈 Sonuç:</span>
+                <span>Sıfır Fırın Isı Yayılımı & %25 Düşük Gider</span>
+              </div>
+            </div>
+
+            <!-- Card Action Row -->
+            <div class="sky-card-actions">
+              <button type="button" onclick="event.preventDefault(); event.stopPropagation(); openCaseStudy('morini-zorlu');" class="sky-case-study-btn" title="Mühendislik Vaka Analizi">
+                <svg style="width: 14px !important; height: 14px !important; display: inline-block;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <span>Case Study (Rapor)</span>
+              </button>
+              <div class="sky-card-read-more"><span>İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+            </div>
           </div>
         </a>
         
@@ -988,8 +1284,27 @@
               <span>34.000 m³/h • VRV İklimlendirme</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Tekstil genel merkezi ve mağaza zincirleri için VRV/VRF ısıtma-soğutma, kendinden flanşlı galvaniz hava kanalları ve enerji tasarruflu havalandırma santralleri.</p>
-            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
-          
+            
+            <!-- Case Study Snapshot -->
+            <div class="sky-case-snapshot">
+              <div class="sky-snap-item sky-snap-challenge">
+                <span class="sky-snap-label">🎯 Problem:</span>
+                <span>Tekstil tozlarının taze havaya karışması & 4 katlı ısı dengesi</span>
+              </div>
+              <div class="sky-snap-item sky-snap-result">
+                <span class="sky-snap-label">📈 Sonuç:</span>
+                <span>IAQ A Sınıfı Hava & %31 İklimlendirme Tasarrufu</span>
+              </div>
+            </div>
+
+            <!-- Card Action Row -->
+            <div class="sky-card-actions">
+              <button type="button" onclick="event.preventDefault(); event.stopPropagation(); openCaseStudy('faik-sonmez');" class="sky-case-study-btn" title="Mühendislik Vaka Analizi">
+                <svg style="width: 14px !important; height: 14px !important; display: inline-block;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <span>Case Study (Rapor)</span>
+              </button>
+              <div class="sky-card-read-more"><span>İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+            </div>
           </div>
         </a>
         
@@ -1008,8 +1323,27 @@
               <span>15.000 m³/h • Mimari Tasarım</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Perakende mağaza hava dağıtım kanalları, fırın boyalı difüzörler, fancoil bağlantıları ve şık mimari asma tavan entegrasyonu.</p>
-            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
-          
+            
+            <!-- Case Study Snapshot -->
+            <div class="sky-case-snapshot">
+              <div class="sky-snap-item sky-snap-challenge">
+                <span class="sky-snap-label">🎯 Problem:</span>
+                <span>Vitrin aydınlatması ısı adacıkları & camda buğulanma</span>
+              </div>
+              <div class="sky-snap-item sky-snap-result">
+                <span class="sky-snap-label">📈 Sonuç:</span>
+                <span>Sıfır Vitrin Buğulanması & 8 Günde Teslim</span>
+              </div>
+            </div>
+
+            <!-- Card Action Row -->
+            <div class="sky-card-actions">
+              <button type="button" onclick="event.preventDefault(); event.stopPropagation(); openCaseStudy('damat-tween');" class="sky-case-study-btn" title="Mühendislik Vaka Analizi">
+                <svg style="width: 14px !important; height: 14px !important; display: inline-block;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <span>Case Study (Rapor)</span>
+              </button>
+              <div class="sky-card-read-more"><span>İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+            </div>
           </div>
         </a>
         
@@ -1028,8 +1362,27 @@
               <span>20.000 m³/h • Karbon Filtrasyon</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Restoran zincirinin yoğun mutfak kapasitesine özel egzoz fanları, koku tutucu karbon filtreler ve açık teras hava perdeleri montajı.</p>
-            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
-          
+            
+            <!-- Case Study Snapshot -->
+            <div class="sky-case-snapshot">
+              <div class="sky-snap-item sky-snap-challenge">
+                <span class="sky-snap-label">🎯 Problem:</span>
+                <span>Pik saatlerde ani koku & komşu binalardan şikayet riski</span>
+              </div>
+              <div class="sky-snap-item sky-snap-result">
+                <span class="sky-snap-label">📈 Sonuç:</span>
+                <span>Sıfır Çevre Şikayeti & %40 Pik Dışı Enerji Tasarrufu</span>
+              </div>
+            </div>
+
+            <!-- Card Action Row -->
+            <div class="sky-card-actions">
+              <button type="button" onclick="event.preventDefault(); event.stopPropagation(); openCaseStudy('kitchenette-bebek');" class="sky-case-study-btn" title="Mühendislik Vaka Analizi">
+                <svg style="width: 14px !important; height: 14px !important; display: inline-block;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <span>Case Study (Rapor)</span>
+              </button>
+              <div class="sky-card-read-more"><span>İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+            </div>
           </div>
         </a>
         
@@ -1048,8 +1401,27 @@
               <span>45.000 m³/h • VAV Sistemleri</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Türkiye'nin en büyük AVM'lerinden Cevahir bünyesindeki mağazalar için merkezi santral bağlantı kanalları, VAV kutuları ve balans vanaları montajı.</p>
-            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
-          
+            
+            <!-- Case Study Snapshot -->
+            <div class="sky-case-snapshot">
+              <div class="sky-snap-item sky-snap-challenge">
+                <span class="sky-snap-label">🎯 Problem:</span>
+                <span>Ana şaft bağlantı basınç kaybı & yangın zonu geçişi</span>
+              </div>
+              <div class="sky-snap-item sky-snap-result">
+                <span class="sky-snap-label">📈 Sonuç:</span>
+                <span>%3 Altı Basınç Kaybı & İtfaiye Tek Seferde Onay</span>
+              </div>
+            </div>
+
+            <!-- Card Action Row -->
+            <div class="sky-card-actions">
+              <button type="button" onclick="event.preventDefault(); event.stopPropagation(); openCaseStudy('cevahir-avm');" class="sky-case-study-btn" title="Mühendislik Vaka Analizi">
+                <svg style="width: 14px !important; height: 14px !important; display: inline-block;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <span>Case Study (Rapor)</span>
+              </button>
+              <div class="sky-card-read-more"><span>İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+            </div>
           </div>
         </a>
         
@@ -1068,8 +1440,27 @@
               <span>18.500 m³/h • UV-C Filtre</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Şehrin merkezinde sıfır koku salınımı sağlayan UV-C ve elektrostatik mutfak filtrasyon sistemi ve müşteri konfor iklimlendirmesi.</p>
-            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
-          
+            
+            <!-- Case Study Snapshot -->
+            <div class="sky-case-snapshot">
+              <div class="sky-snap-item sky-snap-challenge">
+                <span class="sky-snap-label">🎯 Problem:</span>
+                <span>Tarihi binada düşük tavan kotu & &lt;40 dBA dış ses limiti</span>
+              </div>
+              <div class="sky-snap-item sky-snap-result">
+                <span class="sky-snap-label">📈 Sonuç:</span>
+                <span>Sıfır Çevre Sesi & Tarihi Dokuya Tam Uyum</span>
+              </div>
+            </div>
+
+            <!-- Card Action Row -->
+            <div class="sky-card-actions">
+              <button type="button" onclick="event.preventDefault(); event.stopPropagation(); openCaseStudy('midpoint-nisantasi');" class="sky-case-study-btn" title="Mühendislik Vaka Analizi">
+                <svg style="width: 14px !important; height: 14px !important; display: inline-block;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <span>Case Study (Rapor)</span>
+              </button>
+              <div class="sky-card-read-more"><span>İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+            </div>
           </div>
         </a>
         
@@ -1088,8 +1479,27 @@
               <span>28.000 m³/h • Fancoil & Egzoz</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Yönetim plazası ofis katları için 4 borulu fancoil tesisatı, taze hava santrali ve servis atölyesi egzoz gazı tahliye hattı.</p>
-            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
-          
+            
+            <!-- Case Study Snapshot -->
+            <div class="sky-case-snapshot">
+              <div class="sky-snap-item sky-snap-challenge">
+                <span class="sky-snap-label">🎯 Problem:</span>
+                <span>Servis atölyesi egzoz gazının (CO) plazaya karışma riski</span>
+              </div>
+              <div class="sky-snap-item sky-snap-result">
+                <span class="sky-snap-label">📈 Sonuç:</span>
+                <span>%70 Emniyet Marjı & Sıfır Gaz Karışımı</span>
+              </div>
+            </div>
+
+            <!-- Card Action Row -->
+            <div class="sky-card-actions">
+              <button type="button" onclick="event.preventDefault(); event.stopPropagation(); openCaseStudy('hasel-plaza');" class="sky-case-study-btn" title="Mühendislik Vaka Analizi">
+                <svg style="width: 14px !important; height: 14px !important; display: inline-block;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <span>Case Study (Rapor)</span>
+              </button>
+              <div class="sky-card-read-more"><span>İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+            </div>
           </div>
         </a>
         
@@ -1108,8 +1518,27 @@
               <span>60.000 m³/h • AISI 316 Paslanmaz</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Asit buharı ve kimyasal gazlara dayanıklı paslanmaz çelik (AISI 316) hava kanalları, ex-proof çatı fanları ve gaz algılama otomasyonu.</p>
-            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
-          
+            
+            <!-- Case Study Snapshot -->
+            <div class="sky-case-snapshot">
+              <div class="sky-snap-item sky-snap-challenge">
+                <span class="sky-snap-label">🎯 Problem:</span>
+                <span>Korozif asit buharı çürütme riski & ATEX patlama emniyeti</span>
+              </div>
+              <div class="sky-snap-item sky-snap-result">
+                <span class="sky-snap-label">📈 Sonuç:</span>
+                <span>10 Yıl Korozyon Garantisi & ATEX Sertifikası</span>
+              </div>
+            </div>
+
+            <!-- Card Action Row -->
+            <div class="sky-card-actions">
+              <button type="button" onclick="event.preventDefault(); event.stopPropagation(); openCaseStudy('kimya-fabrikasi');" class="sky-case-study-btn" title="Mühendislik Vaka Analizi">
+                <svg style="width: 14px !important; height: 14px !important; display: inline-block;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <span>Case Study (Rapor)</span>
+              </button>
+              <div class="sky-card-read-more"><span>İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+            </div>
           </div>
         </a>
         
@@ -1128,8 +1557,27 @@
               <span>Günlük 2.500 m² Kanal İmalatı</span>
             </p>
             <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">Kendi modern üretim atölyemizde CNC plazma kesim, otomatik flanş çakma ve dikiş kaynak hatları ile günlük 2.500 m² galvaniz hava kanalı imalat kapasitesi.</p>
-            <div class="sky-card-read-more"><span>Projeyi İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
-          
+            
+            <!-- Case Study Snapshot -->
+            <div class="sky-case-snapshot">
+              <div class="sky-snap-item sky-snap-challenge">
+                <span class="sky-snap-label">🎯 Problem:</span>
+                <span>Fiber lazer kesim metal tozu, ozon & yüksek ısı</span>
+              </div>
+              <div class="sky-snap-item sky-snap-result">
+                <span class="sky-snap-label">📈 Sonuç:</span>
+                <span>Sabit +20°C & Atık Isıyla %45 Doğalgaz Tasarrufu</span>
+              </div>
+            </div>
+
+            <!-- Card Action Row -->
+            <div class="sky-card-actions">
+              <button type="button" onclick="event.preventDefault(); event.stopPropagation(); openCaseStudy('sky-group-fabrika');" class="sky-case-study-btn" title="Mühendislik Vaka Analizi">
+                <svg style="width: 14px !important; height: 14px !important; display: inline-block;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <span>Case Study (Rapor)</span>
+              </button>
+              <div class="sky-card-read-more"><span>İncele</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+            </div>
           </div>
         </a>
         
@@ -1146,159 +1594,200 @@
       </div>
 
       <!-- Logos Wall -->
-      <div class="sky-logos-grid">
-        
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/1.png" alt="Sky Group Referans Marka 1" loading="lazy" />
+            <!-- Infinite Sliding Marquee -->
+      <div class="sky-marquee-container">
+        <div class="sky-marquee-track">
+          <!-- Loop Track 1 -->
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/1.png" alt="Sky Group Partner &amp; Standart 1" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/2.png" alt="Sky Group Partner &amp; Standart 2" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/3.png" alt="Sky Group Partner &amp; Standart 3" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/4.png" alt="Sky Group Partner &amp; Standart 4" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/5.png" alt="Sky Group Partner &amp; Standart 5" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/6.png" alt="Sky Group Partner &amp; Standart 6" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/7.png" alt="Sky Group Partner &amp; Standart 7" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/8.png" alt="Sky Group Partner &amp; Standart 8" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/9.png" alt="Sky Group Partner &amp; Standart 9" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/10.png" alt="Sky Group Partner &amp; Standart 10" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/11.png" alt="Sky Group Partner &amp; Standart 11" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/12.png" alt="Sky Group Partner &amp; Standart 12" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/13.png" alt="Sky Group Partner &amp; Standart 13" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/14.png" alt="Sky Group Partner &amp; Standart 14" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/15.png" alt="Sky Group Partner &amp; Standart 15" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/16.png" alt="Sky Group Partner &amp; Standart 16" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/17.png" alt="Sky Group Partner &amp; Standart 17" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/18.png" alt="Sky Group Partner &amp; Standart 18" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/19.png" alt="Sky Group Partner &amp; Standart 19" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/20.png" alt="Sky Group Partner &amp; Standart 20" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/21.png" alt="Sky Group Partner &amp; Standart 21" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/22.png" alt="Sky Group Partner &amp; Standart 22" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/23.png" alt="Sky Group Partner &amp; Standart 23" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/24.png" alt="Sky Group Partner &amp; Standart 24" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/25.png" alt="Sky Group Partner &amp; Standart 25" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/26.png" alt="Sky Group Partner &amp; Standart 26" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/27.png" alt="Sky Group Partner &amp; Standart 27" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/28.png" alt="Sky Group Partner &amp; Standart 28" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/29.png" alt="Sky Group Partner &amp; Standart 29" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/30.png" alt="Sky Group Partner &amp; Standart 30" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/31.png" alt="Sky Group Partner &amp; Standart 31" loading="lazy" />
+          </div>
+          <!-- Loop Track 2 (Continuous Duplicate) -->
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/1.png" alt="Sky Group Partner &amp; Standart 1" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/2.png" alt="Sky Group Partner &amp; Standart 2" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/3.png" alt="Sky Group Partner &amp; Standart 3" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/4.png" alt="Sky Group Partner &amp; Standart 4" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/5.png" alt="Sky Group Partner &amp; Standart 5" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/6.png" alt="Sky Group Partner &amp; Standart 6" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/7.png" alt="Sky Group Partner &amp; Standart 7" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/8.png" alt="Sky Group Partner &amp; Standart 8" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/9.png" alt="Sky Group Partner &amp; Standart 9" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/10.png" alt="Sky Group Partner &amp; Standart 10" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/11.png" alt="Sky Group Partner &amp; Standart 11" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/12.png" alt="Sky Group Partner &amp; Standart 12" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/13.png" alt="Sky Group Partner &amp; Standart 13" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/14.png" alt="Sky Group Partner &amp; Standart 14" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/15.png" alt="Sky Group Partner &amp; Standart 15" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/16.png" alt="Sky Group Partner &amp; Standart 16" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/17.png" alt="Sky Group Partner &amp; Standart 17" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/18.png" alt="Sky Group Partner &amp; Standart 18" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/19.png" alt="Sky Group Partner &amp; Standart 19" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/20.png" alt="Sky Group Partner &amp; Standart 20" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/21.png" alt="Sky Group Partner &amp; Standart 21" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/22.png" alt="Sky Group Partner &amp; Standart 22" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/23.png" alt="Sky Group Partner &amp; Standart 23" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/24.png" alt="Sky Group Partner &amp; Standart 24" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/25.png" alt="Sky Group Partner &amp; Standart 25" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/26.png" alt="Sky Group Partner &amp; Standart 26" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/27.png" alt="Sky Group Partner &amp; Standart 27" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/28.png" alt="Sky Group Partner &amp; Standart 28" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/29.png" alt="Sky Group Partner &amp; Standart 29" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/30.png" alt="Sky Group Partner &amp; Standart 30" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./sm/ambar/t/31.png" alt="Sky Group Partner &amp; Standart 31" loading="lazy" />
+          </div>
         </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/2.png" alt="Sky Group Referans Marka 2" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/3.png" alt="Sky Group Referans Marka 3" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/4.png" alt="Sky Group Referans Marka 4" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/5.png" alt="Sky Group Referans Marka 5" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/6.png" alt="Sky Group Referans Marka 6" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/7.png" alt="Sky Group Referans Marka 7" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/8.png" alt="Sky Group Referans Marka 8" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/9.png" alt="Sky Group Referans Marka 9" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/10.png" alt="Sky Group Referans Marka 10" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/11.png" alt="Sky Group Referans Marka 11" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/12.png" alt="Sky Group Referans Marka 12" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/13.png" alt="Sky Group Referans Marka 13" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/14.png" alt="Sky Group Referans Marka 14" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/15.png" alt="Sky Group Referans Marka 15" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/16.png" alt="Sky Group Referans Marka 16" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/17.png" alt="Sky Group Referans Marka 17" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/18.png" alt="Sky Group Referans Marka 18" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/19.png" alt="Sky Group Referans Marka 19" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/20.png" alt="Sky Group Referans Marka 20" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/21.png" alt="Sky Group Referans Marka 21" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/22.png" alt="Sky Group Referans Marka 22" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/23.png" alt="Sky Group Referans Marka 23" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/24.png" alt="Sky Group Referans Marka 24" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/25.png" alt="Sky Group Referans Marka 25" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/26.png" alt="Sky Group Referans Marka 26" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/27.png" alt="Sky Group Referans Marka 27" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/28.png" alt="Sky Group Referans Marka 28" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/29.png" alt="Sky Group Referans Marka 29" loading="lazy" />
-        </div>
-        
-
-        <div class="sky-logo-card group">
-          <img src="./sm/ambar/r/30.png" alt="Sky Group Referans Marka 30" loading="lazy" />
-        </div>
-        
       </div>
-    </section>
+</section>
 
   </main>
 
@@ -1362,115 +1851,326 @@
 
 
     <!-- ================= QUOTE MODAL HOST ================= -->
-  <div id="sky-quote-modal" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="modal-card relative w-full max-w-lg bg-white border border-slate-200/90 rounded-xl shadow-2xl p-6 sm:p-8 text-slate-800 max-h-[92vh] overflow-y-auto">
-      <!-- Close Button -->
-      <button type="button" id="sky-modal-close" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-800 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer" aria-label="Kapat">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-      
-      <!-- Modal Header -->
-      <div class="flex items-center gap-3.5 mb-4 pb-4 border-b border-slate-100">
-        <div class="w-11 h-11 rounded-lg bg-[#061527] flex items-center justify-center p-2 shadow-sm shrink-0">
-          <img src="./assets/sky-group-logo-s.png" alt="Sky Group" class="w-full h-full object-contain" width="44" height="44">
+  
+<!-- SKY GROUP DETAILED CASE STUDY MODAL -->
+<div id="sky-case-modal" aria-hidden="true" role="dialog">
+  <div class="sky-case-dialog">
+    <!-- Header -->
+    <div class="p-4 sm:p-5 border-b border-slate-200 flex items-start justify-between bg-slate-50/70 gap-4">
+      <div>
+        <div class="flex flex-wrap items-center gap-2 mb-1">
+          <span id="scm-category" class="px-2.5 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-sky-100 text-[#0284c7] border border-sky-200"></span>
+          <span id="scm-location" class="text-xs text-slate-500 font-medium"></span>
         </div>
-        <div>
-          <span class="text-[11px] font-bold uppercase tracking-wider text-[#0284c7] block">Sky Group Mühendislik &amp; Projelendirme</span>
-          <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">Ücretsiz Keşif &amp; Fiyat Teklifi</h3>
+        <h3 id="scm-title" class="text-lg sm:text-2xl font-bold text-slate-900 leading-tight"></h3>
+        <p id="scm-capacity" class="text-xs sm:text-sm font-semibold text-[#0284c7] mt-1"></p>
+      </div>
+      <button type="button" onclick="closeCaseStudy()" class="w-9 h-9 rounded-full bg-white border border-slate-200 hover:bg-slate-100 text-slate-500 hover:text-slate-900 flex items-center justify-center text-lg font-bold transition-colors cursor-pointer shrink-0" aria-label="Kapat">
+        ✕
+      </button>
+    </div>
+
+    <!-- Scrollable Content -->
+    <div class="p-4 sm:p-6 overflow-y-auto space-y-6 flex-1 text-slate-700">
+      <!-- 4-Stage Challenge Approach Solution Results Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- 1. Challenge -->
+        <div class="p-4 rounded-lg bg-red-50/40 border border-red-200/80">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-6 h-6 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-xs font-black">1</span>
+            <h4 class="text-xs sm:text-sm font-bold text-red-950 uppercase tracking-wide">Challenge (Mevcut Sorun & Zorluk)</h4>
+          </div>
+          <p id="scm-challenge" class="text-xs sm:text-sm text-slate-700 leading-relaxed"></p>
+        </div>
+
+        <!-- 2. Approach -->
+        <div class="p-4 rounded-lg bg-blue-50/40 border border-blue-200/80">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-6 h-6 rounded-full bg-blue-100 text-[#0284c7] flex items-center justify-center text-xs font-black">2</span>
+            <h4 class="text-xs sm:text-sm font-bold text-blue-950 uppercase tracking-wide">Approach (Mühendislik & Debi Analizi)</h4>
+          </div>
+          <p id="scm-approach" class="text-xs sm:text-sm text-slate-700 leading-relaxed"></p>
+        </div>
+
+        <!-- 3. Solution -->
+        <div class="p-4 rounded-lg bg-cyan-50/40 border border-cyan-200/80">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-6 h-6 rounded-full bg-cyan-100 text-cyan-800 flex items-center justify-center text-xs font-black">3</span>
+            <h4 class="text-xs sm:text-sm font-bold text-cyan-950 uppercase tracking-wide">Solution (İmalat & Montaj Çözümü)</h4>
+          </div>
+          <p id="scm-solution" class="text-xs sm:text-sm text-slate-700 leading-relaxed"></p>
+        </div>
+
+        <!-- 4. Results -->
+        <div class="p-4 rounded-lg bg-emerald-50/50 border border-emerald-200">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-black">4</span>
+            <h4 class="text-xs sm:text-sm font-bold text-emerald-950 uppercase tracking-wide">Results (Ölçülen Sonuç & Tasarruf)</h4>
+          </div>
+          <p id="scm-results" class="text-xs sm:text-sm text-emerald-900 leading-relaxed font-medium"></p>
         </div>
       </div>
-      
-      <p class="text-xs sm:text-sm text-slate-600 mb-5 leading-relaxed">
-        Mimari veya mekanik detaylarınızı iletin; uzman mühendislerimiz 24 saat içinde yerinde keşif ve metrajlı teknik şartnamenizi hazırlasın.
-      </p>
 
-      <!-- Classic Corporate Form -->
-      <form id="sky-quote-form" class="space-y-4">
+      <!-- Standards & Deliverables Row -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-slate-200">
         <div>
-          <label class="block text-xs font-semibold text-slate-800 mb-1.5">Ad Soyad / Firma Adı <span class="text-rose-500">*</span></label>
-          <input type="text" name="name" id="sky-modal-name" required placeholder="Örn: Ahmet Yılmaz / ABC İnşaat A.Ş." class="w-full px-3.5 py-2.5 rounded-lg bg-white border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-[#0284c7] focus:ring-2 focus:ring-[#0284c7]/20 transition-all font-normal shadow-xs">
+          <span class="block text-xs font-bold text-slate-900 mb-2">Uygulanan Mühendislik Standartları:</span>
+          <div id="scm-standards" class="flex flex-wrap gap-1.5"></div>
         </div>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-          <div>
-            <label class="block text-xs font-semibold text-slate-800 mb-1.5">Telefon Numarası <span class="text-rose-500">*</span></label>
-            <input type="tel" name="phone" required placeholder="0 (5XX) XXX XX XX" class="w-full px-3.5 py-2.5 rounded-lg bg-white border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-[#0284c7] focus:ring-2 focus:ring-[#0284c7]/20 transition-all font-normal shadow-xs">
-          </div>
-          <div>
-            <label class="block text-xs font-semibold text-slate-800 mb-1.5">E-Posta Adresi</label>
-            <input type="email" name="email" placeholder="ornek@firma.com" class="w-full px-3.5 py-2.5 rounded-lg bg-white border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-[#0284c7] focus:ring-2 focus:ring-[#0284c7]/20 transition-all font-normal shadow-xs">
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-          <div>
-            <label class="block text-xs font-semibold text-slate-800 mb-1.5">Proje / Tesis Türü</label>
-            <div class="relative">
-              <select name="type" class="w-full appearance-none px-3.5 py-2.5 rounded-lg bg-white border border-slate-300 text-slate-900 text-sm focus:outline-none focus:border-[#0284c7] focus:ring-2 focus:ring-[#0284c7]/20 transition-all font-normal shadow-xs pr-8">
-                <option value="Fabrika & Endüstriyel Tesis">Fabrika &amp; Endüstriyel Tesis</option>
-                <option value="Ticari Yapı & Plaza">Ticari Yapı &amp; Plaza</option>
-                <option value="Hastane & Temiz Oda">Hastane &amp; Temiz Oda</option>
-                <option value="AVM & Sosyal Tesis">AVM &amp; Sosyal Tesis</option>
-                <option value="Otel & Konut Projesi">Otel &amp; Konut Projesi</option>
-                <option value="Diğer Mekanik Tesisat">Diğer Mekanik Tesisat</option>
-              </select>
-              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-slate-500">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-              </div>
-            </div>
-          </div>
-          <div>
-            <label class="block text-xs font-semibold text-slate-800 mb-1.5">İlgilenilen Sistem</label>
-            <div class="relative">
-              <select name="system" class="w-full appearance-none px-3.5 py-2.5 rounded-lg bg-white border border-slate-300 text-slate-900 text-sm focus:outline-none focus:border-[#0284c7] focus:ring-2 focus:ring-[#0284c7]/20 transition-all font-normal shadow-xs pr-8">
-                <option value="Merkezi Klima Santralleri (AHU)">Klima Santralleri (AHU)</option>
-                <option value="Hava Kanalı İmalatı">Hava Kanalı İmalatı</option>
-                <option value="VRV / VRF İklimlendirme">VRV / VRF İklimlendirme</option>
-                <option value="Yangın & Duman Tahliye">Yangın &amp; Duman Tahliyesi</option>
-                <option value="Isı Geri Kazanım Cihazları (HRV)">Isı Geri Kazanım (HRV)</option>
-                <option value="Komple Mekanik Tesisat">Komple Anahtar Teslim Tesisat</option>
-              </select>
-              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-slate-500">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div>
-          <label class="block text-xs font-semibold text-slate-800 mb-1.5">Proje Notu / Metraj / Talebiniz</label>
-          <textarea name="notes" rows="3" placeholder="Projenizin debisi, m² bilgisi veya özel şartname taleplerinizi iletebilirsiniz..." class="w-full px-3.5 py-2.5 rounded-lg bg-white border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-[#0284c7] focus:ring-2 focus:ring-[#0284c7]/20 transition-all resize-none font-normal shadow-xs"></textarea>
-        </div>
-
-        <button type="submit" class="w-full py-3.5 px-6 rounded-lg font-bold text-base bg-[#09bde3] hover:bg-[#08a8cb] text-[#041628] shadow-md shadow-cyan-500/20 transition-all flex items-center justify-center gap-2 cursor-pointer mt-2">
-          <span>Teklif Talebini Gönder</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        </button>
-
-        <!-- Success Notice -->
-        <div id="sky-form-success" class="hidden p-4 rounded-lg bg-emerald-50 border border-emerald-300 text-emerald-900 text-sm text-center font-medium">
-          ✓ <strong>Talebiniz Başarıyla Alındı!</strong><br>Uzman mühendislerimiz en geç 24 saat içinde sizinle iletişime geçecektir.
-        </div>
-      </form>
-
-      <!-- Classic Trust & Contact Strip -->
-      <div class="mt-5 pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between text-xs text-slate-500 gap-2">
-        <span class="flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-          Bilgileriniz KVKK kapsamında gizli tutulur
-        </span>
-        <div class="flex items-center gap-3">
-          <a href="https://wa.me/905419221991" target="_blank" rel="noopener noreferrer" class="text-emerald-600 hover:text-emerald-700 font-semibold flex items-center gap-1">
-            WhatsApp Destek
-          </a>
-          <span class="text-slate-300">•</span>
-          <a href="tel:+905419221991" class="text-slate-700 hover:text-[#0284c7] font-semibold flex items-center gap-1">
-            0 (541) 922 19 91
-          </a>
+          <span class="block text-xs font-bold text-slate-900 mb-2">Müşteriye Teslim Edilen Belgeler:</span>
+          <div id="scm-documents" class="flex flex-wrap gap-1.5"></div>
         </div>
       </div>
     </div>
+
+    <!-- Footer Actions -->
+    <div class="p-4 sm:p-5 border-t border-slate-200 bg-slate-50 flex flex-wrap items-center justify-between gap-3">
+      <a id="scm-page-link" href="#" class="text-xs sm:text-sm font-bold text-slate-700 hover:text-[#0284c7] flex items-center gap-1.5 transition-colors">
+        <span>Tam Proje Sayfasını Görüntüle</span>
+        <svg style="width: 15px !important; height: 15px !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+      <button type="button" id="scm-cta-btn" style="background-color: #09bde3 !important; color: #04111f !important;" class="py-2.5 px-5 rounded-lg font-bold text-xs sm:text-sm shadow hover:bg-[#38bdf8] transition-all flex items-center gap-2 cursor-pointer">
+        <span>Bu Projeye Benzer Keşif Talep Et</span>
+        <svg style="width: 15px !important; height: 15px !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </button>
+    </div>
   </div>
+</div>
+
+
+<div id="sky-quote-modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-card relative w-full max-w-xl bg-white border border-slate-200/90 rounded-xl shadow-2xl p-5 sm:p-7 text-slate-800 max-h-[92vh] overflow-y-auto" style="border-radius: 12px !important;">
+    <!-- Close Button -->
+    <button type="button" id="sky-modal-close" onclick="closeQuoteModal()" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-800 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer" aria-label="Kapat">
+      <svg style="width: 20px !important; height: 20px !important; display: block !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    
+    <!-- Modal Header -->
+    <div class="flex items-center gap-3.5 mb-4 pb-3 border-b border-slate-100">
+      <div class="w-11 h-11 rounded-lg bg-[#061527] flex items-center justify-center p-2 shadow-sm shrink-0">
+        <img src="./assets/sky-group-logo-s.png" alt="Sky Group" class="w-full h-full object-contain" width="44" height="44">
+      </div>
+      <div>
+        <span class="text-[10.5px] font-bold uppercase tracking-widest text-[#0284c7] block">MÜHENDİSLİK &amp; DOĞRUDAN FABRİKA İMALATI</span>
+        <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">Ücretsiz Keşif &amp; Debi Analizi</h3>
+      </div>
+    </div>
+
+    <!-- 3-Step Progress Indicator Bar -->
+    <div class="grid grid-cols-3 gap-2 mb-5 pb-3 border-b border-slate-100 text-center">
+      <div id="sky-step-tab-1" class="flex flex-col items-center gap-1 transition-all">
+        <div class="step-num w-6 h-6 rounded-full bg-[#09bde3] text-[#04111f] font-bold text-xs flex items-center justify-center shadow-xs">1</div>
+        <span class="step-text text-[11px] font-bold text-slate-900">Mahal &amp; Sektör</span>
+      </div>
+      <div id="sky-step-tab-2" class="flex flex-col items-center gap-1 transition-all opacity-45">
+        <div class="step-num w-6 h-6 rounded-full bg-slate-200 text-slate-600 font-bold text-xs flex items-center justify-center">2</div>
+        <span class="step-text text-[11px] font-semibold text-slate-500">İhtiyaç Kapsamı</span>
+      </div>
+      <div id="sky-step-tab-3" class="flex flex-col items-center gap-1 transition-all opacity-45">
+        <div class="step-num w-6 h-6 rounded-full bg-slate-200 text-slate-600 font-bold text-xs flex items-center justify-center">3</div>
+        <span class="step-text text-[11px] font-semibold text-slate-500">İletişim &amp; Teklif</span>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <form id="sky-quote-form" onsubmit="return false;" class="space-y-4">
+      
+      <!-- STEP 1: Sektör & Mahal Büyüklüğü -->
+      <div id="sky-modal-step-1" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-800 mb-2">1. Projenizin Yer Aldığı Sektör / Tesis Türü:</label>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="sky-sector-options">
+            <button type="button" class="sky-choice-card text-left p-2.5 rounded-lg border border-[#0284c7] bg-cyan-50/60 ring-2 ring-[#09bde3]/30 transition-all cursor-pointer" data-sector="Endüstriyel & Fabrika">
+              <span class="block text-base mb-0.5">🏭</span>
+              <span class="block text-xs font-bold text-slate-900">Fabrika &amp; Sanayi</span>
+              <span class="block text-[10px] text-slate-500">Ağır proses, toz, kaynak</span>
+            </button>
+            <button type="button" class="sky-choice-card text-left p-2.5 rounded-lg border border-slate-200 bg-slate-50/80 hover:border-[#09bde3] hover:bg-cyan-50/30 transition-all cursor-pointer" data-sector="Sağlık & Temiz Oda">
+              <span class="block text-base mb-0.5">🏥</span>
+              <span class="block text-xs font-bold text-slate-900">Sağlık &amp; Temiz Oda</span>
+              <span class="block text-[10px] text-slate-500">Steril, ameliyathane, ilaç</span>
+            </button>
+            <button type="button" class="sky-choice-card text-left p-2.5 rounded-lg border border-slate-200 bg-slate-50/80 hover:border-[#09bde3] hover:bg-cyan-50/30 transition-all cursor-pointer" data-sector="Plaza & Ticari Bina">
+              <span class="block text-base mb-0.5">🏢</span>
+              <span class="block text-xs font-bold text-slate-900">Plaza &amp; Ofis</span>
+              <span class="block text-[10px] text-slate-500">4 borulu FCU, taze hava</span>
+            </button>
+            <button type="button" class="sky-choice-card text-left p-2.5 rounded-lg border border-slate-200 bg-slate-50/80 hover:border-[#09bde3] hover:bg-cyan-50/30 transition-all cursor-pointer" data-sector="AVM & Ticari Alan">
+              <span class="block text-base mb-0.5">🏬</span>
+              <span class="block text-xs font-bold text-slate-900">AVM &amp; Mağaza</span>
+              <span class="block text-[10px] text-slate-500">Yüksek debi, VRV/VRF</span>
+            </button>
+            <button type="button" class="sky-choice-card text-left p-2.5 rounded-lg border border-slate-200 bg-slate-50/80 hover:border-[#09bde3] hover:bg-cyan-50/30 transition-all cursor-pointer" data-sector="Otopark & Duman Tahliye">
+              <span class="block text-base mb-0.5">🚗</span>
+              <span class="block text-xs font-bold text-slate-900">Otopark &amp; Duman</span>
+              <span class="block text-[10px] text-slate-500">Jet fan, 400°C/2h</span>
+            </button>
+            <button type="button" class="sky-choice-card text-left p-2.5 rounded-lg border border-slate-200 bg-slate-50/80 hover:border-[#09bde3] hover:bg-cyan-50/30 transition-all cursor-pointer" data-sector="Mutfak & Restoran">
+              <span class="block text-base mb-0.5">🍽️</span>
+              <span class="block text-xs font-bold text-slate-900">Restoran &amp; Mutfak</span>
+              <span class="block text-[10px] text-slate-500">Davlumbaz, elektrostatik</span>
+            </button>
+          </div>
+          <input type="hidden" name="sector" id="sky-selected-sector" value="Endüstriyel & Fabrika">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-800 mb-2">2. Yaklaşık Mahal / Tesis Büyüklüğü:</label>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="sky-area-options">
+            <button type="button" class="sky-area-card py-2 px-3 rounded-lg border border-slate-200 bg-white text-center text-xs font-semibold text-slate-700 hover:border-[#09bde3] hover:bg-cyan-50/20 transition-all cursor-pointer" data-area="< 500 m²">
+              &lt; 500 m²
+            </button>
+            <button type="button" class="sky-area-card py-2 px-3 rounded-lg border border-[#0284c7] bg-cyan-50/60 text-[#0284c7] ring-1 ring-[#09bde3] text-center text-xs font-semibold transition-all cursor-pointer" data-area="500 - 2.000 m²">
+              500 - 2.000 m²
+            </button>
+            <button type="button" class="sky-area-card py-2 px-3 rounded-lg border border-slate-200 bg-white text-center text-xs font-semibold text-slate-700 hover:border-[#09bde3] hover:bg-cyan-50/20 transition-all cursor-pointer" data-area="2.000 - 10.000 m²">
+              2.000 - 10.000 m²
+            </button>
+            <button type="button" class="sky-area-card py-2 px-3 rounded-lg border border-slate-200 bg-white text-center text-xs font-semibold text-slate-700 hover:border-[#09bde3] hover:bg-cyan-50/20 transition-all cursor-pointer" data-area="10.000+ m²">
+              10.000+ m²
+            </button>
+          </div>
+          <input type="hidden" name="area" id="sky-selected-area" value="500 - 2.000 m²">
+        </div>
+
+        <button type="button" onclick="goToModalStep(2)" style="background-color: #09bde3 !important; color: #04111f !important;" class="w-full py-3.5 px-5 rounded-lg font-bold text-sm shadow-md hover:bg-[#38bdf8] transition-all flex items-center justify-center gap-2 cursor-pointer mt-3">
+          <span>Devam Et: İhtiyaç Kapsamı</span>
+          <svg style="width: 16px !important; height: 16px !important; display: inline-block !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </button>
+      </div>
+
+      <!-- STEP 2: Cihaz & Mühendislik Kapsamı -->
+      <div id="sky-modal-step-2" class="space-y-4 hidden">
+        <div>
+          <label class="block text-xs font-bold text-slate-800 mb-2">Hangi Sistem ve Hizmetlere İhtiyacınız Var? (Birden fazla seçilebilir):</label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="sky-system-checkboxes">
+            <label class="sky-checkbox-card flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-cyan-50/20 transition-all cursor-pointer">
+              <input type="checkbox" name="systems" value="Klima Santrali (AHU)" class="mt-0.5 rounded border-slate-300 text-[#0284c7] focus:ring-[#09bde3]" checked>
+              <span class="text-xs text-slate-800 font-medium">Klima Santralleri (AHU - Çift Cidarlı)</span>
+            </label>
+            <label class="sky-checkbox-card flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-cyan-50/20 transition-all cursor-pointer">
+              <input type="checkbox" name="systems" value="Hava Kanalı (EN 1507 Class C)" class="mt-0.5 rounded border-slate-300 text-[#0284c7] focus:ring-[#09bde3]" checked>
+              <span class="text-xs text-slate-800 font-medium">Hava Kanalları (Class C Galvaniz / Spiral)</span>
+            </label>
+            <label class="sky-checkbox-card flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-cyan-50/20 transition-all cursor-pointer">
+              <input type="checkbox" name="systems" value="VRF / VRV İklimlendirme" class="mt-0.5 rounded border-slate-300 text-[#0284c7] focus:ring-[#09bde3]">
+              <span class="text-xs text-slate-800 font-medium">VRV / VRF Değişken Debili İklimlendirme</span>
+            </label>
+            <label class="sky-checkbox-card flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-cyan-50/20 transition-all cursor-pointer">
+              <input type="checkbox" name="systems" value="Isı Geri Kazanım (HRV)" class="mt-0.5 rounded border-slate-300 text-[#0284c7] focus:ring-[#09bde3]">
+              <span class="text-xs text-slate-800 font-medium">Isı Geri Kazanım Cihazları (HRV - ErP 2018)</span>
+            </label>
+            <label class="sky-checkbox-card flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-cyan-50/20 transition-all cursor-pointer">
+              <input type="checkbox" name="systems" value="Yangın & Duman Tahliye" class="mt-0.5 rounded border-slate-300 text-[#0284c7] focus:ring-[#09bde3]">
+              <span class="text-xs text-slate-800 font-medium">Yangın &amp; Duman Tahliyesi (400°C/2h Jet Fan)</span>
+            </label>
+            <label class="sky-checkbox-card flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-cyan-50/20 transition-all cursor-pointer">
+              <input type="checkbox" name="systems" value="Ücretsiz Yerinde Keşif & TAB" class="mt-0.5 rounded border-slate-300 text-[#0284c7] focus:ring-[#09bde3]" checked>
+              <span class="text-xs text-slate-800 font-medium">Ücretsiz Keşif &amp; Debi Analizi (TAB Raporu)</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-800 mb-1.5">Mevcut Proje Durumunuz:</label>
+          <div class="grid grid-cols-3 gap-2" id="sky-status-options">
+            <button type="button" class="sky-status-card py-2 px-2 rounded-lg border border-[#0284c7] bg-cyan-50/60 text-[#0284c7] ring-1 ring-[#09bde3] text-center text-[11px] font-semibold transition-all cursor-pointer" data-status="DWG / BIM Çizimim Hazır">
+              📐 DWG Çizim Hazır
+            </button>
+            <button type="button" class="sky-status-card py-2 px-2 rounded-lg border border-slate-200 bg-white text-center text-[11px] font-semibold text-slate-700 hover:border-[#09bde3] hover:bg-cyan-50/20 transition-all cursor-pointer" data-status="Fikir / Tasarım Aşaması">
+              💡 Fikir / Keşif İhtiyacı
+            </button>
+            <button type="button" class="sky-status-card py-2 px-2 rounded-lg border border-slate-200 bg-white text-center text-[11px] font-semibold text-slate-700 hover:border-[#09bde3] hover:bg-cyan-50/20 transition-all cursor-pointer" data-status="Mevcut Tesis Revizyonu">
+              🔄 Tesis Renovasyonu
+            </button>
+          </div>
+          <input type="hidden" name="status" id="sky-selected-status" value="DWG / BIM Çizimim Hazır">
+        </div>
+
+        <div class="flex items-center gap-2.5 pt-2">
+          <button type="button" onclick="goToModalStep(1)" class="w-1/3 py-3 px-4 rounded-lg font-semibold text-xs border border-slate-200 text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer">
+            ← Geri
+          </button>
+          <button type="button" onclick="goToModalStep(3)" style="background-color: #09bde3 !important; color: #04111f !important;" class="w-2/3 py-3 px-5 rounded-lg font-bold text-sm shadow-md hover:bg-[#38bdf8] transition-all flex items-center justify-center gap-2 cursor-pointer">
+            <span>Devam Et: İletişim Bilgileri</span>
+            <svg style="width: 16px !important; height: 16px !important; display: inline-block !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 3: İletişim & Şartname Talebi -->
+      <div id="sky-modal-step-3" class="space-y-3 hidden">
+        <div>
+          <label class="block text-[11px] font-bold text-slate-700 mb-1">Ad Soyad / Firma Ünvanı *</label>
+          <input type="text" name="name" id="sky-modal-name" required placeholder="Örn: Ahmet Yılmaz / ABC İnşaat A.Ş." class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#09bde3] focus:ring-2 focus:ring-[#09bde3]/20 transition-all font-medium">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 mb-1">Telefon Numarası *</label>
+            <input type="tel" name="phone" id="sky-modal-phone" required placeholder="0 (5XX) XXX XX XX" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#09bde3] focus:ring-2 focus:ring-[#09bde3]/20 transition-all font-medium">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 mb-1">E-Posta Adresi</label>
+            <input type="email" name="email" id="sky-modal-email" placeholder="ornek@firma.com" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#09bde3] focus:ring-2 focus:ring-[#09bde3]/20 transition-all font-medium">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-slate-700 mb-1">Teknik Not / Metraj / DWG Açıklaması:</label>
+          <textarea name="notes" id="sky-modal-notes" rows="2" placeholder="Projenizin hava debisi (m³/h), tavan yüksekliği veya varsa özel şartname talepleriniz..." class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#09bde3] focus:ring-2 focus:ring-[#09bde3]/20 transition-all resize-none font-medium"></textarea>
+        </div>
+
+        <!-- Direct Manufacturer Guarantee Banner -->
+        <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200 text-[11px] text-slate-600 leading-relaxed flex items-center gap-2">
+          <span class="text-base shrink-0">🏭</span>
+          <span><strong>Doğrudan İmalatçı Güvencesi:</strong> Aracı komisyonsuz fabrika imalat fiyatı, 24 saatte net metrajlı şartname ve resmi kabul garantili TAB teslimatı.</span>
+        </div>
+
+        <div class="flex items-center gap-2.5 pt-1">
+          <button type="button" onclick="goToModalStep(2)" class="w-1/3 py-3.5 px-4 rounded-lg font-semibold text-xs border border-slate-200 text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer">
+            ← Geri
+          </button>
+          <button type="button" onclick="submitMultiStepForm()" style="background-color: #09bde3 !important; color: #04111f !important;" class="w-2/3 py-3.5 px-5 rounded-lg font-bold text-sm shadow-md hover:bg-[#38bdf8] transition-all flex items-center justify-center gap-2 cursor-pointer">
+            <span>Talebi Tamamla (24 Saatte Teklif)</span>
+            <svg style="width: 16px !important; height: 16px !important; display: inline-block !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- SUCCESS SCREEN -->
+      <div id="sky-form-success" class="hidden py-6 text-center space-y-3">
+        <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-xl font-black">
+          ✓
+        </div>
+        <h4 class="text-lg font-bold text-slate-900">Keşif &amp; Analiz Talebiniz Başarıyla Alındı!</h4>
+        <p class="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+          Mekanik tesisat mühendisimiz en geç <strong>24 saat içinde</strong> telefon numaranızdan sizinle iletişime geçecek; mimari çizimleriniz üzerinden net metrajlı teknik şartname ve imalat teklifinizi hazırlayacaktır.
+        </p>
+        <div class="pt-3">
+          <button type="button" onclick="closeQuoteModal()" class="py-2 px-6 rounded-lg bg-slate-900 text-white font-semibold text-xs hover:bg-slate-800 transition-colors cursor-pointer">
+            Pencereyi Kapat
+          </button>
+        </div>
+      </div>
+
+    </form>
+
+    <!-- Bottom Contact Line -->
+    <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between text-xs text-slate-500 gap-2">
+      <span class="flex items-center gap-1.5 text-[11px]">
+        <svg style="width: 13px !important; height: 13px !important; display: inline-block !important;" class="text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        Bilgileriniz KVKK kapsamında şifrelenir
+      </span>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="https://wa.me/905419221991" target="_blank" rel="noopener noreferrer" class="text-emerald-600 hover:text-emerald-700 font-bold flex items-center gap-1">
+          WhatsApp: 0 (541) 922 19 91
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
 
   <!-- ================= CLIENT INTERACTIVITY SCRIPTS ================= -->
@@ -1647,92 +2347,315 @@
         });
       });
 
-      // 4. Quote Modal Logic
-      const quoteModal = document.getElementById('sky-quote-modal');
-      const modalCloseBtn = document.getElementById('sky-modal-close');
-      const quoteForm = document.getElementById('sky-quote-form');
+      // 4. Sky Group Multi-Step Lead Intake Funnel Logic
+    let currentModalStep = 1;
 
-      function openQuoteModal(context) {
-        if (!quoteModal) return;
-        closeNav();
-        toggleMobileMenu(true);
+    window.goToModalStep = function(step) {
+      if (step < 1 || step > 3) return;
+      currentModalStep = step;
 
-        quoteModal.classList.add('active');
-        quoteModal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
+      const s1 = document.getElementById('sky-modal-step-1');
+      const s2 = document.getElementById('sky-modal-step-2');
+      const s3 = document.getElementById('sky-modal-step-3');
+      const success = document.getElementById('sky-form-success');
+      const progressContainer = document.getElementById('sky-modal-progress');
+      const subtitle = document.getElementById('sky-modal-subtitle');
 
-        const noteField = quoteModal.querySelector('textarea');
-        if (context === 'katalog') {
-          if (noteField) noteField.value = '2026 Sky Group Ürün ve Hizmet Kataloğunun e-posta adresime gönderilmesini rica ederim.';
-        } else if (context === 'iletisim') {
-          if (noteField) noteField.value = 'Sky Group mühendislik ekibi ile teknik görüşme ve proje danışmanlığı talep ediyoruz.';
-        } else if (context === 'kesif') {
-          if (noteField) noteField.value = 'Projemiz için yerinde ücretsiz mühendislik keşfi ve debi hesabı talep ediyoruz.';
-        } else if (typeof context === 'string' && context.length > 0 && context !== 'teklif') {
-          if (noteField) noteField.value = context;
+      if (success) success.classList.add('hidden');
+      if (progressContainer) progressContainer.style.display = 'flex';
+
+      if (s1) s1.classList.toggle('hidden', step !== 1);
+      if (s2) s2.classList.toggle('hidden', step !== 2);
+      if (s3) s3.classList.toggle('hidden', step !== 3);
+
+      const stepSubtitles = {
+        1: 'Adım 1/3: Sektör & Mahal Büyüklüğü',
+        2: 'Adım 2/3: İhtiyaç Duyulan Sistemler & Durum',
+        3: 'Adım 3/3: İletişim & Metraj/DWG Detayları'
+      };
+      if (subtitle && stepSubtitles[step]) {
+        subtitle.textContent = stepSubtitles[step];
+      }
+
+      // Update step indicator badges
+      for (let i = 1; i <= 3; i++) {
+        const badge = document.getElementById('sky-step-badge-' + i);
+        const text = document.getElementById('sky-step-text-' + i);
+        if (!badge || !text) continue;
+
+        if (i === step) {
+          badge.className = 'w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold bg-[#09bde3] text-[#04111f] shadow-sm';
+          badge.innerHTML = String(i);
+          text.className = 'font-bold text-slate-900';
+        } else if (i < step) {
+          badge.className = 'w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold bg-emerald-500 text-white shadow-sm';
+          badge.innerHTML = '✓';
+          text.className = 'font-medium text-emerald-600';
+        } else {
+          badge.className = 'w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold bg-slate-200 text-slate-600';
+          badge.innerHTML = String(i);
+          text.className = 'font-medium text-slate-500';
         }
       }
-      window.openQuoteModal = openQuoteModal;
+    };
 
-      function closeQuoteModal() {
-        if (!quoteModal) return;
-        quoteModal.classList.remove('active');
-        quoteModal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
+    window.openQuoteModal = function(context) {
+      const modal = document.getElementById('sky-quote-modal');
+      if (!modal) return;
+      
+      const sheet = document.querySelector('.bpc-nav-sheet');
+      if (sheet) sheet.setAttribute('data-open', 'false');
+
+      goToModalStep(1);
+      const success = document.getElementById('sky-form-success');
+      if (success) success.classList.add('hidden');
+      const progressContainer = document.getElementById('sky-modal-progress');
+      if (progressContainer) progressContainer.style.display = 'flex';
+
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+
+      const noteField = document.getElementById('sky-modal-notes') || modal.querySelector('textarea');
+      if (context === 'katalog') {
+        if (noteField) noteField.value = '2026 Sky Group Ürün ve Hizmet Kataloğunun e-posta adresime gönderilmesini rica ederim.';
+      } else if (context === 'kesif') {
+        if (noteField) noteField.value = 'Projemiz için yerinde ücretsiz mühendislik keşfi ve debi hesabı talep ediyoruz.';
+      } else if (context === 'iletisim') {
+        if (noteField) noteField.value = 'Sky Group mühendislik ekibi ile teknik görüşme ve proje danışmanlığı talep ediyoruz.';
+      } else if (typeof context === 'string' && context.length > 0 && context !== 'teklif') {
+        if (noteField) noteField.value = context;
       }
-      window.closeQuoteModal = closeQuoteModal;
+    };
 
-      if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeQuoteModal);
-      if (quoteModal) {
-        quoteModal.addEventListener('click', function(e) {
-          if (e.target === quoteModal) closeQuoteModal();
+    window.openQuoteForProject = function(itemTitle) {
+      const noteField = document.getElementById('sky-modal-notes');
+      if (noteField && itemTitle) {
+        noteField.value = itemTitle + ' hakkında teknik şartname ve imalat teklifi talebi.';
+      }
+      window.openQuoteModal(itemTitle);
+    };
+
+    window.closeQuoteModal = function() {
+      const modal = document.getElementById('sky-quote-modal');
+      if (!modal) return;
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    window.submitMultiStepForm = function() {
+      const nameInput = document.getElementById('sky-modal-name');
+      const phoneInput = document.getElementById('sky-modal-phone');
+
+      if (!nameInput || !nameInput.value.trim()) {
+        alert('Lütfen ad soyad veya firma ünvanınızı giriniz.');
+        if (nameInput) nameInput.focus();
+        return;
+      }
+      if (!phoneInput || !phoneInput.value.trim()) {
+        alert('Lütfen telefon numaranızı giriniz.');
+        if (phoneInput) phoneInput.focus();
+        return;
+      }
+
+      const s3 = document.getElementById('sky-modal-step-3');
+      const success = document.getElementById('sky-form-success');
+      const progressContainer = document.getElementById('sky-modal-progress');
+      const subtitle = document.getElementById('sky-modal-subtitle');
+
+      if (s3) s3.classList.add('hidden');
+      if (progressContainer) progressContainer.style.display = 'none';
+      if (subtitle) subtitle.textContent = 'Talebiniz Alındı';
+      if (success) success.classList.remove('hidden');
+
+      setTimeout(() => {
+        closeQuoteModal();
+        setTimeout(() => {
+          const form = document.getElementById('sky-quote-form');
+          if (form) form.reset();
+          goToModalStep(1);
+        }, 500);
+      }, 4000);
+    };
+
+    
+    // 5. Sky Group Case Studies Modal Logic
+    const SKY_CASE_STUDIES = [{"id": "maslak-hub", "title": "Maslak Hub Lounge & Restoran", "category": "Restoran & Yeme-İçme", "location": "Sarıyer, Maslak 42", "capacity": "18.000 m³/h Debi • Spiral Galvaniz Kanal", "photo": "./sm/ambar/koca_fotogal_6b5abdb48c204fe45d4b71af4bf3015c.jpg", "page_url": "./proje-maslak-hub-lounge-restoran.html", "short_challenge": "Açık mutfak koku & yağ buharının salona kaçması", "short_result": "%34 Enerji Tasarrufu & Sıfır Koku", "challenge": "Açık mutfak ve geniş salonun bir arada olduğu 850 m² alanda yoğun ızgara koku ve yağ buharının misafir alanlarına sızması; mimari tasarım gereği tavan kanallarının tamamen görünür olması zorunluluğu.", "approach": "EN 16282 standardına uygun mutfak egzoz debisi hesabı (18.000 m³/h); salon tarafında konforlu hava hızı (&lt;0.20 m/s) ve düşük ses seviyesi (&lt;35 dBA) sağlayacak psikrometrik ve CFD hava dağılım modellemesi.", "solution": "Mimari konseptle bütünleşen RAL 7016 antrasit boyalı Spiromatic contalı spiral kanallar, çift cidarlı santrifüj mutfak egzoz aspiratörleri, UV-C ve elektrostatik yağ-koku tutucu filtre üniteleri.", "results": "Açık mutfaktan salona %0 koku geçişi sağlandı; plakalı ısı geri kazanım (HRV) ile %34 enerji tasarrufu elde edildi; 16 iş gününde akredite TAB raporu ile teslim edildi.", "standards": ["EN 16282", "EN 1507 Class C", "ErP 2018", "TSE EN 1886"], "documents": ["Akredite TAB Raporu", "2 Yıl İmalat & Montaj Garantisi", "As-Built Çizim Seti"]}, {"id": "kosebasi-zorlu", "title": "Köşebaşı Kebap Zorlu Center", "category": "Restoran & Yeme-İçme", "location": "Zincirlikuyu, Beşiktaş", "capacity": "24.000 m³/h Debi • Yangına Dayanıklı Egzoz", "photo": "./sm/ambar/koca_fotogal_7dcf2b3f2ac8d480ae68dd64d612f5b8.jpg", "page_url": "./proje-kosebasi-kebap-zorlu-center.html", "short_challenge": "Odun kömürü ızgara dumanı & katı AVM yangın kuralları", "short_result": "400°C/2h Yangın Onayı & %0 Duman", "challenge": "Yoğun odun kömürü ızgara dumanı ve yüksek sıcaklıklı yağ buharı yükü; AVM yönetiminin katı yangın ve koku sınır değerleri.", "approach": "NFPA 96 ve TSE standartlarına uygun yangına dayanıklı (2 saat) egzoz hattı ve elektrostatik filtre debi optimizasyonu simülasyonu.", "solution": "1.2 mm kaynaklı siyah sac kanal imalatı, taşyünü izolasyonlu duman damperi, 3 kademeli elektrostatik filtre ve otomatik davlumbaz yangın söndürme sistemi.", "results": "AVM baca standartlarına %100 uyum sağlandı; sıfır koku şikayeti ile 400°C/2h yangın dayanım sertifikasyonu alındı.", "standards": ["NFPA 96", "DIN 18869", "EN 1366-2", "CE Standartları"], "documents": ["İtfaiye Kabul Belgesi", "TAB Balans Sertifikası", "Yangın Damperi Periyodik Test Raporu"]}, {"id": "emirgan-sutis", "title": "Emirgan Sütiş Vadistanbul", "category": "Restoran & Yeme-İçme", "location": "Ayazağa, Vadistanbul", "capacity": "22.500 m³/h Debi • HRV Isı Geri Kazanım", "photo": "./sm/ambar/koca_fotogal_02b706c473c6dfb44960fefe0f2df887.jpg", "page_url": "./proje-emirgan-sutis-vadistanbul.html", "short_challenge": "Sıcak tatlı pişirme nem yükü & açık teras basınç dengesi", "short_result": "Sabit %50 Nem & %28 Elektrik Tasarrufu", "challenge": "Sürekli tatlı ve sıcak yemek pişirme kaynaklı nem ve buhar yükü; açık teras ve kapalı salon arasında basınç dengesi sağlama ihtiyacı.", "approach": "Pozitif basınçlandırma ve mahal bazlı debi simülasyonu; DIN 1946 standartlarında taze hava oranlarının belirlenmesi.", "solution": "Hijyenik hava şartlandırma klima santrali (AHU), lineer slot difüzörlerle homojen hava dağılımı, frekans konvertörlü egzoz fanları.", "results": "İç ortam bağıl nemi %45–55 aralığında sabitlendi; teras açıldığında bile hava akımı kontrol altında tutuldu; %28 elektrik tüketimi tasarrufu sağlandı.", "standards": ["DIN 1946", "EN 13779", "Eurovent Certified", "TSE EN 1886"], "documents": ["TAB Hava Debisi Raporu", "2 Yıl Garanti Belgesi", "Otomasyon Entegrasyon Kılavuzu"]}, {"id": "punto-akasya", "title": "Punto Akasya AVM", "category": "AVM & Mağazacılık", "location": "Üsküdar, İstanbul", "capacity": "12.000 m³/h Debi • VRF Entegrasyonu", "photo": "./sm/ambar/koca_fotogal_4e388981b679c0134ecad7ce6bc0ad21.jpg", "page_url": "./proje-punto-akasya-avm.html", "short_challenge": "Deri giyimde koku hassasiyeti & sessiz iklimlendirme", "short_result": "&lt;28 dBA Ses & ±0.5°C Sabit Sıcaklık", "challenge": "Lüks deri giyim mağazasında ürünlerin kokudan ve neme bağlı yıpranmadan korunması; son derece sessiz ve homojen iklimlendirme gereksinimi.", "approach": "ASHRAE 55 konfor standardı ve Eurovent sertifikalı VRF gizli tavan üniteleri ile CFD hava akım modellemesi.", "solution": "Mikro delikli swirl difüzörler, kendinden flanşlı galvaniz hava kanalları, değişken debili VRF iç üniteleri ve taze hava HRV ünitesi.", "results": "Mağaza içi sıcaklık farkı ±0.5°C'ye indirildi; ses seviyesi 28 dBA altına çekildi; 10 günde gece çalışmasıyla mağaza kapanmadan teslim edildi.", "standards": ["ASHRAE 55", "EN 1507 Class C", "Eurovent VRF", "ISO 9001"], "documents": ["Akustik Ses Ölçüm Raporu", "TAB Devreye Alma Belgesi", "2 Yıl Sistem Garantisi"]}, {"id": "punto-zorlu", "title": "Punto Zorlu Center", "category": "AVM & Mağazacılık", "location": "Zincirlikuyu, İstanbul", "capacity": "14.000 m³/h Debi • Akustik İzolasyon", "photo": "./sm/ambar/koca_fotogal_7dcf2b3f2ac8d480ae68dd64d612f5b8.jpg", "page_url": "./proje-punto-zorlu-center.html", "short_challenge": "Kısıtlı tavan kotu & mimari aydınlatma çakışmaları", "short_result": "Kot Kaybı Yok & 14.000 m³/h Tam Debi", "challenge": "AVM tavan kotunun kısıtlı olması, yüksek taze hava debisi ihtiyacı ve mimari spot aydınlatmalarla kanal koordinasyonu.", "approach": "3D Revit BIM modelleme ile çakışma (clash) testi; yassı oval kanal tasarımıyla tavan hacmini %30 koruma yaklaşımı.", "solution": "Özel imalat yassı oval spiral kanallar, akustik ses susturucuları, akıllı oda termostatları ve oransal damper kontrolü.", "results": "Mimari kot kayıpsız tamamlandı; debi ölçümlerinde hedeflenen 14.000 m³/h tam değerine ulaşıldı; TAB test raporu AVM yönetimi tarafından onaylandı.", "standards": ["BIM Level 2", "EN 1507 Class C", "TSE EN 12599", "Eurovent"], "documents": ["Revit As-Built Paftaları", "TAB Balans Raporu", "AVM Teknik Onay Belgesi"]}, {"id": "siemens-fabrika", "title": "Siemens Endüstriyel Üretim Tesisi", "category": "Endüstriyel & Fabrika", "location": "Gebze Organize Sanayi Bölgesi", "capacity": "85.000 m³/h Debi • Class C Sızdırmaz", "photo": "./sm/ambar/koca_fotogal_910f18c72e6d8ef46ca92734073d84ef.jpg", "page_url": "./proje-siemens-endustriyel-uretim-tesisi.html", "short_challenge": "Ağır kaynak dumanı, metal tozu & ISG limitleri", "short_result": "%92 Partikül Düşüşü & %38 Gaz Tasarrufu", "challenge": "Ağır sanayi kaynak, taşlama ve talaşlı imalat holünde yüksek toz, partikül ve kaynak dumanı birikimi; işçi sağlığı ve ISG mevzuatı riskleri.", "approach": "EN 1507 Class C sızdırmazlık standardında kanal güzergâhı tasarımı; mahal bazlı partikül konsantrasyonu ve egzoz debisi analizi.", "solution": "85.000 m³/h kapasiteli torba filtreli endüstriyel klima santralleri, lokal akrobat emiş kolları, siklon partikül ayırıcılar ve çatı tipi radyal fanlar.", "results": "Üretim holündeki partikül yoğunluğu %92 oranında azaltıldı; ISG denetimlerinden tam not alındı; ısı geri kazanım rotoru ile kış aylarında %38 doğalgaz tasarrufu sağlandı.", "standards": ["TSE EN 1507 Class C", "EN 1886 T2/TB2/L1/D1", "ErP 2018", "DIN 1946-4"], "documents": ["Sızdırmazlık Basınç Test Raporu", "TAB Kabul Belgesi", "ISG Ortam Ölçüm Sertifikası"]}, {"id": "morini-zorlu", "title": "Morini Zorlu Center", "category": "Restoran & Yeme-İçme", "location": "Beşiktaş, İstanbul", "capacity": "16.000 m³/h Debi • Akustik Susturucu", "photo": "./sm/ambar/koca_fotogal_5cac43c34ab4f641e5a2f5416c24e236.jpg", "page_url": "./proje-morini-zorlu-center.html", "short_challenge": "Taş fırın ısı yükünün salona taşması & gürültü kısıtı", "short_result": "Sıfır Fırın Isı Yayılımı & %25 Düşük Gider", "challenge": "İtalyan restoranı konseptinde taş fırın ve açık mutfak ısı yükünün salona yayılmasını engellemek; salon içinde sıfır akustik gürültü.", "approach": "Mutfak için negatif, salon için pozitif hava basıncı senaryosu; VAV (Değişken Hava Hacmi) simülasyonu.", "solution": "Çift cidarlı galvaniz davlumbaz kanalları, aktif karbon ve elektrostatik koku tutucu filtreler, inverter motorlu egzoz fanı.", "results": "Salon taze hava kalitesi korundu; fırın ısısı doğrudan dışarı tahliye edildi; işletme maliyeti %25 düştü.", "standards": ["EN 16282", "EN 13779", "DIN 18869", "CE"], "documents": ["TAB Ölçüm Protokolü", "Filtre Değişim Kılavuzu", "2 Yıl Garanti"]}, {"id": "faik-sonmez", "title": "Faik Sönmez Genel Merkez & Mağazaları", "category": "AVM & Mağazacılık", "location": "Güneşli, İstanbul", "capacity": "35.000 m³/h Debi • Çift Cidarlı AHU", "photo": "./sm/ambar/koca_fotogal_1974677cca99f6e23ae15fda8ccfc95c.jpg", "page_url": "./proje-faik-sonmez-genel-merkez-magazalari.html", "short_challenge": "Tekstil tozlarının taze havaya karışması & 4 katlı ısı dengesi", "short_result": "IAQ A Sınıfı Hava & %31 İklimlendirme Tasarrufu", "challenge": "Tekstil merkezinde kumaş tozlarının taze hava kanallarına girmesi ve 4 katlı ofis binasında homojen sıcaklık sağlanamaması.", "approach": "Merkez bina için merkezi AHU + VRF hibrit sistem tasarımı; kademeli G4+F7 filtreleme ve zoning analizi.", "solution": "2 adet 17.500 m³/h çift cidarlı klima santrali, 8 zonlu VRF sistemi, EN 1507 Class C galvaniz hava kanalları ve slot difüzörler.", "results": "Kumaş partikülleri filtrelendi; ofis içi hava kalitesi IAQ standartlarına yükseldi; yıllık iklimlendirme giderinde %31 net tasarruf elde edildi.", "standards": ["EN 13779 IDA-2", "EN 1507 Class C", "Eurovent AHU", "TSE EN 1886"], "documents": ["Akredite TAB Raporu", "2 Yıl Kapsamlı Garanti", "Enerji Verimlilik Denetim Belgesi"]}, {"id": "damat-tween", "title": "Damat Tween Brandium AVM", "category": "AVM & Mağazacılık", "location": "Ataşehir, İstanbul", "capacity": "11.500 m³/h Debi • Slot Lineer Difüzör", "photo": "./sm/ambar/koca_fotogal_dfc1f1e42653357ad18ccbc99f8376b3.jpg", "page_url": "./proje-damat-tween-brandium-avm.html", "short_challenge": "Vitrin aydınlatması ısı adacıkları & camda buğulanma", "short_result": "Sıfır Vitrin Buğulanması & 8 Günde Teslim", "challenge": "Yüksek vitrin aydınlatmaları kaynaklı lokal ısı adacıkları ve vitrin camlarında buğulanma riski.", "approach": "Vitrin arkası lineer slot üfleme ve CFD ısı yükü simülasyonu.", "solution": "İnce kesitli slot difüzörler, kompakt HRV ısı geri kazanım ünitesi, sessiz kanal tipi fanlar.", "results": "Vitrin camı terleme ve buğulanması tamamen önlendi; şık mağaza mimarisi bozulmadan 8 iş gününde devreye alındı.", "standards": ["ASHRAE 62.1", "EN 1507 Class B", "ErP 2018", "CE"], "documents": ["TAB Hız Kalibrasyon Raporu", "2 Yıl Garanti", "As-Built Şema"]}, {"id": "kitchenette-bebek", "title": "Kitchenette Bebek & Kanyon", "category": "Restoran & Yeme-İçme", "location": "Beşiktaş & Levent", "capacity": "22.000 m³/h Debi • Elektrostatik Filtre", "photo": "./sm/ambar/koca_fotogal_38ce38c54201407528bf968fb7a6f6aa.jpg", "page_url": "./proje-kitchenette-bebek-kanyon.html", "short_challenge": "Pik saatlerde ani koku & komşu binalardan şikayet riski", "short_result": "Sıfır Çevre Şikayeti & %40 Pik Dışı Enerji Tasarrufu", "challenge": "Yoğun barbekü ve kahvaltı servis saatlerinde ani yükselen koku ve duman yükü; Bebek sahil hattında komşulardan şikayet riski.", "approach": "Değişken hızlı frekans invertörleri (VFD) ile pik saatlere göre dinamik debi kontrolü ve 3 kademeli filtre tasarımı.", "solution": "Otomatik damper kontrollü mutfak egzoz ünitesi, elektrostatik filtre bataryası, ses yutucu susturucular.", "results": "Mahalle ve çevre apartmanlardan sıfır koku şikayeti; düşük yük saatlerinde fan devri kısılarak %40 elektrik tasarrufu sağlandı.", "standards": ["EN 16282", "NFPA 96", "DIN 18869", "CE"], "documents": ["Çevre Koku Uygunluk Raporu", "TAB Raporu", "Garanti Belgesi"]}, {"id": "cevahir-avm", "title": "Cevahir AVM Mağazalar Grubu", "category": "AVM & Mağazacılık", "location": "Mecidiyeköy, İstanbul", "capacity": "28.000 m³/h Debi • Duman Damperleri", "photo": "./sm/ambar/koca_fotogal_484c8b3a0660cbabdad309952e7d135b.jpg", "page_url": "./proje-cevahir-avm-magazalar-grubu.html", "short_challenge": "Ana şaft bağlantı basınç kaybı & yangın zonu geçişi", "short_result": "%3 Altı Basınç Kaybı & İtfaiye Tek Seferde Onay", "challenge": "AVM ana hava şaftına bağlantı basınç kayıpları ve yangın zonu geçişlerinde katı yangın yönetmeliği zorunlulukları.", "approach": "Statik basınç kaybı hesaplamaları ve yangın kompartıman analizi.", "solution": "Motorlu yangın ve duman damperleri, Class C kendinden flanşlı galvaniz hava kanalları, diferansiyel basınç sensörleri.", "results": "Yangın senaryosu itfaiye ve bina yönetimi testlerinden tek seferde geçti; debi kayıpları %3'ün altında tutuldu.", "standards": ["EN 1366-2 Yangın Damperi", "EN 1507 Class C", "TSE K 580"], "documents": ["Yangın Damperi Test Protokolü", "TAB Basınç Raporu", "As-Built Paftaları"]}, {"id": "midpoint-nisantasi", "title": "Midpoint Nişantaşı", "category": "Restoran & Yeme-İçme", "location": "Nişantaşı, İstanbul", "capacity": "19.500 m³/h Debi • Akustik İzolasyon", "photo": "./sm/ambar/koca_fotogal_bf461e4d8a953e679ce3227615ce1f67.jpg", "page_url": "./proje-midpoint-nisantasi.html", "short_challenge": "Tarihi binada düşük tavan kotu & &lt;40 dBA dış ses limiti", "short_result": "Sıfır Çevre Sesi & Tarihi Dokuya Tam Uyum", "challenge": "Tarihi bina yapısı nedeniyle düşük tavan yüksekliği ve dış ünite yerleşiminde ses kısıtlaması (&lt;40 dBA).", "approach": "Akustik simülasyon ve düşük profilli özel santral gövdesi tasarımı.", "solution": "Akustik panelli çift cidarlı AHU, susturuculu menfezler, titreşim yalıtımlı yaylı izolatörler.", "results": "Çevre konutlara sıfır ses intikali sağlandı; tarihi cepheye zarar vermeden özel şaft güzergâhı üzerinden tamamlandı.", "standards": ["TSE EN 1886 Akustik T2/TB2", "DIN 4109", "CE"], "documents": ["Akustik Desibel Ölçüm Raporu", "TAB Protokolü", "2 Yıl Garanti"]}, {"id": "hasel-plaza", "title": "Hasel İstif Makinaları Plaza & Servis", "category": "Plaza & Ticari", "location": "Kartal, İstanbul", "capacity": "30.000 m³/h Debi • CO Sensörlü Egzoz", "photo": "./sm/ambar/koca_fotogal_a19c98a13b30cc3a7002daf12b94817b.jpg", "page_url": "./proje-hasel-istif-makinalari-plaza-servis.html", "short_challenge": "Servis atölyesi egzoz gazının (CO) plazaya karışma riski", "short_result": "%70 Emniyet Marjı & Sıfır Gaz Karışımı", "challenge": "Forklift servis atölyesindeki egzoz gazı (CO, NOx) ile showroom ve plazanın taze hava ayrımının kesin çizgilerle yapılması.", "approach": "Gaz algılama sensörlerine entegre kademeli egzoz kontrolü ve showroom pozitif basınçlandırma.", "solution": "Karbonmonoksit sensörlü jet fan tahliye sistemi, showroom için bağımsız hijyenik klima santrali ve VRF ısı pompası.", "results": "Atölye gaz seviyeleri güvenlik sınırının %70 altında tutuldu; showroom havasına sıfır gaz karışımı garanti edildi.", "standards": ["EN 1507 Class C", "EN 50545-1 CO Algılama", "TSE EN 12101-3"], "documents": ["Gaz Algılama Devreye Alma Raporu", "TAB Sertifikası", "Garanti Belgesi"]}, {"id": "kimya-fabrikasi", "title": "Organize Sanayi Kimya Fabrikası", "category": "Endüstriyel & Fabrika", "location": "Tuzla Kimyacılar OSB", "capacity": "50.000 m³/h Debi • AISI 316L Paslanmaz", "photo": "./sm/ambar/koca_fotogal_8b6a466ed354146bb946beeb058166a4.jpg", "page_url": "./proje-organize-sanayi-kimya-fabrikasi.html", "short_challenge": "Korozif asit buharı çürütme riski & ATEX patlama emniyeti", "short_result": "10 Yıl Korozyon Garantisi & ATEX Sertifikası", "challenge": "Korozif asidik ve kimyasal buharların standart galvaniz kanalları çürütme riski ve ex-proof (patlama korumalı) gereksinimler.", "approach": "ATEX direktifleri ve kimyasal korozyon dayanım analizleri; AISI 316L paslanmaz çelik malzeme seçimi.", "solution": "316L paslanmaz çelik kaynaklı sızdırmaz hava kanalları, ex-proof kimyasal salyangoz fanlar, asit gazı yıkama (scrubber) kulesi.", "results": "10 yıl korozyonsuz çalışma ömrü; ATEX resmi uygunluk belgesi ve sıfır emisyon sızıntısı ile çevre denetim onayı.", "standards": ["ATEX 2014/34/EU", "EN 1507 Class D", "AISI 316L Standartları"], "documents": ["ATEX Uygunluk Sertifikası", "TAB Balans Raporu", "Kaynak Radyografi Raporu"]}, {"id": "sky-group-fabrika", "title": "Sky Group İmalat Sahası & CNC Parkuru", "category": "Endüstriyel & Fabrika", "location": "Kocaeli Fabrika & Üretim Tesisimiz", "capacity": "60.000 m³/h Debi • Çift Rotorlu Isı Geri Kazanım", "photo": "./sm/ambar/koca_fotogal_bb3b74f63d4c55312eb731d8454870d6.jpg", "page_url": "./proje-sky-group-imalat-sahasi-cnc-parkuru.html", "short_challenge": "Fiber lazer kesim metal tozu, ozon & yüksek ısı", "short_result": "Sabit +20°C & Atık Isıyla %45 Doğalgaz Tasarrufu", "challenge": "Fiber lazer kesim, plazma kesim ve otomatik flanş büküm makinelerinin ürettiği metal tozu, ozon ve yüksek sıcaklık yükü.", "approach": "Kendi mühendislik ekibimizce tasarlanan fabrika içi kapalı çevrim ısı geri kazanımlı proses havalandırması.", "solution": "Çift rotorlu yüksek verimli klima santralleri, otomatik kendini temizleyen kartuş filtreler, yüksek kot jet nozullar.", "results": "Fabrika içi sıcaklık kışın +20°C'de sabitlendi; atık kesim ısısı binanın ısıtmasında kullanılarak %45 enerji tasarrufu sağlandı.", "standards": ["TSE EN 1886", "ErP 2018 EcoDesign", "EN 1507 Class C", "Eurovent"], "documents": ["Akredite TAB Raporu", "Enerji Verimlilik Ölçüm Raporu", "İmalatçı Fabrika Garantisi"]}];
+
+    window.openCaseStudy = function(projectId) {
+      const data = SKY_CASE_STUDIES.find(p => p.id === projectId);
+      if (!data) return;
+
+      const modal = document.getElementById('sky-case-modal');
+      if (!modal) return;
+
+      document.getElementById('scm-category').textContent = data.category;
+      document.getElementById('scm-location').textContent = data.location;
+      document.getElementById('scm-title').textContent = data.title;
+      document.getElementById('scm-capacity').textContent = data.capacity;
+      document.getElementById('scm-challenge').textContent = data.challenge;
+      document.getElementById('scm-approach').textContent = data.approach;
+      document.getElementById('scm-solution').textContent = data.solution;
+      document.getElementById('scm-results').textContent = data.results;
+
+      const stdBox = document.getElementById('scm-standards');
+      stdBox.innerHTML = '';
+      data.standards.forEach(std => {
+        const span = document.createElement('span');
+        span.className = 'px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700 border border-slate-200';
+        span.textContent = std;
+        stdBox.appendChild(span);
+      });
+
+      const docBox = document.getElementById('scm-documents');
+      docBox.innerHTML = '';
+      data.documents.forEach(doc => {
+        const span = document.createElement('span');
+        span.className = 'px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center gap-1';
+        span.innerHTML = '✓ ' + doc;
+        docBox.appendChild(span);
+      });
+
+      const pageLink = document.getElementById('scm-page-link');
+      if (pageLink) pageLink.href = data.page_url;
+
+      const ctaBtn = document.getElementById('scm-cta-btn');
+      if (ctaBtn) {
+        ctaBtn.onclick = function() {
+          closeCaseStudy();
+          if (typeof openQuoteModal === 'function') {
+            openQuoteModal(data.title + ' Benzeri Keşif ve Debi Analizi Talebi');
+          }
+        };
+      }
+
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeCaseStudy = function() {
+      const modal = document.getElementById('sky-case-modal');
+      if (!modal) return;
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    // Case study backdrop click
+    const cModal = document.getElementById('sky-case-modal');
+    if (cModal) {
+      cModal.addEventListener('click', function(e) {
+        if (e.target === cModal) closeCaseStudy();
+      });
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeCaseStudy();
+    });
+
+    function initMultiStepModal() {
+      const modal = document.getElementById('sky-quote-modal');
+      const modalClose = document.getElementById('sky-modal-close');
+
+      if (modalClose) {
+        modalClose.addEventListener('click', closeQuoteModal);
+      }
+
+      if (modal) {
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            closeQuoteModal();
+          }
         });
       }
 
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
           closeQuoteModal();
-          closeNav();
-          toggleMobileMenu(true);
         }
       });
 
-      document.querySelectorAll('[data-sky-modal-trigger]').forEach(el => {
-        el.addEventListener('click', function(e) {
-          e.preventDefault();
-          const ctx = el.getAttribute('data-sky-modal-trigger') || '';
-          openQuoteModal(ctx);
+      // Sector cards click handler
+      document.querySelectorAll('.sky-choice-card').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const sector = btn.getAttribute('data-sector');
+          const hiddenInput = document.getElementById('sky-selected-sector');
+          if (hiddenInput && sector) hiddenInput.value = sector;
+
+          document.querySelectorAll('.sky-choice-card').forEach(b => {
+            b.classList.remove('border-[#0284c7]', 'bg-cyan-50/60', 'ring-1', 'ring-[#09bde3]');
+            b.classList.add('border-slate-200', 'bg-slate-50/80');
+          });
+          btn.classList.remove('border-slate-200', 'bg-slate-50/80');
+          btn.classList.add('border-[#0284c7]', 'bg-cyan-50/60', 'ring-1', 'ring-[#09bde3]');
         });
       });
 
-      if (quoteForm) {
-        quoteForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-          const successNotice = document.getElementById('sky-form-success');
-          const submitBtn = quoteForm.querySelector('button[type="submit"]');
-          if (submitBtn) {
-            submitBtn.disabled = true;
-            submitBtn.style.opacity = '0.5';
-            submitBtn.innerText = 'Gönderiliyor...';
-          }
-          setTimeout(() => {
-            if (successNotice) successNotice.classList.remove('hidden');
-            if (submitBtn) submitBtn.style.display = 'none';
-            setTimeout(() => {
-              closeQuoteModal();
-              quoteForm.reset();
-              if (successNotice) successNotice.classList.add('hidden');
-              if (submitBtn) {
-                submitBtn.disabled = false;
-                submitBtn.style.opacity = '1';
-                submitBtn.style.display = 'flex';
-                submitBtn.innerText = 'Teklif Talebini Gönder';
-              }
-            }, 3000);
-          }, 600);
+      // Area cards click handler
+      document.querySelectorAll('.sky-area-card').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const area = btn.getAttribute('data-area');
+          const hiddenInput = document.getElementById('sky-selected-area');
+          if (hiddenInput && area) hiddenInput.value = area;
+
+          document.querySelectorAll('.sky-area-card').forEach(b => {
+            b.classList.remove('border-[#0284c7]', 'bg-cyan-50/60', 'text-[#0284c7]', 'ring-1', 'ring-[#09bde3]');
+            b.classList.add('border-slate-200', 'bg-white', 'text-slate-700');
+          });
+          btn.classList.remove('border-slate-200', 'bg-white', 'text-slate-700');
+          btn.classList.add('border-[#0284c7]', 'bg-cyan-50/60', 'text-[#0284c7]', 'ring-1', 'ring-[#09bde3]');
         });
-      }
-    })();
+      });
+
+      // Status cards click handler
+      document.querySelectorAll('.sky-status-card').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const status = btn.getAttribute('data-status');
+          const hiddenInput = document.getElementById('sky-selected-status');
+          if (hiddenInput && status) hiddenInput.value = status;
+
+          document.querySelectorAll('.sky-status-card').forEach(b => {
+            b.classList.remove('border-[#0284c7]', 'bg-cyan-50/60', 'text-[#0284c7]', 'ring-1', 'ring-[#09bde3]');
+            b.classList.add('border-slate-200', 'bg-white', 'text-slate-700');
+          });
+          btn.classList.remove('border-slate-200', 'bg-white', 'text-slate-700');
+          btn.classList.add('border-[#0284c7]', 'bg-cyan-50/60', 'text-[#0284c7]', 'ring-1', 'ring-[#09bde3]');
+        });
+      });
+
+      // Connect trigger elements with data-sky-modal-trigger or matching attributes
+      document.querySelectorAll('[data-sky-modal-trigger], [data-bcc-pricing-modal], a[href*="/get-started"], a[href*="/waitlist"], a[href="#sky-quote-modal"]').forEach(el => {
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = el.getAttribute('data-sky-modal-trigger') || 'Ücretsiz Keşif & Debi Analizi Talebi';
+          openQuoteModal(target);
+        });
+      });
+
+      // Also connect any buttons that have "Teklif" or "Keşif"
+      document.querySelectorAll('button').forEach(btn => {
+        const text = btn.innerText.trim();
+        if ((text.includes('Teklif') || text.includes('Keşif') || text.includes('Keşif Talebi')) && 
+            !btn.getAttribute('onclick') && 
+            !btn.classList.contains('sky-choice-card') && 
+            !btn.classList.contains('sky-area-card') && 
+            !btn.classList.contains('sky-status-card') &&
+            !btn.getAttribute('data-bcc-core-rain-trigger')) {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            openQuoteModal('teklif');
+          });
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMultiStepModal);
+    } else {
+      initMultiStepModal();
+    }
+  })();
   </script>
 
 </body>

@@ -584,7 +584,68 @@
       transform: translateX(4px) !important;
     }
 
-  </style>
+  
+    /* Infinite Marquee Brand & Partner Logos */
+    @keyframes skyMarqueeScroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+    .sky-marquee-container {
+      position: relative !important;
+      overflow: hidden !important;
+      width: 100% !important;
+      padding: 0.5rem 0 !important;
+      mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent) !important;
+      -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent) !important;
+    }
+    .sky-marquee-track {
+      display: flex !important;
+      width: max-content !important;
+      gap: 1rem !important;
+      animation: skyMarqueeScroll 45s linear infinite !important;
+    }
+    .sky-marquee-container:hover .sky-marquee-track {
+      animation-play-state: paused !important;
+    }
+    .sky-marquee-item {
+      width: 145px !important;
+      height: 72px !important;
+      background: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 8px !important;
+      padding: 0.65rem 1rem !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex-shrink: 0 !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
+      transition: all 0.2s ease !important;
+    }
+    .sky-marquee-item:hover {
+      border-color: #09bde3 !important;
+      box-shadow: 0 4px 12px rgba(9, 189, 227, 0.12) !important;
+      transform: translateY(-2px) !important;
+    }
+    .sky-marquee-item img {
+      max-height: 2.25rem !important;
+      max-width: 85% !important;
+      width: auto !important;
+      height: auto !important;
+      object-fit: contain !important;
+      filter: grayscale(100%) !important;
+      opacity: 0.72 !important;
+      transition: all 0.2s ease !important;
+    }
+    .sky-marquee-item:hover img {
+      filter: grayscale(0%) !important;
+      opacity: 1 !important;
+      transform: scale(1.06) !important;
+    }
+</style>
   <link rel="stylesheet" crossorigin href="./assets/MarketingLayout-9qZnFVC2.css">
 </head>
 <body class="bpc-theme">
@@ -998,11 +1059,6 @@
 
     </section>
 
-    <!-- HORIZONTAL DIVIDER -->
-    <div class="max-w-[1376px] mx-auto px-6 md:px-12">
-      <div class="border-t border-slate-200"></div>
-    </div>
-
     <!-- LOGOS & STANDARDS SECTION -->
     <section id="standartlar" class="max-w-[1376px] mx-auto px-6 md:px-12 py-12 md:py-16">
       <div class="text-center max-w-2xl mx-auto mb-10">
@@ -1010,159 +1066,200 @@
         <p class="text-sm md:text-base text-slate-600">Türkiye'nin öncü sanayi kuruluşları ve ticari projelerinde Sky Group imzası.</p>
       </div>
 
-      <div class="sky-logos-grid">
-        
-            <div class="sky-logo-card group">
-              <img src="./assets/1-BUMBq9QG.png" alt="Sky Group Referans Marka 1" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/2-ByYvawmm.png" alt="Sky Group Referans Marka 2" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/3-ZQQ1MB_e.png" alt="Sky Group Referans Marka 3" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/4-DyjWeKOz.png" alt="Sky Group Referans Marka 4" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/5-CLXuw--V.png" alt="Sky Group Referans Marka 5" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="data:image/png;base64,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" alt="Sky Group Referans Marka 6" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/7-Bi4enpN4.png" alt="Sky Group Referans Marka 7" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/8-VCNBVTmv.png" alt="Sky Group Referans Marka 8" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/9-BKz0lTDF.png" alt="Sky Group Referans Marka 9" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/10-C0kESmNA.png" alt="Sky Group Referans Marka 10" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/11-LIKaAvxC.png" alt="Sky Group Referans Marka 11" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/12-CSJ1TGfn.png" alt="Sky Group Referans Marka 12" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/13-glmnJk0-.png" alt="Sky Group Referans Marka 13" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/14-CnBYGRQw.png" alt="Sky Group Referans Marka 14" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/15-DYzBc5zV.png" alt="Sky Group Referans Marka 15" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/16-BJ1WygWM.png" alt="Sky Group Referans Marka 16" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/17-BWihiOYD.png" alt="Sky Group Referans Marka 17" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/18-uMNZvV1I.png" alt="Sky Group Referans Marka 18" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/19-Czn8OCVM.png" alt="Sky Group Referans Marka 19" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/20-Jz_XD3U9.png" alt="Sky Group Referans Marka 20" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBhAPEQ4NDw8RDA0PDREPDRAPEA8QDQ8QExwhFBQSFxMXJyYeFyUjGhIVKzEgIyc1LDgtFR4yNTA2NTIrMSoBCQoKDQwMFAwPFikYFhgpKSwpLCkpKSkpKSkpKSkpKSkpLCkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKf/AABEIAKAAoAMBIgACEQEDEQH/xAAcAAEBAAMBAQEBAAAAAAAAAAAACAEFBwYEAgP/xAA/EAABAwIBCAcFBQcFAAAAAAABAAIDBBEFBxIXITVUstEGEzFzdJOjIjJBUZEIFGGBtDM2cYKhs9IjJUJywf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/8QAFREBAQAAAAAAAAAAAAAAAAAAABH/2gAMAwEAAhEDEQA/AOtY7j0FBC6qqn9VAxzWudmudYuNm6hr7V5jTRgm+ehPyXz5c9jVPfU/GFMSCpdNGCb4fIn5JpowTfT5E/JS0isFS6aME3w+RPyTTRgm+HyJ+SlpEgqXTRgm+HyJ+SaaME3w+RPyUtIkFS6aME3w+RPyTTRgm+nyJ+SlpEgqXTRgm+HyJ+SaaME30+RPyUtIkFS6aME30+RPyTTRgm+HyJ+SlpEgqXTRgm+HyJ+SaaME30+RPyUtIkFS6aME3z0J+SaaME30+RPyUtIkFS6aME30+RPyXq8JxWKrhjqqd3WQStzo3WLc4Xtex1jWCowVX5Kdj4b4c8blBrcuexqnvqfjCmFU7lz2NU9/T8YUxKgiIgIiICIiAiIgIiICIiAiIgIiIMqr8lOx8N8OeNylBVfkp2PhvhzxuUGsy57Gqe/p+MKYlTuXLY1T31PxhTEqCIiAiLNkGEREBERAREQEREBFmywgIiIMqr8lOx8M8OeNylBVfkp2PhvhzxuUGsy57Gqe/p+MKYlTuXLY1T31PxhTEqCIiDIXaOhGSahrMHNZMXfe5o5nxSh5DIMy7WDN7DrZrv8AMri4W9w/ptX09LLh8NS+Oklzs+MBvY7U8B3a2/xsUGicsLJWEBERAREQF9OG0nXTQwZwZ1srI849jc8ht/yuvmWWm2sakHYMrmTChw2igqqTPje2dsEofIX9cHAnO19hBb8LCxOpcfK3+M9MMQxNsFPUzyVQjIbAywu559kEgC73G9rnWvzV9DqiKMzHNcA0uIbnH2R2lrrZr7WN80nUCewFBoUREGVV+SnY+G+HPG5SgqvyU7Hw3w543KDW5c9jVPfU/GFMKp7Lnsap76n4wphVBERB9WGRRPljbUSOggLrSyMZ1j2N+YZcZ38Lrp2F5HqKspJq+kxV88UTJSQaTq3B8bc8sIL7j4fULlC7vkT2Ji3fVP6dqDi2DwU75mMqpn0tOb58scXXPbq1excX1/j8V0aTI7TSYfJitHiT6yNsL3xMFLmOke05vV2zrg31WsuVqi8lWIfdujr6mwPUffJgD2EsJc0fUBByOq6PYfQOEGIT1MtYAPvENC2HMpidfVulkNnOF9YaLA6rra4rkxikoDjGFVL6ylYCZ4Zo2sqYQ33/AHdTs3tIsNWsErn89Q6RzpHuL3vcXPce1znG5J/iSV3H7PJ6ykxOneM6IzR3aew9awtd9QwIOGAX7Na90/J3DQU0VZjNRJSunF6eip42yVrx2kuLyGx2uO2/b89S/vkT6NNrMSD5G58NGz7wQRdrpAQ2IH+Y3/lXw5X8ddV4rV+1eOnd91iHwa2PU76vLkH86HovQ4i7qcNqZoq3NJipq5sTRUW1lsc8ZsHWGprmi/zWtwPBqN0k0OJVcuGSRvawAUrpvauRIHi4LM0gfU/JeqyEYdTT4i77w1r5Iqcy0jH9hla5t3AfEhpJH1+C12WgRDGKzqi03ERkzbW63MGf/VBtumOTZmBRUeKRVZrgayHNYYhE1zbGUHODidYZ/W60tT0qgbBmRu6zNiZHTs6rMlaWxyQXmf2O9mc2tfWNWaCQuhZZB/sWE95Sfp3LhCAiIgyqvyU7Hw3w543KUFV+SnY+G+HPG5QazLnsap7+n4wpiVPZc9jVPfU/GFMKoIiIC7xkT2Ji3fVP6dq4Ou8ZE9iYt31T+nag4QV3jof+6Vb3VbxLg67x0Q/dKt7qt4kHBl3b7OH7HE++p+F64Su7fZw/Y4n31PwvQfj7OMYtir/+WfSt/L/UP/q5B0oeXVtc49pragn83uXTvs74qGVVfSE2M0LJmfiYSQR9JSf5Vzzp5QmDEsRiItatmcP+r3F7f6OCDRxylpDmktcOwgkEfmF+S6+s9qwsoO7ZZNhYT3lJ/YcuELu+WXYWE95Sf2HLhCgIiKjKq/JTsfDfDnjcpQVX5Kdj4b4c8blBrcuWxqnvqfjCmFU7lz2NU9/T8YUxKgiIg+3CMKlq5o6aAB00hIYHPawEgX951gNQVDZMuir6DDaqjqZoI56qSZ1mzRvEYfGIhcg2Pu31KbbpdB6+pyXYjHNFTFkDpJRIYi2pgMbhHYuOdfVqcO1dl6O9FHw4DNhMk1O2rmhqB+1Y6NrpTdrS4dvwufxU13S6DbdI+jFRh8jYalrGvezPb1ckcrS25b7zCfi06l1v7Ok7Gw4kHvay81PbOc0X9l3zXDrpdB7apwWv6PVVPXnqnZlQ4RPjmjkZM0e80gEloc0nt+fzXpenWBx4/mYxhBE9Q6Jra+iu0Vcbm6g/MPvatRtqNgR8bckuv1HKWkOaS0jsINiPzQerw/JpXOIfVxnCqRp/1qmstCxjfjZrvaefk0LY1mCS43ORhkcbMPoY4qOnM8sUJ6sXPWOBsSXnOcbC+teFmqXvN3uc8/NxLj9Sv53QUjlJ6KyVuF0lDTTQST0roCQ6WNgkEcZiNiTYdt9f4qecWwuSlmkppgGyxOzXhrmvaDa+pzbg6j8F8l0ugwiIgyqvyU7Hw3w543KUFV+SnY+GeHPG5QazLnsap7+n4wpiVO5ctjVPfU/GFMSoIiICIiAiIgIiICIiAiIgIiICIiDKq/JTsfDfDnjcpQVX5Kdj4b4c8blBrMuWxqnvqfjCmJU7lz2NU99T8YUxKgiIgIiICIiAiIgIiICIiAiIgIiIMqr8lOx8N8OeNylBVfkp2PhvhzxuUGsy57Gqe+p+MKY1ZeO4DBXQupapnWwOc1zm5zm3LTdusWPavMaGME3L1p+aCW7JZVJoYwTcvWn5poYwTcvWn/yQS2iqTQxgm5etPzTQxgm5etPzQS3ZLKpNDGCbl60/NNDGCbl60/NUS3ZLKpNDGCbl60/+SzoYwTcvWn5qCWrJZVJoYwTcvWn5poYwTcvWn5oJbsllUmhjBNy9afmmhjBNy9afmgluyWVSaGME3L1p+azoYwTcvWn5oJasllUmhjBNy9afmmhjBNy9afmqJbVX5Kdj4b4c8bl8mhjBNy9afmvWYVhUVJDHS07ergibmxtu52aL3tc6zrJUH//Z" alt="Sky Group Referans Marka 21" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIgAAACICAYAAAA8uqNSAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAxGSURBVHhe7Z1pqFZVF8e3mVlp2VxqVBg2T2qOoGQYWATaBPVBFMQvDRQFURElmIQfhFK0D34QREFEk0oxTYhm00ptnovmwcrSBrU67/6t7nre517PXbfnnufxw/v+f7A4w7PPOnuv/d9r732uYI+UUpFNiFIOajsKUYoEIkIkEBEigYgQCUSESCAiRAIRIRKICJFARIgEIkIkEBEigYgQCUSESCAiRAIRIRKICJFARIgEIkIkEBEigYgQCUSESCAiRAIRIRKICJFARIgEIkIkEBEigYgQCUSESCAiRAIRIRKICJFARIgEIkIkEBEigYgQCUSESCAiRAIRIRKICJFARIgEIkIkEBEigYgQCUSESCAiRAIRIZUF0rNnz7az7Oyg9u4OPvjgtjNxIKjvCzjssMPazrpPU/9DIa/gX3/9ZUcE06MHrxCtwmPNYDzkkEPS33//nf744w+71wyaKhDEgCi80qL1MCg7izf9URTVureyQOor6AIBKla1cqJryBzEn8xRD31B3/z5559td7pHZYE0Q6WiOr7eqyqIjlQWCPOerz327dtnSubaM4mmm9biWZtBiji47t27d+rVq5ed79y5s61k92jaGoRKUUEXhAukY+oTzaVsDVJ2r7tUFsj48ePT0UcfnY488kgTw969e025PvVoq9tayNoMRkRB1uBI1njnnXfS+++/b/1RhcoCufTSS60ye/bsMdUiCqYdrn3bFUHWoWEI7NNPP00nnXSSNZr7ffr0Sbt3706HH364+cbn77//ng499NB0xBFHWCDIXP/LMNAi+J3YIBLOidGZZ56ZTjjhhLRx40aLZRUqC2TYsGE1gSAGBEKHU7F/kz1QvJdF7f369Uu//vprbbFFwzGCQFnOXXSUqZqhulpgd9VBXVHVf1cDzOPhsSGGZ599djrxxBPT008/3VaqGrSg23bRRRcVeRS3u5cb3e46stywdtfuy+/nRrf7PWeP/e7J/jGPWRZIkTP7fr93xyp/amcEu/lo8FHt9yIjM9RPE2QiYFohEwGjAwOyDc8Bz3X016i5786s7JlGrMxnvZU9U29khcgoA36O1fuvSmWBkN7oZMzTqadFjtyLDGhcPTRy165dJgb37yLivJ4yn40Y/iMre6YRK/NZb2XPNGIO5+6PqRfrGKvu0BSBlFXWj/VqLzNU7usNIOuQPeCoo46yxSv4aALPLAioo79GzevemZU904iV+ay3smfqrSvKsoT7bgaVBVKWzvyco6e9zoydjnc01/VBmT59erriiivsnKnHhVFfpqO/Rs07ojMre6YRK/NZb2XPVDHAL7HnWJXqHurwCtbj009nhjiAKYRGsQpnF8M29uabb06XX365ZRFPm+B7e95X5rMR64qyZxqxrih7pt7qs02ZET+OZHLKg2f1ZlBZIF5BpgY62Le4sGLFijR79mw759sFv59zzjnppZdeSi+++KLZhx9+mObOnWtlvIFs0ZYuXZpOPfXUdNVVV6Unn3wyjRgxovb71VdfnV577bXUt29fu+Z7Ce+fNWtWevbZZ9PLL79sv69du9a24ffcc4+955NPPjG/+Af+vQT14rh8+fI0Y8YMCy71JLMdd9xx6eGHH05ff/112rp1a3r00UfTNddcU1sPIWLEO2/evPTGG2/YdxzeO3HixDRo0CArg4j5LkGbhw4dav69vo888kjasGFDeuyxx9J7772XXn311XT99denadOmpc8++yxt27YtPf744+nCCy+0d7oomHoXLlyYHnzwwXZZwgeoH5shksoCIZD8+wOmAEa4i4Mg5y1wGjdunJWhI+hgPuCMGjXKKk+meO6559Ktt95qwfIG8S3kzTfftExB53z//ff2VZDA0in4HjJkiAUK8MOzEyZMSGPHjk0//fSTfUQ799xz0yuvvJJuueUW+1azZcsWy0gEFz98dPvtt9+sHB1PpwGdQZsWLVpkz65atSp9/vnn1tHXXnutrZEQFQvpe++9N02dOjW98MILJs4dO3ak+++/P/34449WBkEgZATOF2cgRhh1veyyy9LgwYOtbtRn8eLFFgva+8EHH1gMET71JY7UkTpfcsklFscDAb3SbcuVtO8SueJ2zblf504qnnjiiVrZrOwid1Duy6LImcHK5UYXOSjF+vXrixzIIo/IWvnt27cXuZNqfvkGgt1+++3Fd999V5x11llFFo35oMzzzz9f5JFeZIHZde7QInd0cffdd9d8PvTQQ0XOJvYurnn2jDPOKL766qvixhtvNP9eFtatW1ecfPLJdu3PYDm72JE68s4s/Npv/fv3r51T7+HDh5uv0aNH2z3qzPHdd98tcgap+c8CsnILFiywa+J11113WRwvuOCCdt+bsoCK1atXm3+/R3mOxIXvIH5dxZoyxXhKhlxhG2FkE0YT6Y6M4EfK8gzZhNHFlES5U045xbLQL7/8YmWxAQMG1DLSsccea6MaIxsdf/zx9hme7IEP3o9vRj/PUA9GLNf45xqfmzZtskxE9sEnWYq64ouRzghlCuK5G264wTIVUweZjKnrgQcesOfJULTztttuM99MYbz3yy+/TFOmTEmnn3661dMzCHCNUWdvYxZH+uKLL2w687Zm8duRskwzTGOc+zci2vXzzz/XMmgrqSwQAkDDfOFIxxNsgkaKpVFc54FhQSWApEjS6THHHGPBogxl6Wg6iM7x8qRWOoJpxuF5x3c2vJd6UB9+d/EBwiGYvI968Q5E88MPP1gn8TudTnnq+u2331qdWB/wt6Hzzz8/3XTTTemtt95Kd955Z63zec/rr79u6xzS/XXXXZfmz5+f5syZY9eIGYiN14+jtw/zMoiUGHzzzTcmXCBGiJU6UifgvbSB2OCn1VQWiH+zoIF+DnQIQR84cKAFgkbTMOZbMgmZgnmaBhNwrukU/GDAHM+ilnmfEQb4xI+PeM4RGSAmRFAP7ybAvAtBkKnw5Z3A7zxPBqL+dBLZ6eKLL04fffSR/cGLOnz88ce28KRudBbvz1OJLbSfeuopy3aM/PPOO8/85unD/FFHxIoIaSsioZ7AEfMO53cEyXPcA2IAxBMfCIo4cY2AWk1lgRB8FwaN4hoYKStXrrS0zD06h0AxcvNaodYhNJhR8/bbb1uj8eGdzGqeVDpz5sxa4BmNdByBo5M8LRNoForPPPOM+UVIdBh+KUPwgY5md8U9zzAIgkUs9SLoLHJZ3N53333mY9myZeYXEfPXa58CmHbuuOMOa+uSJUvs/SxkJ0+ebDsSMgx15D2bN2828YFPeex82N0gUrIBfngv76IsbUC8+K0XDf6Y9ojDgaB0cfJvLaffIndou3u+YM2jyhZkufF2nTvRjlkIRR7Bdp47rsiNt3L+O5YDZAtIfssCK3JQ7D6+8kiysv4ef45FpC8WWfBxzCnajvjjHZznrGZHjGc45i21vYt3co93cp+64ou2cM37vS5ejkUx9ynL0euFP44saHPn2jn+MZ6jTl5ffPIcPuvfz6LdF+6U8Tbgm2v3i/kzzVykZiu9WWq80I2KYSNHjqz9FdErjxEED5SsteYDkHhznqfCIm+f9yvXHWM+4ORfkYXRdvbfc/b3pFNSNqtt0iqpkpROus6VtnKiNfh6DXJGsevTTjst5a17Wr9+fdsv1dhPNZ1ZWQZhj++Zgvv1Zf1c1jqjD3x68imN7zqTJk2y3zqWb9QqZ5AxY8bYAs+3jL5rQM1klVxJKydaBxkbiDUbARbKZJA1a9ZYf1SBP7vO/Oe0a8oEwtaLlTaVdIE4VLhqBUWMb53z2qO2U2PLTezZ6VSlcga58sorbZ2BULiHgpkHEQb3JJDWQqz5LuLi4DMAX1rZkvONhi17FSoLhIUp3yAQCeJwkZBRuCeBtJa87rB4kzEQh5/zMc8/IFahskCokKc5nwsdX4eIAwfiYLphB9mM+DckEPH/h7YYIkQCESESiAiRQESIBCJCJBARIoGIEAlEhEggIkQCESESiAiRQESIBCJCJBARIoGIEAlEhEggIkQCESESiAiRQESIBCJCJBARIoGIEAlEhEggIkQCESESiAiRQESIBCJCJBARIoGIEAlEhEggIkQCESESiAiRQESIBCJCJBARIoGIEAlEhEggIkQCESESiAiRQESIBCJCJBARIoGIEAlEhEggIkQCESESiAiRQESIBCJCJBARIoGIgJT+Ay+msxfQWpT7AAAAAElFTkSuQmCC" alt="Sky Group Referans Marka 22" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="data:image/png;base64,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" alt="Sky Group Referans Marka 23" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/24-DCDyCCvu.png" alt="Sky Group Referans Marka 24" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/25-C3FoeVcm.png" alt="Sky Group Referans Marka 25" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/26-CjkMgJv2.png" alt="Sky Group Referans Marka 26" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/27-7r5I56ty.png" alt="Sky Group Referans Marka 27" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/28-3Noa23Fz.png" alt="Sky Group Referans Marka 28" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/29-LzUG_BP6.png" alt="Sky Group Referans Marka 29" loading="lazy" />
-            </div>
-            
-
-            <div class="sky-logo-card group">
-              <img src="./assets/30-Om0Su-w6.png" alt="Sky Group Referans Marka 30" loading="lazy" />
-            </div>
-            
+            <!-- Infinite Sliding Marquee -->
+      <div class="sky-marquee-container">
+        <div class="sky-marquee-track">
+          <!-- Loop Track 1 -->
+          <div class="sky-marquee-item">
+            <img src="./assets/1-Di-wa7T9.png" alt="Sky Group Partner &amp; Standart 1" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/2-CYPoixfm.png" alt="Sky Group Partner &amp; Standart 2" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/3-Di-0B93x.png" alt="Sky Group Partner &amp; Standart 3" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/4-B9otPWQe.png" alt="Sky Group Partner &amp; Standart 4" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/5-Cam3A5TS.png" alt="Sky Group Partner &amp; Standart 5" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/6-CqEXar55.png" alt="Sky Group Partner &amp; Standart 6" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/7-DqfgB7-8.png" alt="Sky Group Partner &amp; Standart 7" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/8-BWO8sMCq.png" alt="Sky Group Partner &amp; Standart 8" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBhQPEREPDxQSFBUVGBcSGRgRFRkUIBgUGBUVFhgWFhsdJzIeHR0kGRIaIC8gIycsLSwsFh4xNTAqNSYrLCkBCQoKDgwOGg8PGisjHiQvNSosNS41KTQyLTUsLCkqNSw0NTAsNCksKSosLS8vLDQsLioqKTUsNS81NCksLCkxMf/AABEIAFIArwMBIgACEQEDEQH/xAAcAAACAwEBAQEAAAAAAAAAAAAABgMFBwQCAQj/xABFEAABAgMCCgQLBgQHAAAAAAABAAIDBBEGkgUHEhQXITFBUuFRcXOzExYiMjM0VGGBkbFCU5OhwdEjQ7LwFSQ1YnKDov/EABoBAQADAQEBAAAAAAAAAAAAAAACAwQFAQb/xAA1EQABAwIDBQYEBQUAAAAAAAABAAIDBBESE1EFFCExkUFTYXGBsSI0UvAyM3LB0RUjYqHh/9oADAMBAAIRAxEAPwC4tTbCZl5gwoTwG5EN2sV1uYCd/SqnSDOfeNu814t364ezg92EvLkyyvDyATzX3dFR07qdjnRtJIHYNEyaQpz7xt3mjSFOcbbvNLaFXnSalatwpu7b0CZNIU5xtu80aQpzjbd5pbQmdJqU3Cm7tvQJk0hTnG27zRpCnONt3mltCZ0mpTcKbu29AmTSFOcbbvNGkKc423eaW0JnSalNwpu7b0CZNIU5xtu80aQpzjbd5pbQmdJqU3Cm7tvQJk0hTnG27zRpCnONt3mltCZ0mpTcKbu29AmTSFOcbbvNGkKc423eaW0JnSalNwpu7b0CZNIU5xtu80aQpzjbd5pbQmdJqU3Cm7tvQJk0hTnG27zRpCnPvG3eaW0JnSalNwpu7b0CY9IM59427zTBY+1UxMvjCK+uQwOGTq1l4H0KzxNuLv0kz2be8arYJHmQAkrBtGjgZTPc1gB8hqFyW89cPZQe7CXUxW99cPZQe7CXVVN+YfNb6D5aP9I9kIR7lYwbOzLxVkvHI6fBuH1VYBPJanPa38Rsq5CtfFWb9mj3CjxVm/Zo9wr3A7RV58X1DqFVIVr4qzfs0e4UeKs37NHuFMDtEz4vqHUKqQusYJjeFzfwUTwvBk+Vsrs6l1eKs37NHuFMJPYpGWMc3DqFVIVr4qzfs0e4UeKs37NHuFMDtFHPi+odQqpCtfFWb9mj3CuGbkokF2RFY+G7oe0t+Vdq8LSOYUmyscbNcD6qBC+gbl3wbPzL9bZeOf8Ard+oQAnkpOe1v4jZV6Fa+Ks37NHuFHirN+zR7hXuB2irz4vqHUKqQrR9l5sAky8YAaySzcoJHA0eO0vgwokRo2ljaivR7z7gmE6KWbHa+IW8wuJN2Lr0kz2Te8alIimo9WtNuLr0kz2Te8araf8AMCxbU+Uf5fuFx299cPZQe7CopaWdFeyGwVc8hrR0kmivbe+uHsoPdhXWKnAXhIz5t48mF5La8ZGs/AfVeuZjmLfFVxzinoGyHsaPZOtlrFwZFjTkh8YjyojhU16G9AXy01sMycIbIEaO8ipENpo0e91NvuV1hLCDZeFEjxPNY0uPw3D3pJ0vwPuI3/n910HlsYwg2Xy0Ec9U8yuYZNeNvv0XPHxtPh0y5N7a7Mp2TXqqE+4NmXRYUOJEZkOc0OLa1pXXSvUsrlJg4awqx7gRCZ5QadzGa6H3ly15Rgc51yTcdit2nFFCGMazC4i54k28FSWptGZGGxzIT4znOoGsB2bySAaJWjY1IrGlzpKI0dLyQAd1SQuydxqwYUSJCMCOSxxZWgFaGldaU7bW5/xBkOFCZEhsBynB32nfZ2bgq5ZuZa70WuioCcLZYeB5uJPsF8sVaJzZxzzCMaPMOyQ4uyckE1d/fQFsqzLFNgGrok68bP4UOvT9p36fFaBhrCjZWBFjv2MaT1ncPiaBTpriO7lm2vgkqsuMcRYeunola02MpsnMOl2QvCloGUcsNo468n5LpsnbaJhGI5rZcsht855fUA7mgU1lZhgfBMbCcyWjznkxIjzsaCdZP0AW34HwRDlILYEEUa35k73HpJUYXySOxX4K/aEFLSRCMNvIRqeHjz6Lrc8ClSBXUKnaegJVxmyjXyER7gC5ha5p3g1ANPgV9iYLnI2EYUxE8G2XhZWS0PqdbSMsim0/kFNjG/06Y6m/1BWvOJjrhc+nYIqiLC4Ekgm3Zx5dOapsVWAoYgGbc0OiPc5oJFclrdVG9FU/LDrMW2j4PBYwB8MnKyHgih3lpGxN0HHAynly0UH/AGuB+qphnjawDkuhtDZ1VJO6QDEDy4jorG0FvYkpGfBEnGe1tKP10dqrVtAdSp344SDQypB6DEp9QnzAuFWzcBkw1r2h4rSIKEa6fopJ3BkKO0sjQ2PB3OaCrS154td/pYmTU0fwSw8RwPxFZdaDGe6al4kuyEYWX5Jdl5Xk7wNW8alw4GtZChy8KBHZErBLiwwcmjspwd5deqnUVSYflGQZqYhQvMY8tbU11atS4FznSvxXJ8F9bHRU+UGsbYH4u3T+F1YUnzMRoscgNMRxfQbBXcmXFz6SZ7JvetSgm/Fz6SZ7JvetXsBvKCobSaG0bwOQA9wuK3vrh7KD3YTVZq3slJS0OXAjVaKuOQNbz5x29KVbe+uHsoPdhLqk6QxyOIVcVIyqo4mSXtYHh5J7t3b2HOwGy8tlgF2U/LGTqGxo+Ov4JEQhUveXm5W+mpmUzMuPkrazNoHSEcR2tDhTJc06qtPQdxWjwcbMoRV7YzT0ZIP5grIkKcc74xYLPVbOgqXYpBx8FrxxoSJ1lsX8IfujSfI8MX8IfushQrN6f4LL/RKb/Lr/AMWwNxqSQ1ARh1Q+aVrfW5hz0OHAlssMyst5eMmpHmjq3/JJCFF1Q9wsVbBsmnhkEjb3GpWk2Xthg/B8EQmeGLjre/wetzvnsG4L1hzG0BkiSZXe4xgR8AAfzWaITeHgYRwXp2VTukzH3cfErRMD42XmJ/m2sEOh1wmknK3bTsV47GpJHURGPXD5rH0L1tTIAoSbHpXm9iPJa9pOkeGL+EP3TZBfDc1rqNFQDRwAIrr1+9fnVFev5qbatw5hZpdhROtluI8+P8LcMPW7lpF4hRC5zqZVIYDqDdXXqS1hjG40sLZSE4OIplRaAN94A2lZohRdVPPLgrodi0zLF13H77F6iPLiXOJJJJJO8nWSvKELKu0hN2Ln0kz2Te8alFN2Lr0kz2Te8arqf8wLnbU+Uf5fuFxW89cPZwe7CXkyW4guM2SGuI8HC2NJ/lhUGbP4H3SvJh8Z81ZQOG7R/pHsokKXNX8D7pRmr+B90quxWvENVEhS5q/gfdKM1fwPulLFMQ1USFLmr+B90ozV/A+6UsUxDVRIUuav4H3SjNX8D7pSxTENVEhS5q/gfdKM1fwPulLFMQ1USFLmr+B90ozV/A+6UsUxDVRIUuav4H3SjNX8D7pSxTENVEhS5q/gfdKM1fwPulLFMQ1USFLmr+B90ozZ/A+6UsUxDVRJtxd+kmezb3jUr5s/gfdKasX0JzYkxlNcP4bdoI/mNV1OP7gXP2oRuj/vtC0yAPJb/wAW/wBIUwCELrr4Gy9gL0AhCJYL0AvoCEIlgvtEUQhEsEURRCESwRRFEIRLBFEUQhEsEURRCESwXwheSEIRLBfCF4IX1CJYKMhc06PId8PqEIXqWX//2Q==" alt="Sky Group Partner &amp; Standart 9" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/10-DyrMBqgp.png" alt="Sky Group Partner &amp; Standart 10" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/11-iMUVCH96.png" alt="Sky Group Partner &amp; Standart 11" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/12-BidXO3c3.png" alt="Sky Group Partner &amp; Standart 12" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/13-VSsvUJJn.png" alt="Sky Group Partner &amp; Standart 13" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/14-BB0mM4ec.png" alt="Sky Group Partner &amp; Standart 14" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/15-CODOii4N.png" alt="Sky Group Partner &amp; Standart 15" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="data:image/png;base64,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" alt="Sky Group Partner &amp; Standart 16" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="data:image/png;base64,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" alt="Sky Group Partner &amp; Standart 17" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/18-IpHC6vZN.png" alt="Sky Group Partner &amp; Standart 18" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="data:image/png;base64,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" alt="Sky Group Partner &amp; Standart 19" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/20-CV9e1VyL.png" alt="Sky Group Partner &amp; Standart 20" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/21-C64B5CV3.png" alt="Sky Group Partner &amp; Standart 21" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/22-D5FonH77.png" alt="Sky Group Partner &amp; Standart 22" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBhQGERURBxIRFRAQFBQUERYVGBAeFhUSExUZFhQZFxYaHSceGBklGhQWHy8iIyc1LCwsFR4xNjAqNis3LTUBCQoKDgwOGg8PGSwkHyEsKyksLDUuLy0rNTUuLy41LzUtNCw1NTUtNTU1LjUpNSw1NTUwLy81LS42Mio0NS0qM//AABEIAKkBKgMBIgACEQEDEQH/xAAcAAEAAgIDAQAAAAAAAAAAAAAABgcEBQECAwj/xABJEAACAQICBgQICQoFBQAAAAAAAQIDBAURBgcSITFBE1FhcSIyU3KBkZKhFBcjNUJigrGzFRY0UnOissPS0yRDo9HwM0RUk8H/xAAaAQEAAgMBAAAAAAAAAAAAAAAAAQIEBQYD/8QAMREBAAEDAQUFBgcBAAAAAAAAAAECAwQREiExQVETYYGRoSJEcdHh8BQyNHKCwcIF/9oADAMBAAIRAxEAPwC8QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOs5qms5tJLi3wXpA7A1NbS2zt3lWu7ZPq6Wln95zQ0rs7l5Ubu2b6lVpZ+rMPTsrnHZnybUHEZqazi00+DRyHmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHncXEbSLncSjGEU3KUmkklxbb4HNatG3i51moxgnKTe5KKWbbfJZFC6faeT0sqdHaOUbSD8CO/Oo1wnNfcuXeSzsLDryq9I3RHGUn0q1y7LdPRuKeW7ppr3wg/vl6iBOV9plP/ALi4ln9Zxjn2eLBeolmB6A0MBoq804lsR406Gb2pPilJLe5fUXDm+KPHFtblSK6LRqjTtqEd0PBg55dkfEj3ZPvJdBYii37OJRrpxqnh58/BgW2qbEK6zlShDzqlPP8AdbIviVhLC6s6Nzlt0pOEsnms4vJ5MzrnS+8vHnXu7l9iqTS9mLSNVVquvJyrNylJ5ybbbbfNt8WS2VmL8TrdmPCJ/tnYVpBcYG9rDK1Sn2Rb2X3xfgv0osvRTXIqzVLSOKi3uVaCez9uHLvW7sRUgGimRhWciPbjf15vqqlVVeKlRalGSTi0000+DTXFHcofV5rAlozNUb9uVnN7+L6Jv6Ufq9a9K38b2hNVUnTaaaTTXBp8GnzRWXH5mHXi17M74nhLsACGEAAAAAAAAAHSdaNPx2l3tAdwdY1FPxGn3HYAAAAAAAAAAAAAAAAAAAAAArDXNpQ7aEbG1eTqrbr5eTT8CPpabfmrrNLq6wOlhdGeLY4vkqGfweL+lNPLaS5va8GPbm+SZGdJbuWk+I1XS3utX6Ol5qkqdP3JEp1s3qwyNthtlupUKcZz7Xk4wz7clKX2yzraLM27VvFp3TXvqnu5/JEsfx6vpnc7dbNynJQo045tRUnlGMVzbeW/mzbYjqpvcNoOvUjSkox2pwhJucUlm92WTy7GzQaOYqsDuqNxUjtRpVFKS5uPB5duTeXaXXiWtGxt7eVS2rKpNxexTSntOWW5STXgrPi37xL1y7t/Hqoox6Nafh6dykMGwmeO14W9ps9JVbUdptLNJy3vJ8kMZwmeBV5293s9JSaUtltrNpPc8lyZuNW/zpbefL8OY1kfOdz58fw4k82Z2tX4nsuWzr66I0ACWWFzanNKHiFGVndPOdutqlnxdFvLL7Mml3SS5FMkg0BxR4RiFvNPwZVFTn5tXwHn3Zp+giWD/wBDHi/Yqp5xvjw+9H0aACjhEJ1qVpUbek6UpRfTcm19CXUVn8OqeUqe3P8A3LJ1sfo9H9t/LkVeBdWgc3UsKLqNttTzbbb/AOpPmzfke0A+b6HdP8WZIQBiYpilPB6Uq148oQXpb5JLm2zLKt1pYw7ivG2g/AoxUpLrqTW7Pujl7TA1uPae3GMSaozlRpcoQbTy+tNb2+7cRub6R5z3vre9nBZmjGrek6UamNKUqk0pbGcoxgnwT2Wm5de/Ll2gVtSqu3edGTi1zi2n60SvRzWLWwySjiUpVqPB576kV1qX0u5+tGdppoBHDodNgsZuOaU6fhSaz3KUeMss+K7cyHfkit5Ct/66n+wF9W9xG7hGdBqUJpSi1waazTPQierWdRWjp3cZxdKpJQU4yT2JJS3ZrhnKRLAAAAAAAAAAAAAAAAAB43dToac5L6MZP1Js9jpWp9NFxf0k161kExxfO2r+j8JxK1U/KqXphFzXvie2sys6+J3G19GUIrujTiv+d5i6H1/yViNu627YrxhLszfRy+82OtaydpidVtbqsadSPc4KL/ehItzdx75HfRu80RABZsEl1bfOdt58vw5jWR853Pnx/DiNW3znbefL8OY1kfOdz58fw4lebX++/wAP9NhgGqqvpDb07i3rUYwqptKXSZrZk478o5fRNh8SNz5e3/1v6SvY15Q3RlJLsbOfhM/15etkrVWsmZmabkRH7fqsH4kbny9v/q/0kIxKxlgNzOlUac6FTJuOeTcHxWe8leqOjO9xGMnKTjRp1JvNvLeujXvn7jQYvL8uYjV6Hf091JQ7VOrsx9zRDzs13YvVW7lW1EU68NOL6Si8zk4W45KuIQbWx+j0f238uRV5aGtj9Ho/tv5cirwLo0A+b6HdP8WZISPaAfN9Dun+LMkIAovSut8Ivbhy8tOPog9he6JehReldu7a9uIz8tOXom9te6SAx8Et1d3NGE+E61OL7nNJ+4u7G72WG29WrRScqVOc4555Zxi2s8uRRdhdfAatOqv8ucJ+xJS/+F6YlbLGradOjJJV6UoxlxWU47nlz4gVv8al1+pb+zV/rOPjUuv1Lf2av9Z7X+rB4dSnVrXUNmnGUn8m+EVnl4xBwLg0F0oq6TKq72NNdG4KOwpLxlLPPOT6iUlfao/FuPOpfdIsEAAAAAAAAAAAAAAAAAAAPnvWTg7wTEauxmo1n09N/tHnLLumpe4kumtH89MNoYlaLOrQjsXKXFLdt+zLwvNqNku1maIvSa22rRZ3FvnKmuc4vx4d7yTXakuZV+gGmP5rVZU75bVpX8GtFrPZfDb2ee7c1zXcizqrF2cixRdt767fLrHPzj1RME2040AeFf4vA/lbGottOL2uiT373zp9UvQ+twklubN6i9TtUT996S6t3lidtn+vL8OZNNK9VtfH7ytcW9e3jCrJNKTqZrKKW/KLXIqYDRj3cauq72tuvSdNOGvPXqzMZwuWC16lCtKMpUpbLcc9lvLPdnv5mGCd6EaA/CV8N0j+SsqS28p7ulS4Z9VP+LguOYe129TYt7VyfrPdDaaNU/zFwite3Hg3F4lG3T4pNNU375VO6KNBqrwV4tiEJyXgWydWXet1Nd+00/ssx9OtLpaYXCVsmrel4FvDLe89zk0vpS3buSSRberrRP8ANa1SuF/iK2U63Zu8GGf1U/W5ENPkXJx8equv89zl0j6R6pUACrlkG1sfo9H9t/LkVeXLpvo3U0lpQhZypxcKm09tySy2Wt2Se/eQ74qbrylt7VX+2Bo7HS+6wynGlZ1nGnDPZWzSeWbbe9xb4tmR+ft9/wCRL2KP9BtPipuvKW3tVf7Y+Km68pbe1V/tge2hml11il7SpXtZypy29qOzSWeVOTW9RT4pGTrQ0ebcby3WayUK2XLLxJd2/Zf2T20W1f18Duqde5nRcIbeai6mfhQlFZZwS4vrJ9VpKsnGqk4yTUk96ae5prmgPngl+jWsSpgdNUbmn0tOG6HhZSiurPJprq6jaY/qubk54HKOy9/RTb3dkZ812P1kbloHexeXweXepUcvXtAZGlGndTSOPRQiqVHNOUU83NrhtSyW7Pfkl6yME8wDVfUqSU8acY0083Ti85Sy5OS3RXc2+7iY1fVfdSlJ03bqLlJxW1Pcm9y8TqA2uqPxbjzqX3SLBIpoHoxV0ajVV86b6Rwcdht+KpZ55pdZKwAAAAAAAAAAAAAAAAAAAFY6xtWTxByu8Bj8q85VqS+m+c4fW61z4rfxs4BkY+TXj17dD550V07uND5Omlt0c3t0Z5rJ/S2XxhLr3ZdaJNUt8G0z8KlUdlcS4xezGDl3P5N/ZaZPNJtAbXSnOV1DYrcqtPJT7NrlP0rPtRW2L6mbqzbeGzp1o8lnsT9Kl4P7xLf28rFvztxVNuvn0n48p8XtU1LVa2/Dru3qQ5Nqa/h2l7zmnqYqUN+J3lvTguLSk/4tlEXq6DX9m99pcZ/Ui5e+GZzR0ExC8e60r5/XWz75tEszW5p+op066R80tp/kbQnwoyd7cx4ZbMoKXWv8tb/OaIvpPprc6aTUJ5qntLo6FPaa2uCz5zn/AMSRvcI1L3V208TqU6MeaT25+peD+8WXozoNa6LLOyhtVcsnVnk59uT4RXYl6yGHXlY2PO3tTcr6/e6PBGNXOrT8juN1jaTr8aVPc1S+tLrn1fq9/CxwCHP5GRXkV7dcgADwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//Z" alt="Sky Group Partner &amp; Standart 23" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/24-XBZ6FNJA.png" alt="Sky Group Partner &amp; Standart 24" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/25-3Yxv17kJ.png" alt="Sky Group Partner &amp; Standart 25" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/26-Bo7LK-2L.png" alt="Sky Group Partner &amp; Standart 26" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/27-mvNEzpVE.png" alt="Sky Group Partner &amp; Standart 27" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="data:image/png;base64,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" alt="Sky Group Partner &amp; Standart 28" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/29-s-UtZGK4.png" alt="Sky Group Partner &amp; Standart 29" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/30-D-jUZDcc.png" alt="Sky Group Partner &amp; Standart 30" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/31-Dbi7Sp5Y.png" alt="Sky Group Partner &amp; Standart 31" loading="lazy" />
+          </div>
+          <!-- Loop Track 2 (Continuous Duplicate) -->
+          <div class="sky-marquee-item">
+            <img src="./assets/1-Di-wa7T9.png" alt="Sky Group Partner &amp; Standart 1" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/2-CYPoixfm.png" alt="Sky Group Partner &amp; Standart 2" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/3-Di-0B93x.png" alt="Sky Group Partner &amp; Standart 3" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/4-B9otPWQe.png" alt="Sky Group Partner &amp; Standart 4" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/5-Cam3A5TS.png" alt="Sky Group Partner &amp; Standart 5" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/6-CqEXar55.png" alt="Sky Group Partner &amp; Standart 6" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/7-DqfgB7-8.png" alt="Sky Group Partner &amp; Standart 7" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/8-BWO8sMCq.png" alt="Sky Group Partner &amp; Standart 8" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBhQPEREPDxQSFBUVGBcSGRgRFRkUIBgUGBUVFhgWFhsdJzIeHR0kGRIaIC8gIycsLSwsFh4xNTAqNSYrLCkBCQoKDgwOGg8PGisjHiQvNSosNS41KTQyLTUsLCkqNSw0NTAsNCksKSosLS8vLDQsLioqKTUsNS81NCksLCkxMf/AABEIAFIArwMBIgACEQEDEQH/xAAcAAACAwEBAQEAAAAAAAAAAAAABgMFBwQCAQj/xABFEAABAgMCCgQLBgQHAAAAAAABAAIDBBEGkgUHEhQXITFBUuFRcXOzExYiMjM0VGGBkbFCU5OhwdEjQ7LwFSQ1YnKDov/EABoBAQADAQEBAAAAAAAAAAAAAAACAwQFAQb/xAA1EQABAwIDBQYEBQUAAAAAAAABAAIDBBESE1EFFCExkUFTYXGBsSI0UvAyM3LB0RUjYqHh/9oADAMBAAIRAxEAPwC4tTbCZl5gwoTwG5EN2sV1uYCd/SqnSDOfeNu814t364ezg92EvLkyyvDyATzX3dFR07qdjnRtJIHYNEyaQpz7xt3mjSFOcbbvNLaFXnSalatwpu7b0CZNIU5xtu80aQpzjbd5pbQmdJqU3Cm7tvQJk0hTnG27zRpCnONt3mltCZ0mpTcKbu29AmTSFOcbbvNGkKc423eaW0JnSalNwpu7b0CZNIU5xtu80aQpzjbd5pbQmdJqU3Cm7tvQJk0hTnG27zRpCnONt3mltCZ0mpTcKbu29AmTSFOcbbvNGkKc423eaW0JnSalNwpu7b0CZNIU5xtu80aQpzjbd5pbQmdJqU3Cm7tvQJk0hTnG27zRpCnPvG3eaW0JnSalNwpu7b0CY9IM59427zTBY+1UxMvjCK+uQwOGTq1l4H0KzxNuLv0kz2be8arYJHmQAkrBtGjgZTPc1gB8hqFyW89cPZQe7CXUxW99cPZQe7CXVVN+YfNb6D5aP9I9kIR7lYwbOzLxVkvHI6fBuH1VYBPJanPa38Rsq5CtfFWb9mj3CjxVm/Zo9wr3A7RV58X1DqFVIVr4qzfs0e4UeKs37NHuFMDtEz4vqHUKqQusYJjeFzfwUTwvBk+Vsrs6l1eKs37NHuFMJPYpGWMc3DqFVIVr4qzfs0e4UeKs37NHuFMDtFHPi+odQqpCtfFWb9mj3CuGbkokF2RFY+G7oe0t+Vdq8LSOYUmyscbNcD6qBC+gbl3wbPzL9bZeOf8Ard+oQAnkpOe1v4jZV6Fa+Ks37NHuFHirN+zR7hXuB2irz4vqHUKqQrR9l5sAky8YAaySzcoJHA0eO0vgwokRo2ljaivR7z7gmE6KWbHa+IW8wuJN2Lr0kz2Te8alIimo9WtNuLr0kz2Te8araf8AMCxbU+Uf5fuFx299cPZQe7CopaWdFeyGwVc8hrR0kmivbe+uHsoPdhXWKnAXhIz5t48mF5La8ZGs/AfVeuZjmLfFVxzinoGyHsaPZOtlrFwZFjTkh8YjyojhU16G9AXy01sMycIbIEaO8ipENpo0e91NvuV1hLCDZeFEjxPNY0uPw3D3pJ0vwPuI3/n910HlsYwg2Xy0Ec9U8yuYZNeNvv0XPHxtPh0y5N7a7Mp2TXqqE+4NmXRYUOJEZkOc0OLa1pXXSvUsrlJg4awqx7gRCZ5QadzGa6H3ly15Rgc51yTcdit2nFFCGMazC4i54k28FSWptGZGGxzIT4znOoGsB2bySAaJWjY1IrGlzpKI0dLyQAd1SQuydxqwYUSJCMCOSxxZWgFaGldaU7bW5/xBkOFCZEhsBynB32nfZ2bgq5ZuZa70WuioCcLZYeB5uJPsF8sVaJzZxzzCMaPMOyQ4uyckE1d/fQFsqzLFNgGrok68bP4UOvT9p36fFaBhrCjZWBFjv2MaT1ncPiaBTpriO7lm2vgkqsuMcRYeunola02MpsnMOl2QvCloGUcsNo468n5LpsnbaJhGI5rZcsht855fUA7mgU1lZhgfBMbCcyWjznkxIjzsaCdZP0AW34HwRDlILYEEUa35k73HpJUYXySOxX4K/aEFLSRCMNvIRqeHjz6Lrc8ClSBXUKnaegJVxmyjXyER7gC5ha5p3g1ANPgV9iYLnI2EYUxE8G2XhZWS0PqdbSMsim0/kFNjG/06Y6m/1BWvOJjrhc+nYIqiLC4Ekgm3Zx5dOapsVWAoYgGbc0OiPc5oJFclrdVG9FU/LDrMW2j4PBYwB8MnKyHgih3lpGxN0HHAynly0UH/AGuB+qphnjawDkuhtDZ1VJO6QDEDy4jorG0FvYkpGfBEnGe1tKP10dqrVtAdSp344SDQypB6DEp9QnzAuFWzcBkw1r2h4rSIKEa6fopJ3BkKO0sjQ2PB3OaCrS154td/pYmTU0fwSw8RwPxFZdaDGe6al4kuyEYWX5Jdl5Xk7wNW8alw4GtZChy8KBHZErBLiwwcmjspwd5deqnUVSYflGQZqYhQvMY8tbU11atS4FznSvxXJ8F9bHRU+UGsbYH4u3T+F1YUnzMRoscgNMRxfQbBXcmXFz6SZ7JvetSgm/Fz6SZ7JvetXsBvKCobSaG0bwOQA9wuK3vrh7KD3YTVZq3slJS0OXAjVaKuOQNbz5x29KVbe+uHsoPdhLqk6QxyOIVcVIyqo4mSXtYHh5J7t3b2HOwGy8tlgF2U/LGTqGxo+Ov4JEQhUveXm5W+mpmUzMuPkrazNoHSEcR2tDhTJc06qtPQdxWjwcbMoRV7YzT0ZIP5grIkKcc74xYLPVbOgqXYpBx8FrxxoSJ1lsX8IfujSfI8MX8IfushQrN6f4LL/RKb/Lr/AMWwNxqSQ1ARh1Q+aVrfW5hz0OHAlssMyst5eMmpHmjq3/JJCFF1Q9wsVbBsmnhkEjb3GpWk2Xthg/B8EQmeGLjre/wetzvnsG4L1hzG0BkiSZXe4xgR8AAfzWaITeHgYRwXp2VTukzH3cfErRMD42XmJ/m2sEOh1wmknK3bTsV47GpJHURGPXD5rH0L1tTIAoSbHpXm9iPJa9pOkeGL+EP3TZBfDc1rqNFQDRwAIrr1+9fnVFev5qbatw5hZpdhROtluI8+P8LcMPW7lpF4hRC5zqZVIYDqDdXXqS1hjG40sLZSE4OIplRaAN94A2lZohRdVPPLgrodi0zLF13H77F6iPLiXOJJJJJO8nWSvKELKu0hN2Ln0kz2Te8alFN2Lr0kz2Te8arqf8wLnbU+Uf5fuFxW89cPZwe7CXkyW4guM2SGuI8HC2NJ/lhUGbP4H3SvJh8Z81ZQOG7R/pHsokKXNX8D7pRmr+B90quxWvENVEhS5q/gfdKM1fwPulLFMQ1USFLmr+B90ozV/A+6UsUxDVRIUuav4H3SjNX8D7pSxTENVEhS5q/gfdKM1fwPulLFMQ1USFLmr+B90ozV/A+6UsUxDVRIUuav4H3SjNX8D7pSxTENVEhS5q/gfdKM1fwPulLFMQ1USFLmr+B90ozZ/A+6UsUxDVRJtxd+kmezb3jUr5s/gfdKasX0JzYkxlNcP4bdoI/mNV1OP7gXP2oRuj/vtC0yAPJb/wAW/wBIUwCELrr4Gy9gL0AhCJYL0AvoCEIlgvtEUQhEsEURRCESwRRFEIRLBFEUQhEsEURRCESwXwheSEIRLBfCF4IX1CJYKMhc06PId8PqEIXqWX//2Q==" alt="Sky Group Partner &amp; Standart 9" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/10-DyrMBqgp.png" alt="Sky Group Partner &amp; Standart 10" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/11-iMUVCH96.png" alt="Sky Group Partner &amp; Standart 11" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/12-BidXO3c3.png" alt="Sky Group Partner &amp; Standart 12" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/13-VSsvUJJn.png" alt="Sky Group Partner &amp; Standart 13" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/14-BB0mM4ec.png" alt="Sky Group Partner &amp; Standart 14" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/15-CODOii4N.png" alt="Sky Group Partner &amp; Standart 15" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="data:image/png;base64,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" alt="Sky Group Partner &amp; Standart 16" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="data:image/png;base64,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" alt="Sky Group Partner &amp; Standart 17" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/18-IpHC6vZN.png" alt="Sky Group Partner &amp; Standart 18" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="data:image/png;base64,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" alt="Sky Group Partner &amp; Standart 19" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/20-CV9e1VyL.png" alt="Sky Group Partner &amp; Standart 20" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/21-C64B5CV3.png" alt="Sky Group Partner &amp; Standart 21" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/22-D5FonH77.png" alt="Sky Group Partner &amp; Standart 22" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="data:image/png;base64,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" alt="Sky Group Partner &amp; Standart 23" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/24-XBZ6FNJA.png" alt="Sky Group Partner &amp; Standart 24" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/25-3Yxv17kJ.png" alt="Sky Group Partner &amp; Standart 25" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/26-Bo7LK-2L.png" alt="Sky Group Partner &amp; Standart 26" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/27-mvNEzpVE.png" alt="Sky Group Partner &amp; Standart 27" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBggGEQkIBwgWFAkVGB4aGBYWEB4YGBgeFRwcHRsYGhojHCcqGSMvGyAdHy8gJScpLCwvGCAxQTUqNSY3LCkBCQoKDgwOGg8PFy0kFxwsNSkrKTU1Lio1MSksKTE1LC4sNSkxKTEtNSkrLSktKTUpNS8pLispLiw0MTUtKSkpKf/AABEIAK4BIgMBIgACEQEDEQH/xAAcAAEBAAIDAQEAAAAAAAAAAAAABwUGAwQIAgH/xAA9EAACAQMDAgMEBwYFBQEAAAAAAQIDBBEFBhIhMQcTQSIyUWEUQnGBkZLhFRcjVWKhJDNSc7E1NnKzwxb/xAAaAQEAAwADAAAAAAAAAAAAAAAAAQIEAwUG/8QAIBEBAAICAgIDAQAAAAAAAAAAAAECAxEEMRJBIYGRBf/aAAwDAQACEQMRAD8AuIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABj9b12x29TjdajUcaLko5UXLq02uiXyYWrWbTqsbmWQBw2l3SvqdG6t5ZozipReMZUllPHp0ZzBExr4kAAQAAAAAAAAAAAAAAAAAAAAABitZ3To+3nShq+oQpSmm4qbxlLGcfijKmD3FszRd0ujU1i08ydNNR/iTjhSw37slnsgOr+8vaX8+o/m/Q7NnvrbmofSHaavTmqcHUniXuwjjMn07LK/EgFzpFnT1h6RGl/gfpipceT9x1VHjyzn3emc5LBrexNB2xY6/d6RZOFeVrVg35s5dHHLWJSa7xX4EDLfvL2l/PqP5v0OW08QNs39Sla2utUpV5tRjFS6tvokuh562pX0u3rVZa1o9S6ocHiFOUotSyvabi10xlfeULaFfaV9e6dRstm16NzzzGrOrUcYOCck2nPD7Y6/ECj6jvnbukVKlnf6vTp3Mccoyl1WUms9Pg0zrLxK2k+n7eo/m/Qinilx/bGp+Z7nKnn7PLhkzm57Twzp2t5LRLlvUeP8NRnVeZeiaksY+OQLVZavYalTd3Y3kKluu8oTUksdXlrt9hhF4l7SfbXqP5v0Jv4K2d/SWuXMqM1YSo45OLUZSWcY/1NLPbtk0Lbeg1NwLUKVDLuKVu60EvreXKHKP5HLHzSA9S2d5b6hTpXVpVU6E0pRlF5TT7NGDuPEPa1rOpQr65SVWLcZLl2cXhrt8SZ7C8RFouk6va1an+Kt1mgm+/nPEUvjxqPL+TNDholWVjc65Wb4edGlDP1pOMpzfzwlH8z+AHp3Sda0/Xabu9Lu41bfLXKL6ZXdGMvPEDa9hJ0rjXKKmu6VTlj8uSS2V/WsdsXSoTcXUunBtPD4y4uS+9LD+TZyeEOxtH3VDULnWKMpqnKMYxVRxSym23xab9PUCs6fvnbeqSjRs9aoyqvtHzEm8+iTxn7DOnnzxd2fpe1K1gtIpuNKrCTcHNyScGllZbfXPx9CveHF9X1HTNIuLqblV4Ybby3wlKKbfq8JEjUt4+KF/bVbrTdJoqn5cnB1JYlJuLw3Fdo/fn7jA19SvNS0i4qX11OpNXkcOcnJrNPOFnss+hWd2Qj9B1Z8Vnyanp/SyV7d0qWv6ZeafbXNKNyrmM8VKnHMVTSz6+r/szgtE77ej4mTFOKLRTx8bRue/t+aFdb1mrD6K7l2GYKPGHscE0ujx24lqnONJSnN4illv5IjulbA1i0rWdWd/Q8uFSDaV0+0ZJtJY/sWKpTjWjOnNey00/sZbHv2xf07Utavhr31Gv1ra8S9pPr+3qP5v0H7y9pfz6j+b9Cf+K+w9A2xZUbvSLJwrutGGfNnL2XGbaxKTXdL8Di8JNj6Fui1vLrV7N1K0azin5s44XCDxiMl6tnI6lTr3fW3NO8j6Xq9OHmQVSGZe9CeeMl07PD/A637y9pfz6j+b9CSeNNnR0290+ztYcaFO0pxist4UZ1Ull9X0+J82Go7PhSto3OyLmpXUI8pqtUSm8LMklPs31+8C1093aHVt6mrQ1Om9PjLjKpn2U8pYz9rX4nLo25NJ3D5r0i/hVUMcuDzjlnGfwf4E516Om//m7qto+mztradRPypylKSarRi23Jt9eKZoWzd+3GzKGq0rG2zdVuHGo37NNx5LLjj2n7XRdsr17AXvVN67f0WpKz1LVqVO4STcZS6rPbK9OnU/breWhWVK1vrrU4QtaufLnJtKeO+OnUj/hbs233pWudW1u7VRU55lScszqSl15VP6c/maa7Lrn/AB+ioUtEjFYipz6L/wAYgb3Zb+2zqNSlaWmtUpV5vEYqXVt9kuh3tZ3HpW3lSnq99ClGbajzeM474PN+o6BX0u00PX7aTVOtyTkvqVKVSSXX0zFKS+cZG1eI25obt0zbuo9PpHmThVS+rOMFy+59JL5NAU7cu8fo9g9b29c0KkOaip1ZtUve4y65j1z07nzsvea1u0ub7Vbm3VWi5Op5M3KEIpZTby/RN9/QnlX/ALTpf73/AN2cfhl/0ren+0//AFVAK3o+79D1+crbStTp1ayjycYvLSTSb/Fpfefes7q0Xb8qdLVtSp0qklmKlLDaXTOPhk877F3fLZde6v4WnmzlRlBLlhJuUJKUunVez1XzMps3RKnibf16+u6l1XtzXLFSos44U19WK7PHupr45GxfNJ1qw12DutLuVUoZxyjnGV3SeOp3Ths7Ohp9Ola2lJQoQWIxisJJeiOYkAAADAAitz4cbkqaw9XjYr6D9MVXl50PcVVSzx5Z93rjGSq7qsa+p2Wq2VpDNxUozjFZSy5RaSy+i6mVAEH23sfxC2nVqXmk2EI1pR4Nyq0pLDafZz+KRt+kV/FF17Nanb0lY84+Zjys8MrljEs9s9ikgCK778Ntxa7qV7qFlYKVnOUMPzoRylCCfRyTXZm0bn8I9Cq2t4tD0pR1Hjmm1WkvaT7PlPGPtKEAJd4Y7Q3Nt39rUNWpONrUpYhHz4zXPquiUnx6Pv0/sY/ws8P9xbZvo3uq2Shb+VKLfmwl1fHCwpP4FhAEH3T4Pa79LvZ6FZRlp8pcofxYR48urhhyT6PK+xI23eXh9fT0nSdA0GgqlWlUjKftxjn2KnOeZNd5yzj5/IpYAmWg+HF/caLdbe1ZKjdyqupB8lNJri4t8X2eGn69TXNF2b4j7LlcQ0SFN0545YqU5Rlx7NKeGu/wRcABDdS8Pt/7zrUa+vunHiuKlKpDjFZy8Qp5y/8An4li2/o1Lb9tZ6ZQk3TpQUcvu8d5P7Xl/eZAAdTVbFapQu7Jz4qpCUM4zjkms49SVz8GdVy+N/RcfmpL+3F/8lfBW1Yt218fmZePExjn4lJLTwf1W3qUK0ryhiMoyeOX1Wn/AKStgCtYr0jkcvJyNTknppfivtzUtz2VGz0mgp11WjJpzjHoozTeW16tHF4S7Z1Pa1rd2ur26hWlWcklOMunCCzmLfqmbyCzKkvivsLX9z3tG80mzU6Coxg26sI9VOo2sOS9JL8T8soeLNhToWlva0lRpxUI5dFvEUkuvPr0RWwBONT0jeG5NI1Gw1q2g9WlVjwjGUIpwjKm+6ljupd2cPhhsC+0mjrVjufT4/R6/BcXOM1JRU8+63jDaw+j+HYpoAiVfww3VtO9+m7QlzoLrCTqxi8PvTqRk1yX2dH0fR9s74i7c3Jva20d0tJUL2Ep+bT8+nhZUUnGXLqnj7SoADQdG2JXutDhtzWKShd/xGvaUuEnUnOnLKb+Kzj0bRM/3T71UHb/ALPXkuSlx+kU8ckms+98Hg9FACW1Nka5Lb9PQFaL9pKpy4ebHGPOcvezj3evc+NjbG13RdP3PYX9oo3Nem4015sXybpzj3TwurXcqoAknhX4f63t27u6+uWMY2s6Eqf+ZCablOm+LSb6YT79Dpbo8ItW0u6p6jsr/KzyjHzVCVGS9IuTXKPw+9PKLQAMNtW71u5oRW47BUr6PRuM4yjP+pcZPj80/u+WZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//Z" alt="Sky Group Partner &amp; Standart 28" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/29-s-UtZGK4.png" alt="Sky Group Partner &amp; Standart 29" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/30-D-jUZDcc.png" alt="Sky Group Partner &amp; Standart 30" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/31-Dbi7Sp5Y.png" alt="Sky Group Partner &amp; Standart 31" loading="lazy" />
+          </div>
+        </div>
       </div>
-    </section>
+</section>
 
   </main>
 
@@ -1231,95 +1328,232 @@
   
 <!-- Sky Group Fiyat Teklifi & Keşif Talebi Modal -->
 <div id="sky-quote-modal" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="modal-card relative w-full max-w-lg bg-white border border-slate-200 rounded-lg shadow-2xl p-4 sm:p-7 text-slate-800 max-h-[92vh] overflow-y-auto">
+  <div class="modal-card relative w-full max-w-xl bg-white border border-slate-200/90 rounded-xl shadow-2xl p-5 sm:p-7 text-slate-800 max-h-[92vh] overflow-y-auto" style="border-radius: 12px !important;">
     <!-- Close Button -->
-    <button type="button" id="sky-modal-close" class="absolute top-3.5 right-3.5 p-2 text-slate-400 hover:text-slate-800 rounded-full hover:bg-slate-100 transition-colors cursor-pointer" aria-label="Kapat">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    <button type="button" id="sky-modal-close" onclick="closeQuoteModal()" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-800 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer" aria-label="Kapat">
+      <svg style="width: 20px !important; height: 20px !important; display: block !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
     
-    <!-- Header -->
-    <div class="flex items-center gap-3 mb-2.5">
-      <div class="w-10 h-10 rounded-lg bg-[#061527] flex items-center justify-center p-2 shadow-sm shrink-0">
-        <img src="./assets/sky-group-logo-s-Dq56nYIQ.png" alt="Sky Group" class="w-full h-full object-contain" width="40" height="40">
+    <!-- Modal Header -->
+    <div class="flex items-center gap-3.5 mb-4 pb-3 border-b border-slate-100">
+      <div class="w-11 h-11 rounded-lg bg-[#061527] flex items-center justify-center p-2 shadow-sm shrink-0">
+        <img src="./assets/sky-group-logo-s-Dq56nYIQ.png" alt="Sky Group" class="w-full h-full object-contain" width="44" height="44">
       </div>
       <div>
-        <span class="text-[10px] font-bold uppercase tracking-widest text-[#0284c7] block">MÜHENDİSLİK &amp; PROJELENDİRME</span>
-        <h3 class="text-lg sm:text-xl font-bold tracking-tight text-[#061527]">Ücretsiz Keşif &amp; Fiyat Teklifi</h3>
+        <span class="text-[10.5px] font-bold uppercase tracking-widest text-[#0284c7] block">MÜHENDİSLİK &amp; DOĞRUDAN FABRİKA İMALATI</span>
+        <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">Ücretsiz Keşif &amp; Debi Analizi</h3>
       </div>
     </div>
-    
-    <p class="text-xs text-slate-600 mb-3 leading-relaxed">
-      Mimari ve mekanik detaylarınızı iletin; uzman mühendislerimiz 24 saat içinde yerinde keşif ve metrajlı teknik şartnamenizi hazırlasın.
-    </p>
+
+    <!-- 3-Step Progress Indicator Bar -->
+    <div class="grid grid-cols-3 gap-2 mb-5 pb-3 border-b border-slate-100 text-center">
+      <div id="sky-step-tab-1" class="flex flex-col items-center gap-1 transition-all">
+        <div class="step-num w-6 h-6 rounded-full bg-[#09bde3] text-[#04111f] font-bold text-xs flex items-center justify-center shadow-xs">1</div>
+        <span class="step-text text-[11px] font-bold text-slate-900">Mahal &amp; Sektör</span>
+      </div>
+      <div id="sky-step-tab-2" class="flex flex-col items-center gap-1 transition-all opacity-45">
+        <div class="step-num w-6 h-6 rounded-full bg-slate-200 text-slate-600 font-bold text-xs flex items-center justify-center">2</div>
+        <span class="step-text text-[11px] font-semibold text-slate-500">İhtiyaç Kapsamı</span>
+      </div>
+      <div id="sky-step-tab-3" class="flex flex-col items-center gap-1 transition-all opacity-45">
+        <div class="step-num w-6 h-6 rounded-full bg-slate-200 text-slate-600 font-bold text-xs flex items-center justify-center">3</div>
+        <span class="step-text text-[11px] font-semibold text-slate-500">İletişim &amp; Teklif</span>
+      </div>
+    </div>
 
     <!-- Form -->
-    <form id="sky-quote-form" class="space-y-2.5 sm:space-y-3">
-      <div>
-        <label class="block text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Ad Soyad / Firma Adı *</label>
-        <input type="text" name="name" id="sky-modal-name" required placeholder="Örn: Ahmet Yılmaz / ABC İnşaat A.Ş." class="w-full px-3 py-1.5 sm:py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#09bde3] focus:ring-2 focus:ring-[#09bde3]/20 transition-all font-medium">
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
+    <form id="sky-quote-form" onsubmit="return false;" class="space-y-4">
+      
+      <!-- STEP 1: Sektör & Mahal Büyüklüğü -->
+      <div id="sky-modal-step-1" class="space-y-4">
         <div>
-          <label class="block text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Telefon Numarası *</label>
-          <input type="tel" name="phone" required placeholder="0 (5XX) XXX XX XX" class="w-full px-3 py-1.5 sm:py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#09bde3] focus:ring-2 focus:ring-[#09bde3]/20 transition-all font-medium">
+          <label class="block text-xs font-bold text-slate-800 mb-2">1. Projenizin Yer Aldığı Sektör / Tesis Türü:</label>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="sky-sector-options">
+            <button type="button" class="sky-choice-card text-left p-2.5 rounded-lg border border-[#0284c7] bg-cyan-50/60 ring-2 ring-[#09bde3]/30 transition-all cursor-pointer" data-sector="Endüstriyel & Fabrika">
+              <span class="block text-base mb-0.5">🏭</span>
+              <span class="block text-xs font-bold text-slate-900">Fabrika &amp; Sanayi</span>
+              <span class="block text-[10px] text-slate-500">Ağır proses, toz, kaynak</span>
+            </button>
+            <button type="button" class="sky-choice-card text-left p-2.5 rounded-lg border border-slate-200 bg-slate-50/80 hover:border-[#09bde3] hover:bg-cyan-50/30 transition-all cursor-pointer" data-sector="Sağlık & Temiz Oda">
+              <span class="block text-base mb-0.5">🏥</span>
+              <span class="block text-xs font-bold text-slate-900">Sağlık &amp; Temiz Oda</span>
+              <span class="block text-[10px] text-slate-500">Steril, ameliyathane, ilaç</span>
+            </button>
+            <button type="button" class="sky-choice-card text-left p-2.5 rounded-lg border border-slate-200 bg-slate-50/80 hover:border-[#09bde3] hover:bg-cyan-50/30 transition-all cursor-pointer" data-sector="Plaza & Ticari Bina">
+              <span class="block text-base mb-0.5">🏢</span>
+              <span class="block text-xs font-bold text-slate-900">Plaza &amp; Ofis</span>
+              <span class="block text-[10px] text-slate-500">4 borulu FCU, taze hava</span>
+            </button>
+            <button type="button" class="sky-choice-card text-left p-2.5 rounded-lg border border-slate-200 bg-slate-50/80 hover:border-[#09bde3] hover:bg-cyan-50/30 transition-all cursor-pointer" data-sector="AVM & Ticari Alan">
+              <span class="block text-base mb-0.5">🏬</span>
+              <span class="block text-xs font-bold text-slate-900">AVM &amp; Mağaza</span>
+              <span class="block text-[10px] text-slate-500">Yüksek debi, VRV/VRF</span>
+            </button>
+            <button type="button" class="sky-choice-card text-left p-2.5 rounded-lg border border-slate-200 bg-slate-50/80 hover:border-[#09bde3] hover:bg-cyan-50/30 transition-all cursor-pointer" data-sector="Otopark & Duman Tahliye">
+              <span class="block text-base mb-0.5">🚗</span>
+              <span class="block text-xs font-bold text-slate-900">Otopark &amp; Duman</span>
+              <span class="block text-[10px] text-slate-500">Jet fan, 400°C/2h</span>
+            </button>
+            <button type="button" class="sky-choice-card text-left p-2.5 rounded-lg border border-slate-200 bg-slate-50/80 hover:border-[#09bde3] hover:bg-cyan-50/30 transition-all cursor-pointer" data-sector="Mutfak & Restoran">
+              <span class="block text-base mb-0.5">🍽️</span>
+              <span class="block text-xs font-bold text-slate-900">Restoran &amp; Mutfak</span>
+              <span class="block text-[10px] text-slate-500">Davlumbaz, elektrostatik</span>
+            </button>
+          </div>
+          <input type="hidden" name="sector" id="sky-selected-sector" value="Endüstriyel & Fabrika">
         </div>
+
         <div>
-          <label class="block text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">E-Posta Adresi</label>
-          <input type="email" name="email" placeholder="ornek@firma.com" class="w-full px-3 py-1.5 sm:py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#09bde3] focus:ring-2 focus:ring-[#09bde3]/20 transition-all font-medium">
+          <label class="block text-xs font-bold text-slate-800 mb-2">2. Yaklaşık Mahal / Tesis Büyüklüğü:</label>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="sky-area-options">
+            <button type="button" class="sky-area-card py-2 px-3 rounded-lg border border-slate-200 bg-white text-center text-xs font-semibold text-slate-700 hover:border-[#09bde3] hover:bg-cyan-50/20 transition-all cursor-pointer" data-area="< 500 m²">
+              &lt; 500 m²
+            </button>
+            <button type="button" class="sky-area-card py-2 px-3 rounded-lg border border-[#0284c7] bg-cyan-50/60 text-[#0284c7] ring-1 ring-[#09bde3] text-center text-xs font-semibold transition-all cursor-pointer" data-area="500 - 2.000 m²">
+              500 - 2.000 m²
+            </button>
+            <button type="button" class="sky-area-card py-2 px-3 rounded-lg border border-slate-200 bg-white text-center text-xs font-semibold text-slate-700 hover:border-[#09bde3] hover:bg-cyan-50/20 transition-all cursor-pointer" data-area="2.000 - 10.000 m²">
+              2.000 - 10.000 m²
+            </button>
+            <button type="button" class="sky-area-card py-2 px-3 rounded-lg border border-slate-200 bg-white text-center text-xs font-semibold text-slate-700 hover:border-[#09bde3] hover:bg-cyan-50/20 transition-all cursor-pointer" data-area="10.000+ m²">
+              10.000+ m²
+            </button>
+          </div>
+          <input type="hidden" name="area" id="sky-selected-area" value="500 - 2.000 m²">
         </div>
+
+        <button type="button" onclick="goToModalStep(2)" style="background-color: #09bde3 !important; color: #04111f !important;" class="w-full py-3.5 px-5 rounded-lg font-bold text-sm shadow-md hover:bg-[#38bdf8] transition-all flex items-center justify-center gap-2 cursor-pointer mt-3">
+          <span>Devam Et: İhtiyaç Kapsamı</span>
+          <svg style="width: 16px !important; height: 16px !important; display: inline-block !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </button>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
+      <!-- STEP 2: Cihaz & Mühendislik Kapsamı -->
+      <div id="sky-modal-step-2" class="space-y-4 hidden">
         <div>
-          <label class="block text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Proje / Tesis Türü</label>
-          <select name="projectType" class="w-full px-3 py-1.5 sm:py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#09bde3] focus:ring-2 focus:ring-[#09bde3]/20 transition-all font-medium">
-            <option value="Fabrika &amp; Endüstriyel Tesis">Fabrika &amp; Endüstriyel Tesis</option>
-            <option value="Plaza &amp; Ticari Bina">Plaza &amp; Ticari Bina</option>
-            <option value="Hastane &amp; Temiz Oda">Hastane &amp; Temiz Oda</option>
-            <option value="AVM &amp; Sosyal Tesis">AVM &amp; Sosyal Tesis</option>
-            <option value="Restoran &amp; Otel Mutfak">Restoran &amp; Otel Mutfak</option>
-            <option value="Otopark &amp; Yangın Duman">Otopark &amp; Yangın Duman</option>
-            <option value="Diğer">Diğer İklimlendirme Projesi</option>
-          </select>
+          <label class="block text-xs font-bold text-slate-800 mb-2">Hangi Sistem ve Hizmetlere İhtiyacınız Var? (Birden fazla seçilebilir):</label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="sky-system-checkboxes">
+            <label class="sky-checkbox-card flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-cyan-50/20 transition-all cursor-pointer">
+              <input type="checkbox" name="systems" value="Klima Santrali (AHU)" class="mt-0.5 rounded border-slate-300 text-[#0284c7] focus:ring-[#09bde3]" checked>
+              <span class="text-xs text-slate-800 font-medium">Klima Santralleri (AHU - Çift Cidarlı)</span>
+            </label>
+            <label class="sky-checkbox-card flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-cyan-50/20 transition-all cursor-pointer">
+              <input type="checkbox" name="systems" value="Hava Kanalı (EN 1507 Class C)" class="mt-0.5 rounded border-slate-300 text-[#0284c7] focus:ring-[#09bde3]" checked>
+              <span class="text-xs text-slate-800 font-medium">Hava Kanalları (Class C Galvaniz / Spiral)</span>
+            </label>
+            <label class="sky-checkbox-card flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-cyan-50/20 transition-all cursor-pointer">
+              <input type="checkbox" name="systems" value="VRF / VRV İklimlendirme" class="mt-0.5 rounded border-slate-300 text-[#0284c7] focus:ring-[#09bde3]">
+              <span class="text-xs text-slate-800 font-medium">VRV / VRF Değişken Debili İklimlendirme</span>
+            </label>
+            <label class="sky-checkbox-card flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-cyan-50/20 transition-all cursor-pointer">
+              <input type="checkbox" name="systems" value="Isı Geri Kazanım (HRV)" class="mt-0.5 rounded border-slate-300 text-[#0284c7] focus:ring-[#09bde3]">
+              <span class="text-xs text-slate-800 font-medium">Isı Geri Kazanım Cihazları (HRV - ErP 2018)</span>
+            </label>
+            <label class="sky-checkbox-card flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-cyan-50/20 transition-all cursor-pointer">
+              <input type="checkbox" name="systems" value="Yangın & Duman Tahliye" class="mt-0.5 rounded border-slate-300 text-[#0284c7] focus:ring-[#09bde3]">
+              <span class="text-xs text-slate-800 font-medium">Yangın &amp; Duman Tahliyesi (400°C/2h Jet Fan)</span>
+            </label>
+            <label class="sky-checkbox-card flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-cyan-50/20 transition-all cursor-pointer">
+              <input type="checkbox" name="systems" value="Ücretsiz Yerinde Keşif & TAB" class="mt-0.5 rounded border-slate-300 text-[#0284c7] focus:ring-[#09bde3]" checked>
+              <span class="text-xs text-slate-800 font-medium">Ücretsiz Keşif &amp; Debi Analizi (TAB Raporu)</span>
+            </label>
+          </div>
         </div>
+
         <div>
-          <label class="block text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">İlgilenilen Sistem</label>
-          <select name="systemInterest" class="w-full px-3 py-1.5 sm:py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#09bde3] focus:ring-2 focus:ring-[#09bde3]/20 transition-all font-medium">
-            <option value="Klima Santralleri (AHU)">Klima Santralleri (AHU)</option>
-            <option value="Hava Kanalı İmalatı">Hava Kanalı İmalatı (Galvaniz / Spiral)</option>
-            <option value="VRF / VRV Sistemleri">VRF / VRV Sistemleri</option>
-            <option value="Isı Geri Kazanım (HRV)">Isı Geri Kazanım (HRV)</option>
-            <option value="Yangın &amp; Duman Tahliyesi">Yangın &amp; Duman Tahliyesi</option>
-            <option value="Komple Mekanik Taahhüt">Komple Mekanik Taahhüt</option>
-          </select>
+          <label class="block text-xs font-bold text-slate-800 mb-1.5">Mevcut Proje Durumunuz:</label>
+          <div class="grid grid-cols-3 gap-2" id="sky-status-options">
+            <button type="button" class="sky-status-card py-2 px-2 rounded-lg border border-[#0284c7] bg-cyan-50/60 text-[#0284c7] ring-1 ring-[#09bde3] text-center text-[11px] font-semibold transition-all cursor-pointer" data-status="DWG / BIM Çizimim Hazır">
+              📐 DWG Çizim Hazır
+            </button>
+            <button type="button" class="sky-status-card py-2 px-2 rounded-lg border border-slate-200 bg-white text-center text-[11px] font-semibold text-slate-700 hover:border-[#09bde3] hover:bg-cyan-50/20 transition-all cursor-pointer" data-status="Fikir / Tasarım Aşaması">
+              💡 Fikir / Keşif İhtiyacı
+            </button>
+            <button type="button" class="sky-status-card py-2 px-2 rounded-lg border border-slate-200 bg-white text-center text-[11px] font-semibold text-slate-700 hover:border-[#09bde3] hover:bg-cyan-50/20 transition-all cursor-pointer" data-status="Mevcut Tesis Revizyonu">
+              🔄 Tesis Renovasyonu
+            </button>
+          </div>
+          <input type="hidden" name="status" id="sky-selected-status" value="DWG / BIM Çizimim Hazır">
+        </div>
+
+        <div class="flex items-center gap-2.5 pt-2">
+          <button type="button" onclick="goToModalStep(1)" class="w-1/3 py-3 px-4 rounded-lg font-semibold text-xs border border-slate-200 text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer">
+            ← Geri
+          </button>
+          <button type="button" onclick="goToModalStep(3)" style="background-color: #09bde3 !important; color: #04111f !important;" class="w-2/3 py-3 px-5 rounded-lg font-bold text-sm shadow-md hover:bg-[#38bdf8] transition-all flex items-center justify-center gap-2 cursor-pointer">
+            <span>Devam Et: İletişim Bilgileri</span>
+            <svg style="width: 16px !important; height: 16px !important; display: inline-block !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </button>
         </div>
       </div>
 
-      <div>
-        <label class="block text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Proje Notu / Metraj / Talebiniz</label>
-        <textarea name="notes" id="sky-modal-notes" rows="2" placeholder="Projenizin debisi, m² bilgisi veya teknik detaylarını iletebilirsiniz..." class="w-full px-3 py-1.5 sm:py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#09bde3] focus:ring-2 focus:ring-[#09bde3]/20 transition-all resize-none font-medium"></textarea>
+      <!-- STEP 3: İletişim & Şartname Talebi -->
+      <div id="sky-modal-step-3" class="space-y-3 hidden">
+        <div>
+          <label class="block text-[11px] font-bold text-slate-700 mb-1">Ad Soyad / Firma Ünvanı *</label>
+          <input type="text" name="name" id="sky-modal-name" required placeholder="Örn: Ahmet Yılmaz / ABC İnşaat A.Ş." class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#09bde3] focus:ring-2 focus:ring-[#09bde3]/20 transition-all font-medium">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 mb-1">Telefon Numarası *</label>
+            <input type="tel" name="phone" id="sky-modal-phone" required placeholder="0 (5XX) XXX XX XX" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#09bde3] focus:ring-2 focus:ring-[#09bde3]/20 transition-all font-medium">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 mb-1">E-Posta Adresi</label>
+            <input type="email" name="email" id="sky-modal-email" placeholder="ornek@firma.com" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#09bde3] focus:ring-2 focus:ring-[#09bde3]/20 transition-all font-medium">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-slate-700 mb-1">Teknik Not / Metraj / DWG Açıklaması:</label>
+          <textarea name="notes" id="sky-modal-notes" rows="2" placeholder="Projenizin hava debisi (m³/h), tavan yüksekliği veya varsa özel şartname talepleriniz..." class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#09bde3] focus:ring-2 focus:ring-[#09bde3]/20 transition-all resize-none font-medium"></textarea>
+        </div>
+
+        <!-- Direct Manufacturer Guarantee Banner -->
+        <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200 text-[11px] text-slate-600 leading-relaxed flex items-center gap-2">
+          <span class="text-base shrink-0">🏭</span>
+          <span><strong>Doğrudan İmalatçı Güvencesi:</strong> Aracı komisyonsuz fabrika imalat fiyatı, 24 saatte net metrajlı şartname ve resmi kabul garantili TAB teslimatı.</span>
+        </div>
+
+        <div class="flex items-center gap-2.5 pt-1">
+          <button type="button" onclick="goToModalStep(2)" class="w-1/3 py-3.5 px-4 rounded-lg font-semibold text-xs border border-slate-200 text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer">
+            ← Geri
+          </button>
+          <button type="button" onclick="submitMultiStepForm()" style="background-color: #09bde3 !important; color: #04111f !important;" class="w-2/3 py-3.5 px-5 rounded-lg font-bold text-sm shadow-md hover:bg-[#38bdf8] transition-all flex items-center justify-center gap-2 cursor-pointer">
+            <span>Talebi Tamamla (24 Saatte Teklif)</span>
+            <svg style="width: 16px !important; height: 16px !important; display: inline-block !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          </button>
+        </div>
       </div>
 
-      <button type="submit" style="background-color: #09bde3 !important; color: #04111f !important;" class="w-full py-2.5 sm:py-3.5 px-4 rounded-lg font-bold text-sm sm:text-base hover:bg-[#38bdf8] transition-colors shadow-md flex items-center justify-center gap-2 cursor-pointer mt-1">
-        <span>Teklif Talebini Gönder</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-      </button>
-
-      <div id="sky-form-success" class="hidden p-3 sm:p-4 rounded-lg bg-emerald-50 border border-emerald-300 text-emerald-900 text-xs sm:text-sm text-center font-medium">
-        ✓ <strong>Talebiniz Başarıyla Alındı!</strong><br>Uzman mühendislerimiz en geç 24 saat içinde sizinle iletişime geçecektir.
+      <!-- SUCCESS SCREEN -->
+      <div id="sky-form-success" class="hidden py-6 text-center space-y-3">
+        <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-xl font-black">
+          ✓
+        </div>
+        <h4 class="text-lg font-bold text-slate-900">Keşif &amp; Analiz Talebiniz Başarıyla Alındı!</h4>
+        <p class="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+          Mekanik tesisat mühendisimiz en geç <strong>24 saat içinde</strong> telefon numaranızdan sizinle iletişime geçecek; mimari çizimleriniz üzerinden net metrajlı teknik şartname ve imalat teklifinizi hazırlayacaktır.
+        </p>
+        <div class="pt-3">
+          <button type="button" onclick="closeQuoteModal()" class="py-2 px-6 rounded-lg bg-slate-900 text-white font-semibold text-xs hover:bg-slate-800 transition-colors cursor-pointer">
+            Pencereyi Kapat
+          </button>
+        </div>
       </div>
+
     </form>
 
-    <div class="mt-3 pt-2.5 border-t border-slate-100 flex flex-wrap items-center justify-between text-xs text-slate-500 gap-2">
-      <span>🔒 Bilgileriniz gizli tutulur</span>
-      <div class="flex items-center gap-3">
+    <!-- Bottom Contact Line -->
+    <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between text-xs text-slate-500 gap-2">
+      <span class="flex items-center gap-1.5 text-[11px]">
+        <svg style="width: 13px !important; height: 13px !important; display: inline-block !important;" class="text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        Bilgileriniz KVKK kapsamında şifrelenir
+      </span>
+      <div class="flex items-center gap-3 text-xs">
         <a href="https://wa.me/905419221991" target="_blank" rel="noopener noreferrer" class="text-emerald-600 hover:text-emerald-700 font-bold flex items-center gap-1">
-          WhatsApp
-        </a>
-        <span class="text-slate-300">•</span>
-        <a href="tel:+905419221991" class="text-[#09bde3] hover:underline font-bold flex items-center gap-1">
-          0 (541) 922 19 91
+          WhatsApp: 0 (541) 922 19 91
         </a>
       </div>
     </div>
@@ -1480,74 +1714,240 @@
         }
       };
 
-      // 4. Quote Modal Open & Close Logic
-      const modal = document.getElementById('sky-quote-modal');
-      const modalClose = document.getElementById('sky-modal-close');
-      const modalNotes = document.getElementById('sky-modal-notes');
-      const form = document.getElementById('sky-quote-form');
-      const successMsg = document.getElementById('sky-form-success');
+      // 4. Sky Group Multi-Step Lead Intake Funnel Logic
+    let currentModalStep = 1;
 
-      window.openQuoteModal = function(title) {
-        if (!modal) return;
-        if (title && modalNotes) {
-          modalNotes.value = title;
-        }
-        modal.classList.add('active');
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
+    window.goToModalStep = function(step) {
+      if (step < 1 || step > 3) return;
+      currentModalStep = step;
+
+      const s1 = document.getElementById('sky-modal-step-1');
+      const s2 = document.getElementById('sky-modal-step-2');
+      const s3 = document.getElementById('sky-modal-step-3');
+      const success = document.getElementById('sky-form-success');
+      const progressContainer = document.getElementById('sky-modal-progress');
+      const subtitle = document.getElementById('sky-modal-subtitle');
+
+      if (success) success.classList.add('hidden');
+      if (progressContainer) progressContainer.style.display = 'flex';
+
+      if (s1) s1.classList.toggle('hidden', step !== 1);
+      if (s2) s2.classList.toggle('hidden', step !== 2);
+      if (s3) s3.classList.toggle('hidden', step !== 3);
+
+      const stepSubtitles = {
+        1: 'Adım 1/3: Sektör & Mahal Büyüklüğü',
+        2: 'Adım 2/3: İhtiyaç Duyulan Sistemler & Durum',
+        3: 'Adım 3/3: İletişim & Metraj/DWG Detayları'
       };
-
-      function closeModal() {
-        if (!modal) return;
-        modal.classList.remove('active');
-        modal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
+      if (subtitle && stepSubtitles[step]) {
+        subtitle.textContent = stepSubtitles[step];
       }
 
+      // Update step indicator badges
+      for (let i = 1; i <= 3; i++) {
+        const badge = document.getElementById('sky-step-badge-' + i);
+        const text = document.getElementById('sky-step-text-' + i);
+        if (!badge || !text) continue;
+
+        if (i === step) {
+          badge.className = 'w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold bg-[#09bde3] text-[#04111f] shadow-sm';
+          badge.innerHTML = String(i);
+          text.className = 'font-bold text-slate-900';
+        } else if (i < step) {
+          badge.className = 'w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold bg-emerald-500 text-white shadow-sm';
+          badge.innerHTML = '✓';
+          text.className = 'font-medium text-emerald-600';
+        } else {
+          badge.className = 'w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold bg-slate-200 text-slate-600';
+          badge.innerHTML = String(i);
+          text.className = 'font-medium text-slate-500';
+        }
+      }
+    };
+
+    window.openQuoteModal = function(context) {
+      const modal = document.getElementById('sky-quote-modal');
+      if (!modal) return;
+      
+      const sheet = document.querySelector('.bpc-nav-sheet');
+      if (sheet) sheet.setAttribute('data-open', 'false');
+
+      goToModalStep(1);
+      const success = document.getElementById('sky-form-success');
+      if (success) success.classList.add('hidden');
+      const progressContainer = document.getElementById('sky-modal-progress');
+      if (progressContainer) progressContainer.style.display = 'flex';
+
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+
+      const noteField = document.getElementById('sky-modal-notes') || modal.querySelector('textarea');
+      if (context === 'katalog') {
+        if (noteField) noteField.value = '2026 Sky Group Ürün ve Hizmet Kataloğunun e-posta adresime gönderilmesini rica ederim.';
+      } else if (context === 'kesif') {
+        if (noteField) noteField.value = 'Projemiz için yerinde ücretsiz mühendislik keşfi ve debi hesabı talep ediyoruz.';
+      } else if (context === 'iletisim') {
+        if (noteField) noteField.value = 'Sky Group mühendislik ekibi ile teknik görüşme ve proje danışmanlığı talep ediyoruz.';
+      } else if (typeof context === 'string' && context.length > 0 && context !== 'teklif') {
+        if (noteField) noteField.value = context;
+      }
+    };
+
+    window.openQuoteForProject = function(itemTitle) {
+      const noteField = document.getElementById('sky-modal-notes');
+      if (noteField && itemTitle) {
+        noteField.value = itemTitle + ' hakkında teknik şartname ve imalat teklifi talebi.';
+      }
+      window.openQuoteModal(itemTitle);
+    };
+
+    window.closeQuoteModal = function() {
+      const modal = document.getElementById('sky-quote-modal');
+      if (!modal) return;
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    window.submitMultiStepForm = function() {
+      const nameInput = document.getElementById('sky-modal-name');
+      const phoneInput = document.getElementById('sky-modal-phone');
+
+      if (!nameInput || !nameInput.value.trim()) {
+        alert('Lütfen ad soyad veya firma ünvanınızı giriniz.');
+        if (nameInput) nameInput.focus();
+        return;
+      }
+      if (!phoneInput || !phoneInput.value.trim()) {
+        alert('Lütfen telefon numaranızı giriniz.');
+        if (phoneInput) phoneInput.focus();
+        return;
+      }
+
+      const s3 = document.getElementById('sky-modal-step-3');
+      const success = document.getElementById('sky-form-success');
+      const progressContainer = document.getElementById('sky-modal-progress');
+      const subtitle = document.getElementById('sky-modal-subtitle');
+
+      if (s3) s3.classList.add('hidden');
+      if (progressContainer) progressContainer.style.display = 'none';
+      if (subtitle) subtitle.textContent = 'Talebiniz Alındı';
+      if (success) success.classList.remove('hidden');
+
+      setTimeout(() => {
+        closeQuoteModal();
+        setTimeout(() => {
+          const form = document.getElementById('sky-quote-form');
+          if (form) form.reset();
+          goToModalStep(1);
+        }, 500);
+      }, 4000);
+    };
+
+    function initMultiStepModal() {
+      const modal = document.getElementById('sky-quote-modal');
+      const modalClose = document.getElementById('sky-modal-close');
+
       if (modalClose) {
-        modalClose.addEventListener('click', closeModal);
+        modalClose.addEventListener('click', closeQuoteModal);
       }
 
       if (modal) {
         modal.addEventListener('click', function(e) {
           if (e.target === modal) {
-            closeModal();
+            closeQuoteModal();
           }
         });
       }
 
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
-          closeModal();
-          closeNav();
+          closeQuoteModal();
         }
       });
 
-      if (form) {
-        form.addEventListener('submit', function(e) {
-          e.preventDefault();
-          if (successMsg) successMsg.classList.remove('hidden');
-          const submitBtn = form.querySelector('button[type="submit"]');
-          if (submitBtn) submitBtn.style.display = 'none';
-          setTimeout(() => {
-            closeModal();
-            form.reset();
-            if (successMsg) successMsg.classList.add('hidden');
-            if (submitBtn) submitBtn.style.display = '';
-          }, 3000);
-        });
-      }
+      // Sector cards click handler
+      document.querySelectorAll('.sky-choice-card').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const sector = btn.getAttribute('data-sector');
+          const hiddenInput = document.getElementById('sky-selected-sector');
+          if (hiddenInput && sector) hiddenInput.value = sector;
 
-      // Connect any trigger elements with data-sky-modal-trigger
-      document.querySelectorAll('[data-sky-modal-trigger], a[href="#sky-quote-modal"]').forEach(el => {
+          document.querySelectorAll('.sky-choice-card').forEach(b => {
+            b.classList.remove('border-[#0284c7]', 'bg-cyan-50/60', 'ring-1', 'ring-[#09bde3]');
+            b.classList.add('border-slate-200', 'bg-slate-50/80');
+          });
+          btn.classList.remove('border-slate-200', 'bg-slate-50/80');
+          btn.classList.add('border-[#0284c7]', 'bg-cyan-50/60', 'ring-1', 'ring-[#09bde3]');
+        });
+      });
+
+      // Area cards click handler
+      document.querySelectorAll('.sky-area-card').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const area = btn.getAttribute('data-area');
+          const hiddenInput = document.getElementById('sky-selected-area');
+          if (hiddenInput && area) hiddenInput.value = area;
+
+          document.querySelectorAll('.sky-area-card').forEach(b => {
+            b.classList.remove('border-[#0284c7]', 'bg-cyan-50/60', 'text-[#0284c7]', 'ring-1', 'ring-[#09bde3]');
+            b.classList.add('border-slate-200', 'bg-white', 'text-slate-700');
+          });
+          btn.classList.remove('border-slate-200', 'bg-white', 'text-slate-700');
+          btn.classList.add('border-[#0284c7]', 'bg-cyan-50/60', 'text-[#0284c7]', 'ring-1', 'ring-[#09bde3]');
+        });
+      });
+
+      // Status cards click handler
+      document.querySelectorAll('.sky-status-card').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const status = btn.getAttribute('data-status');
+          const hiddenInput = document.getElementById('sky-selected-status');
+          if (hiddenInput && status) hiddenInput.value = status;
+
+          document.querySelectorAll('.sky-status-card').forEach(b => {
+            b.classList.remove('border-[#0284c7]', 'bg-cyan-50/60', 'text-[#0284c7]', 'ring-1', 'ring-[#09bde3]');
+            b.classList.add('border-slate-200', 'bg-white', 'text-slate-700');
+          });
+          btn.classList.remove('border-slate-200', 'bg-white', 'text-slate-700');
+          btn.classList.add('border-[#0284c7]', 'bg-cyan-50/60', 'text-[#0284c7]', 'ring-1', 'ring-[#09bde3]');
+        });
+      });
+
+      // Connect trigger elements with data-sky-modal-trigger or matching attributes
+      document.querySelectorAll('[data-sky-modal-trigger], [data-bcc-pricing-modal], a[href*="/get-started"], a[href*="/waitlist"], a[href="#sky-quote-modal"]').forEach(el => {
         el.addEventListener('click', function(e) {
           e.preventDefault();
-          const target = el.getAttribute('data-sky-modal-trigger') || 'Genel Keşif ve Fiyat Teklifi';
+          const target = el.getAttribute('data-sky-modal-trigger') || 'Ücretsiz Keşif & Debi Analizi Talebi';
           openQuoteModal(target);
         });
       });
 
-    })();
+      // Also connect any buttons that have "Teklif" or "Keşif"
+      document.querySelectorAll('button').forEach(btn => {
+        const text = btn.innerText.trim();
+        if ((text.includes('Teklif') || text.includes('Keşif') || text.includes('Keşif Talebi')) && 
+            !btn.getAttribute('onclick') && 
+            !btn.classList.contains('sky-choice-card') && 
+            !btn.classList.contains('sky-area-card') && 
+            !btn.classList.contains('sky-status-card') &&
+            !btn.getAttribute('data-bcc-core-rain-trigger')) {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            openQuoteModal('teklif');
+          });
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMultiStepModal);
+    } else {
+      initMultiStepModal();
+    }
+  })();
   </script>
 </body>
 </html>
