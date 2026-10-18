@@ -646,6 +646,86 @@
       transform: scale(1.06) !important;
     }
 </style>
+  <!-- SCHEMA.ORG HVACBUSINESS JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HVACBusiness",
+    "name": "Sky Group İklimlendirme ve Havalandırma Sistemleri",
+    "alternateName": "Sky Group Mühendislik & Mekanik Tesisat",
+    "description": "Türkiye'nin endüstriyel iklimlendirme ve havalandırma projelerinde mühendislik öncelikli, fabrika imalat güvencesiyle anahtar teslim çözüm ortağı. Klima santralleri imalatı, hava kanalları üretimi, TAB devreye alma ve projelendirme danışmanlığı.",
+    "url": "https://skymekanik.com/kurumsal.html",
+    "logo": "https://skymekanik.com/assets/sky-group-logo-s.png",
+    "image": "https://skymekanik.com/assets/images/commercial_rooftop_hvac_system_1792187202526.jpg",
+    "telephone": "+905419221991",
+    "email": "info@skymekanik.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "İvedik OSB Mah. 1354. Cad. No: 138/6",
+      "addressLocality": "Yenimahalle",
+      "addressRegion": "Ankara",
+      "postalCode": "06378",
+      "addressCountry": "TR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "39.9926",
+      "longitude": "32.7485"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "08:30",
+        "closes": "18:30"
+      }
+    ],
+    "priceRange": "₺₺-₺₺₺",
+    "currenciesAccepted": "TRY",
+    "areaServed": {
+      "@type": "Country",
+      "name": "Türkiye"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Endüstriyel Havalandırma & İklimlendirme Üretim ve Hizmetleri",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Klima Santrali (AHU) İmalatı",
+            "description": "TSE EN 1886 D1/L1/T2/TB2 sertifikalı çift cidarlı standart ve hijyenik klima santralleri imalatı."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Hava Kanalı İmalatı & Montaj",
+            "description": "Kendinden flanşlı galvaniz ve Spiromatic spiral yuvarlak hava kanalları imalatı ve montajı (EN 1507 Class C)."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Projelendirme & Mühendislik Danışmanlığı",
+            "description": "Keşif, debi ve statik basınç kaybı hesapları, metrajlı teknik şartname ve DWG setleri."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Test, Ayar, Balanslama (TAB) & Devreye Alma",
+            "description": "Akredite TAB ölçüm raporu ve 2 yıl tam garanti ile anahtar teslim mekanik devreye alma."
+          }
+        }
+      ]
+    }
+  }
+  </script>
   <link rel="stylesheet" crossorigin href="./assets/MarketingLayout-9qZnFVC2.css">
 </head>
 <body class="bpc-theme">
@@ -981,7 +1061,7 @@
         </a>
         
 
-        <a href="./kurumsal-iso-90012015-kalite-yonetim-sistemi.html" class="sky-project-card group block text-left" 
+        <a href="#sky-cert-modal" onclick="openCertModal(1); return false;" class="sky-project-card group block text-left" 
              data-category="kalite">
           <div class="sky-project-photo">
             <img src="./assets/10-DyrMBqgp.png" alt="ISO 9001:2015 Kalite Yönetim Sistemi" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
@@ -1001,7 +1081,7 @@
         </a>
         
 
-        <a href="./kurumsal-tse-en-1886-mekanik-iklimlendirme-belgesi.html" class="sky-project-card group block text-left" 
+        <a href="#sky-cert-modal" onclick="openCertModal(2); return false;" class="sky-project-card group block text-left" 
              data-category="kalite">
           <div class="sky-project-photo">
             <img src="./assets/11-iMUVCH96.png" alt="TSE EN 1886 Mekanik İklimlendirme Belgesi" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
@@ -1021,7 +1101,7 @@
         </a>
         
 
-        <a href="./kurumsal-eurovent-ce-avrupa-uygunluk-belgeleri.html" class="sky-project-card group block text-left" 
+        <a href="#sky-cert-modal" onclick="openCertModal(3); return false;" class="sky-project-card group block text-left" 
              data-category="kalite">
           <div class="sky-project-photo">
             <img src="./assets/26-Bo7LK-2L.png" alt="Eurovent & CE Avrupa Uygunluk Belgeleri" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
@@ -1103,6 +1183,297 @@
       </div>
 
     </section>
+
+    
+    <!-- HORIZONTAL DIVIDER -->
+    <div class="max-w-[1376px] mx-auto px-6 md:px-12">
+      <div class="border-t border-slate-200"></div>
+    </div>
+
+    <!-- MANUFACTURING PARKOUR & CAPACITY REPORT SECTION -->
+    <section id="uretim-tesisimiz" class="max-w-[1376px] mx-auto px-6 md:px-12 py-12 md:py-20">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-cyan-50 text-[#0284c7] border border-cyan-200 mb-3">
+            <span>🏭 Ankara İvedik OSB Tesisimiz</span>
+            <span>•</span>
+            <span>2.500 m²/Gün İmalat Gücü</span>
+          </div>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">Modern İmalat Parkuru &amp; Kapasite Raporu</h2>
+          <p class="text-sm md:text-base text-slate-600 mt-2 max-w-2xl leading-relaxed">
+            Aracı komisyonsuz, doğrudan fabrika imalat güvencesi. Otomasyonlu CNC tezgahları ve Spiromatic hatlarıyla sıfır hata toleransında yüksek hacimli üretim.
+          </p>
+        </div>
+        <div class="shrink-0">
+          <button type="button" onclick="openQuoteModal('Fabrika Ziyareti ve İmalat Parkuru İnceleme Talebi')" style="background-color: #09bde3 !important; color: #04111f !important;" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg font-bold text-xs sm:text-sm hover:bg-[#38bdf8] transition-all shadow-sm cursor-pointer">
+            <span>Fabrika Ziyareti &amp; Numune Talebi</span>
+            <svg style="width: 16px !important; height: 16px !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- 4 Manufacturing Machines Matrix -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        
+        <!-- Machine 1 -->
+        <div class="p-5 rounded-xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between hover:border-[#09bde3] transition-all">
+          <div>
+            <div class="w-10 h-10 rounded-lg bg-sky-50 text-[#0284c7] flex items-center justify-center font-black text-lg mb-4">
+              01
+            </div>
+            <h3 class="text-base font-bold text-slate-900 mb-2">CNC Fiber Lazer &amp; Plazma</h3>
+            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+              3000 × 1500 mm tabla, 0.05 mm pozisyonlama hassasiyeti ve otomatik CAD/CAM nesting ile %94 malzeme verimliliği.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-semibold text-slate-700">
+            <span>Kapasite:</span>
+            <span class="text-[#0284c7] font-bold">1.0 – 4.0 mm Galvaniz/Paslanmaz</span>
+          </div>
+        </div>
+
+        <!-- Machine 2 -->
+        <div class="p-5 rounded-xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between hover:border-[#09bde3] transition-all">
+          <div>
+            <div class="w-10 h-10 rounded-lg bg-sky-50 text-[#0284c7] flex items-center justify-center font-black text-lg mb-4">
+              02
+            </div>
+            <h3 class="text-base font-bold text-slate-900 mb-2">Spiromatic Spiral Kanal</h3>
+            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+              Ø100 mm'den Ø1600 mm'ye kadar çift dikiş kilitli sürekli yuvarlak spiral kanal imalatı (EN 12237 Class D normu).
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-semibold text-slate-700">
+            <span>Sızdırmazlık:</span>
+            <span class="text-[#0284c7] font-bold">2.000 Pa Basınç Dayanımı</span>
+          </div>
+        </div>
+
+        <!-- Machine 3 -->
+        <div class="p-5 rounded-xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between hover:border-[#09bde3] transition-all">
+          <div>
+            <div class="w-10 h-10 rounded-lg bg-sky-50 text-[#0284c7] flex items-center justify-center font-black text-lg mb-4">
+              03
+            </div>
+            <h3 class="text-base font-bold text-slate-900 mb-2">Otomatik Kendinden Flanş</h3>
+            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+              Rulo açıcı, doğrultucu, otomatik kanal bükme ve entegre mastik enjeksiyonu ile EN 1507 Class C sızdırmazlık.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-semibold text-slate-700">
+            <span>Günlük İmalat:</span>
+            <span class="text-[#0284c7] font-bold">2.500 m² / Vardiya</span>
+          </div>
+        </div>
+
+        <!-- Machine 4 -->
+        <div class="p-5 rounded-xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between hover:border-[#09bde3] transition-all">
+          <div>
+            <div class="w-10 h-10 rounded-lg bg-sky-50 text-[#0284c7] flex items-center justify-center font-black text-lg mb-4">
+              04
+            </div>
+            <h3 class="text-base font-bold text-slate-900 mb-2">AHU Montaj &amp; TAB Testi</h3>
+            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+              TSE EN 1886 standardında çift cidarlı taşyünü santral montajı, diferansiyel basınç kalibrasyonu ve statik balanslama.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-semibold text-slate-700">
+            <span>Santral İmalatı:</span>
+            <span class="text-[#0284c7] font-bold">120+ Ünite / Yıl</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Capacity Highlight Stats Banner -->
+      <div class="p-6 md:p-8 rounded-2xl bg-slate-900 text-white shadow-xl grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+        <div>
+          <span class="block text-2xl sm:text-3xl lg:text-4xl font-black text-[#09bde3] tracking-tight">2.500 m²</span>
+          <span class="block text-xs font-semibold text-slate-300 mt-1">Günlük Kanal Üretimi</span>
+        </div>
+        <div>
+          <span class="block text-2xl sm:text-3xl lg:text-4xl font-black text-[#09bde3] tracking-tight">120+</span>
+          <span class="block text-xs font-semibold text-slate-300 mt-1">Yıllık AHU İmalat Kapasitesi</span>
+        </div>
+        <div>
+          <span class="block text-2xl sm:text-3xl lg:text-4xl font-black text-[#09bde3] tracking-tight">500+ Ton</span>
+          <span class="block text-xs font-semibold text-slate-300 mt-1">Sürekli Galvaniz Sac Stoğu</span>
+        </div>
+        <div>
+          <span class="block text-2xl sm:text-3xl lg:text-4xl font-black text-[#09bde3] tracking-tight">24 Saat</span>
+          <span class="block text-xs font-semibold text-slate-300 mt-1">Metrajlı Teklif &amp; Termin Hızı</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- HORIZONTAL DIVIDER -->
+    <div class="max-w-[1376px] mx-auto px-6 md:px-12">
+      <div class="border-t border-slate-200"></div>
+    </div>
+
+    <!-- ACCREDITED CERTIFICATES & TEST REPORTS GALLERY SECTION -->
+    <section id="sertifikalar-galerisi" class="max-w-[1376px] mx-auto px-6 md:px-12 py-12 md:py-20">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-sky-50 text-[#0284c7] border border-sky-200 mb-3">
+            <span>🛡️ Uluslararası Akreditasyon</span>
+            <span>•</span>
+            <span>TÜRKAK &amp; Eurovent Onaylı</span>
+          </div>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">Akredite Sertifikalar &amp; Resmi Test Raporları</h2>
+          <p class="text-sm md:text-base text-slate-600 mt-2 max-w-2xl leading-relaxed">
+            İmal ettiğimiz her hava kanalı, klima santrali ve duman tahliye ünitesi bağımsız akredite laboratuvar testleriyle tescillenmiştir. Kartlara tıklayarak detaylı test parametrelerini inceleyebilirsiniz.
+          </p>
+        </div>
+        <div class="shrink-0">
+          <button type="button" onclick="openQuoteModal('Resmi Kalite Sertifikaları ve Akreditasyon Raporları Dosyası Talebi')" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-slate-300 bg-white text-slate-800 font-bold text-xs hover:border-[#09bde3] hover:text-[#0284c7] transition-all shadow-xs cursor-pointer">
+            <span>📄 Kalite Dosyasını PDF İste</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 6 Certificate Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Cert Card 1 -->
+        <div onclick="openCertModal(1)" class="group p-6 rounded-xl bg-white border border-slate-200 hover:border-[#09bde3] hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-wider bg-sky-50 text-[#0284c7] border border-sky-100">Kalite Yönetim Sistemi</span>
+              <span class="text-xs font-bold text-slate-400">ISO 9001:2015</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors mb-2">ISO 9001:2015 Kalite Yönetim Sistemi</h3>
+            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+              Tasarım, hammadde kabul, CNC sac işleme, montaj ve saha devreye alma süreçlerinin TÜRKAK akredite kalite standartlarına uygunluğu.
+            </p>
+            <div class="space-y-1.5 text-xs text-slate-600 border-t border-slate-100 pt-3">
+              <div class="flex justify-between"><span>Akreditasyon:</span><strong class="text-slate-900">TÜRKAK &amp; IAF Onaylı</strong></div>
+              <div class="flex justify-between"><span>Kapsam:</span><strong class="text-slate-900">Mekanik İklimlendirme &amp; İmalat</strong></div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#0284c7]">
+            <span>Test &amp; Kapsam Detaylarını Gör</span>
+            <span class="transition-transform group-hover:translate-x-1">→</span>
+          </div>
+        </div>
+
+        <!-- Cert Card 2 -->
+        <div onclick="openCertModal(2)" class="group p-6 rounded-xl bg-white border border-slate-200 hover:border-[#09bde3] hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-600 border border-emerald-100">Klima Santrali Mekanik Normu</span>
+              <span class="text-xs font-bold text-slate-400">TSE EN 1886</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors mb-2">TSE EN 1886 Mekanik Santral Kriterleri</h3>
+            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+              Çift cidarlı santrallerimizde D1 mekanik sehim, L1 gövde sızdırmazlığı, T2 ısıl geçirgenlik ve TB2 termal köprüleme testleri.
+            </p>
+            <div class="space-y-1.5 text-xs text-slate-600 border-t border-slate-100 pt-3">
+              <div class="flex justify-between"><span>Mekanik Sehim:</span><strong class="text-emerald-600">Sınıf D1 (&lt; 4 mm/m)</strong></div>
+              <div class="flex justify-between"><span>Hava Kaçağı:</span><strong class="text-emerald-600">Sınıf L1 (±400 Pa Test)</strong></div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#0284c7]">
+            <span>Test &amp; Kapsam Detaylarını Gör</span>
+            <span class="transition-transform group-hover:translate-x-1">→</span>
+          </div>
+        </div>
+
+        <!-- Cert Card 3 -->
+        <div onclick="openCertModal(3)" class="group p-6 rounded-xl bg-white border border-slate-200 hover:border-[#09bde3] hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-wider bg-sky-50 text-[#0284c7] border border-sky-100">Avrupa Enerji Verimliliği</span>
+              <span class="text-xs font-bold text-slate-400">Eurovent ECP</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors mb-2">Eurovent Onaylı Komponentler &amp; ErP</h3>
+            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+              Klima santrallerinde kullanılan IE4 EC plug fanlar, serpantin bataryaları ve %82 verimli ısı geri kazanım eşanjörlerinin uluslararası tescili.
+            </p>
+            <div class="space-y-1.5 text-xs text-slate-600 border-t border-slate-100 pt-3">
+              <div class="flex justify-between"><span>Enerji Normu:</span><strong class="text-slate-900">ErP 2018 / 2021 Eko-Tasarım</strong></div>
+              <div class="flex justify-between"><span>Geri Kazanım:</span><strong class="text-[#0284c7] font-bold">%75 – %82 Verim</strong></div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#0284c7]">
+            <span>Test &amp; Kapsam Detaylarını Gör</span>
+            <span class="transition-transform group-hover:translate-x-1">→</span>
+          </div>
+        </div>
+
+        <!-- Cert Card 4 -->
+        <div onclick="openCertModal(4)" class="group p-6 rounded-xl bg-white border border-slate-200 hover:border-[#09bde3] hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-wider bg-amber-50 text-amber-700 border border-amber-200">Avrupa Birliği Uygunluk</span>
+              <span class="text-xs font-bold text-slate-400">CE Deklarasyonu</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors mb-2">CE Avrupa Normları Uygunluk Beyanı</h3>
+            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+              2006/42/AT Makine Emniyeti, 2014/35/AB Alçak Gerilim (LVD) ve 2014/30/AB Elektromanyetik Uyumluluk (EMC) direktiflerine tam uyum.
+            </p>
+            <div class="space-y-1.5 text-xs text-slate-600 border-t border-slate-100 pt-3">
+              <div class="flex justify-between"><span>Direktifler:</span><strong class="text-slate-900">2006/42/AT • LVD • EMC</strong></div>
+              <div class="flex justify-between"><span>Elektrik Standardı:</span><strong class="text-slate-900">EN 60204-1 Emniyet</strong></div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#0284c7]">
+            <span>Test &amp; Kapsam Detaylarını Gör</span>
+            <span class="transition-transform group-hover:translate-x-1">→</span>
+          </div>
+        </div>
+
+        <!-- Cert Card 5 -->
+        <div onclick="openCertModal(5)" class="group p-6 rounded-xl bg-white border border-slate-200 hover:border-[#09bde3] hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-wider bg-rose-50 text-rose-600 border border-rose-100">Yangın &amp; Duman Güvenliği</span>
+              <span class="text-xs font-bold text-slate-400">EN 12101-3</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors mb-2">EN 12101-3 Duman Tahliye Dayanımı</h3>
+            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+              Otopark jet fanları ve yangın duman tahliye fanlarının 400°C sıcaklık altında kesintisiz 120 dakika boyunca tam kapasite çalışma sertifikası.
+            </p>
+            <div class="space-y-1.5 text-xs text-slate-600 border-t border-slate-100 pt-3">
+              <div class="flex justify-between"><span>Sıcaklık Sınıfı:</span><strong class="text-rose-600 font-bold">F400 (400°C / 2 Saat)</strong></div>
+              <div class="flex justify-between"><span>Uygulama:</span><strong class="text-slate-900">Otopark Jet Fan &amp; Şaft Emiş</strong></div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#0284c7]">
+            <span>Test &amp; Kapsam Detaylarını Gör</span>
+            <span class="transition-transform group-hover:translate-x-1">→</span>
+          </div>
+        </div>
+
+        <!-- Cert Card 6 -->
+        <div onclick="openCertModal(6)" class="group p-6 rounded-xl bg-white border border-slate-200 hover:border-[#09bde3] hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-wider bg-cyan-50 text-[#0284c7] border border-cyan-100">Kanal Sızdırmazlık Normu</span>
+              <span class="text-xs font-bold text-slate-400">EN 1507 &amp; EN 12237</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors mb-2">EN 1507 Class C Kanal Sızdırmazlığı</h3>
+            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+              Kendinden flanşlı prizmatik kanallarımızda Class C (+1000 Pa), Spiromatic yuvarlak kanallarımızda Class D (+2000 Pa) kaçak test sertifikası.
+            </p>
+            <div class="space-y-1.5 text-xs text-slate-600 border-t border-slate-100 pt-3">
+              <div class="flex justify-between"><span>Prizmatik Kanal:</span><strong class="text-[#0284c7]">Class C (1.000 Pa Dayanım)</strong></div>
+              <div class="flex justify-between"><span>Spiral Kanal:</span><strong class="text-[#0284c7]">Class D (2.000 Pa Dayanım)</strong></div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#0284c7]">
+            <span>Test &amp; Kapsam Detaylarını Gör</span>
+            <span class="transition-transform group-hover:translate-x-1">→</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HORIZONTAL DIVIDER -->
+    <div class="max-w-[1376px] mx-auto px-6 md:px-12">
+      <div class="border-t border-slate-200"></div>
+    </div>
 
     <!-- LOGOS & STANDARDS SECTION -->
     <section id="standartlar" class="max-w-[1376px] mx-auto px-6 md:px-12 py-12 md:py-16">
@@ -1305,6 +1676,28 @@
         </div>
       </div>
 </section>
+
+  
+    <!-- CERTIFICATE DETAIL MODAL -->
+    <div id="sky-cert-modal" class="fixed inset-0 z-[999999] bg-slate-900/80 backdrop-blur-md hidden items-center justify-center p-4">
+      <div class="bg-white rounded-xl border border-slate-200 max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+        <div class="p-4 sm:p-5 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+          <div>
+            <span id="scm-tag" class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-sky-100 text-[#0284c7]"></span>
+            <h3 id="scm-title" class="text-base sm:text-lg font-bold text-slate-900 mt-1"></h3>
+          </div>
+          <button type="button" onclick="closeCertModal()" class="w-8 h-8 rounded-full bg-white border border-slate-200 text-slate-500 hover:text-slate-900 flex items-center justify-center font-bold text-sm cursor-pointer">✕</button>
+        </div>
+        <div id="scm-body" class="p-4 sm:p-6 overflow-y-auto text-xs sm:text-sm text-slate-700 leading-relaxed space-y-3">
+        </div>
+        <div class="p-4 border-t border-slate-200 bg-slate-50 flex items-center justify-between gap-3">
+          <button type="button" onclick="closeCertModal()" class="py-2 px-4 rounded-lg border border-slate-300 text-slate-700 text-xs font-semibold hover:bg-slate-100 cursor-pointer">Kapat</button>
+          <button type="button" id="scm-cta" style="background-color: #09bde3 !important; color: #04111f !important;" class="py-2.5 px-4 rounded-lg font-bold text-xs shadow hover:bg-[#38bdf8] transition-all cursor-pointer">
+            Resmi Belge &amp; Raporu Talep Et
+          </button>
+        </div>
+      </div>
+    </div>
 
   </main>
 
@@ -1890,6 +2283,79 @@
         }, 500);
       }, 4000);
     };
+
+    
+    // ==========================================
+    // CERTIFICATES MODAL DATA & CONTROLLER
+    // ==========================================
+    const CERTS_DATA = {
+      1: {
+        tag: 'Kalite Yönetim Sistemi • ISO 9001:2015',
+        title: 'ISO 9001:2015 Kalite Yönetim Sistemi Belgesi',
+        body: '<p><strong>Akreditasyon Kurumu:</strong> TÜRKAK (Türk Akreditasyon Kurumu) ve IAF Uluslararası Karşılıklı Tanınma Anlaşması.</p><p><strong>Belge Kapsamı:</strong> Havalandırma kanalları, klima santralleri (AHU), duman tahliye sistemleri, ısı geri kazanım cihazları tasarımı, CNC parkurunda imalatı ve şantiye montaj yönetimi.</p><p><strong>Süreç Denetimi:</strong> Yılda bir kez bağımsız dış denetçi heyeti tarafından proses doğrulaması yapılmakta olup, girdi hammadde spektrometre testlerinden son montaj kalite kontrolüne kadar tüm aşamalar izlenebilir barkod sistemiyle kayıt altına alınır.</p>'
+      },
+      2: {
+        tag: 'Mekanik İklimlendirme Normu • TSE EN 1886',
+        title: 'TSE EN 1886 Klima Santralleri Mekanik Özellikler Belgesi',
+        body: '<p><strong>Mekanik Sehim Sınıfı (D1):</strong> +1000 Pa ve -1000 Pa statik test basıncı altında gövde sehim miktarı maksimum 4 mm/m sınırının altındadır (En üst sınıf D1 rijitlik).</p><p><strong>Gövde Hava Kaçağı Sınıfı (L1):</strong> +400 Pa pozitif ve -400 Pa negatif basınçta hava kaçak oranı 0.15 L/(s·m²) değerini aşmayarak santral içi şartlandırılmış havanın çevreye kaçışını engeller.</p><p><strong>Isıl İletkenlik (T2) ve Isı Köprüsü (TB2):</strong> 50 mm yüksek yoğunluklu taşyünü izolasyon panelleri ve özel termal bariyerli kompozit karkas profilleri ile dış yüzey yoğuşması ve enerji kaybı önlenir.</p><p><strong>Filtre By-Pass Kaçağı (F9):</strong> Filtre kızak ve çerçeve sızdırmazlığı %0.5 kaçak sınırının altındadır.</p>'
+      },
+      3: {
+        tag: 'Avrupa Enerji Verimliliği • Eurovent ECP',
+        title: 'Eurovent Onaylı Komponentler ve ErP Eko-Tasarım Uyumluluğu',
+        body: '<p><strong>Eurovent Sertifikalı Fan-Motor Grubu:</strong> EC (elektronik komütasyonlu) geriye eğik kanatlı plug fanlar, IE4 süper premium enerji verimliliği sınıfındadır.</p><p><strong>Eurovent Onaylı Isı Geri Kazanım Eşanjörleri:</strong> Çapraz akışlı plakalı ve rotorlu entalpik ısı tekerlekleri, EN 308 standardına göre %75 - %82 net duyulur/toplam ısı transfer verimi sağlar.</p><p><strong>ErP 2018 / 2021 Eko-Tasarım Direktifi:</strong> Üretilen tüm santral üniteleri Avrupa Birliği ErP (Energy-related Products) direktifinin spesifik fan gücü (SFP) sınırlarını karşılar.</p>'
+      },
+      4: {
+        tag: 'Avrupa Birliği Uygunluk • CE Deklarasyonu',
+        title: 'CE Avrupa Standartları Uygunluk Beyanı',
+        body: '<p><strong>2006/42/AT Makine Emniyeti Direktifi:</strong> Fan, motor ve tahrik mekanizmalarında tam koruma kafesleri, titreşim sönümleyici yaylı izolatörler ve acil stop emniyet kurguları.</p><p><strong>2014/35/AB Alçak Gerilim Direktifi (LVD):</strong> EN 60204-1 makine elektrik panosu güvenliği, IP55/IP65 koruma sınıflı kablolama ve motor klemens kutuları.</p><p><strong>2014/30/AB Elektromanyetik Uyumluluk (EMC):</strong> İnverter ve frekans konvertörlerinde harmonik filtre ve ekranlı kablo uygulamaları ile endüstriyel elektronik ekipman koruması.</p>'
+      },
+      5: {
+        tag: 'Yangın Güvenliği • EN 12101-3',
+        title: 'EN 12101-3 Yangın & Duman Tahliye Dayanım Akreditasyonu',
+        body: '<p><strong>Yangın Sıcaklık Sınıfı:</strong> F400 Sınıfı (400°C sıcaklıkta minimum 120 dakika kesintisiz çalışma).</p><p><strong>Akredite Laboratuvar Testi:</strong> Bağımsız akredite yangın araştırma enstitüsü tarafından yüksek sıcaklık fırınlarında test edilmiş ve sertifikalandırılmıştır.</p><p><strong>Uygulama Alanları:</strong> Kapalı otopark jet fan sistemleri, şaft duman emiş fanları, basınçlandırma santralleri ve sığınak havalandırma santralleri.</p>'
+      },
+      6: {
+        tag: 'Kanal Sızdırmazlığı • EN 1507 & EN 12237',
+        title: 'EN 1507 Class C ve EN 12237 Class D Sızdırmazlık Test Raporu',
+        body: '<p><strong>Kendinden Flanşlı Prizmatik Kanal (EN 1507 Class C):</strong> 1000 Pa statik test basıncı altında izin verilen maksimum kaçak sınırlarının altında sızdırmazlık. Otomatik mastikli flanş yapısı sayesinde montaj sonrası sızdırmazlık bandı ihtiyacını minimuma indirir.</p><p><strong>Spiromatic Spiral Yuvarlak Kanal (EN 12237 Class D):</strong> 2000 Pa test basıncında çift dikiş kilit ve çift dudaklı EPDM contalı fittingler ile sıfır kaçak garantisi.</p><p><strong>Enerji Tasarrufu:</strong> A sınıfı kanallara oranla şebeke kaçak enerjisinde %85 azalma sağlar, fan işletme elektrik maliyetini düşürür.</p>'
+      }
+    };
+
+    window.openCertModal = function(id) {
+      const data = CERTS_DATA[id];
+      if (!data) return;
+      document.getElementById('scm-tag').textContent = data.tag;
+      document.getElementById('scm-title').textContent = data.title;
+      document.getElementById('scm-body').innerHTML = data.body;
+      const cta = document.getElementById('scm-cta');
+      if (cta) {
+        cta.onclick = function() {
+          closeCertModal();
+          if (typeof openQuoteModal === 'function') {
+            openQuoteModal(data.title + ' Resmi Belge ve Test Raporu Talebi');
+          }
+        };
+      }
+      const modal = document.getElementById('sky-cert-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeCertModal = function() {
+      const modal = document.getElementById('sky-cert-modal');
+      if (!modal) return;
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    };
+
+    const cm = document.getElementById('sky-cert-modal');
+    if (cm) {
+      cm.addEventListener('click', function(e) {
+        if (e.target === cm) closeCertModal();
+      });
+    }
 
     function initMultiStepModal() {
       const modal = document.getElementById('sky-quote-modal');

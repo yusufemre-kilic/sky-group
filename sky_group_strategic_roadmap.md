@@ -163,11 +163,21 @@ flowchart LR
 
 ---
 
-## 8. Uygulama Adımları (Faz 4: Kurumsal Sayfalar & Sertifikasyon Derinliği)
+## 8. Uygulama Adımları (Faz 4: Kurumsal Sayfalar & Sertifikasyon Derinliği) - TAMAMLANDI
 
-- [ ] **Görev 4.1:** Kurumsal (`kurumsal.html`) Sayfasında Sertifikalar, Standartlar ve Test Raporları Galerisi (Eurovent, TSE EN 1886, CE, ISO 9001, ISO 14001, OHSAS akreditasyon belgeleri)
-- [ ] **Görev 4.2:** Fabrika İmalat Parkuru & Kapasite Raporu Bölümü (CNC fiber lazer tezgahları, Spiromatic otomatik spiral kanal hattı, punta ve dikiş kaynak robotları)
-- [ ] **Görev 4.3:** SEO & Schema.org Yapısal Veri Entegrasyonu (`HVACBusiness`, `Service`, `Product`, `TechArticle` zengin snippet'ları)
-- [ ] **Görev 4.4:** Vite derlemesi (`npm run build`), regresyon testleri ve GitHub'a commit/push
+- [x] **Görev 4.1:** Kurumsal (`kurumsal.html`) Sayfasında Sertifikalar, Standartlar ve Test Raporları Galerisi (Eurovent, TSE EN 1886 D1/L1/T2/TB2, CE, ISO 9001:2015, EN 12101-3 400°C/2h ve EN 1507 Class C interaktif modal incelemesi `#sky-cert-modal`)
+- [x] **Görev 4.2:** Fabrika İmalat Parkuru & Kapasite Raporu Bölümü (Ankara İvedik OSB fabrikası için 4 otomasyonlu CNC/Spiromatic/Flanş/AHU makinesi, günlük 2.500 m² üretim ve 500+ ton sac stoğu kapasite kartları)
+- [x] **Görev 4.3:** SEO & Schema.org Yapısal Veri Entegrasyonu (Tüm 8 sayfada `HVACBusiness`, `LocalBusiness`, `Service`, `SoftwareApplication`, `CollectionPage` JSON-LD zengin arama motoru snippet'ları)
+- [x] **Görev 4.4:** Vite derlemesi (`npm run build`), Puppeteer testleri (0 konsol hatası) ve GitHub'a commit/push
+
+---
+
+## 9. Uygulama Adımları (Faz 5: Performans, Erişilebilirlik & Son Rötuşlar)
+
+- [ ] **Görev 5.1:** Görsel Optimizasyonu & WebP / Avif Format Dönüşümü ile LCP (Largest Contentful Paint) İyileştirmesi
+- [ ] **Görev 5.2:** WCAG 2.1 AA Erişilebilirlik ve Kontrast Denetimi (ARIA etiketleri, klavye ile gezinme ve odak halkaları)
+- [ ] **Görev 5.3:** Meta Title, Description & Open Graph / Twitter Kartları İnce Ayarı
+- [ ] **Görev 5.4:** Nihai Vite prodüksiyon derlemesi ve GitHub dağıtımı
+
 
 
