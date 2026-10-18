@@ -151,3 +151,23 @@ flowchart LR
 - [x] **Görev 2.3:** Sektörel Çözümler (`cozumlerimiz.html`) Sayfasının 6 Temel Sektör için Mühendislik Standartları ve Sistem Şemaları ile Güçlendirilmesi
 - [x] **Görev 2.4:** Sonsuz Kayan Marka & Referans Sponsor Logoları Marquee Bantının Optimize Edilmesi (Aradaki çizginin kaldırılması, 31 markalı kesintisiz CSS kayar bant)
 - [x] **Görev 2.5:** Vite derlemesi (`npm run build`), görsel testler ve GitHub'a commit/push
+
+---
+
+## 7. Uygulama Adımları (Faz 3: İnteraktif Lead Magnet & Teknik Kütüphane) - TAMAMLANDI
+
+- [x] **Görev 3.1:** İnteraktif Hızlı Havalandırma & Debi Hesaplayıcı Aracı (Lead Magnet: Mahal tipi, alan m², tavan yüksekliği ve ACH katsayısına göre debi m³/h, CFM, kanal kesiti ve cihaz önerisini anlık hesaplayan, tek tıkla resmi keşif ve şartname teklifine bağlanan interaktif mühendislik aracı)
+- [x] **Görev 3.2:** Teknik Kütüphane / Mühendislik Kılavuzu Sayfası (`teknik-kutuphane.html`) (BasePower İsviçre vitrin tasarımına %100 uyumlu; 6 kritik mühendislik rehberi: Debi hesabı, AHU seçimi, Jet fan standartları, NFPA 96, EN 1507 Class C ve TAB kılavuzu, interaktif modal detayları)
+- [x] **Görev 3.3:** Bilgi Mimarisi ve Navigasyon Bağlantılarının Entegrasyonu (Tüm 8 ana sayfadaki üst mega-menü, mobil çekmece ve footer "Teknik Kütüphane" & "Debi Hesaplayıcı" linklerinin aktif edilmesi)
+- [x] **Görev 3.4:** Vite derlemesi (`npm run build`), Puppeteer testleri (0 konsol hatası) ve GitHub'a commit/push
+
+---
+
+## 8. Uygulama Adımları (Faz 4: Kurumsal Sayfalar & Sertifikasyon Derinliği)
+
+- [ ] **Görev 4.1:** Kurumsal (`kurumsal.html`) Sayfasında Sertifikalar, Standartlar ve Test Raporları Galerisi (Eurovent, TSE EN 1886, CE, ISO 9001, ISO 14001, OHSAS akreditasyon belgeleri)
+- [ ] **Görev 4.2:** Fabrika İmalat Parkuru & Kapasite Raporu Bölümü (CNC fiber lazer tezgahları, Spiromatic otomatik spiral kanal hattı, punta ve dikiş kaynak robotları)
+- [ ] **Görev 4.3:** SEO & Schema.org Yapısal Veri Entegrasyonu (`HVACBusiness`, `Service`, `Product`, `TechArticle` zengin snippet'ları)
+- [ ] **Görev 4.4:** Vite derlemesi (`npm run build`), regresyon testleri ve GitHub'a commit/push
+
+

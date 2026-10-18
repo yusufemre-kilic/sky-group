@@ -1,0 +1,1820 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teknik Kütüphane &amp; Havalandırma Mühendisliği Rehberi | Sky Group</title>
+  <meta name="description" content="Mekanik tesisat mühendisliği için debi (m³/h) hesabı kılavuzları, TSE EN 1886 klima santrali seçim kriterleri, NFPA 96 mutfak egzozu, jet fan standartları ve interaktif debi hesaplayıcı.">
+  
+  <link rel="icon" type="image/x-icon" href="./assets/favicon-CMbSLxqO.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32-CjObB0OI.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16-DFfEhZcQ.png">
+  <link rel="apple-touch-icon" href="./assets/favicon-C8MJGoEu.png">
+
+  <!-- Core Base Power Layout Styles -->
+
+  <style>
+    :root {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+      --color-brand-primary: #09bde3 !important;
+      --color-brand-primary-subtle: #38bdf8 !important;
+      --color-brand-primary-foreground: #061527 !important;
+      --bpc-color-brand-primary: #09bde3 !important;
+      --bpc-color-brand-primary-subtle: #38bdf8 !important;
+      --bpc-color-brand-primary-foreground: #061527 !important;
+      --color-green-100: #04111f !important;
+      --color-green-90: #061527 !important;
+      --color-green-80: #0d2847 !important;
+      --color-green-60: #0284c7 !important;
+      --color-green-50: #09bde3 !important;
+      --color-green-20: #e0f2fe !important;
+      --color-green-10: #f0f9ff !important;
+    }
+
+    /* Blueprint Patterned Subtle Background */
+    html, body {
+      background-color: #f4f3f0 !important;
+      background-image: radial-gradient(circle, #c8c5be 1.1px, transparent 1.1px) !important;
+      background-size: 11px 11px !important;
+      background-attachment: fixed !important;
+      color: #0f172a !important;
+      margin: 0;
+      padding: 0;
+      overflow-x: clip !important;
+      width: 100%;
+    }
+
+    /* Permanent Frosted Glass Topnav */
+    .bcc-topnav-fixed {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      z-index: 9999 !important;
+    }
+    .bcc-topnav-fixed .bcc-topnav nav,
+    .bcc-topnav-fixed nav#main-navbar {
+      background: rgba(5, 17, 30, 0.88) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18) !important;
+      transition: background-color 0.35s ease, backdrop-filter 0.35s ease, border-color 0.35s ease !important;
+    }
+    .bcc-topnav-fixed nav a,
+    .bcc-topnav-fixed nav button {
+      color: #ffffff !important;
+    }
+    .bcc-topnav-fixed nav a:hover,
+    .bcc-topnav-fixed nav button:hover {
+      color: #09bde3 !important;
+    }
+    .bcc-topnav-fixed nav a.bg-brand-primary,
+    .bcc-topnav-fixed nav a[href*="teklif"],
+    .bcc-topnav-fixed nav button.bg-brand-primary {
+      background-color: #09bde3 !important;
+      color: #04111f !important;
+      font-weight: 600 !important;
+      box-shadow: 0 4px 14px rgba(9, 189, 227, 0.35) !important;
+    }
+    .bcc-topnav-fixed nav a.bg-brand-primary:hover,
+    .bcc-topnav-fixed nav button.bg-brand-primary:hover {
+      background-color: #38bdf8 !important;
+      color: #04111f !important;
+    }
+
+    /* Mega-Menu Blue Theme */
+    .bpc-nav-sheet {
+      background-color: #ffffff !important;
+      color: #0f172a !important;
+      border-bottom: 1px solid #e2e8f0 !important;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.12) !important;
+      transition: opacity 0.25s ease, height 0.3s ease !important;
+    }
+    .bpc-nav-sheet[data-open="true"] {
+      height: auto !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      display: block !important;
+    }
+    .bpc-nav-sheet[data-open="false"],
+    .bpc-nav-sheet:not([data-open="true"]) {
+      height: 0 !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      display: none !important;
+    }
+    .bpc-nav-pane[data-active="true"] {
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      position: static !important;
+      display: block !important;
+    }
+    .bpc-nav-sheet a {
+      color: #0f172a !important;
+    }
+    .bpc-nav-sheet a:hover {
+      color: #0284c7 !important;
+    }
+    .bpc-nav-sheet .bg-brand-primary-foreground,
+    .bpc-nav-sheet [class*="bg-brand-primary-foreground"] {
+      background-color: #061527 !important;
+      color: #ffffff !important;
+    }
+
+    /* Mobile Drawer */
+    #sky-mobile-drawer {
+      position: fixed;
+      inset: 0;
+      top: 60px;
+      z-index: 99999;
+      background: rgba(6, 21, 39, 0.96) !important;
+      backdrop-filter: blur(28px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+      border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-12px);
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s ease;
+      overflow-y: auto;
+    }
+    #sky-mobile-drawer.active {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateY(0) !important;
+    }
+
+    /* 3-Column Swiss Showcase Layout */
+    .sky-showcase-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+    @media (min-width: 1024px) {
+      .sky-showcase-grid {
+        flex-direction: row;
+        align-items: stretch;
+        gap: 0;
+      }
+      .sky-showcase-col-1 {
+        flex: 1 1 0%;
+        padding-right: 3.5rem;
+      }
+      .sky-showcase-col-2 {
+        flex: 1 1 0%;
+        border-left: 1px solid #e2e8f0;
+        padding-left: 3.5rem;
+        padding-right: 3.5rem;
+      }
+      .sky-showcase-col-3 {
+        flex: 0 0 38%;
+        border-left: 1px solid #e2e8f0;
+        padding-left: 3.5rem;
+      }
+    }
+    @media (max-width: 1023px) {
+      .sky-showcase-col-2,
+      .sky-showcase-col-3 {
+        border-top: 1px solid #e2e8f0;
+        padding-top: 2.5rem;
+      }
+    }
+
+    /* Filter Buttons - BasePower Style */
+    .sky-filter-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 1.15rem;
+      border-radius: 9999px !important;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      background-color: #ffffff !important;
+      color: #334155 !important;
+      border: 1px solid #cbd5e1 !important;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .sky-filter-btn:hover {
+      background-color: #f8fafc !important;
+      color: #0f172a !important;
+      border-color: #94a3b8 !important;
+    }
+    .sky-filter-btn.active {
+      background-color: #061527 !important;
+      color: #ffffff !important;
+      border-color: #061527 !important;
+      box-shadow: none !important;
+    }
+
+    /* 3-Column BasePower Borderless Cards Grid */
+    .sky-projects-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media (min-width: 640px) {
+      .sky-projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .sky-projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.25rem;
+      }
+    }
+
+    .sky-project-card {
+      background-color: transparent !important;
+      border: none !important;
+      border-radius: 0 !important;
+      padding: 0 !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .sky-project-photo {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      border-radius: 12px !important;
+      aspect-ratio: 16 / 10;
+      background-color: #e2e8f0;
+    }
+
+    .sky-project-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease-out;
+    }
+    .sky-project-card:hover .sky-project-photo img {
+      transform: scale(1.03);
+    }
+
+    .sky-card-cat-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: rgba(6, 21, 39, 0.85);
+      backdrop-filter: blur(8px);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+
+    .sky-card-loc-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      color: #061527;
+      font-size: 11px;
+      font-weight: 700;
+      z-index: 2;
+    }
+
+    .sky-card-read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #061527;
+      transition: color 0.15s ease, gap 0.15s ease;
+    }
+    .sky-project-card:hover .sky-card-read-more {
+      color: #0284c7;
+      gap: 9px;
+    }
+
+    /* Modal System */
+    #sky-quote-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      background: rgba(4, 14, 26, 0.85);
+      backdrop-filter: blur(12px);
+    }
+    #sky-quote-modal.active {
+      display: flex;
+    }
+  </style>
+  <link rel="stylesheet" crossorigin href="./assets/MarketingLayout-9qZnFVC2.css">
+</head>
+<body class="bpc-theme">
+
+  <!-- TOPNAV WRAPPER -->
+  <div class="bcc-topnav-fixed">
+    <div class="bcc-topnav"> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(c,s,d)=>s in c?g(c,s,{enumerable:!0,configurable:!0,writable:!0,value:d}):c[s]=d;var l=(c,s,d)=>w(c,typeof s!="symbol"?s+"":s,d);var E=new Set(["__proto__","constructor","prototype"]);{let c={0:t=>y(t),1:t=>d(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(d(t)),5:t=>new Set(d(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in c?c[p](e):void 0},d=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},i=this.querySelectorAll("template[data-astro-template]");for(let o of i){let a=o.closest(this.tagName);a!=null&&a.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let a=o.closest(this.tagName);a!=null&&a.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let a=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(a+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${a}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let n=new URL(e,document.baseURI),r=`astro-retry=${Date.now()}`,i=n.hash.replace(/^#/,"");return n.hash=i?`${i}&${r}`:r,n.toString()}async importWithRetry(e){try{return await import(e)}catch(n){return await new Promise(r=>setTimeout(r,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let n=this.getAttribute("component-url"),r=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:n}});this.dispatchEvent(r)&&console.error(`[astro-island] Error hydrating ${n}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url");try{let[i,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),r?this.importWithRetry(r):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=i;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=i[h]}return this.hydrator=u,this.hydrate}catch(i){return this.handleHydrationError(i),()=>{}}},e,this)}catch(r){this.handleHydrationError(r)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="ZDlmla" prefix="r26" component-url="./_bpc/assets/full-nav.Cbq7Zrh9.js" component-export="FullNav" renderer-url="./_bpc/assets/client.qTKYg1Jg.js" props="{&quot;static&quot;:[0,true],&quot;theme&quot;:[0,&quot;dark&quot;],&quot;fillAt&quot;:[0,480],&quot;mobileCollapsed&quot;:[0,true],&quot;cta1&quot;:[0,{&quot;label&quot;:[0,&quot;Get Core&quot;],&quot;href&quot;:[0,&quot;/get-started&quot;]}]}" ssr opts="{&quot;name&quot;:&quot;FullNav&quot;,&quot;value&quot;:true}" await-children><nav class="left-0 right-0 z-50 antialiased duration-300 transition-[background-color] relative w-full bg-transparent"><div class="max-w-[1376px] mx-auto px-4 md:px-8 h-[53px] md:h-[69px] flex items-center justify-between gap-4"><div class="flex items-center gap-4 lg:gap-8"><div class="flex shrink-0 items-center gap-3"><a href="./index.html" aria-label="Sky Group" class="inline-flex min-h-11 shrink-0 touch-manipulation items-center gap-2.5"><img src="./assets/sky-group-logo-s-Dq56nYIQ.png" alt="Sky Group" class="h-9 w-9 object-contain drop-shadow" width="36" height="36"><span class="text-xl font-black tracking-tight text-white sky-brand-logo">SKY <span class="text-[#09bde3]">GROUP</span></span></a></div><ul class="hidden lg:flex items-center gap-1"><li><a href="./urunlerimiz.html" aria-controls="fullnav-panel-products" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Ürünlerimiz<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down shrink-0 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></a></li><li><a href="./cozumlerimiz.html" aria-controls="fullnav-panel-pricing" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Çözümlerimiz<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down shrink-0 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></a></li><li><a href="./hizmetlerimiz.html" aria-controls="fullnav-panel-resources" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Hizmetlerimiz<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down shrink-0 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></a></li><li><a href="./referanslar.html" class="inline-flex items-center rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft text-text-inverse hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground">Referanslar</a></li><li><a href="./kurumsal.html" aria-controls="fullnav-panel-company" class="inline-flex items-center gap-1 rounded px-3.5 py-2 text-body-lg font-medium transition-colors duration-300 ease-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground text-text-inverse hover:bg-white/10">Kurumsal<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down shrink-0 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></a></li></ul></div><div class="flex items-center gap-2"><a href="tel:+905419221991" class="touch-manipulation items-center justify-center gap-2 font-semibold transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground disabled:pointer-events-none select-none whitespace-nowrap bg-transparent border border-text-inverse text-text-inverse hover:border-brand-primary-subtle hover:text-brand-primary-subtle disabled:border-text-disabled disabled:text-text-muted py-2 px-3 rounded text-body-md min-h-11 hidden lg:inline-flex">0 (541) 922 19 91</a><a href="#sky-quote-modal" data-sky-modal-trigger="teklif" class="touch-manipulation items-center justify-center gap-2 font-semibold transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground disabled:pointer-events-none select-none whitespace-nowrap bg-brand-primary text-text-brand hover:bg-brand-primary-subtle disabled:bg-surface-subtle disabled:text-text-muted py-2 px-3 rounded text-body-md min-h-11 hidden lg:inline-flex">Ücretsiz Keşif &amp; Debi Analizi</a><button type="button" id="sky-burger-btn" aria-label="Menü" aria-expanded="false" aria-controls="sky-mobile-drawer" class="lg:hidden inline-flex size-11 touch-manipulation items-center justify-center rounded-full transition-colors text-text-inverse hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground cursor-pointer z-50">
+  <svg id="sky-burger-icon-open" class="block w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+  <svg id="sky-burger-icon-close" class="hidden w-6 h-6 text-[#09bde3]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"></line><line x1="6" x2="18" y1="6" y2="18"></line></svg>
+</button></div></div><div data-open="false" class="bpc-nav-sheet hidden lg:block absolute left-0 right-0 top-full bg-surface-raised shadow-[0_14px_22px_-14px_rgba(0,0,0,0.14)]" style="--bpc-nav-sheet-top:69px"><div id="fullnav-panel-products" role="region" aria-label="Products" data-active="false" inert="" class="bpc-nav-pane"><div class="max-w-[1376px] mx-auto px-4 md:px-8 py-8"><div class="bpc-nav-rows flex items-stretch"><div class="min-w-0 px-8 first:pl-0 last:pr-0 flex-1"><div><p class="mb-4 bpc-eyebrow text-brand-primary-foreground">HAVALANDIRMA SİSTEMLERİ</p><ul class="flex flex-col gap-3"><li><a href="./urunlerimiz.html" class="bpc-nav-row group flex items-start gap-4 rounded p-2 -mx-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground"><span class="relative block w-[120px] shrink-0 overflow-hidden rounded aspect-[16/9] bg-surface-default"><img alt="" class="absolute inset-0 h-full w-full object-cover" decoding="async" loading="lazy" src="./assets/koca_fotogal_910f18c72e6d8ef46ca92734073d84ef-CX13zL1c.jpg"/></span><span class="min-w-0 py-0.5"><span class="bpc-nav-row-title flex items-center text-body-lg font-medium text-text-default">Klima Santralleri (AHU)<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right shrink-0 bpc-nav-row-arrow" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span><span class="bpc-nav-row-desc mt-1 block text-body-md text-pretty text-grey-80">Yüksek debili, çift cidarlı hijyenik ve standart klima santralleri.</span></span></a></li><li><a href="./hizmetlerimiz.html" class="bpc-nav-row group flex items-start gap-4 rounded p-2 -mx-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground"><span class="min-w-0 py-0.5"><span class="bpc-nav-row-title flex items-center text-body-lg font-medium text-text-default">Hava Kanalı İmalatı<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right shrink-0 bpc-nav-row-arrow" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span><span class="bpc-nav-row-desc mt-1 block text-body-md text-pretty text-grey-80">CNC plazma kesim, kendinden flanşlı galvaniz ve paslanmaz kanallar.</span></span></a></li><li><a href="./urunlerimiz.html" class="bpc-nav-row group flex items-start gap-4 rounded p-2 -mx-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground"><span class="min-w-0 py-0.5"><span class="bpc-nav-row-title flex items-center text-body-lg font-medium text-text-default">VRV / VRF İklimlendirme<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right shrink-0 bpc-nav-row-arrow" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span><span class="bpc-nav-row-desc mt-1 block text-body-md text-pretty text-grey-80">Çok bölgeli bağımsız inverter iklimlendirme sistemleri.</span></span></a></li><li><a href="./urunlerimiz.html" class="bpc-nav-row group flex items-start gap-4 rounded p-2 -mx-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground"><span class="min-w-0 py-0.5"><span class="bpc-nav-row-title flex items-center text-body-lg font-medium text-text-default">Yangın &amp; Duman Tahliyesi<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right shrink-0 bpc-nav-row-arrow" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span><span class="bpc-nav-row-desc mt-1 block text-body-md text-pretty text-grey-80">400°C/2h yangına dayanıklı duman tahliye ve jet fan sistemleri.</span></span></a></li><li><a href="./urunlerimiz.html" class="bpc-nav-row group flex items-start gap-4 rounded p-2 -mx-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground"><span class="min-w-0 py-0.5"><span class="bpc-nav-row-title flex items-center text-body-lg font-medium text-text-default">Isı Geri Kazanım Cihazları (HRV)<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right shrink-0 bpc-nav-row-arrow" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span><span class="bpc-nav-row-desc mt-1 block text-body-md text-pretty text-grey-80">%80'e varan enerji geri kazanımı ile maksimum tasarruf.</span></span></a></li></ul></div></div><div class="min-w-0 px-8 first:pl-0 last:pr-0 border-l border-border-default flex-1"><div><p class="mb-4 bpc-eyebrow text-brand-primary-foreground">MÜHENDİSLİK ÇÖZÜMLERİ</p><ul class="flex flex-col gap-3"><li><a href="./projelendirme-muhendislik-danismanligi.html" class="bpc-nav-row group flex items-start gap-4 rounded p-2 -mx-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground"><span class="relative block w-[120px] shrink-0 overflow-hidden rounded aspect-[16/9] bg-surface-default"><img alt="" class="absolute inset-0 h-full w-full object-cover" decoding="async" loading="lazy" src="./assets/koca_fotogal_484c8b3a0660cbabdad309952e7d135b-CkJAlXkS.jpg"/></span><span class="min-w-0 py-0.5"><span class="bpc-nav-row-title flex items-center text-body-lg font-medium text-text-default">Projelendirme &amp; Mühendislik Danışmanlığı<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right shrink-0 bpc-nav-row-arrow" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span><span class="bpc-nav-row-desc mt-1 block text-body-md text-pretty text-grey-80">Uzman mühendis kadromuzla yerinde keşif, debi hesabı ve projelendirme.</span></span></a></li><li><a href="./kurumsal.html" class="bpc-nav-row group flex items-start gap-4 rounded p-2 -mx-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground"><span class="min-w-0 py-0.5"><span class="bpc-nav-row-title flex items-center text-body-lg font-medium text-text-default">TSE &amp; CE Standartları<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right shrink-0 bpc-nav-row-arrow" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span><span class="bpc-nav-row-desc mt-1 block text-body-md text-pretty text-grey-80">Sky Group mühendislik ve imalat farkı.</span></span></a></li><li><a href="./cozumlerimiz.html" class="bpc-nav-row group flex items-start gap-4 rounded p-2 -mx-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground"><span class="min-w-0 py-0.5"><span class="bpc-nav-row-title flex items-center text-body-lg font-medium text-text-default">Endüstriyel Havalandırma<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right shrink-0 bpc-nav-row-arrow" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span><span class="bpc-nav-row-desc mt-1 block text-body-md text-pretty text-grey-80">Fabrika, depo ve ticari yapılar için yüksek verimli çözümler.</span></span></a></li></ul></div></div><div class="min-w-0 px-8 first:pl-0 last:pr-0 border-l border-border-default basis-[34%] shrink-0"><div class="rounded-xl bg-brand-primary-foreground text-text-inverse p-6"><p class="bpc-headline-sm text-text-inverse">Sky Group Mühendislik Çözümleri</p><p class="mt-3 text-body-md text-pretty text-text-inverse/85">Mimari ve mekanik çizimlerinizi bize iletin, 24 saat içinde detaylı keşif ve metrajlı teklif hazırlayalım.</p><div class="mt-5"><button type="button" aria-expanded="false" aria-controls="_r26R_ud_-utilities" class="inline-flex touch-manipulation items-center justify-center gap-2 font-semibold transition-colors duration-150 disabled:pointer-events-none select-none whitespace-nowrap bg-brand-primary text-text-brand hover:bg-brand-primary-subtle disabled:bg-surface-subtle disabled:text-text-muted py-3 px-4 rounded text-body-lg w-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Sektörel Çözümleri Görün &rarr;<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down shrink-0 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button></div><p class="mt-4 text-body-sm text-text-inverse/70">Türkiye genelinde 250+ endüstriyel ve ticari referans proje.</p></div></div></div></div></div><div id="fullnav-panel-pricing" role="region" aria-label="Pricing" data-active="false" inert="" class="bpc-nav-pane"><div class="max-w-[1376px] mx-auto px-4 md:px-8 py-8"><div class="bpc-nav-rows flex items-stretch"><div class="min-w-0 px-8 first:pl-0 last:pr-0 basis-[34%] shrink-0"><div class="rounded-xl bg-brand-primary-foreground text-text-inverse p-6"><p class="bpc-headline-sm text-text-inverse">Sky Group Mühendislik Çözümleri</p><p class="mt-3 text-body-md text-pretty text-text-inverse/85">Mimari ve mekanik çizimlerinizi bize iletin, 24 saat içinde detaylı keşif ve metrajlı teklif hazırlayalım.</p><div class="mt-5"><button type="button" aria-expanded="false" aria-controls="_r26R_ql_-utilities" class="inline-flex touch-manipulation items-center justify-center gap-2 font-semibold transition-colors duration-150 disabled:pointer-events-none select-none whitespace-nowrap bg-brand-primary text-text-brand hover:bg-brand-primary-subtle disabled:bg-surface-subtle disabled:text-text-muted py-3 px-4 rounded text-body-lg w-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Sektörel Çözümleri Görün &rarr;<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down shrink-0 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button></div><p class="mt-4 text-body-sm text-text-inverse/70">Türkiye genelinde 250+ endüstriyel ve ticari referans proje.</p></div></div><div class="min-w-0 px-8 first:pl-0 last:pr-0 border-l border-border-default flex-1"><div><p class="mb-4 bpc-eyebrow text-brand-primary-foreground">Hizmet Kapsamımız</p><ul class="flex flex-col gap-3"><li><a href="./projelendirme-muhendislik-danismanligi.html" class="bpc-nav-row group flex items-start gap-4 rounded p-2 -mx-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground"><span class="relative block w-[120px] shrink-0 overflow-hidden rounded aspect-[16/9] bg-surface-default"><img alt="" class="absolute inset-0 h-full w-full object-cover" decoding="async" loading="lazy" src="./assets/koca_fotogal_484c8b3a0660cbabdad309952e7d135b-CkJAlXkS.jpg"/></span><span class="min-w-0 py-0.5"><span class="bpc-nav-row-title flex items-center text-body-lg font-medium text-text-default">Projelendirme &amp; Mühendislik Danışmanlığı<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right shrink-0 bpc-nav-row-arrow" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span><span class="bpc-nav-row-desc mt-1 block text-body-md text-pretty text-grey-80">Uzman mühendis kadromuzla yerinde keşif, debi hesabı ve projelendirme.</span></span></a></li><li><a href="./cozumlerimiz.html" class="bpc-nav-row group flex items-start gap-4 rounded p-2 -mx-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground"><span class="relative block w-[120px] shrink-0 overflow-hidden rounded aspect-[16/9] bg-surface-default"><img alt="" class="absolute inset-0 h-full w-full object-cover" decoding="async" loading="lazy" src="./assets/koca_fotogal_910f18c72e6d8ef46ca92734073d84ef-CX13zL1c.jpg"/></span><span class="min-w-0 py-0.5"><span class="bpc-nav-row-title flex items-center text-body-lg font-medium text-text-default">İmalat Güvencesi<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right shrink-0 bpc-nav-row-arrow" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span><span class="bpc-nav-row-desc mt-1 block text-body-md text-pretty text-grey-80">Kendi modern atölyemizde yüksek kapasiteli üretim ve stok.</span></span></a></li><li><a href="./cozumlerimiz.html" class="bpc-nav-row group flex items-start gap-4 rounded p-2 -mx-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground"><span class="relative block w-[120px] shrink-0 overflow-hidden rounded aspect-[16/9] bg-surface-default"><img alt="" class="absolute inset-0 h-full w-full object-cover" decoding="async" loading="lazy" src="./assets/koca_fotogal_927323f529423eba2d917ccdd5c1026c-Ieo-jheW.jpg"/></span><span class="min-w-0 py-0.5"><span class="bpc-nav-row-title flex items-center text-body-lg font-medium text-text-default">Anahtar Teslim Montaj<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right shrink-0 bpc-nav-row-arrow" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span><span class="bpc-nav-row-desc mt-1 block text-body-md text-pretty text-grey-80">Santral, kanal, menfez montajı, test ve balans (TAB) ayarları.</span></span></a></li></ul></div></div></div></div></div><div id="fullnav-panel-resources" role="region" aria-label="Resources" data-active="false" inert="" class="bpc-nav-pane"><div class="max-w-[1376px] mx-auto px-4 md:px-8 py-8"><div class="bpc-nav-rows flex items-stretch"><div class="min-w-0 px-8 first:pl-0 last:pr-0 basis-[34%] shrink-0"><a href="./kurumsal.html" class="group/featured block rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground"><span class="relative block overflow-hidden rounded-lg aspect-[4/3] bg-surface-default"><img alt="" class="absolute inset-0 h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-300 motion-safe:ease-out motion-safe:group-hover/featured:scale-[1.03]" decoding="async" loading="lazy" src="./assets/koca_fotogal_8b6a466ed354146bb946beeb058166a4-ISSsp0lX.jpg"/></span><p class="text-pretty mt-4 text-body-lg font-semibold text-text-default">Endüstriyel tesislerde lider mekanik tesisat mühendisliği.</p></a></div><div class="min-w-0 px-8 first:pl-0 last:pr-0 border-l border-border-default flex-1"><div><p class="mb-4 bpc-eyebrow text-brand-primary-foreground">Resources</p><ul class="flex flex-col gap-3"><li><a href="tel:+905419221991" rel="noopener noreferrer" target="_blank" class="bpc-nav-row group flex items-start gap-4 rounded p-2 -mx-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground"><span class="min-w-0 py-0.5"><span class="bpc-nav-row-title flex items-center text-body-lg font-medium text-text-default">7/24 Teknik Servis<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right shrink-0 bpc-nav-row-arrow" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span><span class="bpc-nav-row-desc mt-1 block text-body-md text-pretty text-grey-80">Periyodik bakım ve acil müdahale desteği.</span></span></a></li><li><a href="./referanslar.html" class="bpc-nav-row group flex items-start gap-4 rounded p-2 -mx-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground"><span class="min-w-0 py-0.5"><span class="bpc-nav-row-title flex items-center text-body-lg font-medium text-text-default">Referans Projeler<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right shrink-0 bpc-nav-row-arrow" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span><span class="bpc-nav-row-desc mt-1 block text-body-md text-pretty text-grey-80">Fabrika, AVM, hastane ve konut referansları.</span></span></a></li><li><a href="./teknik-kutuphane.html" class="bpc-nav-row group flex items-start gap-4 rounded p-2 -mx-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground"><span class="min-w-0 py-0.5"><span class="bpc-nav-row-title flex items-center text-body-lg font-medium text-text-default">Teknik Kütüphane &amp; Debi Hesaplayıcı<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right shrink-0 bpc-nav-row-arrow" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span><span class="bpc-nav-row-desc mt-1 block text-body-md text-pretty text-grey-80">Debi (m³/h) hesabı, AHU seçim kılavuzu, jet fan standartları ve interaktif hesaplayıcı.</span></span></a></li><li><a href="./kurumsal.html" class="bpc-nav-row group flex items-start gap-4 rounded p-2 -mx-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground"><span class="min-w-0 py-0.5"><span class="bpc-nav-row-title flex items-center text-body-lg font-medium text-text-default">Haberler &amp; Sektörel<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right shrink-0 bpc-nav-row-arrow" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span><span class="bpc-nav-row-desc mt-1 block text-body-md text-pretty text-grey-80">İklimlendirme ve enerji verimliliği bültenleri.</span></span></a></li></ul></div></div></div></div></div><div id="fullnav-panel-company" role="region" aria-label="Company" data-active="false" inert="" class="bpc-nav-pane"><div class="max-w-[1376px] mx-auto px-4 md:px-8 py-8"><div class="bpc-nav-rows flex items-stretch"><div class="min-w-0 px-8 first:pl-0 last:pr-0 flex-1"><div><p class="mb-4 bpc-eyebrow text-brand-primary-foreground">Sky Group</p><ul class="flex flex-col gap-3"><li><a href="./kurumsal.html" class="bpc-nav-row group flex items-start gap-4 rounded p-2 -mx-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground"><span class="min-w-0 py-0.5"><span class="bpc-nav-row-title flex items-center text-body-lg font-medium text-text-default">Hakkımızda<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right shrink-0 bpc-nav-row-arrow" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span><span class="bpc-nav-row-desc mt-1 block text-body-md text-pretty text-grey-80">Köklü tecrübe, yetkin mühendis ve saha kadrosu.</span></span></a></li><li><a href="./kurumsal.html#iletisim" class="bpc-nav-row group flex items-start gap-4 rounded p-2 -mx-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground"><span class="min-w-0 py-0.5"><span class="bpc-nav-row-title flex items-center text-body-lg font-medium text-text-default">İletişim &amp; Adres<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right shrink-0 bpc-nav-row-arrow" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span><span class="bpc-nav-row-desc mt-1 block text-body-md text-pretty text-grey-80">0 (541) 922 19 91 | info@skymekanik.com</span></span></a></li><li><a href="./kurumsal.html" class="bpc-nav-row group flex items-start gap-4 rounded p-2 -mx-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground"><span class="min-w-0 py-0.5"><span class="bpc-nav-row-title flex items-center text-body-lg font-medium text-text-default">Üretim Tesisimiz<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right shrink-0 bpc-nav-row-arrow" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span><span class="bpc-nav-row-desc mt-1 block text-body-md text-pretty text-grey-80">Modern makine parkuru ve CNC hatlarımız.</span></span></a></li></ul></div></div><div class="min-w-0 px-8 first:pl-0 last:pr-0 border-l border-border-default flex-1"><div><p class="mb-4 bpc-eyebrow text-brand-primary-foreground">Kalite Standartları</p><ul class="flex flex-col gap-3"><li><a href="./kurumsal.html" class="bpc-nav-row group flex items-start gap-4 rounded p-2 -mx-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground"><span class="min-w-0 py-0.5"><span class="bpc-nav-row-title flex items-center text-body-lg font-medium text-text-default">Kalite Standartları<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right shrink-0 bpc-nav-row-arrow" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span><span class="bpc-nav-row-desc mt-1 block text-body-md text-pretty text-grey-80">ISO 9001:2015, CE, TSE EN 1886 belgeleri.</span></span></a></li><li><a href="./referanslar.html" class="bpc-nav-row group flex items-start gap-4 rounded p-2 -mx-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground"><span class="min-w-0 py-0.5"><span class="bpc-nav-row-title flex items-center text-body-lg font-medium text-text-default">Saha Güvenliği<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right shrink-0 bpc-nav-row-arrow" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span><span class="bpc-nav-row-desc mt-1 block text-body-md text-pretty text-grey-80">İş sağlığı ve güvenliğinde sıfır kaza prensibi.</span></span></a></li><li><a href="./referanslar.html" class="bpc-nav-row group flex items-start gap-4 rounded p-2 -mx-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground"><span class="min-w-0 py-0.5"><span class="bpc-nav-row-title flex items-center text-body-lg font-medium text-text-default">Katalog İndir<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right shrink-0 bpc-nav-row-arrow" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span><span class="bpc-nav-row-desc mt-1 block text-body-md text-pretty text-grey-80">2026 Ürün ve Hizmet Kataloğumuzu inceleyin.</span></span></a></li></ul></div></div><div class="min-w-0 px-8 first:pl-0 last:pr-0 border-l border-border-default basis-[34%] shrink-0"><a href="./kurumsal.html" class="group/featured block rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground"><span class="relative block overflow-hidden rounded-lg aspect-[4/3] bg-surface-default"><img alt="" class="absolute inset-0 h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-300 motion-safe:ease-out motion-safe:group-hover/featured:scale-[1.03]" decoding="async" loading="lazy" src="./assets/koca_fotogal_6b5abdb48c204fe45d4b71af4bf3015c-uf2uHkId.jpg"/></span><p class="mt-5 text-body-lg font-semibold text-text-default">Doğru İklimlendirme</p><p class="text-pretty mt-1 text-body-md text-text-muted">Geleceğin tesisleri için yüksek verimli mekanik çözümler üretiyoruz.</p></a></div></div></div></div></div></nav>
+
+    <div id="sky-mobile-drawer" class="lg:hidden" aria-hidden="true">
+      <div class="px-5 py-6 flex flex-col gap-4 text-white">
+        <!-- Navigation Accordion / Links -->
+        <div class="flex flex-col gap-1">
+          <!-- 1. Ürünlerimiz -->
+          <div class="border-b border-white/10 py-2.5">
+            <div class="flex items-center justify-between">
+              <a href="./urunlerimiz.html" class="font-bold text-lg py-1 text-white hover:text-[#09bde3] flex-1">Ürünlerimiz</a>
+              <button type="button" class="p-2 text-gray-400 hover:text-white cursor-pointer" onclick="const p=this.closest('div').nextElementSibling; p.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180');" aria-label="Ürünlerimiz alt menüsünü aç">
+                <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </button>
+            </div>
+            <div class="hidden pl-3 pt-2 pb-1 space-y-2.5 text-sm text-gray-300">
+              <a href="./urunlerimiz.html" class="block py-1 text-[#09bde3] font-semibold">Tüm Ürünlerimiz Sayfası →</a>
+              <a href="./urunlerimiz.html" class="block py-1 hover:text-[#09bde3]">Klima Santralleri (AHU)</a>
+              <a href="./urunlerimiz.html" class="block py-1 hover:text-[#09bde3]">Kendinden Flanşlı Galvaniz Kanal</a>
+              <a href="./urunlerimiz.html" class="block py-1 hover:text-[#09bde3]">Spiromatic Spiral Yuvarlak Kanal</a>
+              <a href="./urunlerimiz.html" class="block py-1 hover:text-[#09bde3]">VRV / VRF İklimlendirme</a>
+              <a href="./urunlerimiz.html" class="block py-1 hover:text-[#09bde3]">Yangın &amp; Duman Damperleri</a>
+              <a href="./urunlerimiz.html" class="block py-1 hover:text-[#09bde3]">Isı Geri Kazanım Cihazları (HRV)</a>
+            </div>
+          </div>
+
+          <!-- 2. Çözümlerimiz -->
+          <div class="border-b border-white/10 py-2.5">
+            <div class="flex items-center justify-between">
+              <a href="./cozumlerimiz.html" class="font-bold text-lg py-1 text-white hover:text-[#09bde3] flex-1">Çözümlerimiz</a>
+              <button type="button" class="p-2 text-gray-400 hover:text-white cursor-pointer" onclick="const p=this.closest('div').nextElementSibling; p.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180');" aria-label="Çözümlerimiz alt menüsünü aç">
+                <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </button>
+            </div>
+            <div class="hidden pl-3 pt-2 pb-1 space-y-2.5 text-sm text-gray-300">
+              <a href="./cozumlerimiz.html" class="block py-1 text-[#09bde3] font-semibold">Tüm Sektörel Çözümler Sayfası →</a>
+              <a href="./cozum-fabrika-ve-uretim-tesisi-proses-havalandirmasi.html" class="block py-1 hover:text-[#09bde3]">Endüstriyel Tesisler &amp; Fabrikalar</a>
+              <a href="./cozum-ameliyathane-temiz-oda-hijyenik-iklimlendirme.html" class="block py-1 hover:text-[#09bde3]">Sağlık &amp; Temiz Odalar / Hastane</a>
+              <a href="./cozum-plaza-ve-ticari-binalar-icin-4-borulu-fancoil-primer-taze-hava.html" class="block py-1 hover:text-[#09bde3]">Plaza / Ofis / Rezidans</a>
+              <a href="./cozum-avm-ve-buyuk-magazacilik-iklimlendirme-cozumleri.html" class="block py-1 hover:text-[#09bde3]">AVM / Otel / Ticari Alanlar</a>
+              <a href="./cozum-kapali-otopark-yangin-duman-ve-karbonmonoksit-tahliyesi.html" class="block py-1 hover:text-[#09bde3]">Otopark &amp; Yangın Duman Tahliyesi</a>
+              <a href="./cozum-restoran-ve-otel-mutfaklari-duman-koku-filtrasyonu.html" class="block py-1 hover:text-[#09bde3]">Mutfak / Restoran Koku &amp; Egzoz</a>
+            </div>
+          </div>
+
+          <!-- 3. Hizmetlerimiz -->
+          <div class="border-b border-white/10 py-2.5">
+            <div class="flex items-center justify-between">
+              <a href="./hizmetlerimiz.html" class="font-bold text-lg py-1 text-white hover:text-[#09bde3] flex-1">Hizmetlerimiz</a>
+              <button type="button" class="p-2 text-gray-400 hover:text-white cursor-pointer" onclick="const p=this.closest('div').nextElementSibling; p.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180');" aria-label="Hizmetlerimiz alt menüsünü aç">
+                <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </button>
+            </div>
+            <div class="hidden pl-3 pt-2 pb-1 space-y-2.5 text-sm text-gray-300">
+              <a href="./hizmetlerimiz.html" class="block py-1 text-[#09bde3] font-semibold">Tüm Hizmetlerimiz Sayfası →</a>
+              <a href="./projelendirme-muhendislik-danismanligi.html" class="block py-1 text-[#09bde3] font-semibold">★ Projelendirme &amp; Mühendislik Danışmanlığı</a>
+              <a href="./hizmet-hijyenik-ve-standart-santral-imalat-montaji.html" class="block py-1 hover:text-[#09bde3]">Klima Santrali (AHU) İmalatı</a>
+              <a href="./hizmet-cnc-parkurumuzda-kanal-ve-flans-imalati.html" class="block py-1 hover:text-[#09bde3]">Hava Kanalı İmalatı &amp; Montaj (Class C)</a>
+              <a href="./urun-vrv-vrf-degisken-debili-dis-uniteler.html" class="block py-1 hover:text-[#09bde3]">VRF / VRV Sistemleri</a>
+              <a href="./hizmet-test-ayar-ve-balanslama-tab-hizmetleri.html" class="block py-1 hover:text-[#09bde3]">Test, Ayar, Balanslama (TAB) &amp; Devreye Alma</a>
+              <a href="./hizmet-724-periyodik-bakim-ve-acil-teknik-mudahale.html" class="block py-1 hover:text-[#09bde3]">Periyodik Bakım &amp; 7/24 Servis</a>
+            </div>
+          </div>
+
+          <!-- 4. Referanslar -->
+          <div class="border-b border-white/10 py-3">
+            <a href="./referanslar.html" class="block font-bold text-lg text-white hover:text-[#09bde3]">Referanslar (250+ Proje)</a>
+          </div>
+
+          <!-- 5. Kurumsal -->
+          <div class="border-b border-white/10 py-2.5">
+            <div class="flex items-center justify-between">
+              <a href="./kurumsal.html" class="font-bold text-lg py-1 text-white hover:text-[#09bde3] flex-1">Kurumsal</a>
+              <button type="button" class="p-2 text-gray-400 hover:text-white cursor-pointer" onclick="const p=this.closest('div').nextElementSibling; p.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180');" aria-label="Kurumsal alt menüsünü aç">
+                <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </button>
+            </div>
+            <div class="hidden pl-3 pt-2 pb-1 space-y-2.5 text-sm text-gray-300">
+              <a href="./kurumsal.html" class="block py-1 text-[#09bde3] font-semibold">Tüm Kurumsal Bilgiler →</a>
+              <a href="./kurumsal.html" class="block py-1 hover:text-[#09bde3]">Hakkımızda &amp; 20+ Yıllık Tecrübe</a>
+              <a href="./kurumsal.html" class="block py-1 hover:text-[#09bde3]">Ankara İvedik OSB Üretim Tesisimiz</a>
+              <a href="./kurumsal.html" class="block py-1 hover:text-[#09bde3]">TSE, Eurovent, CE Kalite Belgeleri</a>
+              <a href="./kurumsal.html" class="block py-1 hover:text-[#09bde3]">İSG ve Sıfır Kaza Politikası</a>
+              <a href="#sky-quote-modal" data-sky-modal-trigger="katalog" class="block py-1 hover:text-[#09bde3]">Ürün &amp; Hizmet Kataloğu İndir</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Action CTA Buttons -->
+        <div class="pt-4 flex flex-col gap-3">
+          <a href="#sky-quote-modal" data-sky-modal-trigger="teklif" style="background-color: #09bde3 !important; color: #040e1a !important;" class="w-full inline-flex items-center justify-center py-3.5 px-4 rounded-lg font-bold text-base hover:opacity-90 transition-opacity shadow-lg shadow-cyan-500/20 cursor-pointer">
+            Hemen Fiyat Teklifi Alın
+          </a>
+          <a href="tel:+905419221991" class="w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 rounded-lg border border-white/20 bg-white/5 text-white font-semibold text-base hover:bg-white/10 transition-colors">
+            <svg class="w-5 h-5 text-[#09bde3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            0 (541) 922 19 91
+          </a>
+          <a href="https://wa.me/905419221991" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 rounded-lg bg-emerald-600/90 hover:bg-emerald-600 text-white font-semibold text-base transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            WhatsApp Danışma Hattı
+          </a>
+        </div>
+
+        <!-- Company Info -->
+        <div class="pt-2 text-xs text-gray-400 text-center leading-relaxed">
+          İvedik OSB Mah. 1354. Cad. No: 138/6 Yenimahalle / Ankara<br>
+          © 2026 Sky Group. Tüm hakları saklıdır.
+        </div>
+      </div>
+    </div>
+    <!--astro:end--></astro-island> </div>
+  </div>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="min-h-screen" style="padding-top: 69px;">
+    
+    <!-- 3-COLUMN SWISS SHOWCASE SECTION -->
+    <section class="max-w-[1376px] mx-auto px-6 md:px-12 py-12 md:py-20">
+      <div class="sky-showcase-grid">
+        
+        <!-- Col 1 -->
+        <div class="sky-showcase-col-1 flex flex-col justify-start">
+          <p class="text-slate-900 font-bold tracking-wider text-xs uppercase mb-8">MÜHENDİSLİK HESAPLARI &amp; REHBERLER (1 - 3)</p>
+          <ul class="flex flex-col gap-8">
+            <li>
+              <button type="button" onclick="openGuideModal(1)" class="block text-left w-full group cursor-pointer">
+                <span class="block text-xl md:text-2xl font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">1. Debi &amp; Kapasite Hesabı</span>
+                <span class="block text-sm md:text-base text-slate-500 mt-1.5 leading-relaxed">Hacim, kişi başı taze hava ve saatlik hava değişim katsayısı (ACH) formülleri.</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" onclick="openGuideModal(2)" class="block text-left w-full group cursor-pointer">
+                <span class="block text-xl md:text-2xl font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">2. AHU / Santral Kriterleri</span>
+                <span class="block text-sm md:text-base text-slate-500 mt-1.5 leading-relaxed">TSE EN 1886 mekanik sehim D1, kaçak L1 ve termal köprüleme TB2 standartları.</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" onclick="openGuideModal(3)" class="block text-left w-full group cursor-pointer">
+                <span class="block text-xl md:text-2xl font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">3. Jet Fan &amp; Yangın Tahliyesi</span>
+                <span class="block text-sm md:text-base text-slate-500 mt-1.5 leading-relaxed">Kapalı otoparklarda BS 7346 ve EN 12101-3 400°C/2h duman tahliye kriterleri.</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Col 2 -->
+        <div class="sky-showcase-col-2 flex flex-col justify-start">
+          <p class="text-slate-900 font-bold tracking-wider text-xs uppercase mb-8">STANDARTLAR &amp; METODOLOJİ (4 - 6)</p>
+          <ul class="flex flex-col gap-8">
+            <li>
+              <button type="button" onclick="openGuideModal(4)" class="block text-left w-full group cursor-pointer">
+                <span class="block text-xl md:text-2xl font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">4. Mutfak &amp; Yağ Filtrasyonu</span>
+                <span class="block text-sm md:text-base text-slate-500 mt-1.5 leading-relaxed">NFPA 96 ve DIN 18869 uyumlu alev tutucu filtre ve koku filtrasyon sistemleri.</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" onclick="openGuideModal(5)" class="block text-left w-full group cursor-pointer">
+                <span class="block text-xl md:text-2xl font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">5. Kanal Sızdırmazlığı (Class C)</span>
+                <span class="block text-sm md:text-base text-slate-500 mt-1.5 leading-relaxed">Eurovent ve EN 1507 Class C basınç dayanımı ile kaçak limit tablosu.</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" onclick="openGuideModal(6)" class="block text-left w-full group cursor-pointer">
+                <span class="block text-xl md:text-2xl font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">6. TAB &amp; Devreye Alma</span>
+                <span class="block text-sm md:text-base text-slate-500 mt-1.5 leading-relaxed">Test, Ayar ve Balanslama (TAB) metodolojisi ve akredite teslim şartnamesi.</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Photo Card -->
+        <div class="sky-showcase-col-3 flex flex-col justify-start">
+          <div class="group block">
+            <div class="relative block overflow-hidden aspect-[4/3] bg-slate-100 border border-slate-200/80 shadow-xs" style="border-radius: 4px !important;">
+              <img src="./assets/sky-rooftop-hvac-summer-C4YWlgdI.jpg" alt="Teknik Kütüphane & Havalandırma Mühendisliği Rehberi" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy">
+              <span class="sky-card-cat-badge">Mühendislik Kütüphanesi</span>
+              <span class="sky-card-loc-badge">6 Temel Standart</span>
+            </div>
+            <div class="pt-4">
+              <h3 class="text-lg md:text-xl font-bold text-slate-900 leading-snug">Teknik Kütüphane &amp; Debi Hesaplama</h3>
+              <p class="text-xs sm:text-sm text-slate-500 mt-1.5 leading-relaxed">
+                Türkiye'nin endüstriyel iklimlendirme standartlarını, resmi formüllerini ve pratik hesaplama araçlarını tek merkezde birleştiren kapsamlı mühendislik rehberi.
+              </p>
+              <div class="mt-4">
+                <a href="#debi-hesaplayici" style="background-color: #09bde3 !important; color: #04111f !important;" class="inline-flex items-center gap-2 px-4 py-2 rounded text-xs font-bold hover:bg-[#38bdf8] transition-colors shadow-sm cursor-pointer">
+                  <span>Hızlı Debi Hesaplayıcıyı Kullan ↓</span>
+                  <svg style="width: 14px !important; height: 14px !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HORIZONTAL DIVIDER -->
+    <div class="max-w-[1376px] mx-auto px-6 md:px-12">
+      <div class="border-t border-slate-200"></div>
+    </div>
+
+    <!-- INTERACTIVE LEAD MAGNET: DEBİ VE HAVALANDIRMA HESAPLAYICI -->
+    <section id="debi-hesaplayici" class="max-w-[1376px] mx-auto px-6 md:px-12 py-10">
+      <div class="p-6 sm:p-8 md:p-10 rounded-2xl bg-white border border-slate-200/90 shadow-sm">
+        <div class="max-w-3xl mb-8">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-cyan-50 text-[#0284c7] border border-cyan-200 mb-3">
+            <span>⚙️ Mühendislik Aracı</span>
+            <span>•</span>
+            <span>TS EN 12599 &amp; ASHRAE 62.1 Uyumlu</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Hızlı Havalandırma Debi &amp; Kanal Kesiti Hesaplayıcı</h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1.5 leading-relaxed">
+            Mahalinizin kullanım amacını, taban alanını ve tavan yüksekliğini seçin; sistem standart hava değişim katsayısına (ACH) göre gereken toplam hava debisini (m³/h), önerilen ana kanal ebadını ve cihaz tipini anında hesaplasın.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <!-- Left: Input Controls (7 cols) -->
+          <div class="lg:col-span-7 space-y-6">
+            <!-- 1. Mahal Tipi Seçimi -->
+            <div>
+              <label class="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">1. Mahal / Tesis Tipi:</label>
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="calc-facility-types">
+                <button type="button" onclick="setCalcFacility('fabrika', 10, 'Endüstriyel &amp; Fabrika')" class="calc-fac-btn p-3 rounded-lg border border-[#0284c7] bg-cyan-50/70 text-[#0284c7] ring-1 ring-[#09bde3] text-left transition-all cursor-pointer">
+                  <span class="block text-lg mb-1">🏭</span>
+                  <span class="block text-xs font-bold text-slate-900">Fabrika &amp; Üretim</span>
+                  <span class="block text-[10px] text-slate-500">10 ACH (Toz/Kaynak)</span>
+                </button>
+                <button type="button" onclick="setCalcFacility('hastane', 20, 'Sağlık &amp; Temiz Oda')" class="calc-fac-btn p-3 rounded-lg border border-slate-200 bg-white text-slate-700 text-left hover:border-[#09bde3] hover:bg-slate-50 transition-all cursor-pointer">
+                  <span class="block text-lg mb-1">🏥</span>
+                  <span class="block text-xs font-bold text-slate-900">Temiz Oda / Hastane</span>
+                  <span class="block text-[10px] text-slate-500">20 ACH (DIN 1946-4)</span>
+                </button>
+                <button type="button" onclick="setCalcFacility('ofis', 4, 'Plaza / Ofis')" class="calc-fac-btn p-3 rounded-lg border border-slate-200 bg-white text-slate-700 text-left hover:border-[#09bde3] hover:bg-slate-50 transition-all cursor-pointer">
+                  <span class="block text-lg mb-1">🏢</span>
+                  <span class="block text-xs font-bold text-slate-900">Plaza &amp; Ofis</span>
+                  <span class="block text-[10px] text-slate-500">4 ACH (EN 13779)</span>
+                </button>
+                <button type="button" onclick="setCalcFacility('mutfak', 25, 'Mutfak / Restoran')" class="calc-fac-btn p-3 rounded-lg border border-slate-200 bg-white text-slate-700 text-left hover:border-[#09bde3] hover:bg-slate-50 transition-all cursor-pointer">
+                  <span class="block text-lg mb-1">🍽️</span>
+                  <span class="block text-xs font-bold text-slate-900">Mutfak &amp; Restoran</span>
+                  <span class="block text-[10px] text-slate-500">25 ACH (NFPA 96)</span>
+                </button>
+                <button type="button" onclick="setCalcFacility('otopark', 6, 'Kapalı Otopark')" class="calc-fac-btn p-3 rounded-lg border border-slate-200 bg-white text-slate-700 text-left hover:border-[#09bde3] hover:bg-slate-50 transition-all cursor-pointer">
+                  <span class="block text-lg mb-1">🚗</span>
+                  <span class="block text-xs font-bold text-slate-900">Kapalı Otopark</span>
+                  <span class="block text-[10px] text-slate-500">6 ACH (BS 7346-7)</span>
+                </button>
+                <button type="button" onclick="setCalcFacility('depo', 3, 'Lojistik Depo')" class="calc-fac-btn p-3 rounded-lg border border-slate-200 bg-white text-slate-700 text-left hover:border-[#09bde3] hover:bg-slate-50 transition-all cursor-pointer">
+                  <span class="block text-lg mb-1">📦</span>
+                  <span class="block text-xs font-bold text-slate-900">Lojistik Depo</span>
+                  <span class="block text-[10px] text-slate-500">3 ACH (Hava Sirk.)</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 2. Alan & Yükseklik Slider / Inputs -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                <div class="flex items-center justify-between mb-2">
+                  <label for="calc-area" class="text-xs font-bold text-slate-800">Mahal Alanı (m²):</label>
+                  <span id="calc-area-val" class="text-sm font-extrabold text-[#0284c7]">500 m²</span>
+                </div>
+                <input type="range" id="calc-area" min="50" max="10000" step="50" value="500" oninput="runVentCalc()" class="w-full accent-[#0284c7] cursor-pointer">
+                <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                  <span>50 m²</span>
+                  <span>5.000 m²</span>
+                  <span>10.000+ m²</span>
+                </div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                <div class="flex items-center justify-between mb-2">
+                  <label for="calc-height" class="text-xs font-bold text-slate-800">Tavan Yüksekliği (m):</label>
+                  <span id="calc-height-val" class="text-sm font-extrabold text-[#0284c7]">4.0 m</span>
+                </div>
+                <input type="range" id="calc-height" min="2.4" max="12.0" step="0.2" value="4.0" oninput="runVentCalc()" class="w-full accent-[#0284c7] cursor-pointer">
+                <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                  <span>2.4 m</span>
+                  <span>6.0 m</span>
+                  <span>12.0 m</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Hava Değişim Sayısı (ACH) Özelleştirme -->
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-wrap items-center justify-between gap-4">
+              <div>
+                <label for="calc-ach" class="block text-xs font-bold text-slate-800">Hava Değişim Katsayısı (ACH - Hava Değişimi/Saat):</label>
+                <p class="text-[11px] text-slate-500 mt-0.5">Standartlara göre otomatik seçilir; isterseniz projeye özel artırabilirsiniz.</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <input type="number" id="calc-ach" min="1" max="60" value="10" oninput="runVentCalc()" class="w-20 px-3 py-1.5 rounded-lg border border-slate-300 font-extrabold text-slate-900 text-sm text-center focus:outline-none focus:border-[#09bde3]">
+                <span class="text-xs font-bold text-slate-600">defa/saat</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Dynamic Results Card (5 cols) -->
+          <div class="lg:col-span-5 p-6 rounded-xl bg-slate-900 text-white shadow-lg border border-slate-800 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-5">
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Mühendislik Hesap Çıktısı</span>
+                <span id="calc-res-sector" class="px-2 py-0.5 rounded text-[10px] font-bold bg-[#09bde3]/20 text-[#09bde3] border border-[#09bde3]/30">Endüstriyel &amp; Fabrika</span>
+              </div>
+
+              <!-- Main Output: Airflow -->
+              <div class="mb-5">
+                <span class="text-xs text-slate-400 font-medium block">Gereken Toplam Hava Debisi (Q):</span>
+                <div class="flex items-baseline gap-2 mt-1">
+                  <span id="calc-res-debi" class="text-3xl sm:text-4xl font-black text-[#09bde3]">20.000</span>
+                  <span class="text-sm font-bold text-slate-300">m³/h</span>
+                  <span id="calc-res-cfm" class="text-xs text-slate-400 ml-2">(11.770 CFM)</span>
+                </div>
+                <p class="text-[11px] text-slate-400 mt-1">
+                  Mahal Hacmi: <strong id="calc-res-volume" class="text-white">2.000 m³</strong> • Saatlik Sirkülasyon: <strong id="calc-res-ach-display" class="text-white">10 ACH</strong>
+                </p>
+              </div>
+
+              <!-- Secondary Outputs -->
+              <div class="space-y-3 pt-4 border-t border-slate-800 text-xs">
+                <div class="flex items-start justify-between">
+                  <span class="text-slate-400">Önerilen Ana Kanal Kesiti:</span>
+                  <span id="calc-res-duct" class="font-bold text-white text-right">900 × 500 mm (veya Ø630 mm)</span>
+                </div>
+                <div class="flex items-start justify-between">
+                  <span class="text-slate-400">Tavsiye Cihaz Tipi:</span>
+                  <span id="calc-res-device" class="font-bold text-emerald-400 text-right">Sky Group Çift Cidarlı AHU (Klima Santrali)</span>
+                </div>
+                <div class="flex items-start justify-between">
+                  <span class="text-slate-400">Uluslararası Standart:</span>
+                  <span id="calc-res-standard" class="font-semibold text-slate-300 text-right">TSE EN 1507 Class C • ErP 2018</span>
+                </div>
+                <div class="flex items-start justify-between">
+                  <span class="text-slate-400">Isı Geri Kazanım Potansiyeli:</span>
+                  <span class="font-bold text-[#09bde3] text-right">%75 - %82 Tasarruf (Plakalı HRV)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- CTA Button -->
+            <div class="pt-6 mt-6 border-t border-slate-800">
+              <button type="button" onclick="requestQuoteFromCalc()" style="background-color: #09bde3 !important; color: #04111f !important;" class="w-full py-3.5 px-4 rounded-lg font-bold text-xs sm:text-sm shadow-md hover:bg-[#38bdf8] transition-all flex items-center justify-center gap-2 cursor-pointer">
+                <span>Bu Hesaplama İçin Resmi Keşif &amp; Teklif İste</span>
+                <svg style="width: 16px !important; height: 16px !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </button>
+              <p class="text-[10px] text-slate-400 text-center mt-2">
+                Fabrika imalat fiyatıyla 24 saat içinde net metrajlı şartname ve DWG koordinasyon teklifi.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HORIZONTAL DIVIDER -->
+    <div class="max-w-[1376px] mx-auto px-6 md:px-12">
+      <div class="border-t border-slate-200"></div>
+    </div>
+
+    <!-- TECHNICAL GUIDES / KÜTÜPHANE ARTICLES SECTION -->
+    <section id="rehberler" class="max-w-[1376px] mx-auto px-6 md:px-12 py-12 md:py-16">
+      
+      <!-- Filter Bar -->
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">MÜHENDİSLİK KILAVUZLARI</p>
+          <h2 class="text-xl md:text-2xl font-bold text-slate-900 tracking-tight">Teknik Rehberler &amp; Standartlar</h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">Sektörel iklimlendirme tasarım prensiplerini, formülleri ve şartname hazırlama kurallarını inceleyin.</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="sky-filter-label">Kategoriye Göre:</span>
+          <button type="button" class="sky-filter-btn active" onclick="filterCategory('all')">Tümü (6)</button>
+          <button type="button" class="sky-filter-btn" onclick="filterCategory('debi')">Debi &amp; Hesaplama (2)</button>
+          <button type="button" class="sky-filter-btn" onclick="filterCategory('cihaz')">Cihaz &amp; Santral (2)</button>
+          <button type="button" class="sky-filter-btn" onclick="filterCategory('standart')">Standart &amp; Yangın (2)</button>
+        </div>
+      </div>
+
+      <!-- 6 Technical Guide Cards Grid -->
+      <div class="sky-projects-grid">
+        
+        <!-- Guide 1: Debi Hesabı -->
+        <div class="sky-project-card group block text-left" data-category="debi">
+          <div class="sky-project-photo">
+            <img src="./assets/factory_process_ventilation-BrOjXPPN.jpg" alt="Debi Hesabı Kılavuzu" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
+          </div>
+          <div class="pt-3.5 flex flex-col flex-1">
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">Endüstriyel Tesislerde Debi (m³/h) Hesabı Nasıl Yapılır?</h3>
+            <p class="text-xs font-semibold text-[#0284c7] mt-1 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#09bde3]"></span>
+              <span>ASHRAE 62.1 • EN 13779 • Formül Kılavuzu</span>
+            </p>
+            <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">
+              Mahal hacmi, hava değişim katsayısı (ACH), çalışan kişi sayısı ve açığa çıkan ısıl yüke göre gereken taze hava ve egzoz debisi hesaplama formülleri ve örnek hesap adımları.
+            </p>
+            <div class="flex items-center justify-between mt-auto pt-4 border-t border-slate-100">
+              <button type="button" onclick="openGuideModal(1)" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0284c7] hover:text-[#09bde3] transition-colors py-1.5 px-3 rounded bg-cyan-50 border border-cyan-200 cursor-pointer">
+                <span>Teknik Özeti Oku &rarr;</span>
+              </button>
+              <button type="button" onclick="openQuoteModal('Debi Hesabı Kılavuzuna Göre Proje Keşif Talebi')" class="text-xs text-slate-500 hover:text-slate-900 font-semibold cursor-pointer">Keşif İste</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guide 2: AHU Seçimi -->
+        <div class="sky-project-card group block text-left" data-category="cihaz">
+          <div class="sky-project-photo">
+            <img src="./assets/cleanroom_operating_room-D2suusKC.jpg" alt="AHU Seçim Kriterleri" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
+          </div>
+          <div class="pt-3.5 flex flex-col flex-1">
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">Klima Santrali (AHU) Seçiminde 7 Kritik Kriter (TSE EN 1886)</h3>
+            <p class="text-xs font-semibold text-[#0284c7] mt-1 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#09bde3]"></span>
+              <span>TSE EN 1886 • Eurovent • ErP 2018</span>
+            </p>
+            <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">
+              Mekanik dayanım (D1), gövde kaçak sınıfı (L1), ısıl köprüleme (TB2), filtre baypas kaçağı ve fan verimliliği kriterleriyle doğru klima santrali şartnamesi oluşturma rehberi.
+            </p>
+            <div class="flex items-center justify-between mt-auto pt-4 border-t border-slate-100">
+              <button type="button" onclick="openGuideModal(2)" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0284c7] hover:text-[#09bde3] transition-colors py-1.5 px-3 rounded bg-cyan-50 border border-cyan-200 cursor-pointer">
+                <span>Teknik Özeti Oku &rarr;</span>
+              </button>
+              <button type="button" onclick="openQuoteModal('AHU Santral İmalat ve Şartname Talebi')" class="text-xs text-slate-500 hover:text-slate-900 font-semibold cursor-pointer">Keşif İste</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guide 3: Otopark Jet Fan -->
+        <div class="sky-project-card group block text-left" data-category="standart">
+          <div class="sky-project-photo">
+            <img src="./assets/parking_garage_ventilation-6TN42J0d.jpg" alt="Jet Fan Standartları" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
+          </div>
+          <div class="pt-3.5 flex flex-col flex-1">
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">Otopark Jet Fan Duman Tahliyesi ve CO Algılama Standartları</h3>
+            <p class="text-xs font-semibold text-[#0284c7] mt-1 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#09bde3]"></span>
+              <span>BS 7346-7 • EN 12101-3 (400°C/2h)</span>
+            </p>
+            <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">
+              Kapalı otoparklarda kanalsız jet fan indüksiyon yerleşimi, karbonmonoksit kademeli senaryosu ve yangın anında duman süpürme debisi (10 ACH) hesaplama adımları.
+            </p>
+            <div class="flex items-center justify-between mt-auto pt-4 border-t border-slate-100">
+              <button type="button" onclick="openGuideModal(3)" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0284c7] hover:text-[#09bde3] transition-colors py-1.5 px-3 rounded bg-cyan-50 border border-cyan-200 cursor-pointer">
+                <span>Teknik Özeti Oku &rarr;</span>
+              </button>
+              <button type="button" onclick="openQuoteModal('Otopark Jet Fan Projesi Keşif Talebi')" class="text-xs text-slate-500 hover:text-slate-900 font-semibold cursor-pointer">Keşif İste</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guide 4: Mutfak NFPA 96 -->
+        <div class="sky-project-card group block text-left" data-category="standart">
+          <div class="sky-project-photo">
+            <img src="./assets/commercial_kitchen_exhaust-CcBW2Byp.jpg" alt="Mutfak NFPA 96 Standartları" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
+          </div>
+          <div class="pt-3.5 flex flex-col flex-1">
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">Mutfak Havalandırmasında NFPA 96 ve Yangına Dayanıklı Egzoz</h3>
+            <p class="text-xs font-semibold text-[#0284c7] mt-1 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#09bde3]"></span>
+              <span>NFPA 96 • EN 16282 • Elektrostatik</span>
+            </p>
+            <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">
+              Ticari mutfaklarda kaynaklı siyah sac kanal kalınlıkları, davlumbaz hava çekiş hızları, elektrostatik filtre verimliliği ve UL 300 yangın bastırma şartnamesi.
+            </p>
+            <div class="flex items-center justify-between mt-auto pt-4 border-t border-slate-100">
+              <button type="button" onclick="openGuideModal(4)" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0284c7] hover:text-[#09bde3] transition-colors py-1.5 px-3 rounded bg-cyan-50 border border-cyan-200 cursor-pointer">
+                <span>Teknik Özeti Oku &rarr;</span>
+              </button>
+              <button type="button" onclick="openQuoteModal('Mutfak Egzoz ve Filtrasyon Keşif Talebi')" class="text-xs text-slate-500 hover:text-slate-900 font-semibold cursor-pointer">Keşif İste</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guide 5: EN 1507 Class C Sızdırmazlık -->
+        <div class="sky-project-card group block text-left" data-category="cihaz">
+          <div class="sky-project-photo">
+            <img src="./assets/architectural_spiral_ducts-IcYSUdjL.jpg" alt="Hava Kanalı Sızdırmazlık" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
+          </div>
+          <div class="pt-3.5 flex flex-col flex-1">
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">Hava Kanallarında EN 1507 Class C Sızdırmazlık ve Kaçak Testleri</h3>
+            <p class="text-xs font-semibold text-[#0284c7] mt-1 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#09bde3]"></span>
+              <span>TSE EN 1507 • SMACNA • Basınç Kaybı</span>
+            </p>
+            <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">
+              Havalandırma kanallarında sızdırmazlık sınıflarının (A, B, C, D) enerji tüketimine etkisi, kendinden flanşlı galvaniz imalat avantajları ve şantiye basınç testi protokolü.
+            </p>
+            <div class="flex items-center justify-between mt-auto pt-4 border-t border-slate-100">
+              <button type="button" onclick="openGuideModal(5)" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0284c7] hover:text-[#09bde3] transition-colors py-1.5 px-3 rounded bg-cyan-50 border border-cyan-200 cursor-pointer">
+                <span>Teknik Özeti Oku &rarr;</span>
+              </button>
+              <button type="button" onclick="openQuoteModal('Class C Hava Kanalı İmalat ve Şartname Talebi')" class="text-xs text-slate-500 hover:text-slate-900 font-semibold cursor-pointer">Keşif İste</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guide 6: Test, Ayar, Balanslama TAB -->
+        <div class="sky-project-card group block text-left" data-category="debi">
+          <div class="sky-project-photo">
+            <img src="./assets/commercial_office_interior-EoVOAR5I.jpg" alt="TAB Balanslama Rehberi" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
+          </div>
+          <div class="pt-3.5 flex flex-col flex-1">
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors leading-snug">Test, Ayar ve Balanslama (TAB): Tesis Devreye Alma ve Kabul Kılavuzu</h3>
+            <p class="text-xs font-semibold text-[#0284c7] mt-1 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#09bde3]"></span>
+              <span>EN 12599 • Akredite Raporlama • NEBB</span>
+            </p>
+            <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">
+              Kanallarda pitot tüpüyle debi okuma, menfez anemometre hız ölçümleri, oransal balanslama metodu ve resmi müşavir onaylı TAB raporu düzenleme aşamaları.
+            </p>
+            <div class="flex items-center justify-between mt-auto pt-4 border-t border-slate-100">
+              <button type="button" onclick="openGuideModal(6)" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0284c7] hover:text-[#09bde3] transition-colors py-1.5 px-3 rounded bg-cyan-50 border border-cyan-200 cursor-pointer">
+                <span>Teknik Özeti Oku &rarr;</span>
+              </button>
+              <button type="button" onclick="openQuoteModal('TAB Test Ayar Balanslama Hizmeti Talebi')" class="text-xs text-slate-500 hover:text-slate-900 font-semibold cursor-pointer">Keşif İste</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LOGOS & STANDARDS INFINITE MARQUEE SECTION -->
+    <section id="standartlar" class="max-w-[1376px] mx-auto px-6 md:px-12 py-10 md:py-14">
+      <div class="text-center max-w-2xl mx-auto mb-8">
+        <p class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">TEKNİK VE İMALAT STANDARTLARI</p>
+        <p class="text-sm md:text-base text-slate-600">TSE, Eurovent, CE ve ISO 9001 sertifikalı mühendislik altyapısı.</p>
+      </div>
+
+      <!-- Infinite Sliding Marquee -->
+      <div class="sky-marquee-container">
+        <div class="sky-marquee-track">
+          <!-- Loop Track 1 -->
+          <div class="sky-marquee-item">
+            <img src="./assets/1-Di-wa7T9.png" alt="Sky Group Partner &amp; Standart 1" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/2-CYPoixfm.png" alt="Sky Group Partner &amp; Standart 2" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/3-Di-0B93x.png" alt="Sky Group Partner &amp; Standart 3" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/4-B9otPWQe.png" alt="Sky Group Partner &amp; Standart 4" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/5-Cam3A5TS.png" alt="Sky Group Partner &amp; Standart 5" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/6-CqEXar55.png" alt="Sky Group Partner &amp; Standart 6" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/7-DqfgB7-8.png" alt="Sky Group Partner &amp; Standart 7" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/8-BWO8sMCq.png" alt="Sky Group Partner &amp; Standart 8" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="data:image/png;base64,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" alt="Sky Group Partner &amp; Standart 9" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/10-DyrMBqgp.png" alt="Sky Group Partner &amp; Standart 10" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/11-iMUVCH96.png" alt="Sky Group Partner &amp; Standart 11" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/12-BidXO3c3.png" alt="Sky Group Partner &amp; Standart 12" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/13-VSsvUJJn.png" alt="Sky Group Partner &amp; Standart 13" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/14-BB0mM4ec.png" alt="Sky Group Partner &amp; Standart 14" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/15-CODOii4N.png" alt="Sky Group Partner &amp; Standart 15" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="data:image/png;base64,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" alt="Sky Group Partner &amp; Standart 16" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="data:image/png;base64,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" alt="Sky Group Partner &amp; Standart 17" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/18-IpHC6vZN.png" alt="Sky Group Partner &amp; Standart 18" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="data:image/png;base64,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" alt="Sky Group Partner &amp; Standart 19" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/20-CV9e1VyL.png" alt="Sky Group Partner &amp; Standart 20" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/21-C64B5CV3.png" alt="Sky Group Partner &amp; Standart 21" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/22-D5FonH77.png" alt="Sky Group Partner &amp; Standart 22" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="data:image/png;base64,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" alt="Sky Group Partner &amp; Standart 23" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/24-XBZ6FNJA.png" alt="Sky Group Partner &amp; Standart 24" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/25-3Yxv17kJ.png" alt="Sky Group Partner &amp; Standart 25" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/26-Bo7LK-2L.png" alt="Sky Group Partner &amp; Standart 26" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/27-mvNEzpVE.png" alt="Sky Group Partner &amp; Standart 27" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="data:image/png;base64,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" alt="Sky Group Partner &amp; Standart 28" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/29-s-UtZGK4.png" alt="Sky Group Partner &amp; Standart 29" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/30-D-jUZDcc.png" alt="Sky Group Partner &amp; Standart 30" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/31-Dbi7Sp5Y.png" alt="Sky Group Partner &amp; Standart 31" loading="lazy" />
+          </div>
+          <!-- Loop Track 2 (Continuous Duplicate) -->
+          <div class="sky-marquee-item">
+            <img src="./assets/1-Di-wa7T9.png" alt="Sky Group Partner &amp; Standart 1" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/2-CYPoixfm.png" alt="Sky Group Partner &amp; Standart 2" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/3-Di-0B93x.png" alt="Sky Group Partner &amp; Standart 3" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/4-B9otPWQe.png" alt="Sky Group Partner &amp; Standart 4" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/5-Cam3A5TS.png" alt="Sky Group Partner &amp; Standart 5" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/6-CqEXar55.png" alt="Sky Group Partner &amp; Standart 6" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/7-DqfgB7-8.png" alt="Sky Group Partner &amp; Standart 7" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/8-BWO8sMCq.png" alt="Sky Group Partner &amp; Standart 8" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="data:image/png;base64,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" alt="Sky Group Partner &amp; Standart 9" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/10-DyrMBqgp.png" alt="Sky Group Partner &amp; Standart 10" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/11-iMUVCH96.png" alt="Sky Group Partner &amp; Standart 11" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/12-BidXO3c3.png" alt="Sky Group Partner &amp; Standart 12" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/13-VSsvUJJn.png" alt="Sky Group Partner &amp; Standart 13" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/14-BB0mM4ec.png" alt="Sky Group Partner &amp; Standart 14" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/15-CODOii4N.png" alt="Sky Group Partner &amp; Standart 15" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="data:image/png;base64,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" alt="Sky Group Partner &amp; Standart 16" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="data:image/png;base64,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" alt="Sky Group Partner &amp; Standart 17" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/18-IpHC6vZN.png" alt="Sky Group Partner &amp; Standart 18" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBggGEBIIBxIQFBUQER4UEhgWEBQVGRYUFREcFhQVEhUXGyYgFxsmJRUWHy8sJicpOCwsFR44NTAqNSYrLCkBCQoKDgwNGg8PGCkeHx0pKSk1KTUpMCktNSwpKSw1MzMrKTUpMiopKTUsKS4pLik1NissKSw1LCkpLCwpLSksKf/AABEIAOEA4QMBIgACEQEDEQH/xAAcAAEAAgIDAQAAAAAAAAAAAAAABgcEBQIDCAH/xABJEAACAQMDAgIEBwoLCQAAAAAAAQIDBBEFBhIHIRMxIkFRYTJCcXWBkbMUFRY2UnShsrTRCCMkJjVUc5KTscIXJTM0ZIKEw/D/xAAZAQEBAAMBAAAAAAAAAAAAAAAAAQIDBAX/xAAfEQEBAAIBBAMAAAAAAAAAAAAAAQIRAwQxQVETFCH/2gAMAwEAAhEDEQA/ALxAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABr5bg0mHaVzbrHn/HQ/ecHubRY+d1bf49P955+qWtW9uHbUFmVSs4xWUsylPCWWd+s7a1Xb7S1OlKCl2i8qUW/YpRbWT0PqYdrk0fLfS+fwp0P+t2v+PT/AHmwoXFK5iqlCUZRfk4yTT+Ro87aHtvUNwucNNUJSprk4upGMmvLMU/Nerz9aOyw1LWdmV2qfOjOD9OEk+Ml7Jx8pJ+1fQyXpJ2xy/Sct72PRINVtnXqO5LaGoUFjl2nHPwJrtKL/wDvJo2pw2WXVbpdmRk8o6jHUtV1Otp9lUqOdW9nTpp1pRWXXkks5wkZcNY3X04u/AuKlaM6WJSpyrOpTqQfdLGXFprPdd18qGleowYtpf0rmjC+yoxnTVTLaSUZRUu79XmYlDdWhXU/ue3u7WU28KMbim237Ek+5BtQdNxeW9mlK5nCCbwnKajl+xZZiXm49I0+Ma15c28I1HiDlWglJp4fFt9wNiG8eZrtQ3DpWkxhU1G4oUlU+A51YxUvfHL7o1u9bb7/AOl3NCxqUl41H0JyqqNPDkmm6iykveBIk0/I+lZdHttXG11eTvq9pUU+DzRuFUUVFT5ObwuPn+hk8/CLSOE6/wB02/GlHlUkq9NqMc4zJp9kBnyqRj2k19YjOMvgtP6Tz114uKdzqNCvQkpRnYwlFp9nGVWo018pGNS2pre2Le212bUadylKlOlVkpRcoc4qeMOLwn5Z8i6Hqm5uaNnCVxcyjCEFylKUlGMUvNyb7JGvo7r0G4jUr0bu1lGik6klXptQUniLm0/RTfbuQrYWpXnUXQ69hqFX+N9O1lVceTacE4Tmsrk8TSftwRi02jt3bdG/0W81m053lOFN+il4bpVeb5LxHnOceawQXHp2u6XrClPTa9Cqqfw3Tqwmo5WVycX28n9RlU7ijV7U5RfyST/yK227smls/StSnb3ULmN1aznGUIKMcQt5rs1OSlnP6CI/wesK+ufzVfbRAvs1a3Vobrfe9Xdr43Pw/D8enz5/kcM55e4W+6NEvZq1tbq2nOTxGMa9OUm15pRTy/Jlc2ex9EutZWs22q286jvHXVvFU3JtNuVPKq57YfxfV5AWLb7r0K7q/cFtd2s6rk4qnGvTc+Uc8lxTzlYefkNqVJt7ZGg6Rq8dRp6rQqVlcVH4CUFJzqc06f8AxG8rk/V8UsaW6tEhW+9srq38bnw8PxY8+f5PHOcgbUGi07fG3dWrvTbC6ozqrPoxl58fPg/KWPc2cLLf22tRr/e2zu6M6vLioqXwpLzUJNcZP5GwJAD5kAefNF/pGh+eR+3RdO47KhqlrXtblLDpSefZKMXKMl7GmkUjp91Ssr2nc3DxGndKUnhvEY1ct4Xdk13l1Js7qjOw0Vyk6seM6ji4pRfwlBPu212zhYyenzYZZZ46c+GUku0U2DeVLfUrWUPjz4Sx64zg00/0fUTfq9Y0KttSv8JThVVNPHdwnFtr34cc/WQzYl5pelXP3y1epxVGLdOKhKTlOSwmuKwkk35vzaOe995y3VONKhFwo0m3FSxmUmsOc8dl27JerLM8sbeaWeGEsmF2lXRW5nKN3bvyUoTXyyjJP9VFnEL6V7fq6NZu4uU4zuZKeGsNQSxBNe3zl/3E0ODqLLyWx0cc1jNvMOh99w0vnV/tEjY9dH/vX/xKf+czXaE/5w0vnR/tEjL623NG41WSoyUuFvThLDziS5Nxfv8ASX1mpk2/VrW7mnY6To9OTVOpZQrVEn8NxpwjBS9qXpPHtx7CMbi2npekadZapaXMata4x49PnTfDnTc1xjH0o4xxec936jcdXouMNIT9WmRz9UDuuenW1dGsbPWNcu7uH3ZTjJKnRhP0pUlOSWI5x8oHVunVrnWduadVvpOcoXk6fKXdtU4VIxcm/N4wvoI9d7XuvvTQ3LVrco+M7aFLi/QgpTeYyz+UpPGPX5kn3taaXaaDYR0OpVqUZX1SUZVIKEm3GopZikvWmcL5/wA0rb5xl9pVAjsts3V7pP4TV67caFdWtOk03xp5+LLPorM32x7SX7TuatbauqUqjbjTqNQT+KpKnJpe7Lb+lmDb/ilV+cv9cTJ2f+K+r/2v+ikQd3RpL7h1rH9WX2NUgO1tu6xulz0rRIpuVNVKic1CPGD9Fyb98u3vJ90b7WGtfmy+xqnX/B6/5+4/M/8A3QA1HWG0q2FzZWtwkpUtLownh59KLnF4fr8mSfqJ+LOmL30P2WZp+v8A/SdP8yj9rUM7qHqlnLb+mWMakHUaoy4KSclGFtJScku6WZJd/WwOjZOp19I21ql1aNxn46hGSeGvEhSg2n6niTI5tXZNvr+n6jrFWpOMrKGacUlxk1TdSXPPfDSx2x7e5udvwktq6nJ+TvIY+iVHJl9NmvvHrn9m/wBlYVx6TanXdhrOmybdOFlKrBZ+DKVKpGePZnEfpXvIbtXdFTbFO9lbNqrc2yoU2vi8qic559TUU8e9ok/SdfyfWvm1/q1CEabot1qlO4ubbGLSj41T28PEUHx+TlyfuiyouboZsdafS/CO+j6daPG3TXwKPrn8ssf3V7yDdN1/OKk/+pr/AKtUsjoXuZ6rYy0qu8zs5cY583Rm24fU+UfkSK36cSUdw0nJpfymuvpcauCK+6I87oXzpV/WqGJu6zlqO4a9nCbg61/GlyXnHxOEG19DZlaBONTc8ZQaaep1WmvX6VTyGtfjO/nWn9pTCNLuTbX4OanPRLWrJqFWFOE8YklVjHu+Ps5tdsHdu7bkNlam9Ms6k5KlKnOEmkpJyUZL4PbszbdRO+4qn51Q/wAqRy6xf05V+Sj9nEK9Fc2DiAKvr9HNRqylNXFDvJv4E/W8nX/sX1H+s0P7ky3AdH2uT21/FiqNdFtQ9dzR/wAOf7yRbc6UadpE1c6hN15xeYpx40016+OXy+l49xOgY5dRyZTWyceM8Pi7H0A0NigdW6JbovbitdUXbKNStOcc1mniVRyWcR7PuZW3+gGozqxqa9WoxpJ5nGm5SlNZy45aSjn29y9AXYgPU/ptLedGlPTZQhWtk401LtGdN4zTbXwWuKafy+3KreHSPfeqeDYahKMaVHKp87lThSi/PjCLb9Xkv0I9DAbFabx6WXOoaZZbf0KVP+SVOUpVW48s05KUvRT7uUm/pMS46WazW0KjtqM7fxad060nznw4uc3hPjnPpr1FrAbFVUelesQ0OW2nUt/Fld+Ny5T4ceSeG+Oc9vYd+hdMNW0zRr7b1apburdz5QkpT4JcYL0m45+I/JP1FnAbFabC6Z6pta21CyvKlCUrylwpuDm1F+HOPp8or8teRx6XdMNV2Pc1bzUatvNVKHhpU3NvPOMsvlFduxZoIKt6m9KtV3reR1Gwq28IxoRp4qOpnMZzk36MWsekiLW/8HjWpSX3RdWkY57uMakn9Cajn6y+wURa16eaXaaXLa0OXh1INTm8cpVJPk6r9WcpNezCRU1fonvCwlO00+tSlSq9puNeVOM4p9vFp+v5PSPQQIK+2f0vltjT7vT51ITuL2lKE5pNQjmnKEIx9binJtv158jC6d9J7zadS4lq1ShVp3Ns6LjBT8nLMs8l5YyizgBVmxOlGs7KvlqNO5oTpcZU6keM1KVN94+7kmov6zQa90G1e4vKlfS61BUatVzTm5qdNTk5NcUvSxl4w1nt5F5ACpNA6JXOgajR1ajcU3SoVecYuMubioNd35Z75O++6PX13qz3GrmkoO8jccPDk5YhKL45zjPolqACrdy9H73XdTlr1O5pRjKrTqcHTk3/ABahlZzjvw/Sc969ILvdeoS1mlc06cZKHoulKT/i4pPupLzwWeAOrwQdoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//2Q==" alt="Sky Group Partner &amp; Standart 19" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/20-CV9e1VyL.png" alt="Sky Group Partner &amp; Standart 20" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/21-C64B5CV3.png" alt="Sky Group Partner &amp; Standart 21" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/22-D5FonH77.png" alt="Sky Group Partner &amp; Standart 22" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="data:image/png;base64,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" alt="Sky Group Partner &amp; Standart 23" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/24-XBZ6FNJA.png" alt="Sky Group Partner &amp; Standart 24" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/25-3Yxv17kJ.png" alt="Sky Group Partner &amp; Standart 25" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/26-Bo7LK-2L.png" alt="Sky Group Partner &amp; Standart 26" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/27-mvNEzpVE.png" alt="Sky Group Partner &amp; Standart 27" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="data:image/png;base64,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" alt="Sky Group Partner &amp; Standart 28" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/29-s-UtZGK4.png" alt="Sky Group Partner &amp; Standart 29" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/30-D-jUZDcc.png" alt="Sky Group Partner &amp; Standart 30" loading="lazy" />
+          </div>
+          <div class="sky-marquee-item">
+            <img src="./assets/31-Dbi7Sp5Y.png" alt="Sky Group Partner &amp; Standart 31" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNICAL GUIDE MODAL DIALOG -->
+    <div id="sky-guide-modal" class="fixed inset-0 z-[999999] bg-slate-900/80 backdrop-blur-md hidden items-center justify-center p-4">
+      <div class="bg-white rounded-xl border border-slate-200 max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+        <div class="p-4 sm:p-5 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+          <div>
+            <span id="sgm-tag" class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-sky-100 text-[#0284c7]"></span>
+            <h3 id="sgm-title" class="text-base sm:text-lg font-bold text-slate-900 mt-1"></h3>
+          </div>
+          <button type="button" onclick="closeGuideModal()" class="w-8 h-8 rounded-full bg-white border border-slate-200 text-slate-500 hover:text-slate-900 flex items-center justify-center font-bold text-sm cursor-pointer">✕</button>
+        </div>
+        <div id="sgm-body" class="p-4 sm:p-6 overflow-y-auto text-xs sm:text-sm text-slate-700 leading-relaxed space-y-3">
+        </div>
+        <div class="p-4 border-t border-slate-200 bg-slate-50 flex items-center justify-between gap-3">
+          <button type="button" onclick="closeGuideModal()" class="py-2 px-4 rounded-lg border border-slate-300 text-slate-700 text-xs font-semibold hover:bg-slate-100 cursor-pointer">Kapat</button>
+          <button type="button" id="sgm-cta" style="background-color: #09bde3 !important; color: #04111f !important;" class="py-2.5 px-4 rounded-lg font-bold text-xs shadow hover:bg-[#38bdf8] transition-all cursor-pointer">
+            Bu Konuda Keşif &amp; Teklif İste
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-[#040e1a] text-slate-400 py-12 border-t border-slate-800 text-xs">
+    <div class="max-w-[1376px] mx-auto px-6 md:px-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 pb-8 border-b border-slate-800">
+        <div>
+          <img src="./assets/sky-group-logo-s-Dq56nYIQ.png" alt="Sky Group" class="h-8 w-auto mb-4" width="128" height="32">
+          <p class="leading-relaxed">
+            Türkiye'nin endüstriyel havalandırma, klima santralleri ve mekanik tesisat projelerinde mühendislik öncelikli, fabrika imalat güvencesiyle anahtar teslim çözüm ortağı.
+          </p>
+        </div>
+        <div>
+          <h4 class="text-white font-bold text-sm mb-3">Sektörel Çözümler</h4>
+          <ul class="space-y-2">
+            <li><a href="./cozumlerimiz.html" class="hover:text-white">Endüstriyel &amp; Fabrikalar</a></li>
+            <li><a href="./cozumlerimiz.html" class="hover:text-white">Sağlık &amp; Temiz Odalar</a></li>
+            <li><a href="./cozumlerimiz.html" class="hover:text-white">Plaza &amp; Ticari Yapılar</a></li>
+            <li><a href="./cozumlerimiz.html" class="hover:text-white">AVM &amp; Sosyal Alanlar</a></li>
+            <li><a href="./cozumlerimiz.html" class="hover:text-white">Otopark Duman Tahliyesi</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold text-sm mb-3">Mühendislik &amp; Hizmetler</h4>
+          <ul class="space-y-2">
+            <li><a href="./projelendirme-muhendislik-danismanligi.html" class="text-[#09bde3] font-semibold">Projelendirme &amp; Danışmanlık</a></li>
+            <li><a href="./hizmetlerimiz.html" class="hover:text-white">Klima Santrali (AHU) İmalatı</a></li>
+            <li><a href="./hizmetlerimiz.html" class="hover:text-white">Hava Kanalı İmalatı &amp; Montaj</a></li>
+            <li><a href="./hizmetlerimiz.html" class="hover:text-white">TAB Test &amp; Balanslama</a></li>
+            <li><a href="./hizmetlerimiz.html" class="hover:text-white">7/24 Periyodik Bakım</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold text-sm mb-3">İletişim &amp; Fabrika</h4>
+          <p class="leading-relaxed">
+            İvedik OSB Mah. 1354. Cad. No: 138/6 Yenimahalle / Ankara<br><br>
+            <strong>Tel:</strong> 0 (541) 922 19 91<br>
+            <strong>E-posta:</strong> info@skygroup.com.tr
+          </p>
+        </div>
+      </div>
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>© 2026 Sky Group Havalandırma &amp; İklimlendirme Sistemleri. Tüm hakları saklıdır.</div>
+        <div class="flex gap-4">
+          <a href="./kurumsal.html" class="hover:text-white">Kalite Sertifikaları</a>
+          <a href="./kurumsal.html" class="hover:text-white">Gizlilik Politikası</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= MODAL: ÜCRETSİZ KEŞİF & DEBİ ANALİZİ ================= -->
+  <div id="sky-quote-modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-card relative w-full max-w-xl bg-white border border-slate-200/90 rounded-xl shadow-2xl p-5 sm:p-7 text-slate-800 max-h-[92vh] overflow-y-auto" style="border-radius: 12px !important;">
+    <!-- Close Button -->
+    <button type="button" id="sky-modal-close" onclick="closeQuoteModal()" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-800 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer" aria-label="Kapat">
+      <svg style="width: 20px !important; height: 20px !important; display: block !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    
+    <!-- Modal Header -->
+    <div class="flex items-center gap-3.5 mb-4 pb-3 border-b border-slate-100">
+      <div class="w-11 h-11 rounded-lg bg-[#061527] flex items-center justify-center p-2 shadow-sm shrink-0">
+        <img src="./assets/sky-group-logo-s-Dq56nYIQ.png" alt="Sky Group" class="w-full h-full object-contain" width="44" height="44">
+      </div>
+      <div>
+        <span class="text-[10.5px] font-bold uppercase tracking-widest text-[#0284c7] block">MÜHENDİSLİK &amp; DOĞRUDAN FABRİKA İMALATI</span>
+        <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">Ücretsiz Keşif &amp; Debi Analizi</h3>
+      </div>
+    </div>
+
+    <!-- 3-Step Progress Indicator Bar -->
+    <div class="grid grid-cols-3 gap-2 mb-5 pb-3 border-b border-slate-100 text-center">
+      <div id="sky-step-tab-1" class="flex flex-col items-center gap-1 transition-all">
+        <div class="step-num w-6 h-6 rounded-full bg-[#09bde3] text-[#04111f] font-bold text-xs flex items-center justify-center shadow-xs">1</div>
+        <span class="step-text text-[11px] font-bold text-slate-900">Mahal &amp; Sektör</span>
+      </div>
+      <div id="sky-step-tab-2" class="flex flex-col items-center gap-1 transition-all opacity-45">
+        <div class="step-num w-6 h-6 rounded-full bg-slate-200 text-slate-600 font-bold text-xs flex items-center justify-center">2</div>
+        <span class="step-text text-[11px] font-semibold text-slate-500">İhtiyaç Kapsamı</span>
+      </div>
+      <div id="sky-step-tab-3" class="flex flex-col items-center gap-1 transition-all opacity-45">
+        <div class="step-num w-6 h-6 rounded-full bg-slate-200 text-slate-600 font-bold text-xs flex items-center justify-center">3</div>
+        <span class="step-text text-[11px] font-semibold text-slate-500">İletişim &amp; Teklif</span>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <form id="sky-quote-form" onsubmit="return false;" class="space-y-4">
+      
+      <!-- STEP 1: Sektör & Mahal Büyüklüğü -->
+      <div id="sky-modal-step-1" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-800 mb-2">1. Projenizin Yer Aldığı Sektör / Tesis Türü:</label>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="sky-sector-options">
+            <button type="button" class="sky-choice-card text-left p-2.5 rounded-lg border border-[#0284c7] bg-cyan-50/60 ring-2 ring-[#09bde3]/30 transition-all cursor-pointer" data-sector="Endüstriyel & Fabrika">
+              <span class="block text-base mb-0.5">🏭</span>
+              <span class="block text-xs font-bold text-slate-900">Fabrika &amp; Sanayi</span>
+              <span class="block text-[10px] text-slate-500">Ağır proses, toz, kaynak</span>
+            </button>
+            <button type="button" class="sky-choice-card text-left p-2.5 rounded-lg border border-slate-200 bg-slate-50/80 hover:border-[#09bde3] hover:bg-cyan-50/30 transition-all cursor-pointer" data-sector="Sağlık & Temiz Oda">
+              <span class="block text-base mb-0.5">🏥</span>
+              <span class="block text-xs font-bold text-slate-900">Sağlık &amp; Temiz Oda</span>
+              <span class="block text-[10px] text-slate-500">Steril, ameliyathane, ilaç</span>
+            </button>
+            <button type="button" class="sky-choice-card text-left p-2.5 rounded-lg border border-slate-200 bg-slate-50/80 hover:border-[#09bde3] hover:bg-cyan-50/30 transition-all cursor-pointer" data-sector="Plaza & Ticari Bina">
+              <span class="block text-base mb-0.5">🏢</span>
+              <span class="block text-xs font-bold text-slate-900">Plaza &amp; Ofis</span>
+              <span class="block text-[10px] text-slate-500">4 borulu FCU, taze hava</span>
+            </button>
+            <button type="button" class="sky-choice-card text-left p-2.5 rounded-lg border border-slate-200 bg-slate-50/80 hover:border-[#09bde3] hover:bg-cyan-50/30 transition-all cursor-pointer" data-sector="AVM & Ticari Alan">
+              <span class="block text-base mb-0.5">🏬</span>
+              <span class="block text-xs font-bold text-slate-900">AVM &amp; Mağaza</span>
+              <span class="block text-[10px] text-slate-500">Yüksek debi, VRV/VRF</span>
+            </button>
+            <button type="button" class="sky-choice-card text-left p-2.5 rounded-lg border border-slate-200 bg-slate-50/80 hover:border-[#09bde3] hover:bg-cyan-50/30 transition-all cursor-pointer" data-sector="Otopark & Duman Tahliye">
+              <span class="block text-base mb-0.5">🚗</span>
+              <span class="block text-xs font-bold text-slate-900">Otopark &amp; Duman</span>
+              <span class="block text-[10px] text-slate-500">Jet fan, 400°C/2h</span>
+            </button>
+            <button type="button" class="sky-choice-card text-left p-2.5 rounded-lg border border-slate-200 bg-slate-50/80 hover:border-[#09bde3] hover:bg-cyan-50/30 transition-all cursor-pointer" data-sector="Mutfak & Restoran">
+              <span class="block text-base mb-0.5">🍽️</span>
+              <span class="block text-xs font-bold text-slate-900">Restoran &amp; Mutfak</span>
+              <span class="block text-[10px] text-slate-500">Davlumbaz, elektrostatik</span>
+            </button>
+          </div>
+          <input type="hidden" name="sector" id="sky-selected-sector" value="Endüstriyel & Fabrika">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-800 mb-2">2. Yaklaşık Mahal / Tesis Büyüklüğü:</label>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="sky-area-options">
+            <button type="button" class="sky-area-card py-2 px-3 rounded-lg border border-slate-200 bg-white text-center text-xs font-semibold text-slate-700 hover:border-[#09bde3] hover:bg-cyan-50/20 transition-all cursor-pointer" data-area="< 500 m²">
+              &lt; 500 m²
+            </button>
+            <button type="button" class="sky-area-card py-2 px-3 rounded-lg border border-[#0284c7] bg-cyan-50/60 text-[#0284c7] ring-1 ring-[#09bde3] text-center text-xs font-semibold transition-all cursor-pointer" data-area="500 - 2.000 m²">
+              500 - 2.000 m²
+            </button>
+            <button type="button" class="sky-area-card py-2 px-3 rounded-lg border border-slate-200 bg-white text-center text-xs font-semibold text-slate-700 hover:border-[#09bde3] hover:bg-cyan-50/20 transition-all cursor-pointer" data-area="2.000 - 10.000 m²">
+              2.000 - 10.000 m²
+            </button>
+            <button type="button" class="sky-area-card py-2 px-3 rounded-lg border border-slate-200 bg-white text-center text-xs font-semibold text-slate-700 hover:border-[#09bde3] hover:bg-cyan-50/20 transition-all cursor-pointer" data-area="10.000+ m²">
+              10.000+ m²
+            </button>
+          </div>
+          <input type="hidden" name="area" id="sky-selected-area" value="500 - 2.000 m²">
+        </div>
+
+        <button type="button" onclick="goToModalStep(2)" style="background-color: #09bde3 !important; color: #04111f !important;" class="w-full py-3.5 px-5 rounded-lg font-bold text-sm shadow-md hover:bg-[#38bdf8] transition-all flex items-center justify-center gap-2 cursor-pointer mt-3">
+          <span>Devam Et: İhtiyaç Kapsamı</span>
+          <svg style="width: 16px !important; height: 16px !important; display: inline-block !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </button>
+      </div>
+
+      <!-- STEP 2: Cihaz & Mühendislik Kapsamı -->
+      <div id="sky-modal-step-2" class="space-y-4 hidden">
+        <div>
+          <label class="block text-xs font-bold text-slate-800 mb-2">Hangi Sistem ve Hizmetlere İhtiyacınız Var? (Birden fazla seçilebilir):</label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="sky-system-checkboxes">
+            <label class="sky-checkbox-card flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-cyan-50/20 transition-all cursor-pointer">
+              <input type="checkbox" name="systems" value="Klima Santrali (AHU)" class="mt-0.5 rounded border-slate-300 text-[#0284c7] focus:ring-[#09bde3]" checked>
+              <span class="text-xs text-slate-800 font-medium">Klima Santralleri (AHU - Çift Cidarlı)</span>
+            </label>
+            <label class="sky-checkbox-card flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-cyan-50/20 transition-all cursor-pointer">
+              <input type="checkbox" name="systems" value="Hava Kanalı (EN 1507 Class C)" class="mt-0.5 rounded border-slate-300 text-[#0284c7] focus:ring-[#09bde3]" checked>
+              <span class="text-xs text-slate-800 font-medium">Hava Kanalları (Class C Galvaniz / Spiral)</span>
+            </label>
+            <label class="sky-checkbox-card flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-cyan-50/20 transition-all cursor-pointer">
+              <input type="checkbox" name="systems" value="VRF / VRV İklimlendirme" class="mt-0.5 rounded border-slate-300 text-[#0284c7] focus:ring-[#09bde3]">
+              <span class="text-xs text-slate-800 font-medium">VRV / VRF Değişken Debili İklimlendirme</span>
+            </label>
+            <label class="sky-checkbox-card flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-cyan-50/20 transition-all cursor-pointer">
+              <input type="checkbox" name="systems" value="Isı Geri Kazanım (HRV)" class="mt-0.5 rounded border-slate-300 text-[#0284c7] focus:ring-[#09bde3]">
+              <span class="text-xs text-slate-800 font-medium">Isı Geri Kazanım Cihazları (HRV - ErP 2018)</span>
+            </label>
+            <label class="sky-checkbox-card flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-cyan-50/20 transition-all cursor-pointer">
+              <input type="checkbox" name="systems" value="Yangın & Duman Tahliye" class="mt-0.5 rounded border-slate-300 text-[#0284c7] focus:ring-[#09bde3]">
+              <span class="text-xs text-slate-800 font-medium">Yangın &amp; Duman Tahliyesi (400°C/2h Jet Fan)</span>
+            </label>
+            <label class="sky-checkbox-card flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-cyan-50/20 transition-all cursor-pointer">
+              <input type="checkbox" name="systems" value="Ücretsiz Yerinde Keşif & TAB" class="mt-0.5 rounded border-slate-300 text-[#0284c7] focus:ring-[#09bde3]" checked>
+              <span class="text-xs text-slate-800 font-medium">Ücretsiz Keşif &amp; Debi Analizi (TAB Raporu)</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-800 mb-1.5">Mevcut Proje Durumunuz:</label>
+          <div class="grid grid-cols-3 gap-2" id="sky-status-options">
+            <button type="button" class="sky-status-card py-2 px-2 rounded-lg border border-[#0284c7] bg-cyan-50/60 text-[#0284c7] ring-1 ring-[#09bde3] text-center text-[11px] font-semibold transition-all cursor-pointer" data-status="DWG / BIM Çizimim Hazır">
+              📐 DWG Çizim Hazır
+            </button>
+            <button type="button" class="sky-status-card py-2 px-2 rounded-lg border border-slate-200 bg-white text-center text-[11px] font-semibold text-slate-700 hover:border-[#09bde3] hover:bg-cyan-50/20 transition-all cursor-pointer" data-status="Fikir / Tasarım Aşaması">
+              💡 Fikir / Keşif İhtiyacı
+            </button>
+            <button type="button" class="sky-status-card py-2 px-2 rounded-lg border border-slate-200 bg-white text-center text-[11px] font-semibold text-slate-700 hover:border-[#09bde3] hover:bg-cyan-50/20 transition-all cursor-pointer" data-status="Mevcut Tesis Revizyonu">
+              🔄 Tesis Renovasyonu
+            </button>
+          </div>
+          <input type="hidden" name="status" id="sky-selected-status" value="DWG / BIM Çizimim Hazır">
+        </div>
+
+        <div class="flex items-center gap-2.5 pt-2">
+          <button type="button" onclick="goToModalStep(1)" class="w-1/3 py-3 px-4 rounded-lg font-semibold text-xs border border-slate-200 text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer">
+            ← Geri
+          </button>
+          <button type="button" onclick="goToModalStep(3)" style="background-color: #09bde3 !important; color: #04111f !important;" class="w-2/3 py-3 px-5 rounded-lg font-bold text-sm shadow-md hover:bg-[#38bdf8] transition-all flex items-center justify-center gap-2 cursor-pointer">
+            <span>Devam Et: İletişim Bilgileri</span>
+            <svg style="width: 16px !important; height: 16px !important; display: inline-block !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 3: İletişim & Şartname Talebi -->
+      <div id="sky-modal-step-3" class="space-y-3 hidden">
+        <div>
+          <label class="block text-[11px] font-bold text-slate-700 mb-1">Ad Soyad / Firma Ünvanı *</label>
+          <input type="text" name="name" id="sky-modal-name" required placeholder="Örn: Ahmet Yılmaz / ABC İnşaat A.Ş." class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#09bde3] focus:ring-2 focus:ring-[#09bde3]/20 transition-all font-medium">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 mb-1">Telefon Numarası *</label>
+            <input type="tel" name="phone" id="sky-modal-phone" required placeholder="0 (5XX) XXX XX XX" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#09bde3] focus:ring-2 focus:ring-[#09bde3]/20 transition-all font-medium">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 mb-1">E-Posta Adresi</label>
+            <input type="email" name="email" id="sky-modal-email" placeholder="ornek@firma.com" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#09bde3] focus:ring-2 focus:ring-[#09bde3]/20 transition-all font-medium">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-slate-700 mb-1">Teknik Not / Metraj / DWG Açıklaması:</label>
+          <textarea name="notes" id="sky-modal-notes" rows="2" placeholder="Projenizin hava debisi (m³/h), tavan yüksekliği veya varsa özel şartname talepleriniz..." class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#09bde3] focus:ring-2 focus:ring-[#09bde3]/20 transition-all resize-none font-medium"></textarea>
+        </div>
+
+        <!-- Direct Manufacturer Guarantee Banner -->
+        <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200 text-[11px] text-slate-600 leading-relaxed flex items-center gap-2">
+          <span class="text-base shrink-0">🏭</span>
+          <span><strong>Doğrudan İmalatçı Güvencesi:</strong> Aracı komisyonsuz fabrika imalat fiyatı, 24 saatte net metrajlı şartname ve resmi kabul garantili TAB teslimatı.</span>
+        </div>
+
+        <div class="flex items-center gap-2.5 pt-1">
+          <button type="button" onclick="goToModalStep(2)" class="w-1/3 py-3.5 px-4 rounded-lg font-semibold text-xs border border-slate-200 text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer">
+            ← Geri
+          </button>
+          <button type="button" onclick="submitMultiStepForm()" style="background-color: #09bde3 !important; color: #04111f !important;" class="w-2/3 py-3.5 px-5 rounded-lg font-bold text-sm shadow-md hover:bg-[#38bdf8] transition-all flex items-center justify-center gap-2 cursor-pointer">
+            <span>Talebi Tamamla (24 Saatte Teklif)</span>
+            <svg style="width: 16px !important; height: 16px !important; display: inline-block !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- SUCCESS SCREEN -->
+      <div id="sky-form-success" class="hidden py-6 text-center space-y-3">
+        <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-xl font-black">
+          ✓
+        </div>
+        <h4 class="text-lg font-bold text-slate-900">Keşif &amp; Analiz Talebiniz Başarıyla Alındı!</h4>
+        <p class="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+          Mekanik tesisat mühendisimiz en geç <strong>24 saat içinde</strong> telefon numaranızdan sizinle iletişime geçecek; mimari çizimleriniz üzerinden net metrajlı teknik şartname ve imalat teklifinizi hazırlayacaktır.
+        </p>
+        <div class="pt-3">
+          <button type="button" onclick="closeQuoteModal()" class="py-2 px-6 rounded-lg bg-slate-900 text-white font-semibold text-xs hover:bg-slate-800 transition-colors cursor-pointer">
+            Pencereyi Kapat
+          </button>
+        </div>
+      </div>
+
+    </form>
+
+    <!-- Bottom Contact Line -->
+    <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between text-xs text-slate-500 gap-2">
+      <span class="flex items-center gap-1.5 text-[11px]">
+        <svg style="width: 13px !important; height: 13px !important; display: inline-block !important;" class="text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        Bilgileriniz KVKK kapsamında şifrelenir
+      </span>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="https://wa.me/905419221991" target="_blank" rel="noopener noreferrer" class="text-emerald-600 hover:text-emerald-700 font-bold flex items-center gap-1">
+          WhatsApp: 0 (541) 922 19 91
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- SCRIPT -->
+  <script>
+    // Filter Functionality
+    function filterCategory(cat, scrollDown = false) {
+      const cards = document.querySelectorAll('.sky-project-card');
+      const buttons = document.querySelectorAll('.sky-filter-btn');
+
+      buttons.forEach(btn => {
+        if (btn.getAttribute('data-filter') === cat) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      cards.forEach(card => {
+        if (cat === 'all' || card.getAttribute('data-category') === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (scrollDown) {
+        const catalogSection = document.getElementById('sky-catalog-section');
+        if (catalogSection) {
+          catalogSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+
+    (function() {
+      // Mobile drawer toggle
+      const burgerBtn = document.getElementById('sky-burger-btn');
+      const drawer = document.getElementById('sky-mobile-drawer');
+      const iconOpen = document.getElementById('sky-burger-icon-open');
+      const iconClose = document.getElementById('sky-burger-icon-close');
+
+      if (burgerBtn && drawer) {
+        burgerBtn.addEventListener('click', function() {
+          const isOpen = drawer.classList.contains('active');
+          if (isOpen) {
+            drawer.classList.remove('active');
+            drawer.setAttribute('aria-hidden', 'true');
+            iconOpen.classList.remove('hidden');
+            iconClose.classList.add('hidden');
+            document.body.style.overflow = '';
+          } else {
+            drawer.classList.add('active');
+            drawer.setAttribute('aria-hidden', 'false');
+            iconOpen.classList.add('hidden');
+            iconClose.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+          }
+        });
+      }
+
+      // Modal functions
+      // 4. Sky Group Multi-Step Lead Intake Funnel Logic
+    let currentModalStep = 1;
+
+    window.goToModalStep = function(step) {
+      if (step < 1 || step > 3) return;
+      currentModalStep = step;
+
+      const s1 = document.getElementById('sky-modal-step-1');
+      const s2 = document.getElementById('sky-modal-step-2');
+      const s3 = document.getElementById('sky-modal-step-3');
+      const success = document.getElementById('sky-form-success');
+      const progressContainer = document.getElementById('sky-modal-progress');
+      const subtitle = document.getElementById('sky-modal-subtitle');
+
+      if (success) success.classList.add('hidden');
+      if (progressContainer) progressContainer.style.display = 'flex';
+
+      if (s1) s1.classList.toggle('hidden', step !== 1);
+      if (s2) s2.classList.toggle('hidden', step !== 2);
+      if (s3) s3.classList.toggle('hidden', step !== 3);
+
+      const stepSubtitles = {
+        1: 'Adım 1/3: Sektör & Mahal Büyüklüğü',
+        2: 'Adım 2/3: İhtiyaç Duyulan Sistemler & Durum',
+        3: 'Adım 3/3: İletişim & Metraj/DWG Detayları'
+      };
+      if (subtitle && stepSubtitles[step]) {
+        subtitle.textContent = stepSubtitles[step];
+      }
+
+      // Update step indicator badges
+      for (let i = 1; i <= 3; i++) {
+        const badge = document.getElementById('sky-step-badge-' + i);
+        const text = document.getElementById('sky-step-text-' + i);
+        if (!badge || !text) continue;
+
+        if (i === step) {
+          badge.className = 'w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold bg-[#09bde3] text-[#04111f] shadow-sm';
+          badge.innerHTML = String(i);
+          text.className = 'font-bold text-slate-900';
+        } else if (i < step) {
+          badge.className = 'w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold bg-emerald-500 text-white shadow-sm';
+          badge.innerHTML = '✓';
+          text.className = 'font-medium text-emerald-600';
+        } else {
+          badge.className = 'w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold bg-slate-200 text-slate-600';
+          badge.innerHTML = String(i);
+          text.className = 'font-medium text-slate-500';
+        }
+      }
+    };
+
+    window.openQuoteModal = function(context) {
+      const modal = document.getElementById('sky-quote-modal');
+      if (!modal) return;
+      
+      const sheet = document.querySelector('.bpc-nav-sheet');
+      if (sheet) sheet.setAttribute('data-open', 'false');
+
+      goToModalStep(1);
+      const success = document.getElementById('sky-form-success');
+      if (success) success.classList.add('hidden');
+      const progressContainer = document.getElementById('sky-modal-progress');
+      if (progressContainer) progressContainer.style.display = 'flex';
+
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+
+      const noteField = document.getElementById('sky-modal-notes') || modal.querySelector('textarea');
+      if (context === 'katalog') {
+        if (noteField) noteField.value = '2026 Sky Group Ürün ve Hizmet Kataloğunun e-posta adresime gönderilmesini rica ederim.';
+      } else if (context === 'kesif') {
+        if (noteField) noteField.value = 'Projemiz için yerinde ücretsiz mühendislik keşfi ve debi hesabı talep ediyoruz.';
+      } else if (context === 'iletisim') {
+        if (noteField) noteField.value = 'Sky Group mühendislik ekibi ile teknik görüşme ve proje danışmanlığı talep ediyoruz.';
+      } else if (typeof context === 'string' && context.length > 0 && context !== 'teklif') {
+        if (noteField) noteField.value = context;
+      }
+    };
+
+    window.openQuoteForProject = function(itemTitle) {
+      const noteField = document.getElementById('sky-modal-notes');
+      if (noteField && itemTitle) {
+        noteField.value = itemTitle + ' hakkında teknik şartname ve imalat teklifi talebi.';
+      }
+      window.openQuoteModal(itemTitle);
+    };
+
+    window.closeQuoteModal = function() {
+      const modal = document.getElementById('sky-quote-modal');
+      if (!modal) return;
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    window.submitMultiStepForm = function() {
+      const nameInput = document.getElementById('sky-modal-name');
+      const phoneInput = document.getElementById('sky-modal-phone');
+
+      if (!nameInput || !nameInput.value.trim()) {
+        alert('Lütfen ad soyad veya firma ünvanınızı giriniz.');
+        if (nameInput) nameInput.focus();
+        return;
+      }
+      if (!phoneInput || !phoneInput.value.trim()) {
+        alert('Lütfen telefon numaranızı giriniz.');
+        if (phoneInput) phoneInput.focus();
+        return;
+      }
+
+      const s3 = document.getElementById('sky-modal-step-3');
+      const success = document.getElementById('sky-form-success');
+      const progressContainer = document.getElementById('sky-modal-progress');
+      const subtitle = document.getElementById('sky-modal-subtitle');
+
+      if (s3) s3.classList.add('hidden');
+      if (progressContainer) progressContainer.style.display = 'none';
+      if (subtitle) subtitle.textContent = 'Talebiniz Alındı';
+      if (success) success.classList.remove('hidden');
+
+      setTimeout(() => {
+        closeQuoteModal();
+        setTimeout(() => {
+          const form = document.getElementById('sky-quote-form');
+          if (form) form.reset();
+          goToModalStep(1);
+        }, 500);
+      }, 4000);
+    };
+
+    
+    // ==========================================
+    // INTERACTIVE AIRFLOW CALCULATOR JAVASCRIPT
+    // ==========================================
+    let currentFacility = 'fabrika';
+    let currentFacilityName = 'Endüstriyel & Fabrika';
+
+    window.setCalcFacility = function(fac, ach, name) {
+      currentFacility = fac;
+      currentFacilityName = name;
+      const achInput = document.getElementById('calc-ach');
+      if (achInput) achInput.value = ach;
+
+      document.querySelectorAll('.calc-fac-btn').forEach(btn => {
+        btn.className = 'calc-fac-btn p-3 rounded-lg border border-slate-200 bg-white text-slate-700 text-left hover:border-[#09bde3] hover:bg-slate-50 transition-all cursor-pointer';
+      });
+      if (window.event && window.event.currentTarget) {
+        window.event.currentTarget.className = 'calc-fac-btn p-3 rounded-lg border border-[#0284c7] bg-cyan-50/70 text-[#0284c7] ring-1 ring-[#09bde3] text-left transition-all cursor-pointer';
+      }
+
+      runVentCalc();
+    };
+
+    window.runVentCalc = function() {
+      const areaEl = document.getElementById('calc-area');
+      const heightEl = document.getElementById('calc-height');
+      const achEl = document.getElementById('calc-ach');
+
+      if (!areaEl || !heightEl || !achEl) return;
+
+      const area = parseFloat(areaEl.value) || 500;
+      const height = parseFloat(heightEl.value) || 4.0;
+      const ach = parseFloat(achEl.value) || 10;
+
+      document.getElementById('calc-area-val').textContent = area.toLocaleString('tr-TR') + ' m²';
+      document.getElementById('calc-height-val').textContent = height.toFixed(1) + ' m';
+      document.getElementById('calc-res-sector').textContent = currentFacilityName;
+
+      const volume = area * height;
+      const totalDebi = Math.round(volume * ach);
+      const totalCFM = Math.round(totalDebi * 0.5886);
+
+      document.getElementById('calc-res-volume').textContent = volume.toLocaleString('tr-TR') + ' m³';
+      document.getElementById('calc-res-ach-display').textContent = ach + ' ACH';
+      document.getElementById('calc-res-debi').textContent = totalDebi.toLocaleString('tr-TR');
+      document.getElementById('calc-res-cfm').textContent = '(' + totalCFM.toLocaleString('tr-TR') + ' CFM)';
+
+      const ductArea = totalDebi / (3600 * 6.0);
+      const ductDia = Math.round(Math.sqrt((4 * ductArea) / Math.PI) * 1000);
+      const ductW = Math.round(Math.sqrt(ductArea * 1.6) * 1000 / 50) * 50;
+      const ductH = Math.round((ductArea * 1000000 / ductW) / 50) * 50;
+
+      document.getElementById('calc-res-duct').textContent = ductW + ' × ' + ductH + ' mm (veya Ø' + ductDia + ' mm)';
+
+      let device = 'Sky Group Çift Cidarlı Modüler Klima Santrali (AHU)';
+      let std = 'TSE EN 1507 Class C • ErP 2018 EcoDesign';
+
+      if (currentFacility === 'hastane') {
+        device = 'Hijyenik Klima Santrali (Paslanmaz) + H14 HEPA';
+        std = 'DIN 1946-4 • ISO 14644-1 Sınıf 1A';
+      } else if (currentFacility === 'mutfak') {
+        device = 'Elektrostatik Filtre Bataryası + 400°C/2h Egzoz Fanı';
+        std = 'NFPA 96 • EN 16282 • UL 300 Yangın Bastırma';
+      } else if (currentFacility === 'otopark') {
+        device = 'Aksiyel Jet Fan İndüksiyon Sistemi + Şaft Fanı';
+        std = 'EN 12101-3 (400°C/2h) • BS 7346-7 CO Sensör';
+      } else if (currentFacility === 'ofis') {
+        device = 'Primer Taze Hava AHU + 4 Borulu Gizli Tavan Fancoil';
+        std = 'EN 13779 IDA-2 • ASHRAE 62.1 Konfor';
+      } else if (currentFacility === 'depo') {
+        device = 'Doğalgazlı Sıcak Hava Apareyleri + Çatı Emiş Fanı';
+        std = 'TSE EN 1886 • Termostatik Zon Kontrolü';
+      }
+
+      document.getElementById('calc-res-device').textContent = device;
+      document.getElementById('calc-res-standard').textContent = std;
+    };
+
+    window.requestQuoteFromCalc = function() {
+      const area = document.getElementById('calc-area').value;
+      const height = document.getElementById('calc-height').value;
+      const debi = document.getElementById('calc-res-debi').textContent;
+      const context = currentFacilityName + ' için ' + area + ' m² (' + height + ' m tavan) ' + debi + ' m³/h Debi Hesabına Göre Resmi Keşif ve İmalat Teklifi';
+      if (typeof openQuoteModal === 'function') {
+        openQuoteModal(context);
+      }
+    };
+
+    const GUIDES_DATA = {
+      1: {
+        tag: 'Debi & Kapasite Hesabı',
+        title: 'Endüstriyel Tesislerde Debi (m³/h) Hesabı Formülleri',
+        body: '<p><strong>1. Hacim ve ACH Esaslı Debi Hesabı:</strong><br>Q (m³/h) = V (m³) × ACH<br>Burada V mahal hacmi (Taban Alanı × Yükseklik), ACH ise saatlik hava değişim katsayısıdır.</p><p><strong>2. Kişi Başı Taze Hava Kriteri (ASHRAE 62.1):</strong><br>Ofis ve sosyal alanlarda kişi başına minimum 25–36 m³/h taze hava beslenmelidir.</p><p><strong>3. Statik Basınç Kaybı (ΔP):</strong><br>Kanallarda optimum 0.8–1.2 Pa/m sürtünme kaybı hedeflenerek fan enerji tüketimi minimuma indirilir.</p>'
+      },
+      2: {
+        tag: 'TSE EN 1886 Santral Kriterleri',
+        title: 'Klima Santrali (AHU) Seçiminde 7 Kritik Mühendislik Kriteri',
+        body: '<p><strong>1. Mekanik Dayanım (D1):</strong> Santral gövdesi ±1000 Pa basınç altında maksimum 4 mm/m sehim sınırını aşmamalıdır.</p><p><strong>2. Gövde Hava Kaçağı (L1):</strong> Enerji kaybını önlemek için L1 sınıfı kaçak oranı (+400 Pa altında maksimum 0.15 l/s.m²) şart koşulmalıdır.</p><p><strong>3. Isıl Geçirgenlik ve Köprüleme (T2 / TB2):</strong> Isı köprüsüz kompozit profil ve taşyünü çift cidar izolasyonu ile dış yüzeyde yoğuşma engellenir.</p>'
+      },
+      3: {
+        tag: 'Yangın & Duman Güvenliği',
+        title: 'Kapalı Otoparklarda Jet Fan Duman Tahliyesi Standartları',
+        body: '<p><strong>1. Çift Hızlı Aksiyel İndüksiyon Prensibi:</strong> Günlük işletmede CO seviyesi 50 ppm üzerine çıktığında düşük devirde, yangında ise tam devirde (400°C/2 saat F400) devreye girer.</p><p><strong>2. Kanalsız Tasarım Avantajı:</strong> Otopark tavanındaki şaft ve boru çakışmalarını ortadan kaldırır.</p>'
+      },
+      4: {
+        tag: 'NFPA 96 Mutfak Egzozu',
+        title: 'Ticari Mutfaklarda Yangına Dayanıklı Egzoz ve Filtrasyon',
+        body: '<p><strong>1. Kaynaklı Siyah Sac Kanal (1.2 mm):</strong> NFPA 96 gereğince mutfak davlumbaz egzoz kanalları contalı veya flanşlı olamaz; tamamen sızdırmaz sürekli kaynaklı imal edilmelidir.</p><p><strong>2. Elektrostatik ve UV-C Ozonlama:</strong> Yağ partiküllerini %99 oranında iyonize ederek tutar.</p>'
+      },
+      5: {
+        tag: 'EN 1507 Sızdırmazlık',
+        title: 'Hava Kanallarında Class C Sızdırmazlık Standardı',
+        body: '<p><strong>1. Sızdırmazlık Sınıfları:</strong> Class C kaçak limiti Class A standardına göre %70 daha düşüktür.</p><p><strong>2. Enerji Faturasına Etkisi:</strong> Class A kanalda kaçak oranı %15 iken, Class C kanalda kaçak %1.5 altındadır; fan enerji tasarrufu %25 değerine ulaşır.</p>'
+      },
+      6: {
+        tag: 'TAB & Devreye Alma',
+        title: 'Test, Ayar ve Balanslama (TAB) Kabul Rehberi',
+        body: '<p><strong>1. Kanal İçi Hız Ölçümü:</strong> Pitot tüpü ve diferansiyel mikrometre ile log-çebişev metoduyla kesit bazlı debi doğrulaması yapılır.</p><p><strong>2. Menfez Oransal Balanslama:</strong> En uzak menfezden başlayarak damper ayarlarıyla tüm menfezlerin proje debisine getirilmesi sağlanır.</p>'
+      }
+    };
+
+    window.openGuideModal = function(id) {
+      const g = GUIDES_DATA[id];
+      if (!g) return;
+      document.getElementById('sgm-tag').textContent = g.tag;
+      document.getElementById('sgm-title').textContent = g.title;
+      document.getElementById('sgm-body').innerHTML = g.body;
+      document.getElementById('sgm-cta').onclick = function() {
+        closeGuideModal();
+        if (typeof openQuoteModal === 'function') {
+          openQuoteModal(g.title + ' Hakkında Mühendislik ve Keşif Talebi');
+        }
+      };
+      const modal = document.getElementById('sky-guide-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeGuideModal = function() {
+      const modal = document.getElementById('sky-guide-modal');
+      if (!modal) return;
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    };
+
+    const gm = document.getElementById('sky-guide-modal');
+    if (gm) {
+      gm.addEventListener('click', function(e) {
+        if (e.target === gm) closeGuideModal();
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        if (typeof runVentCalc === 'function') runVentCalc();
+      });
+    } else {
+      if (typeof runVentCalc === 'function') runVentCalc();
+    }
+
+    function initMultiStepModal() {
+      const modal = document.getElementById('sky-quote-modal');
+      const modalClose = document.getElementById('sky-modal-close');
+
+      if (modalClose) {
+        modalClose.addEventListener('click', closeQuoteModal);
+      }
+
+      if (modal) {
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            closeQuoteModal();
+          }
+        });
+      }
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeQuoteModal();
+        }
+      });
+
+      // Sector cards click handler
+      document.querySelectorAll('.sky-choice-card').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const sector = btn.getAttribute('data-sector');
+          const hiddenInput = document.getElementById('sky-selected-sector');
+          if (hiddenInput && sector) hiddenInput.value = sector;
+
+          document.querySelectorAll('.sky-choice-card').forEach(b => {
+            b.classList.remove('border-[#0284c7]', 'bg-cyan-50/60', 'ring-1', 'ring-[#09bde3]');
+            b.classList.add('border-slate-200', 'bg-slate-50/80');
+          });
+          btn.classList.remove('border-slate-200', 'bg-slate-50/80');
+          btn.classList.add('border-[#0284c7]', 'bg-cyan-50/60', 'ring-1', 'ring-[#09bde3]');
+        });
+      });
+
+      // Area cards click handler
+      document.querySelectorAll('.sky-area-card').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const area = btn.getAttribute('data-area');
+          const hiddenInput = document.getElementById('sky-selected-area');
+          if (hiddenInput && area) hiddenInput.value = area;
+
+          document.querySelectorAll('.sky-area-card').forEach(b => {
+            b.classList.remove('border-[#0284c7]', 'bg-cyan-50/60', 'text-[#0284c7]', 'ring-1', 'ring-[#09bde3]');
+            b.classList.add('border-slate-200', 'bg-white', 'text-slate-700');
+          });
+          btn.classList.remove('border-slate-200', 'bg-white', 'text-slate-700');
+          btn.classList.add('border-[#0284c7]', 'bg-cyan-50/60', 'text-[#0284c7]', 'ring-1', 'ring-[#09bde3]');
+        });
+      });
+
+      // Status cards click handler
+      document.querySelectorAll('.sky-status-card').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const status = btn.getAttribute('data-status');
+          const hiddenInput = document.getElementById('sky-selected-status');
+          if (hiddenInput && status) hiddenInput.value = status;
+
+          document.querySelectorAll('.sky-status-card').forEach(b => {
+            b.classList.remove('border-[#0284c7]', 'bg-cyan-50/60', 'text-[#0284c7]', 'ring-1', 'ring-[#09bde3]');
+            b.classList.add('border-slate-200', 'bg-white', 'text-slate-700');
+          });
+          btn.classList.remove('border-slate-200', 'bg-white', 'text-slate-700');
+          btn.classList.add('border-[#0284c7]', 'bg-cyan-50/60', 'text-[#0284c7]', 'ring-1', 'ring-[#09bde3]');
+        });
+      });
+
+      // Connect trigger elements with data-sky-modal-trigger or matching attributes
+      document.querySelectorAll('[data-sky-modal-trigger], [data-bcc-pricing-modal], a[href*="/get-started"], a[href*="/waitlist"], a[href="#sky-quote-modal"]').forEach(el => {
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = el.getAttribute('data-sky-modal-trigger') || 'Ücretsiz Keşif & Debi Analizi Talebi';
+          openQuoteModal(target);
+        });
+      });
+
+      // Also connect any buttons that have "Teklif" or "Keşif"
+      document.querySelectorAll('button').forEach(btn => {
+        const text = btn.innerText.trim();
+        if ((text.includes('Teklif') || text.includes('Keşif') || text.includes('Keşif Talebi')) && 
+            !btn.getAttribute('onclick') && 
+            !btn.classList.contains('sky-choice-card') && 
+            !btn.classList.contains('sky-area-card') && 
+            !btn.classList.contains('sky-status-card') &&
+            !btn.getAttribute('data-bcc-core-rain-trigger')) {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            openQuoteModal('teklif');
+          });
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMultiStepModal);
+    } else {
+      initMultiStepModal();
+    }
+  })();
+  </script>
+
+</body>
+</html>
