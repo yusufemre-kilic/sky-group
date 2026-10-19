@@ -1820,7 +1820,7 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
       const lugBotF = createBox(0.08, 0.08, 0.04, materials.baseSkid, cx, -R - 0.06, 0);
       parent.add(clampRing, lugTopF, lugBotF);
 
-      const rodHeight = 1.4;
+      const rodHeight = 0.75;
       const rod = createCyl(0.012, 0.012, rodHeight, 10, materials.stainless, cx, R + 0.06 + rodHeight / 2, 0);
       const rodNut = createCyl(0.025, 0.025, 0.035, 6, materials.aluFrame, cx, R + 0.1, 0);
       parent.add(rod, rodNut);
@@ -2347,11 +2347,11 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
           ? (-0.3 - (p.progress - 0.7) * 1.5)
           : (p.offsetZ * 0.75);
       } else if (isPaslanmazKanal) {
-        // High-velocity laminar exhaust airflow through stainless cylinder
+        // High-velocity laminar exhaust airflow through stainless cylinder (lowered to exact duct centerline)
         const px = -2.5 + p.progress * 5.0;
         pos[i * 3] = px;
-        pos[i * 3 + 1] = Math.sin(p.progress * Math.PI * 2 + i) * 0.05 + p.offsetY * 0.45;
-        pos[i * 3 + 2] = p.offsetZ * 0.65;
+        pos[i * 3 + 1] = (-center.y) + Math.sin(p.progress * Math.PI * 2 + i) * 0.035 + (p.offsetY * 0.22);
+        pos[i * 3 + 2] = p.offsetZ * 0.45;
       } else {
         pos[i * 3] = -halfLen + p.progress * (halfLen * 2);
         pos[i * 3 + 1] = (p.isSupply ? -0.2 : 0.2) + p.offsetY;
@@ -2426,9 +2426,9 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
   ];
 
   const paslanmazKanalHotspotCoords = [
-    [-1.2, 0.45, 0.85],  // 01: AISI 304 / 316 Paslanmaz Gövde
-    [0.0, 0.88, 0.0],    // 02: Sürekli TIG Sızdırmaz Kaynak
-    [-1.2, -0.98, 0.2]   // 03: Yağ Tahliye & Drenaj Rakorları
+    [-1.2, -center.y + 0.35, 0.85],  // 01: AISI 304 / 316 Paslanmaz Gövde
+    [0.0, -center.y + 0.82, 0.0],    // 02: Sürekli TIG Sızdırmaz Kaynak
+    [-1.2, -center.y - 0.98, 0.2]    // 03: Yağ Tahliye & Drenaj Rakorları
   ];
 
   const pinMeshes = [];
