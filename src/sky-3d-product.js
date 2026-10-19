@@ -839,6 +839,383 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     }
   }
 
+  // --- SPECIALIZED DEDICATED MODEL: ROOFTOP PAKET ÇATI TİPİ KLİMA (PACKAGED INDUSTRIAL AHU & DX TWIN) ---
+  function buildRooftopDetailedModel(parent) {
+    const L = 6.2;
+    const H = 2.1;
+    const W = 2.2;
+    const halfL = L / 2; // 3.1
+    const halfH = H / 2; // 1.05
+    const halfW = W / 2; // 1.1
+
+    // 1. ROOF-CURB STRUCTURAL BASE (Hotspot 04: Heavy-duty galvanized çatı kaidesi)
+    const curbH = 0.45;
+    const curbY = -halfH - curbH / 2; // -1.05 - 0.225 = -1.275
+    const curbL = L + 0.2;
+    const curbW = W + 0.2;
+
+    // Outer structural galvanized curb skirt
+    const curbFront = createBox(curbL, curbH, 0.08, materials.baseSkid, 0, curbY, halfW + 0.06);
+    const curbBack = createBox(curbL, curbH, 0.08, materials.baseSkid, 0, curbY, -halfW - 0.06);
+    const curbLeft = createBox(0.08, curbH, curbW - 0.16, materials.baseSkid, -halfL - 0.06, curbY, 0);
+    const curbRight = createBox(0.08, curbH, curbW - 0.16, materials.baseSkid, halfL + 0.06, curbY, 0);
+    parent.add(curbFront, curbBack, curbLeft, curbRight);
+
+    // Flanged curb top cap with neoprene acoustic sealing gasket
+    const capRailF = createBox(curbL + 0.08, 0.04, 0.14, materials.aluFrame, 0, -halfH - 0.02, halfW + 0.05);
+    const capRailB = createBox(curbL + 0.08, 0.04, 0.14, materials.aluFrame, 0, -halfH - 0.02, -halfW - 0.05);
+    parent.add(capRailF, capRailB);
+
+    // Neoprene sealing strip
+    const sealF = createBox(curbL, 0.02, 0.04, materials.rubberBlack, 0, -halfH + 0.01, halfW);
+    const sealB = createBox(curbL, 0.02, 0.04, materials.rubberBlack, 0, -halfH + 0.01, -halfW);
+    parent.add(sealF, sealB);
+
+    // 4 Corner heavy-duty crane lifting hoist brackets (for rooftop crane rigging)
+    [[-halfL - 0.08, halfW + 0.08], [-halfL - 0.08, -halfW - 0.08], [halfL + 0.08, halfW + 0.08], [halfL + 0.08, -halfW - 0.08]].forEach(([lx, lz]) => {
+      const lug = createBox(0.14, 0.25, 0.14, materials.yellowSafety, lx, curbY + 0.1, lz);
+      const eyeHole = createCyl(0.035, 0.035, 0.16, 16, materials.motorCast, lx, curbY + 0.16, lz, 0, Math.PI / 2);
+      parent.add(lug, eyeHole);
+    });
+
+    // Roof curb bottom penetration collars (Duct drop openings into building):
+    // Return Air duct drop collar
+    const returnDrop = createBox(0.9, 0.18, 0.9, materials.galvSteel, -0.1, curbY - 0.14, 0);
+    const returnDropHole = createBox(0.82, 0.19, 0.82, materials.motorCast, -0.1, curbY - 0.14, 0);
+    // Supply Air duct drop collar
+    const supplyDrop = createBox(0.9, 0.18, 0.9, materials.galvSteel, 2.3, curbY - 0.14, 0);
+    const supplyDropHole = createBox(0.82, 0.19, 0.82, materials.motorCast, 2.3, curbY - 0.14, 0);
+    parent.add(returnDrop, returnDropHole, supplyDrop, supplyDropHole);
+
+    // 2. EXTRUDED ALUMINUM CORROSION-RESISTANT CASING FRAMEWORK
+    const pSize = 0.08;
+    // Longitudinal top & bottom frame rails
+    parent.add(
+      createBox(L, pSize, pSize, materials.aluFrame, 0, -halfH + pSize / 2, halfW - pSize / 2),
+      createBox(L, pSize, pSize, materials.aluFrame, 0, -halfH + pSize / 2, -halfW + pSize / 2),
+      createBox(L, pSize, pSize, materials.aluFrame, 0, halfH - pSize / 2, halfW - pSize / 2),
+      createBox(L, pSize, pSize, materials.aluFrame, 0, halfH - pSize / 2, -halfW + pSize / 2)
+    );
+
+    // Vertical structural corner and partition mullions
+    [-halfL + pSize / 2, -0.7, 0.6, 1.8, halfL - pSize / 2].forEach(vx => {
+      parent.add(
+        createBox(pSize, H - 2 * pSize, pSize, materials.aluFrame, vx, 0, halfW - pSize / 2),
+        createBox(pSize, H - 2 * pSize, pSize, materials.aluFrame, vx, 0, -halfW + pSize / 2)
+      );
+    });
+
+    // Transverse ceiling and floor cross beams
+    [-halfL + pSize / 2, -0.7, 0.6, 1.8, halfL - pSize / 2].forEach(vx => {
+      parent.add(
+        createBox(pSize, pSize, W - 2 * pSize, materials.aluFrame, vx, -halfH + pSize / 2, 0),
+        createBox(pSize, pSize, W - 2 * pSize, materials.aluFrame, vx, halfH - pSize / 2, 0)
+      );
+    });
+
+    // 3. WEATHERPROOF CASING PANELS (Rear, floor, and sloped standing-seam roof)
+    // Rear solid panel with double-walled 50mm polyurethane insulation
+    parent.add(createBox(L - 0.1, H - 0.1, 0.05, materials.panelSolid, 0, 0, -halfW + 0.04));
+    // Unit floor deck (galvanized inner lining)
+    parent.add(createBox(L - 0.1, 0.05, W - 0.1, materials.galvSteel, 0, -halfH + 0.04, 0));
+    // Right end panel (Supply end)
+    parent.add(createBox(0.05, H - 0.1, W - 0.1, materials.panelSolid, halfL - 0.03, 0, 0));
+
+    // Sloped Weatherproof Roof with standing-seam rain drip edges:
+    const roofIndoor = createBox(3.8, 0.06, W + 0.1, materials.panelSolid, 1.15, halfH + 0.03, 0);
+    parent.add(roofIndoor);
+    parent.add(
+      createBox(3.84, 0.04, 0.04, materials.aluFrame, 1.15, halfH + 0.01, halfW + 0.06),
+      createBox(3.84, 0.04, 0.04, materials.aluFrame, 1.15, halfH + 0.01, -halfW - 0.06)
+    );
+
+    // Internal thermal & acoustic separation bulkhead between Outdoor Condenser and Indoor AHU sections
+    const bulkhead = createBox(0.06, H - 0.12, W - 0.12, materials.galvSteel, -0.7, 0, 0);
+    parent.add(bulkhead);
+
+    // --- 4. SECTION 1: OUTDOOR CONDENSER & COMPRESSOR COMPARTMENT (X: -3.0 to -0.7) ---
+    // Condenser Coils: V-Bank / U-Coil geometry with Blue-Fin coating (Hotspot 02)
+    const rearCondFin = createBox(2.2, H - 0.25, 0.12, materials.coolingFin, -1.85, 0.02, -halfW + 0.15);
+    const leftCondFin = createBox(0.12, H - 0.25, W - 0.3, materials.coolingFin, -halfL + 0.15, 0.02, 0);
+    parent.add(rearCondFin, leftCondFin);
+
+    // Hail guards on exterior of condenser coils
+    for (let hg = -0.8; hg <= 0.8; hg += 0.2) {
+      const hailStrut = createBox(2.25, 0.02, 0.02, materials.aluFrame, -1.85, hg, -halfW + 0.05);
+      parent.add(hailStrut);
+    }
+
+    // Copper headers and distributor loops for condenser
+    [-0.8, -0.2, 0.4].forEach(cy => {
+      const condHeader = createCyl(0.035, 0.035, 2.1, 14, materials.copperPipe, -1.85, cy, -halfW + 0.24, 0, Math.PI / 2);
+      parent.add(condHeader);
+    });
+
+    // Dual Top Condenser Axial Fans (Hotspot 02)
+    const condFanPositions = [-2.2, -1.2];
+    condFanPositions.forEach((cfx, fidx) => {
+      const cowlHeight = 0.22;
+      const cowlRing = createCyl(0.48, 0.46, cowlHeight, 28, materials.motorCast, cfx, halfH + cowlHeight / 2, 0, 0, 0, true);
+      const cowlLip = createCyl(0.51, 0.51, 0.04, 28, materials.aluFrame, cfx, halfH + cowlHeight, 0);
+      parent.add(cowlRing, cowlLip);
+
+      const grilleRing = createCyl(0.46, 0.46, 0.02, 24, materials.galvSteel, cfx, halfH + cowlHeight + 0.01, 0, 0, 0, true);
+      parent.add(grilleRing);
+      for (let sp = 0; sp < 4; sp++) {
+        const spoke = createBox(0.9, 0.015, 0.015, materials.galvSteel, cfx, halfH + cowlHeight + 0.015, 0);
+        spoke.rotation.y = (sp / 4) * Math.PI;
+        parent.add(spoke);
+      }
+
+      const fanHub = new THREE.Group();
+      fanHub.position.set(cfx, halfH + 0.12, 0);
+      parent.add(fanHub);
+
+      const centerBoss = createCyl(0.12, 0.12, 0.08, 16, materials.aluFrame, 0, 0, 0);
+      fanHub.add(centerBoss);
+
+      for (let b = 0; b < 5; b++) {
+        const bladeGroup = new THREE.Group();
+        bladeGroup.rotation.y = (b / 5) * Math.PI * 2;
+        const blade = createBox(0.34, 0.02, 0.11, materials.fanImpeller, 0.24, 0, 0);
+        blade.rotation.x = 0.35;
+        bladeGroup.add(blade);
+        fanHub.add(bladeGroup);
+      }
+
+      const rotSpeed = fidx === 0 ? 0.18 : 0.17;
+      animators.push(() => { fanHub.rotation.y += rotSpeed; });
+
+      const motorBody = createCyl(0.15, 0.15, 0.3, 16, materials.motorCast, cfx, halfH - 0.12, 0);
+      parent.add(motorBody);
+    });
+
+    // Tandem Inverter Hermetic Scroll Compressors (Hotspot 01)
+    const compBaseChannel = createBox(1.5, 0.06, 0.6, materials.baseSkid, -1.8, -halfH + 0.1, 0.1);
+    parent.add(compBaseChannel);
+
+    const compPositions = [-2.15, -1.45];
+    compPositions.forEach((cx) => {
+      [[-0.12, -0.12], [-0.12, 0.12], [0.12, -0.12], [0.12, 0.12]].forEach(([ox, oz]) => {
+        parent.add(createCyl(0.04, 0.04, 0.04, 12, materials.rubberBlack, cx + ox, -halfH + 0.14, 0.1 + oz));
+      });
+
+      const compBody = createCyl(0.16, 0.16, 0.58, 24, materials.motorCast, cx, -halfH + 0.45, 0.1);
+      const compDome = createCyl(0.14, 0.16, 0.08, 20, materials.motorCast, cx, -halfH + 0.76, 0.1);
+      const compJbox = createBox(0.1, 0.14, 0.08, materials.motorCast, cx + 0.14, -halfH + 0.5, 0.1);
+      const heaterBand = createCyl(0.165, 0.165, 0.05, 20, materials.heatingFin, cx, -halfH + 0.22, 0.1);
+      parent.add(compBody, compDome, compJbox, heaterBand);
+    });
+
+    // Suction Accumulator vessel
+    const accumBody = createCyl(0.12, 0.12, 0.52, 20, materials.motorCast, -0.95, -halfH + 0.42, 0.25);
+    const accumTop = createCyl(0.09, 0.12, 0.06, 16, materials.motorCast, -0.95, -halfH + 0.70, 0.25);
+    parent.add(accumBody, accumTop);
+
+    // Refrigerant Piping Network
+    const suctionPipe1 = createCyl(0.04, 0.04, 0.8, 14, materials.copperPipe, -1.8, -halfH + 0.62, 0.1, 0, Math.PI / 2);
+    const suctionPipeToAccum = createCyl(0.04, 0.04, 0.6, 14, materials.copperPipe, -1.2, -halfH + 0.62, 0.18, Math.PI / 4, 0);
+    parent.add(suctionPipe1, suctionPipeToAccum);
+
+    const dischargePipe = createCyl(0.03, 0.03, 1.1, 14, materials.copperPipe, -1.8, -halfH + 0.78, -0.15, 0, Math.PI / 2);
+    const vibLoop = createCyl(0.045, 0.045, 0.22, 16, materials.springSilver, -1.35, -halfH + 0.78, -0.15, 0, Math.PI / 2);
+    parent.add(dischargePipe, vibLoop);
+
+    const filterDrier = createCyl(0.06, 0.06, 0.24, 16, materials.fanHousing, -0.95, -halfH + 0.28, -0.3, 0, Math.PI / 2);
+    const filterFittings = createCyl(0.03, 0.03, 0.34, 14, materials.brassGold, -0.95, -halfH + 0.28, -0.3, 0, Math.PI / 2);
+    const eevBody = createBox(0.09, 0.12, 0.09, materials.brassGold, -0.95, -halfH + 0.45, -0.3);
+    const eevWire = createCyl(0.01, 0.01, 0.2, 8, materials.rubberBlack, -0.95, -halfH + 0.54, -0.3);
+    parent.add(filterDrier, filterFittings, eevBody, eevWire);
+
+    [-0.15, 0.15].forEach(gz => {
+      const pGauge = createCyl(0.045, 0.045, 0.02, 16, materials.gaugeFace, -0.73, -halfH + 0.65, gz, 0, Math.PI / 2);
+      parent.add(pGauge);
+    });
+
+    // --- 5. SECTION 2: INDOOR AIR HANDLING & ECONOMIZER (X: -0.7 to +3.0) ---
+    // MODULE 1: ECONOMIZER & FRESH / RETURN AIR DAMPERS (Hotspot 03)
+    const hoodW = 1.1, hoodH = 0.8, hoodD = 0.35;
+    const hoodBox = createBox(hoodW, hoodH, hoodD, materials.galvSteel, -0.1, 0.2, -halfW - hoodD / 2 + 0.04);
+    const hoodRoof = createBox(hoodW + 0.06, 0.03, hoodD + 0.08, materials.aluFrame, -0.1, 0.2 + hoodH / 2 + 0.02, -halfW - hoodD / 2);
+    hoodRoof.rotation.x = -0.12;
+    parent.add(hoodBox, hoodRoof);
+
+    for (let lb = -0.3; lb <= 0.3; lb += 0.12) {
+      const lBlade = createBox(hoodW - 0.06, 0.02, 0.18, materials.damperBlade, -0.1, 0.2 + lb, -halfW - hoodD / 2);
+      lBlade.rotation.x = 0.45;
+      parent.add(lBlade);
+    }
+
+    const faDamperW = 1.0, faDamperH = 0.75;
+    const faDamperFrame = createBox(faDamperW, faDamperH, 0.08, materials.aluFrame, -0.1, 0.2, -halfW + 0.25);
+    parent.add(faDamperFrame);
+    for (let db = -0.25; db <= 0.25; db += 0.14) {
+      const blade = createBox(faDamperW - 0.06, 0.11, 0.015, materials.damperBlade, -0.1, 0.2 + db, -halfW + 0.25);
+      blade.rotation.x = 0.3;
+      parent.add(blade);
+    }
+
+    const raDamperL = 0.9, raDamperW = 0.9;
+    const raDamperFrame = createBox(raDamperL, 0.08, raDamperW, materials.aluFrame, -0.1, -halfH + 0.15, 0);
+    parent.add(raDamperFrame);
+    for (let rb = -0.3; rb <= 0.3; rb += 0.15) {
+      const blade = createBox(raDamperL - 0.06, 0.015, 0.12, materials.damperBlade, -0.1, -halfH + 0.15, rb);
+      blade.rotation.z = 0.25;
+      parent.add(blade);
+    }
+
+    // Belimo Orange Modulating Damper Actuator
+    const actBody = createBox(0.16, 0.22, 0.14, materials.actuatorOrange, -0.1, 0.35, halfW - 0.2);
+    const actHub = createCyl(0.04, 0.04, 0.06, 16, materials.aluFrame, -0.1, 0.35, halfW - 0.12, Math.PI / 2, 0);
+    const actLever = createBox(0.03, 0.14, 0.02, materials.motorCast, -0.1, 0.42, halfW - 0.1);
+    parent.add(actBody, actHub, actLever);
+
+    const sensorProbe = createCyl(0.015, 0.015, 0.35, 10, materials.stainless, 0.25, 0.2, 0);
+    parent.add(sensorProbe);
+
+    // MODULE 2: FILTER SECTION (G4 Pleated Pre-filter + F7 Compact Cassette)
+    const filterX = 0.6;
+    const filterH = H - 0.3;
+    const filterW = W - 0.3;
+    const filterFrame = createBox(0.18, filterH, filterW, materials.galvSteel, filterX, 0, 0);
+    parent.add(filterFrame);
+
+    for (let fz = -filterW / 2 + 0.3; fz <= filterW / 2 - 0.2; fz += 0.5) {
+      const g4Panel = createBox(0.05, filterH - 0.1, 0.44, materials.filterG4, filterX - 0.05, 0, fz);
+      const f7Panel = createBox(0.07, filterH - 0.1, 0.44, materials.filterCloth, filterX + 0.05, 0, fz);
+      parent.add(g4Panel, f7Panel);
+    }
+
+    const dpProbe1 = createCyl(0.01, 0.01, 0.2, 8, materials.copperPipe, filterX - 0.14, 0.3, halfW - 0.15);
+    const dpProbe2 = createCyl(0.01, 0.01, 0.2, 8, materials.copperPipe, filterX + 0.14, 0.3, halfW - 0.15);
+    parent.add(dpProbe1, dpProbe2);
+
+    // MODULE 3: DIRECT EXPANSION (DX) EVAPORATOR COOLING COIL
+    const coilX = 1.25;
+    const coilH = H - 0.35;
+    const coilW = W - 0.35;
+
+    const dxCoilBlock = createBox(0.32, coilH, coilW, materials.coolingFin, coilX, 0.02, 0);
+    parent.add(dxCoilBlock);
+
+    for (let row = 0; row < 4; row++) {
+      for (let col = 0; col < 3; col++) {
+        const ubY = -coilH / 2 + 0.2 + col * (coilH / 3.2);
+        const ubX = coilX - 0.12 + row * 0.08;
+        const ubend = createCyl(0.025, 0.025, 0.04, 12, materials.copperPipe, ubX, ubY, halfW - 0.18, Math.PI / 2, 0);
+        parent.add(ubend);
+      }
+    }
+
+    const spiderHub = createCyl(0.035, 0.035, 0.08, 14, materials.brassGold, coilX - 0.15, -0.2, halfW - 0.22);
+    parent.add(spiderHub);
+    for (let cap = 0; cap < 4; cap++) {
+      const capTube = createCyl(0.008, 0.008, 0.28, 8, materials.copperPipe, coilX - 0.08, -0.2 + cap * 0.1, halfW - 0.22, 0, Math.PI / 4);
+      parent.add(capTube);
+    }
+
+    const panW = coilW + 0.15;
+    const panL = 0.85;
+    const panH = 0.09;
+    const drainPanMesh = createBox(panL, panH, panW, materials.drainPan, coilX, -halfH + panH / 2 + 0.05, 0);
+    parent.add(drainPanMesh);
+
+    const pTrap1 = createCyl(0.03, 0.03, 0.35, 12, materials.stainless, coilX + 0.1, -halfH - 0.05, halfW + 0.02);
+    const pTrap2 = createCyl(0.03, 0.03, 0.22, 12, materials.stainless, coilX + 0.22, -halfH - 0.12, halfW + 0.02);
+    const pTrapBottom = createCyl(0.03, 0.03, 0.14, 12, materials.stainless, coilX + 0.16, -halfH - 0.22, halfW + 0.02, 0, Math.PI / 2);
+    parent.add(pTrap1, pTrap2, pTrapBottom);
+
+    const eliminatorBlock = createBox(0.12, coilH - 0.05, coilW, materials.aluFrame, coilX + 0.24, 0.02, 0);
+    parent.add(eliminatorBlock);
+
+    // MODULE 4: MODULATING HEATING SECTION (Gas Burner / Electric Coil)
+    const heatX = 1.8;
+    const heatH = coilH;
+    const heatW = coilW;
+
+    for (let tr = -0.5; tr <= 0.5; tr += 0.25) {
+      const heatTube = createCyl(0.045, 0.045, heatW - 0.2, 16, materials.stainless, heatX, tr, 0, Math.PI / 2, 0);
+      parent.add(heatTube);
+    }
+    const burnerBox = createBox(0.25, heatH - 0.2, 0.3, materials.galvSteel, heatX, 0, -halfW + 0.2);
+    parent.add(burnerBox);
+
+    // MODULE 5: DIRECT-DRIVE EC SUPPLY AIR PLUG FAN & MOTOR
+    const fanAssembly = new THREE.Group();
+    fanAssembly.position.set(2.45, 0.05, 0);
+    parent.add(fanAssembly);
+
+    const bellmouth = createCyl(0.48, 0.38, 0.18, 28, materials.aluFrame, -0.38, 0, 0, 0, Math.PI / 2);
+    const piezoRing = createCyl(0.44, 0.44, 0.03, 24, materials.copperPipe, -0.36, 0, 0, 0, Math.PI / 2, true);
+    fanAssembly.add(bellmouth, piezoRing);
+
+    const plugImpeller = createCyl(0.52, 0.52, 0.36, 24, materials.fanHousing, -0.05, 0, 0, 0, Math.PI / 2);
+    const centerSpinner = createCyl(0.14, 0.05, 0.16, 16, materials.aluFrame, -0.24, 0, 0, 0, Math.PI / 2);
+    fanAssembly.add(plugImpeller, centerSpinner);
+    animators.push(() => { plugImpeller.rotation.x += 0.15; });
+
+    const fanMotor = createCyl(0.24, 0.24, 0.45, 18, materials.motorCast, 0.32, 0, 0, 0, Math.PI / 2);
+    const termBox = createBox(0.14, 0.12, 0.14, materials.motorCast, 0.32, 0.26, 0);
+    fanAssembly.add(fanMotor, termBox);
+
+    const fanBase = createBox(1.1, 0.08, 0.8, materials.baseSkid, 0.05, -coilH / 2 + 0.1, 0);
+    fanAssembly.add(fanBase);
+
+    [[-0.4, -0.3], [-0.4, 0.3], [0.4, -0.3], [0.4, 0.3]].forEach(([sx, sz]) => {
+      const springBase = createBox(0.12, 0.03, 0.12, materials.motorCast, sx, -coilH / 2 + 0.04, sz);
+      const springCoil = createCyl(0.04, 0.04, 0.12, 10, materials.springSilver, sx, -coilH / 2 + 0.1, sz);
+      fanAssembly.add(springBase, springCoil);
+    });
+
+    const dischargeDuct = createBox(0.85, 0.6, 0.85, materials.galvSteel, 2.3, -halfH + 0.3, 0);
+    const flexCollar = createBox(0.9, 0.1, 0.9, materials.rubberBlack, 2.3, -halfH + 0.05, 0);
+    parent.add(dischargeDuct, flexCollar);
+
+    // --- 6. FRONT SERVICE ACCESS DOORS & CUTAWAY SWITCHING ---
+    const doorSpecs = [
+      { name: 'Condenser & Compressor', minX: -2.85, maxX: -0.85 },
+      { name: 'Economizer & Filter', minX: -0.65, maxX: 0.55 },
+      { name: 'DX Evaporator & Heater', minX: 0.65, maxX: 1.85 },
+      { name: 'Supply Plug Fan', minX: 1.95, maxX: 2.85 }
+    ];
+
+    doorSpecs.forEach((ds, didx) => {
+      const dw = ds.maxX - ds.minX;
+      const dx = (ds.minX + ds.maxX) / 2;
+      const dh = H - 0.22;
+
+      const cutDoor = createBox(dw - 0.04, dh, 0.04, materials.panelCutaway, dx, 0, halfW - 0.02, false, false);
+      parent.add(cutDoor);
+      registerCutawayPanel(cutDoor, materials.panelSolid, materials.panelCutaway);
+
+      const handle = createBox(0.04, 0.14, 0.04, materials.doorHandle, dx + dw * 0.42, 0, halfW + 0.01);
+      const hinge1 = createBox(0.03, 0.08, 0.03, materials.stainless, dx - dw * 0.45, dh * 0.35, halfW + 0.01);
+      const hinge2 = createBox(0.03, 0.08, 0.03, materials.stainless, dx - dw * 0.45, -dh * 0.35, halfW + 0.01);
+      parent.add(handle, hinge1, hinge2);
+
+      if (didx === 1 || didx === 2 || didx === 3) {
+        const portholeBezel = createCyl(0.12, 0.12, 0.04, 20, materials.aluFrame, dx, 0.22, halfW, Math.PI / 2);
+        parent.add(portholeBezel);
+      }
+    });
+
+    // Weatherproof DDC Automation & Power Control Panel (IP55)
+    const ctrlBox = createBox(0.42, 0.65, 0.18, materials.panelSolid, 0.6, 0.3, halfW + 0.08);
+    const ctrlBezel = createBox(0.38, 0.6, 0.02, materials.aluFrame, 0.6, 0.3, halfW + 0.17);
+    const ctrlScreen = createBox(0.24, 0.16, 0.01, materials.touchscreen, 0.6, 0.4, halfW + 0.18);
+    const isolatorBack = createBox(0.09, 0.09, 0.02, materials.yellowSafety, 0.6, 0.18, halfW + 0.18);
+    const isolatorKnob = createCyl(0.035, 0.035, 0.05, 12, materials.heatingFin, 0.6, 0.18, halfW + 0.2, Math.PI / 2);
+    parent.add(ctrlBox, ctrlBezel, ctrlScreen, isolatorBack, isolatorKnob);
+
+    // Dual External Magnehelic Differential Pressure Gauges
+    [-0.15, 0.15].forEach(gz => {
+      const magGauge = createCyl(0.065, 0.065, 0.035, 20, materials.aluFrame, 0.6, -0.25, halfW + 0.08 + gz, Math.PI / 2);
+      const magFace = createCyl(0.055, 0.055, 0.037, 20, materials.gaugeFace, 0.6, -0.25, halfW + 0.08 + gz, Math.PI / 2);
+      const magTube = createCyl(0.008, 0.008, 0.3, 8, materials.panelCutaway, 0.6, -0.42, halfW + 0.08 + gz);
+      parent.add(magGauge, magFace, magTube);
+    });
+  }
+
   // --- 5. CATEGORY-BASED PROCEDURAL GENERATORS ---
 
   // A. AIR HANDLING & RECOVERY UNITS (TKS, THKS, THRV-DX, HRV, ROOFTOP)
@@ -849,6 +1226,10 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     }
     if (type === 'thks') {
       buildThksDetailedModel(parent);
+      return;
+    }
+    if (type === 'rooftop') {
+      buildRooftopDetailedModel(parent);
       return;
     }
     const isHygienic = type === 'thks';
@@ -1449,7 +1830,9 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     buildTksDetailedModel(modelRoot);
   } else if (productId === 'thks') {
     buildThksDetailedModel(modelRoot);
-  } else if (['thrv-dx', 'hrv', 'rooftop'].includes(productId)) {
+  } else if (productId === 'rooftop') {
+    buildRooftopDetailedModel(modelRoot);
+  } else if (['thrv-dx', 'hrv'].includes(productId)) {
     buildAhuModel(modelRoot, productId);
   } else if (['tdf', 'yangin-fani', 'jet-fan'].includes(productId)) {
     buildFanModel(modelRoot, productId);
@@ -1522,13 +1905,14 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
 
   const isTksProduct = productId === 'tks';
   const isThksProduct = productId === 'thks';
+  const isRooftopProduct = productId === 'rooftop';
   const isAhuDual = isTksProduct || isThksProduct;
   const halfLen = Math.max(2.0, size.x / 2 + 0.4);
   const spanY = Math.max(1.0, size.y * 0.45);
   const spanZ = Math.max(1.0, size.z * 0.45);
 
   for (let i = 0; i < particleCount; i++) {
-    const isSupply = isAhuDual ? (i < particleCount * 0.7) : (i < particleCount * 0.65);
+    const isSupply = isAhuDual ? (i < particleCount * 0.7) : (isRooftopProduct ? (i < particleCount * 0.6) : (i < particleCount * 0.65));
     particles.push({
       isSupply,
       progress: Math.random(),
@@ -1594,6 +1978,25 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
           pos[i * 3 + 1] = 0.65 + p.offsetY;
           pos[i * 3 + 2] = p.offsetZ;
         }
+      } else if (isRooftopProduct) {
+        if (p.isSupply) {
+          // Indoor treated air stream: from economizer (-0.4) through filter, DX coil, supply fan, down into roof curb (2.3)
+          const px = -0.4 + p.progress * 2.8;
+          pos[i * 3] = px;
+          if (p.progress > 0.8) {
+            const dropRatio = (p.progress - 0.8) / 0.2;
+            pos[i * 3 + 1] = 0.05 - dropRatio * 1.35 + p.offsetY * 0.4;
+          } else {
+            pos[i * 3 + 1] = 0.05 + Math.sin(p.progress * Math.PI * 3) * 0.06 + p.offsetY * 0.6;
+          }
+          pos[i * 3 + 2] = p.offsetZ * 0.7;
+        } else {
+          // Condenser air: drawn into side coils (-2.5 to -1.0) and exhausted upward through top axial fans
+          const fanX = (i % 2 === 0) ? -2.2 : -1.2;
+          pos[i * 3] = fanX + Math.sin(i * 1.5 + p.progress * 6.28) * 0.22;
+          pos[i * 3 + 1] = -0.2 + p.progress * 2.1;
+          pos[i * 3 + 2] = Math.cos(i * 1.5 + p.progress * 6.28) * 0.22;
+        }
       } else {
         pos[i * 3] = -halfLen + p.progress * (halfLen * 2);
         pos[i * 3 + 1] = (p.isSupply ? -0.2 : 0.2) + p.offsetY;
@@ -1636,7 +2039,7 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
         { num: '03', title: 'Hava Dağıtım & Kontrol', desc: 'Hassas debi kalibrasyonu ve sızdırmaz bağlantı elemanları.' }
       ];
 
-  // Specific 3D positions for TKS & THKS hotspots
+  // Specific 3D positions for TKS & THKS & ROOFTOP hotspots
   const tksHotspotCoords = [
     [-3.8, 1.1, 1.08],  // 01: İskelet & 50mm Taşyünü Panel
     [-1.8, -0.4, 1.08], // 02: Filtre Hücresi (G4 + F7/F9)
@@ -1653,6 +2056,13 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     [2.8, -0.4, 1.08]   // 04: EC Plug Fan & Hijyenik Susturucu Hücresi
   ];
 
+  const rooftopHotspotCoords = [
+    [-1.8, -0.4, 1.18], // 01: Hermetik Scroll Inverter Kompresör
+    [-1.7, 1.32, 0.2],  // 02: Kondenser & Aksiyel Fanlar
+    [-0.1, 0.25, 1.18], // 03: Evaporatör & Taze Hava Ekonomizörü
+    [2.3, -1.25, 1.18]  // 04: Roof-Curb Kanal Bağlantısı
+  ];
+
   const pinMeshes = [];
   rawHotspots.forEach((h, idx) => {
     const pinAnchor = new THREE.Group();
@@ -1661,6 +2071,8 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
       [px, py, pz] = tksHotspotCoords[idx];
     } else if (isThksProduct && thksHotspotCoords[idx]) {
       [px, py, pz] = thksHotspotCoords[idx];
+    } else if (isRooftopProduct && rooftopHotspotCoords[idx]) {
+      [px, py, pz] = rooftopHotspotCoords[idx];
     } else {
       const total = rawHotspots.length;
       const isWideZ = size.z > size.x;
