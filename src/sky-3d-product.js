@@ -115,7 +115,7 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
   const materials = {
     aluFrame: new THREE.MeshStandardMaterial({ color: 0xd4d8dd, metalness: 0.8, roughness: 0.25, side: THREE.DoubleSide }),
     galvSteel: new THREE.MeshStandardMaterial({ color: 0xc4cdd5, metalness: 0.65, roughness: 0.45, side: THREE.DoubleSide }),
-    stainless: new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.95, roughness: 0.15, side: THREE.DoubleSide }),
+    stainless: new THREE.MeshStandardMaterial({ color: 0xdce3ea, metalness: 0.55, roughness: 0.35, side: THREE.DoubleSide }),
     baseSkid: new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.75, roughness: 0.35, side: THREE.DoubleSide }),
     panelSolid: new THREE.MeshStandardMaterial({ color: 0xf8fafc, metalness: 0.15, roughness: 0.35, side: THREE.DoubleSide }),
     panelCutaway: new THREE.MeshPhysicalMaterial({
@@ -140,7 +140,7 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     filterG4: new THREE.MeshStandardMaterial({ color: 0xe2e8f0, roughness: 0.9, metalness: 0.05, side: THREE.DoubleSide }),
     damperBlade: new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.8, roughness: 0.25, side: THREE.DoubleSide }),
     actuatorOrange: new THREE.MeshStandardMaterial({ color: 0xea580c, metalness: 0.2, roughness: 0.4 }),
-    drainPan: new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.95, roughness: 0.15, side: THREE.DoubleSide }),
+    drainPan: new THREE.MeshStandardMaterial({ color: 0xdce3ea, metalness: 0.55, roughness: 0.35, side: THREE.DoubleSide }),
     doorHandle: new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.8, roughness: 0.3 }),
     rubberBlack: new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.85, metalness: 0.1, side: THREE.DoubleSide }),
     brassGold: new THREE.MeshStandardMaterial({ color: 0xd97706, metalness: 0.85, roughness: 0.25 }),
@@ -165,8 +165,8 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     return mesh;
   }
 
-  function createCyl(rTop, rBot, height, segs, mat, x = 0, y = 0, z = 0, rotX = 0, rotZ = 0, open = false) {
-    const geo = new THREE.CylinderGeometry(rTop, rBot, height, segs, 1, open);
+  function createCyl(rTop, rBot, height, segs, mat, x = 0, y = 0, z = 0, rotX = 0, rotZ = 0, open = false, thetaStart = 0, thetaLength = Math.PI * 2) {
+    const geo = new THREE.CylinderGeometry(rTop, rBot, height, segs, 1, open, thetaStart, thetaLength);
     const mesh = new THREE.Mesh(geo, mat);
     mesh.position.set(x, y, z);
     if (rotX) mesh.rotation.x = rotX;
@@ -1713,10 +1713,133 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     });
   }
 
+  // --- SPECIALIZED DEDICATED MODEL: PASLANMAZ ÇELİK & KAYNAKLI HAVA KANALI (AISI 304 / 316L TIG WELDED) ---
+  function buildPaslanmazKanalDetailedModel(parent) {
+    const R = 0.75;
+    const L = 4.8;
+    const halfL = L / 2; // 2.4
+
+    // --- 1. HOLLOW CYLINDRICAL STAINLESS DUCT CASING (AISI 304 / 316L, Hotspot 01) ---
+    // A. Left solid cylinder: X from -halfL (-2.4) to -0.6 (length 1.8, center -1.5)
+    const leftL = 1.8;
+    const leftTube = createCyl(R, R, leftL, 36, materials.stainless, -halfL + leftL / 2, 0, 0, 0, Math.PI / 2, true);
+    parent.add(leftTube);
+
+    // B. Right solid cylinder: X from 0.6 to halfL (2.4) (length 1.8, center 1.5)
+    const rightL = 1.8;
+    const rightTube = createCyl(R, R, rightL, 36, materials.stainless, halfL - rightL / 2, 0, 0, 0, Math.PI / 2, true);
+    parent.add(rightTube);
+
+    // C. Middle cutaway section: X from -0.6 to +0.6 (length 1.2, center 0.0)
+    const midL = 1.2;
+    // Solid back/top/bottom casing (240 degrees arc)
+    const midBack = createCyl(R, R, midL, 28, materials.stainless, 0, 0, 0, 0, Math.PI / 2, true, Math.PI / 3, (4 * Math.PI) / 3);
+    parent.add(midBack);
+
+    // Front cutaway window panel (120 degrees arc facing +Z, defaults to transparent, toggles to solid)
+    const cutawayPanel = createCyl(R + 0.002, R + 0.002, midL, 24, materials.panelCutaway, 0, 0, 0, 0, Math.PI / 2, true, -Math.PI / 3, (2 * Math.PI) / 3);
+    parent.add(cutawayPanel);
+    registerCutawayPanel(cutawayPanel, materials.stainless, materials.panelCutaway);
+
+    // Internal components visible through the cutaway window
+    const internalTrough = createBox(midL, 0.02, 0.45, materials.stainless, 0, -R + 0.03, 0);
+    const internalBaffle = createBox(0.015, 0.35, 0.7, materials.stainless, 0, -R + 0.2, 0);
+    parent.add(internalTrough, internalBaffle);
+
+    [-0.58, 0.58].forEach(ix => {
+      const internalWeld = createCyl(R - 0.005, R - 0.005, 0.02, 32, materials.aluFrame, ix, 0, 0, 0, Math.PI / 2, true);
+      parent.add(internalWeld);
+    });
+
+    // Full bottom liquid-tight grease trough
+    const greaseTrough = createBox(L - 0.2, 0.02, 0.5, materials.stainless, 0, -R + 0.02, 0);
+    parent.add(greaseTrough);
+
+    // --- 2. SÜREKLİ TIG / ARGON SIZDIRMAZ KAYNAK HATTI (Hotspot 02) ---
+    const weldBead = createBox(L - 0.02, 0.02, 0.035, materials.aluFrame, 0, R + 0.009, 0);
+    parent.add(weldBead);
+    for (let wx = -halfL + 0.2; wx <= halfL - 0.2; wx += 0.25) {
+      const ripple = createBox(0.015, 0.024, 0.042, materials.stainless, wx, R + 0.011, 0);
+      parent.add(ripple);
+    }
+
+    // Circumferential girth TIG welds connecting duct body to end flanges
+    [-halfL + 0.06, halfL - 0.06].forEach(gx => {
+      const girthWeld = createCyl(R + 0.012, R + 0.012, 0.03, 32, materials.aluFrame, gx, 0, 0, 0, Math.PI / 2, true);
+      parent.add(girthWeld);
+    });
+
+    // --- 3. SOLID STAINLESS FLAT-BAR COMPANION RING FLANGES ---
+    [-halfL, halfL].forEach(fx => {
+      const flangeRing = createCyl(R + 0.18, R + 0.18, 0.08, 36, materials.stainless, fx, 0, 0, 0, Math.PI / 2, true);
+      const flangeFace = createCyl(R + 0.18, R - 0.02, 0.06, 36, materials.aluFrame, fx, 0, 0, 0, Math.PI / 2);
+      parent.add(flangeRing, flangeFace);
+
+      const gasketRing = createCyl(R + 0.12, R, 0.02, 32, materials.rubberBlack, fx + (fx < 0 ? -0.045 : 0.045), 0, 0, 0, Math.PI / 2);
+      parent.add(gasketRing);
+
+      for (let b = 0; b < 12; b++) {
+        const ang = (b / 12) * Math.PI * 2;
+        const by = Math.sin(ang) * (R + 0.09);
+        const bz = Math.cos(ang) * (R + 0.09);
+        const bolt = createCyl(0.014, 0.014, 0.12, 10, materials.stainless, fx, by, bz, 0, Math.PI / 2);
+        const nut = createCyl(0.022, 0.022, 0.035, 6, materials.doorHandle, fx + (fx < 0 ? 0.05 : -0.05), by, bz, 0, Math.PI / 2);
+        parent.add(bolt, nut);
+      }
+    });
+
+    // --- 4. YAĞ TAHLİYE & DRENAJ RAKORLARI (Hotspot 03) ---
+    const drainX = -1.2;
+    const drainCoupling = createCyl(0.05, 0.05, 0.08, 16, materials.stainless, drainX, -R - 0.04, 0);
+    const drainNipple = createCyl(0.03, 0.03, 0.08, 14, materials.stainless, drainX, -R - 0.11, 0);
+    const valveBody = createBox(0.09, 0.09, 0.08, materials.brassGold, drainX, -R - 0.18, 0);
+    const valveStem = createCyl(0.015, 0.015, 0.06, 10, materials.stainless, drainX, -R - 0.18, 0.06, Math.PI / 2, 0);
+    const valveHandle = createBox(0.18, 0.025, 0.015, materials.heatingFin, drainX + 0.08, -R - 0.18, 0.09);
+    const drainDischarge = createCyl(0.025, 0.025, 0.06, 12, materials.brassGold, drainX, -R - 0.25, 0);
+    parent.add(drainCoupling, drainNipple, valveBody, valveStem, valveHandle, drainDischarge);
+
+    // --- 5. NFPA 96 SIZDIRMAZ OVAL MÜDAHALE & TEMİZLEME KAPAĞI ---
+    const hatchX = 1.3;
+    const hatchRim = createCyl(0.28, 0.28, 0.05, 24, materials.aluFrame, hatchX, 0, R + 0.02, Math.PI / 2);
+    const hatchCover = createCyl(0.25, 0.25, 0.06, 24, materials.stainless, hatchX, 0, R + 0.03, Math.PI / 2);
+    const hatchSeal = createCyl(0.26, 0.26, 0.02, 24, materials.rubberBlack, hatchX, 0, R + 0.01, Math.PI / 2);
+    parent.add(hatchRim, hatchCover, hatchSeal);
+
+    [-0.11, 0.11].forEach(kx => {
+      const stud = createCyl(0.01, 0.01, 0.06, 8, materials.stainless, hatchX + kx, 0, R + 0.06, Math.PI / 2);
+      const starKnob = createCyl(0.045, 0.045, 0.03, 12, materials.doorHandle, hatchX + kx, 0, R + 0.08, Math.PI / 2);
+      parent.add(stud, starKnob);
+    });
+    const tether = createCyl(0.004, 0.004, 0.25, 6, materials.aluFrame, hatchX, -0.16, R + 0.03);
+    parent.add(tether);
+
+    // --- 6. TAVAN TAŞIYICI & ASKI SİSTEMİ ---
+    [-1.8, 1.7].forEach(cx => {
+      const clampRing = createCyl(R + 0.06, R + 0.06, 0.08, 36, materials.baseSkid, cx, 0, 0, 0, Math.PI / 2, true);
+      const lugTopF = createBox(0.08, 0.08, 0.04, materials.baseSkid, cx, R + 0.06, 0);
+      const lugBotF = createBox(0.08, 0.08, 0.04, materials.baseSkid, cx, -R - 0.06, 0);
+      parent.add(clampRing, lugTopF, lugBotF);
+
+      const rodHeight = 1.4;
+      const rod = createCyl(0.012, 0.012, rodHeight, 10, materials.stainless, cx, R + 0.06 + rodHeight / 2, 0);
+      const rodNut = createCyl(0.025, 0.025, 0.035, 6, materials.aluFrame, cx, R + 0.1, 0);
+      parent.add(rod, rodNut);
+    });
+
+    // --- 7. TEST & SERTİFİKASYON ETİKETİ ---
+    const plate = createBox(0.2, 0.12, 0.01, materials.aluFrame, -1.2, 0.2, R + 0.02);
+    const label = createBox(0.16, 0.08, 0.012, materials.touchscreen, -1.2, 0.2, R + 0.022);
+    parent.add(plate, label);
+  }
+
   // C. DUCTWORK (GALVANIZ, SPIRAL, PASLANMAZ)
   function buildDuctModel(parent, type) {
     if (type === 'galvaniz-kanal') {
       buildGalvanizKanalDetailedModel(parent);
+      return;
+    }
+    if (type === 'paslanmaz-kanal') {
+      buildPaslanmazKanalDetailedModel(parent);
       return;
     }
     if (type === 'spiral-kanal') {
@@ -2046,11 +2169,13 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     buildRooftopDetailedModel(modelRoot);
   } else if (productId === 'galvaniz-kanal') {
     buildGalvanizKanalDetailedModel(modelRoot);
+  } else if (productId === 'paslanmaz-kanal') {
+    buildPaslanmazKanalDetailedModel(modelRoot);
   } else if (['thrv-dx', 'hrv'].includes(productId)) {
     buildAhuModel(modelRoot, productId);
   } else if (['tdf', 'yangin-fani', 'jet-fan'].includes(productId)) {
     buildFanModel(modelRoot, productId);
-  } else if (['spiral-kanal', 'paslanmaz-kanal'].includes(productId)) {
+  } else if (['spiral-kanal'].includes(productId)) {
     buildDuctModel(modelRoot, productId);
   } else if (['menfez', 'difuzor', 'damper'].includes(productId)) {
     buildAirDistModel(modelRoot, productId);
@@ -2121,6 +2246,7 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
   const isThksProduct = productId === 'thks';
   const isRooftopProduct = productId === 'rooftop';
   const isGalvanizKanal = productId === 'galvaniz-kanal';
+  const isPaslanmazKanal = productId === 'paslanmaz-kanal';
   const isAhuDual = isTksProduct || isThksProduct;
   const halfLen = Math.max(2.0, size.x / 2 + 0.4);
   const spanY = Math.max(1.0, size.y * 0.45);
@@ -2131,7 +2257,7 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     particles.push({
       isSupply,
       progress: Math.random(),
-      speed: (isAhuDual ? 0.006 : (isGalvanizKanal ? 0.009 : 0.005)) + Math.random() * 0.004,
+      speed: (isAhuDual ? 0.006 : ((isGalvanizKanal || isPaslanmazKanal) ? 0.009 : 0.005)) + Math.random() * 0.004,
       offsetY: (Math.random() - 0.5) * (isAhuDual ? 0.35 : spanY),
       offsetZ: (Math.random() - 0.5) * (isAhuDual ? 0.7 : spanZ)
     });
@@ -2220,6 +2346,12 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
         pos[i * 3 + 2] = (p.progress > 0.7 && i % 3 === 0)
           ? (-0.3 - (p.progress - 0.7) * 1.5)
           : (p.offsetZ * 0.75);
+      } else if (isPaslanmazKanal) {
+        // High-velocity laminar exhaust airflow through stainless cylinder
+        const px = -2.5 + p.progress * 5.0;
+        pos[i * 3] = px;
+        pos[i * 3 + 1] = Math.sin(p.progress * Math.PI * 2 + i) * 0.05 + p.offsetY * 0.45;
+        pos[i * 3 + 2] = p.offsetZ * 0.65;
       } else {
         pos[i * 3] = -halfLen + p.progress * (halfLen * 2);
         pos[i * 3 + 1] = (p.isSupply ? -0.2 : 0.2) + p.offsetY;
@@ -2262,7 +2394,7 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
         { num: '03', title: 'Hava Dağıtım & Kontrol', desc: 'Hassas debi kalibrasyonu ve sızdırmaz bağlantı elemanları.' }
       ];
 
-  // Specific 3D positions for TKS & THKS & ROOFTOP & GALVANIZ KANAL hotspots
+  // Specific 3D positions for TKS & THKS & ROOFTOP & GALVANIZ KANAL & PASLANMAZ KANAL hotspots
   const tksHotspotCoords = [
     [-3.8, 1.1, 1.08],  // 01: İskelet & 50mm Taşyünü Panel
     [-1.8, -0.4, 1.08], // 02: Filtre Hücresi (G4 + F7/F9)
@@ -2293,6 +2425,12 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     [-1.6, 0.48, 0.75]   // 04: Kanal Takviye Trapez Ribleri & Çapraz Kırma
   ];
 
+  const paslanmazKanalHotspotCoords = [
+    [-1.2, 0.45, 0.85],  // 01: AISI 304 / 316 Paslanmaz Gövde
+    [0.0, 0.88, 0.0],    // 02: Sürekli TIG Sızdırmaz Kaynak
+    [-1.2, -0.98, 0.2]   // 03: Yağ Tahliye & Drenaj Rakorları
+  ];
+
   const pinMeshes = [];
   rawHotspots.forEach((h, idx) => {
     const pinAnchor = new THREE.Group();
@@ -2305,6 +2443,8 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
       [px, py, pz] = rooftopHotspotCoords[idx];
     } else if (isGalvanizKanal && galvanizKanalHotspotCoords[idx]) {
       [px, py, pz] = galvanizKanalHotspotCoords[idx];
+    } else if (isPaslanmazKanal && paslanmazKanalHotspotCoords[idx]) {
+      [px, py, pz] = paslanmazKanalHotspotCoords[idx];
     } else {
       const total = rawHotspots.length;
       const isWideZ = size.z > size.x;
