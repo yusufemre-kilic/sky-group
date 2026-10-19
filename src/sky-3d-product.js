@@ -1832,6 +1832,113 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     parent.add(plate, label);
   }
 
+  // --- SPECIALIZED DEDICATED MODEL: SPİROMATİC CONTALI SPİRAL YUVARLAK KANAL (EUROVENT CLASS D) ---
+  function buildSpiralKanalDetailedModel(parent) {
+    const R = 0.75;
+    const minX = -2.4;
+
+    // --- 1. GALVANIZED SPIRAL DUCT CASING & CUTAWAY WINDOW ---
+    // A. Left solid spiral tube: X from -2.4 to -0.6 (length 1.8, center -1.5)
+    const leftL = 1.8;
+    const leftTube = createCyl(R, R, leftL, 36, materials.galvSteel, minX + leftL / 2, 0, 0, 0, Math.PI / 2, true);
+    parent.add(leftTube);
+
+    // B. Right solid spiral tube: X from 0.6 to 1.2 (length 0.6, center 0.9)
+    const rightL = 0.6;
+    const rightTube = createCyl(R, R, rightL, 36, materials.galvSteel, 0.9, 0, 0, 0, Math.PI / 2, true);
+    parent.add(rightTube);
+
+    // C. Middle cutaway inspection section: X from -0.6 to +0.6 (length 1.2, center 0.0)
+    const midL = 1.2;
+    // Solid back/top/bottom casing (240° arc)
+    const midBack = createCyl(R, R, midL, 28, materials.galvSteel, 0, 0, 0, 0, Math.PI / 2, true, Math.PI / 3, (4 * Math.PI) / 3);
+    parent.add(midBack);
+
+    // Front cutaway viewing window (120° arc facing +Z, defaults to transparent physical glass, toggles to solid galvSteel)
+    const cutawayPanel = createCyl(R + 0.002, R + 0.002, midL, 24, materials.panelCutaway, 0, 0, 0, 0, Math.PI / 2, true, -Math.PI / 3, (2 * Math.PI) / 3);
+    parent.add(cutawayPanel);
+    registerCutawayPanel(cutawayPanel, materials.galvSteel, materials.panelCutaway);
+
+    // --- 2. 4-PLY CONTINUOUS SPIROMATIC HELICAL LOCK SEAMS (Hotspot 01) ---
+    // Outer Spiromatic 4-fold standing lock seams wrapped along the cylindrical run
+    const seamPositions = [-2.2, -1.75, -1.3, -0.85, -0.4, 0.05, 0.5, 0.95];
+    seamPositions.forEach(sx => {
+      const seamBase = createCyl(R + 0.016, R + 0.016, 0.038, 36, materials.aluFrame, sx, 0, 0, 0, Math.PI / 2, true);
+      const seamFold = createCyl(R + 0.024, R + 0.024, 0.014, 36, materials.galvSteel, sx + 0.008, 0, 0, 0, Math.PI / 2, true);
+      parent.add(seamBase, seamFold);
+    });
+
+    // --- 3. FABRİKASYON EPDM ÇİFT DUDAKLI CONTA & GEÇME MANŞON (Hotspot 02, X: 1.2 to 1.45) ---
+    // Slip-in male coupling collar entering the elbow
+    const collar = createCyl(R + 0.02, R + 0.02, 0.22, 36, materials.aluFrame, 1.31, 0, 0, 0, Math.PI / 2, true);
+    const stopBead = createCyl(R + 0.038, R + 0.038, 0.035, 36, materials.galvSteel, 1.21, 0, 0, 0, Math.PI / 2, true);
+    parent.add(collar, stopBead);
+
+    // Factory-riveted twin-lip EPDM black rubber gasket (Eurovent Class D zero-leakage seal)
+    const epdmLip1 = createCyl(R + 0.032, R + 0.032, 0.028, 36, materials.rubberBlack, 1.33, 0, 0, 0, Math.PI / 2, true);
+    const epdmLip2 = createCyl(R + 0.032, R + 0.032, 0.028, 36, materials.rubberBlack, 1.39, 0, 0, 0, Math.PI / 2, true);
+    parent.add(epdmLip1, epdmLip2);
+
+    // Stainless steel factory rivets holding the EPDM rubber seal firmly to the collar
+    for (let r = 0; r < 8; r++) {
+      const ang = (r / 8) * Math.PI * 2;
+      const ry = Math.sin(ang) * (R + 0.028);
+      const rz = Math.cos(ang) * (R + 0.028);
+      const rivet = createCyl(0.009, 0.009, 0.025, 8, materials.stainless, 1.36, ry, rz, 0, Math.PI / 2);
+      parent.add(rivet);
+    }
+
+    // --- 4. 90° SEGMENTED PRESSED ELBOW (SEGMANLI DİRSEK - Hotspot 03) ---
+    // 4-gore segmented curved elbow sweeping from horizontal (+X) to upward vertical (+Y)
+    const goreAngles = [
+      { cx: 1.6, cy: 0.12, rotZ: 0.19 },
+      { cx: 1.88, cy: 0.42, rotZ: 0.58 },
+      { cx: 2.05, cy: 0.82, rotZ: 0.98 },
+      { cx: 2.12, cy: 1.28, rotZ: 1.37 }
+    ];
+
+    goreAngles.forEach((g) => {
+      const goreLen = 0.46;
+      const gore = createCyl(R - 0.005, R - 0.005, goreLen, 28, materials.galvSteel, g.cx, g.cy, 0, 0, Math.PI / 2 - g.rotZ, true);
+      const goreSeam = createCyl(R + 0.018, R + 0.018, 0.025, 28, materials.aluFrame, g.cx, g.cy, 0, 0, Math.PI / 2 - g.rotZ, true);
+      parent.add(gore, goreSeam);
+    });
+
+    // Vertical discharge spigot at top (Ø1500 vertical connection collar)
+    const topCollar = createCyl(R - 0.005, R - 0.005, 0.45, 32, materials.galvSteel, 2.15, 1.7, 0, 0, 0, true);
+    const topLip = createCyl(R + 0.018, R + 0.018, 0.03, 32, materials.aluFrame, 2.15, 1.92, 0, 0, 0, true);
+    parent.add(topCollar, topLip);
+
+    // --- 5. AERO İÇ DETAYLAR & HAVA YÖNLENDİRİCİLER (Hotspot 03) ---
+    const intBaffle = createBox(0.02, 0.45, 0.8, materials.aluFrame, 1.25, 0.1, 0);
+    parent.add(intBaffle);
+
+    // --- 6. MİMARİ ELEKTROSTATİK TOZ BOYA SEÇENEĞİ & ETİKET (Hotspot 04) ---
+    // Decorative architectural color accent band (RAL 7016 Anthracite / Architectural Teal) on intake collar
+    const archBand = createCyl(R + 0.018, R + 0.018, 0.22, 36, materials.motorTeal, -2.25, 0, 0, 0, Math.PI / 2, true);
+    const archBandTrimL = createCyl(R + 0.025, R + 0.025, 0.02, 36, materials.aluFrame, -2.36, 0, 0, 0, Math.PI / 2, true);
+    const archBandTrimR = createCyl(R + 0.025, R + 0.025, 0.02, 36, materials.aluFrame, -2.14, 0, 0, 0, Math.PI / 2, true);
+    parent.add(archBand, archBandTrimL, archBandTrimR);
+
+    // Laser-engraved Eurovent Class D certification specification plate
+    const specPlate = createBox(0.24, 0.15, 0.01, materials.aluFrame, -1.2, 0.25, R + 0.02);
+    const specScreen = createBox(0.2, 0.11, 0.012, materials.touchscreen, -1.2, 0.25, R + 0.022);
+    parent.add(specPlate, specScreen);
+
+    // --- 7. TAVAN TAŞIYICI ASKI SİSTEMİ & TİTREŞİM İZOLASYONLU KELEPÇE ---
+    const cx = -1.2;
+    const clampRing = createCyl(R + 0.05, R + 0.05, 0.08, 36, materials.baseSkid, cx, 0, 0, 0, Math.PI / 2, true);
+    const rubberLining = createCyl(R + 0.022, R + 0.022, 0.07, 36, materials.rubberBlack, cx, 0, 0, 0, Math.PI / 2, true);
+    const topLug = createBox(0.08, 0.08, 0.05, materials.baseSkid, cx, R + 0.05, 0);
+    const botLug = createBox(0.08, 0.08, 0.05, materials.baseSkid, cx, -R - 0.05, 0);
+    parent.add(clampRing, rubberLining, topLug, botLug);
+
+    const rodHeight = 0.75;
+    const rod = createCyl(0.012, 0.012, rodHeight, 10, materials.stainless, cx, R + 0.05 + rodHeight / 2, 0);
+    const rodNut = createCyl(0.025, 0.025, 0.035, 6, materials.aluFrame, cx, R + 0.09, 0);
+    parent.add(rod, rodNut);
+  }
+
   // C. DUCTWORK (GALVANIZ, SPIRAL, PASLANMAZ)
   function buildDuctModel(parent, type) {
     if (type === 'galvaniz-kanal') {
@@ -1843,77 +1950,10 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
       return;
     }
     if (type === 'spiral-kanal') {
-      // Spiromatic spiral round duct with 90° bend fitting & rubber gasket
-      const R = 0.75, L = 4.4;
-      const straightTube = createCyl(R, R, L, 32, materials.galvSteel, -0.6, 0, 0, 0, Math.PI / 2, true);
-      parent.add(straightTube);
-      // Continuously spaced spiral lockseam ridges
-      for (let r = -2.6; r <= 1.2; r += 0.45) {
-        parent.add(createCyl(R + 0.015, R + 0.015, 0.025, 32, materials.aluFrame, r, 0, 0, 0, Math.PI / 2, true));
-      }
-      // Male spigot coupling with twin-lip EPDM black rubber gasket
-      parent.add(createCyl(R + 0.025, R + 0.025, 0.12, 32, materials.rubberBlack, 1.65, 0, 0, 0, Math.PI / 2, true));
-      // 90° segmented bend branch (open-ended vertical duct)
-      const bendTube = createCyl(R - 0.01, R - 0.01, 1.8, 28, materials.galvSteel, 2.2, 0.9, 0, 0, 0, true);
-      parent.add(bendTube);
-      // Suspension clamp with M8 threaded rod
-      parent.add(createCyl(R + 0.06, R + 0.06, 0.08, 32, materials.baseSkid, -0.8, 0, 0, 0, Math.PI / 2, true));
-      parent.add(createCyl(0.02, 0.02, 1.4, 8, materials.baseSkid, -0.8, R + 0.7, 0));
-    } else if (type === 'paslanmaz-kanal') {
-      // Heavy-duty AISI 304/316 TIG welded HOLLOW round duct
-      const R = 0.85, L = 4.6;
-      const sTube = createCyl(R, R, L, 32, materials.stainless, 0, 0, 0, 0, Math.PI / 2, true);
-      parent.add(sTube);
-      // Continuous longitudinal TIG automated plasma weld bead
-      parent.add(createBox(L - 0.02, 0.02, 0.03, materials.aluFrame, 0, R, 0));
-      // Solid flat-bar companion ring flanges on both ends with 8 perimeter bolts
-      [-L / 2, L / 2].forEach(fx => {
-        parent.add(createCyl(R + 0.2, R + 0.2, 0.08, 32, materials.stainless, fx, 0, 0, 0, Math.PI / 2, true));
-        for (let b = 0; b < 8; b++) {
-          const ang = (b / 8) * Math.PI * 2;
-          parent.add(createBox(0.12, 0.04, 0.04, materials.doorHandle, fx, Math.sin(ang) * (R + 0.1), Math.cos(ang) * (R + 0.1)));
-        }
-      });
-      // Oval inspection cleaning hatch (müdahale kapağı) with tightening knobs
-      parent.add(createCyl(0.32, 0.32, 0.06, 16, materials.stainless, 0, 0, R + 0.02, Math.PI / 2));
-      [-0.15, 0.15].forEach(kx => {
-        parent.add(createBox(0.04, 0.08, 0.06, materials.doorHandle, kx, 0, R + 0.07));
-      });
-    } else {
-      // Galvaniz: HOLLOW self-flanged rectangular air duct (completely open through both ends)
-      const L = 4.6, H = 2.0, W = 2.4;
-      parent.add(
-        createBox(L, 0.04, W, materials.galvSteel, 0, H / 2, 0),        // Top wall
-        createBox(L, 0.04, W, materials.galvSteel, 0, -H / 2, 0),       // Bottom wall
-        createBox(L, H, 0.04, materials.galvSteel, 0, 0, -W / 2)        // Back wall
-      );
-      // Front wall with cutaway acoustic lining window
-      const frontLeft = createBox(0.9, H, 0.04, materials.galvSteel, -L / 2 + 0.45, 0, W / 2);
-      const frontRight = createBox(0.9, H, 0.04, materials.galvSteel, L / 2 - 0.45, 0, W / 2);
-      const cutawayLining = createBox(L - 1.8, H - 0.3, 0.03, materials.panelCutaway, 0, 0, W / 2, false, false);
-      parent.add(frontLeft, frontRight, cutawayLining);
-      dynamicCutawayPanels.push(cutawayLining);
-      // Internal perforated acoustic sheet and rockwool visible through window
-      parent.add(createBox(L - 1.9, H - 0.4, 0.08, materials.filterCloth, 0, 0, W / 2 - 0.06));
-
-      // TDF roll-formed flanges on both open ends
-      [-L / 2, L / 2].forEach(fx => {
-        parent.add(
-          createBox(0.08, 0.14, W + 0.24, materials.aluFrame, fx, H / 2 + 0.05, 0),
-          createBox(0.08, 0.14, W + 0.24, materials.aluFrame, fx, -H / 2 - 0.05, 0),
-          createBox(0.08, H, 0.14, materials.aluFrame, fx, 0, W / 2 + 0.05),
-          createBox(0.08, H, 0.14, materials.aluFrame, fx, 0, -W / 2 - 0.05)
-        );
-        // Corner cleats (köşe takozları)
-        [-H / 2 - 0.05, H / 2 + 0.05].forEach(cy => {
-          [-W / 2 - 0.05, W / 2 + 0.05].forEach(cz => {
-            parent.add(createBox(0.1, 0.16, 0.16, materials.baseSkid, fx, cy, cz));
-          });
-        });
-      });
-      // Cross-break stiffness beads
-      parent.add(createBox(L - 0.8, 0.02, 0.02, materials.aluFrame, 0, H / 2 + 0.02, 0));
+      buildSpiralKanalDetailedModel(parent);
+      return;
     }
+    buildGalvanizKanalDetailedModel(parent);
   }
 
   // D. AIR DISTRIBUTION & DAMPERS (MENFEZ, DIFUZOR, DAMPER)
@@ -2171,12 +2211,12 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     buildGalvanizKanalDetailedModel(modelRoot);
   } else if (productId === 'paslanmaz-kanal') {
     buildPaslanmazKanalDetailedModel(modelRoot);
+  } else if (productId === 'spiral-kanal') {
+    buildSpiralKanalDetailedModel(modelRoot);
   } else if (['thrv-dx', 'hrv'].includes(productId)) {
     buildAhuModel(modelRoot, productId);
   } else if (['tdf', 'yangin-fani', 'jet-fan'].includes(productId)) {
     buildFanModel(modelRoot, productId);
-  } else if (['spiral-kanal'].includes(productId)) {
-    buildDuctModel(modelRoot, productId);
   } else if (['menfez', 'difuzor', 'damper'].includes(productId)) {
     buildAirDistModel(modelRoot, productId);
   } else if (productId === 'filtre') {
@@ -2247,6 +2287,7 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
   const isRooftopProduct = productId === 'rooftop';
   const isGalvanizKanal = productId === 'galvaniz-kanal';
   const isPaslanmazKanal = productId === 'paslanmaz-kanal';
+  const isSpiralKanal = productId === 'spiral-kanal';
   const isAhuDual = isTksProduct || isThksProduct;
   const halfLen = Math.max(2.0, size.x / 2 + 0.4);
   const spanY = Math.max(1.0, size.y * 0.45);
@@ -2257,7 +2298,7 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     particles.push({
       isSupply,
       progress: Math.random(),
-      speed: (isAhuDual ? 0.006 : ((isGalvanizKanal || isPaslanmazKanal) ? 0.009 : 0.005)) + Math.random() * 0.004,
+      speed: (isAhuDual ? 0.006 : ((isGalvanizKanal || isPaslanmazKanal || isSpiralKanal) ? 0.009 : 0.005)) + Math.random() * 0.004,
       offsetY: (Math.random() - 0.5) * (isAhuDual ? 0.35 : spanY),
       offsetZ: (Math.random() - 0.5) * (isAhuDual ? 0.7 : spanZ)
     });
@@ -2352,6 +2393,20 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
         pos[i * 3] = px;
         pos[i * 3 + 1] = (-center.y) + Math.sin(p.progress * Math.PI * 2 + i) * 0.035 + (p.offsetY * 0.22);
         pos[i * 3 + 2] = p.offsetZ * 0.45;
+      } else if (isSpiralKanal) {
+        // High-velocity laminar airflow through straight spiral duct transitioning smoothly through 90° elbow
+        if (p.progress < 0.68) {
+          const t = p.progress / 0.68;
+          pos[i * 3] = -2.5 + t * 3.7;
+          pos[i * 3 + 1] = (-center.y) + Math.sin(t * Math.PI * 2 + i) * 0.03 + (p.offsetY * 0.2);
+          pos[i * 3 + 2] = p.offsetZ * 0.4;
+        } else {
+          const t = (p.progress - 0.68) / 0.32;
+          const ang = t * (Math.PI / 2);
+          pos[i * 3] = 1.2 + Math.sin(ang) * 0.95;
+          pos[i * 3 + 1] = (-center.y) + (1.0 - Math.cos(ang)) * 1.7 + (p.offsetY * 0.15);
+          pos[i * 3 + 2] = p.offsetZ * 0.35;
+        }
       } else {
         pos[i * 3] = -halfLen + p.progress * (halfLen * 2);
         pos[i * 3 + 1] = (p.isSupply ? -0.2 : 0.2) + p.offsetY;
@@ -2394,7 +2449,7 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
         { num: '03', title: 'Hava Dağıtım & Kontrol', desc: 'Hassas debi kalibrasyonu ve sızdırmaz bağlantı elemanları.' }
       ];
 
-  // Specific 3D positions for TKS & THKS & ROOFTOP & GALVANIZ KANAL & PASLANMAZ KANAL hotspots
+  // Specific 3D positions for TKS & THKS & ROOFTOP & GALVANIZ KANAL & PASLANMAZ KANAL & SPIRAL KANAL hotspots
   const tksHotspotCoords = [
     [-3.8, 1.1, 1.08],  // 01: İskelet & 50mm Taşyünü Panel
     [-1.8, -0.4, 1.08], // 02: Filtre Hücresi (G4 + F7/F9)
@@ -2431,6 +2486,13 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     [-1.2, -center.y - 0.98, 0.2]    // 03: Yağ Tahliye & Drenaj Rakorları
   ];
 
+  const spiralKanalHotspotCoords = [
+    [-0.85, -center.y + 0.82, 0.0],   // 01: 4 Katlı Spiromatic Kilit Dikişi
+    [1.36, -center.y + 0.85, 0.0],    // 02: Fabrikasyon EPDM Çift Dudaklı Conta
+    [0.0, -center.y + 0.15, 0.85],    // 03: Düşük Aerodinamik Sürtünme
+    [-2.25, -center.y + 0.82, 0.0]    // 04: Mimari Elektrostatik Boya Seçeneği
+  ];
+
   const pinMeshes = [];
   rawHotspots.forEach((h, idx) => {
     const pinAnchor = new THREE.Group();
@@ -2445,6 +2507,8 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
       [px, py, pz] = galvanizKanalHotspotCoords[idx];
     } else if (isPaslanmazKanal && paslanmazKanalHotspotCoords[idx]) {
       [px, py, pz] = paslanmazKanalHotspotCoords[idx];
+    } else if (isSpiralKanal && spiralKanalHotspotCoords[idx]) {
+      [px, py, pz] = spiralKanalHotspotCoords[idx];
     } else {
       const total = rawHotspots.length;
       const isWideZ = size.z > size.x;
