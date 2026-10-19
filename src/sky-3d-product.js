@@ -1505,8 +1505,220 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     }
   }
 
+  // --- SPECIALIZED DEDICATED MODEL: KENDİNDEN FLANŞLI GALVANİZ HAVA KANALI (EN 1507 CLASS C & SMACNA) ---
+  function buildGalvanizKanalDetailedModel(parent) {
+    const ductH = 0.9;
+    const ductW = 1.3;
+    const halfH = ductH / 2; // 0.45
+    const halfW = ductW / 2; // 0.65
+
+    // --- 1. PRIZMATİK DÜZ KANAL SPOOLU (X: -2.6 to 0.4, Length 3.0m) ---
+    const straightL = 3.0;
+    const straightCenterX = -1.1;
+
+    // Top & bottom sheet metal walls (DX51D+Z 275 g/m² galvanized steel)
+    const topWall = createBox(straightL, 0.03, ductW, materials.galvSteel, straightCenterX, halfH, 0);
+    const bottomWall = createBox(straightL, 0.03, ductW, materials.galvSteel, straightCenterX, -halfH, 0);
+    const backWall = createBox(straightL, ductH, 0.03, materials.galvSteel, straightCenterX, 0, -halfW);
+    parent.add(topWall, bottomWall, backWall);
+
+    // Front Wall: Split into solid end collars and central cutaway acoustic inspection window
+    const frontCollarL = 0.6;
+    const frontLeft = createBox(frontCollarL, ductH, 0.03, materials.galvSteel, -2.6 + frontCollarL / 2, 0, halfW);
+    const frontRight = createBox(frontCollarL, ductH, 0.03, materials.galvSteel, 0.4 - frontCollarL / 2, 0, halfW);
+    const cutawayWindowW = straightL - 2 * frontCollarL; // 1.8m
+    const cutawayPanel = createBox(cutawayWindowW, ductH - 0.08, 0.03, materials.panelCutaway, straightCenterX, 0, halfW, false, false);
+    parent.add(frontLeft, frontRight, cutawayPanel);
+    registerCutawayPanel(cutawayPanel, materials.galvSteel, materials.panelCutaway);
+
+    // Takviye Trapez Ribleri (Hotspot 04)
+    const ribXPositions = [-2.1, -1.6, -1.1, -0.6, -0.1];
+    ribXPositions.forEach(rx => {
+      const topRib = createBox(0.04, 0.025, ductW - 0.08, materials.aluFrame, rx, halfH + 0.02, 0);
+      const botRib = createBox(0.04, 0.025, ductW - 0.08, materials.aluFrame, rx, -halfH - 0.02, 0);
+      parent.add(topRib, botRib);
+    });
+
+    // Cross-brake diagonal embossed lines (X-crease stiffeners)
+    [[-1.85, -1.35], [-1.35, -0.85], [-0.85, -0.35]].forEach(([x1, x2]) => {
+      const diagMidX = (x1 + x2) / 2;
+      const diag1 = createBox(0.015, 0.015, ductW - 0.12, materials.aluFrame, diagMidX, halfH + 0.015, 0);
+      diag1.rotation.y = 0.35;
+      const diag2 = createBox(0.015, 0.015, ductW - 0.12, materials.aluFrame, diagMidX, halfH + 0.015, 0);
+      diag2.rotation.y = -0.35;
+      parent.add(diag1, diag2);
+    });
+
+    // Pittsburgh Kenet Dikişi & Robotik Mastik Enjeksiyonu (Hotspot 03)
+    const seamSize = 0.035;
+    const pittsSeamTopFront = createBox(straightL, seamSize, seamSize, materials.aluFrame, straightCenterX, halfH + seamSize / 2, halfW + seamSize / 2);
+    const pittsSeamTopBack = createBox(straightL, seamSize, seamSize, materials.aluFrame, straightCenterX, halfH + seamSize / 2, -halfW - seamSize / 2);
+    const pittsSeamBotFront = createBox(straightL, seamSize, seamSize, materials.aluFrame, straightCenterX, -halfH - seamSize / 2, halfW + seamSize / 2);
+    const pittsSeamBotBack = createBox(straightL, seamSize, seamSize, materials.aluFrame, straightCenterX, -halfH - seamSize / 2, -halfW - seamSize / 2);
+    parent.add(pittsSeamTopFront, pittsSeamTopBack, pittsSeamBotFront, pittsSeamBotBack);
+
+    const sealantBead = createBox(straightL, 0.012, 0.012, materials.rubberBlack, straightCenterX, halfH, halfW);
+    parent.add(sealantBead);
+
+    // İç Akustik Taşyünü İzolasyon ve Perfore Sac
+    const acousticLiningBack = createBox(cutawayWindowW - 0.05, ductH - 0.12, 0.06, materials.motorCast, straightCenterX, 0, -halfW + 0.05);
+    const acousticLiningBot = createBox(cutawayWindowW - 0.05, 0.06, ductW - 0.12, materials.motorCast, straightCenterX, -halfH + 0.05, 0);
+    parent.add(acousticLiningBack, acousticLiningBot);
+
+    const perfPlateBack = createBox(cutawayWindowW - 0.06, ductH - 0.14, 0.015, materials.galvSteel, straightCenterX, 0, -halfW + 0.08);
+    const perfPlateBot = createBox(cutawayWindowW - 0.06, 0.015, ductW - 0.14, materials.galvSteel, straightCenterX, -halfH + 0.08, 0);
+    parent.add(perfPlateBack, perfPlateBot);
+
+    // Welded spring-washer insulation pins
+    for (let px = straightCenterX - 0.6; px <= straightCenterX + 0.6; px += 0.4) {
+      for (let py = -0.25; py <= 0.25; py += 0.25) {
+        const pinPost = createCyl(0.005, 0.005, 0.08, 8, materials.copperPipe, px, py, -halfW + 0.05, Math.PI / 2);
+        const pinWasher = createCyl(0.03, 0.03, 0.005, 12, materials.aluFrame, px, py, -halfW + 0.09, Math.PI / 2);
+        parent.add(pinPost, pinWasher);
+      }
+    }
+
+    // Oval Inspection / Cleaning Access Door (Müdahale Kapağı) on front collar
+    const hatchX = -2.1;
+    const hatchRim = createCyl(0.24, 0.24, 0.04, 24, materials.aluFrame, hatchX, 0, halfW + 0.02, Math.PI / 2);
+    const hatchPlate = createCyl(0.22, 0.22, 0.05, 24, materials.galvSteel, hatchX, 0, halfW + 0.03, Math.PI / 2);
+    parent.add(hatchRim, hatchPlate);
+    [-0.1, 0.1].forEach(kx => {
+      const knob = createBox(0.04, 0.08, 0.05, materials.doorHandle, hatchX + kx, 0, halfW + 0.07);
+      parent.add(knob);
+    });
+
+    // --- 2. KENDİNDEN BÜTÜNLEŞİK MONOBLOK TDF FLANŞLAR (Hotspot 02) ---
+    buildTdfFlangeAssembly(parent, -2.6, ductH, ductW, materials);
+    buildTdfCompanionFlanges(parent, 0.4, ductH, ductW, materials);
+
+    // --- 3. CNC FİBER LAZER KESİM BRANŞMAN & 90° DİRSEK PARÇASI (Hotspot 01, X: 0.4 to 2.4) ---
+    const elbowCenterX = 1.35;
+    const elbowL = 1.8;
+
+    const fitTop = createBox(elbowL, 0.03, ductW, materials.galvSteel, elbowCenterX, halfH, 0);
+    const fitBot = createBox(elbowL, 0.03, ductW, materials.galvSteel, elbowCenterX, -halfH, 0);
+    const fitBack = createBox(elbowL, ductH, 0.03, materials.galvSteel, elbowCenterX, 0, -halfW);
+    parent.add(fitTop, fitBot, fitBack);
+
+    const fitFrontL = createBox(0.4, ductH, 0.03, materials.galvSteel, 0.6, 0, halfW);
+    const fitFrontR = createBox(0.4, ductH, 0.03, materials.galvSteel, 2.05, 0, halfW);
+    const fitFrontCutaway = createBox(1.05, ductH - 0.08, 0.03, materials.panelCutaway, 1.32, 0, halfW, false, false);
+    parent.add(fitFrontL, fitFrontR, fitFrontCutaway);
+    registerCutawayPanel(fitFrontCutaway, materials.galvSteel, materials.panelCutaway);
+
+    // Aerodynamic Internal Turning Vanes (Yönlendirici Hava Kanatları - Hotspot 01)
+    for (let vi = 0; vi < 4; vi++) {
+      const vx = 0.9 + vi * 0.28;
+      const vaneGroup = new THREE.Group();
+      vaneGroup.position.set(vx, 0, -0.15 + vi * 0.1);
+      const vaneBlade = createCyl(0.35, 0.35, ductH - 0.14, 16, materials.aluFrame, 0, 0, 0, 0, 0, true);
+      vaneBlade.scale.set(0.25, 1, 0.55);
+      vaneGroup.add(vaneBlade);
+      const topRail = createBox(0.04, 0.02, 0.18, materials.galvSteel, 0, halfH - 0.08, 0);
+      const botRail = createBox(0.04, 0.02, 0.18, materials.galvSteel, 0, -halfH + 0.08, 0);
+      vaneGroup.add(topRail, botRail);
+      parent.add(vaneGroup);
+    }
+
+    // Shoe-Tap Takeoff Branch
+    const branchW = 0.55, branchH = 0.45, branchL = 0.45;
+    const branchBox = createBox(branchW, branchH, branchL, materials.galvSteel, 1.35, 0.15, -halfW - branchL / 2);
+    const branchFlange = createBox(branchW + 0.1, branchH + 0.1, 0.04, materials.aluFrame, 1.35, 0.15, -halfW - branchL);
+    parent.add(branchBox, branchFlange);
+
+    // Discharge end TDF flange (X = 2.24)
+    buildTdfFlangeAssembly(parent, 2.24, ductH, ductW, materials);
+
+    // --- 4. TAVAN ASKI & TRAPEZE TAŞIYICI SİSTEMİ ---
+    const hangerXPositions = [-1.8, 1.0];
+    hangerXPositions.forEach(hx => {
+      const trapezeWidth = ductW + 0.35;
+      const trapezeBar = createBox(0.06, 0.05, trapezeWidth, materials.baseSkid, hx, -halfH - 0.04, 0);
+      const padF = createBox(0.06, 0.015, 0.15, materials.rubberBlack, hx, -halfH - 0.01, halfW - 0.1);
+      const padB = createBox(0.06, 0.015, 0.15, materials.rubberBlack, hx, -halfH - 0.01, -halfW + 0.1);
+      parent.add(trapezeBar, padF, padB);
+
+      [-trapezeWidth / 2 + 0.04, trapezeWidth / 2 - 0.04].forEach(hz => {
+        const rodHeight = 1.35;
+        const rod = createCyl(0.012, 0.012, rodHeight, 10, materials.stainless, hx, -halfH + rodHeight / 2 - 0.02, hz);
+        const nutBottom = createCyl(0.024, 0.024, 0.03, 6, materials.aluFrame, hx, -halfH - 0.07, hz);
+        const nutTop = createCyl(0.024, 0.024, 0.03, 6, materials.aluFrame, hx, -halfH + rodHeight - 0.04, hz);
+        parent.add(rod, nutBottom, nutTop);
+      });
+    });
+
+    // --- 5. TEST & KALİBRASYON DONANIMLARI ---
+    [-0.5, -0.3].forEach(px => {
+      const port = createCyl(0.018, 0.018, 0.04, 12, materials.brassGold, px, halfH + 0.02, 0.2);
+      parent.add(port);
+    });
+
+    const nameplate = createBox(0.22, 0.14, 0.01, materials.aluFrame, -0.4, 0.15, halfW + 0.02);
+    const specLabel = createBox(0.18, 0.1, 0.012, materials.touchscreen, -0.4, 0.15, halfW + 0.022);
+    parent.add(nameplate, specLabel);
+  }
+
+  function buildTdfFlangeAssembly(parent, fx, ductH, ductW, materials) {
+    const flSize = 0.06;
+    const flThick = 0.04;
+    const fTop = createBox(flThick, flSize, ductW + 0.14, materials.aluFrame, fx, ductH / 2 + flSize / 2, 0);
+    const fBot = createBox(flThick, flSize, ductW + 0.14, materials.aluFrame, fx, -ductH / 2 - flSize / 2, 0);
+    const fLeft = createBox(flThick, ductH + 0.14, flSize, materials.aluFrame, fx, 0, ductW / 2 + flSize / 2);
+    const fRight = createBox(flThick, ductH + 0.14, flSize, materials.aluFrame, fx, 0, -ductW / 2 - flSize / 2);
+    parent.add(fTop, fBot, fLeft, fRight);
+
+    const corners = [
+      [ductH / 2 + flSize / 2, ductW / 2 + flSize / 2],
+      [ductH / 2 + flSize / 2, -ductW / 2 - flSize / 2],
+      [-ductH / 2 - flSize / 2, ductW / 2 + flSize / 2],
+      [-ductH / 2 - flSize / 2, -ductW / 2 - flSize / 2]
+    ];
+    corners.forEach(([cy, cz]) => {
+      const cornerBracket = createBox(flThick + 0.01, 0.09, 0.09, materials.galvSteel, fx, cy, cz);
+      const boltHole = createCyl(0.012, 0.012, flThick + 0.02, 8, materials.doorHandle, fx, cy, cz, 0, Math.PI / 2);
+      parent.add(cornerBracket, boltHole);
+    });
+  }
+
+  function buildTdfCompanionFlanges(parent, fx, ductH, ductW, materials) {
+    buildTdfFlangeAssembly(parent, fx - 0.025, ductH, ductW, materials);
+    buildTdfFlangeAssembly(parent, fx + 0.025, ductH, ductW, materials);
+
+    const gasket = createBox(0.015, ductH + 0.08, ductW + 0.08, materials.rubberBlack, fx, 0, 0);
+    parent.add(gasket);
+
+    const corners = [
+      [ductH / 2 + 0.03, ductW / 2 + 0.03],
+      [ductH / 2 + 0.03, -ductW / 2 - 0.03],
+      [-ductH / 2 - 0.03, ductW / 2 + 0.03],
+      [-ductH / 2 - 0.03, -ductW / 2 - 0.03]
+    ];
+    corners.forEach(([cy, cz]) => {
+      const bolt = createCyl(0.014, 0.014, 0.12, 10, materials.stainless, fx, cy, cz, 0, Math.PI / 2);
+      const nut = createCyl(0.022, 0.022, 0.03, 6, materials.doorHandle, fx + 0.05, cy, cz, 0, Math.PI / 2);
+      parent.add(bolt, nut);
+    });
+
+    const clamps = [
+      [ductH / 2 + 0.05, 0],
+      [-ductH / 2 - 0.05, 0],
+      [0, ductW / 2 + 0.05],
+      [0, -ductW / 2 - 0.05]
+    ];
+    clamps.forEach(([cy, cz]) => {
+      const clampBody = createBox(0.08, 0.04, 0.04, materials.doorHandle, fx, cy, cz);
+      const clampBolt = createCyl(0.01, 0.01, 0.06, 8, materials.stainless, fx, cy + (cy !== 0 ? Math.sign(cy) * 0.025 : 0), cz + (cz !== 0 ? Math.sign(cz) * 0.025 : 0));
+      parent.add(clampBody, clampBolt);
+    });
+  }
+
   // C. DUCTWORK (GALVANIZ, SPIRAL, PASLANMAZ)
   function buildDuctModel(parent, type) {
+    if (type === 'galvaniz-kanal') {
+      buildGalvanizKanalDetailedModel(parent);
+      return;
+    }
     if (type === 'spiral-kanal') {
       // Spiromatic spiral round duct with 90° bend fitting & rubber gasket
       const R = 0.75, L = 4.4;
@@ -1832,11 +2044,13 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     buildThksDetailedModel(modelRoot);
   } else if (productId === 'rooftop') {
     buildRooftopDetailedModel(modelRoot);
+  } else if (productId === 'galvaniz-kanal') {
+    buildGalvanizKanalDetailedModel(modelRoot);
   } else if (['thrv-dx', 'hrv'].includes(productId)) {
     buildAhuModel(modelRoot, productId);
   } else if (['tdf', 'yangin-fani', 'jet-fan'].includes(productId)) {
     buildFanModel(modelRoot, productId);
-  } else if (['galvaniz-kanal', 'spiral-kanal', 'paslanmaz-kanal'].includes(productId)) {
+  } else if (['spiral-kanal', 'paslanmaz-kanal'].includes(productId)) {
     buildDuctModel(modelRoot, productId);
   } else if (['menfez', 'difuzor', 'damper'].includes(productId)) {
     buildAirDistModel(modelRoot, productId);
@@ -1906,6 +2120,7 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
   const isTksProduct = productId === 'tks';
   const isThksProduct = productId === 'thks';
   const isRooftopProduct = productId === 'rooftop';
+  const isGalvanizKanal = productId === 'galvaniz-kanal';
   const isAhuDual = isTksProduct || isThksProduct;
   const halfLen = Math.max(2.0, size.x / 2 + 0.4);
   const spanY = Math.max(1.0, size.y * 0.45);
@@ -1916,7 +2131,7 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     particles.push({
       isSupply,
       progress: Math.random(),
-      speed: (isAhuDual ? 0.006 : 0.005) + Math.random() * 0.004,
+      speed: (isAhuDual ? 0.006 : (isGalvanizKanal ? 0.009 : 0.005)) + Math.random() * 0.004,
       offsetY: (Math.random() - 0.5) * (isAhuDual ? 0.35 : spanY),
       offsetZ: (Math.random() - 0.5) * (isAhuDual ? 0.7 : spanZ)
     });
@@ -1997,6 +2212,14 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
           pos[i * 3 + 1] = -0.2 + p.progress * 2.1;
           pos[i * 3 + 2] = Math.cos(i * 1.5 + p.progress * 6.28) * 0.22;
         }
+      } else if (isGalvanizKanal) {
+        // High-velocity laminar airflow through straight duct run, transitioning through turning vanes and branch
+        const px = -2.7 + p.progress * 5.1;
+        pos[i * 3] = px;
+        pos[i * 3 + 1] = Math.sin(p.progress * Math.PI * 2 + i) * 0.06 + p.offsetY * 0.5;
+        pos[i * 3 + 2] = (p.progress > 0.7 && i % 3 === 0)
+          ? (-0.3 - (p.progress - 0.7) * 1.5)
+          : (p.offsetZ * 0.75);
       } else {
         pos[i * 3] = -halfLen + p.progress * (halfLen * 2);
         pos[i * 3 + 1] = (p.isSupply ? -0.2 : 0.2) + p.offsetY;
@@ -2039,7 +2262,7 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
         { num: '03', title: 'Hava Dağıtım & Kontrol', desc: 'Hassas debi kalibrasyonu ve sızdırmaz bağlantı elemanları.' }
       ];
 
-  // Specific 3D positions for TKS & THKS & ROOFTOP hotspots
+  // Specific 3D positions for TKS & THKS & ROOFTOP & GALVANIZ KANAL hotspots
   const tksHotspotCoords = [
     [-3.8, 1.1, 1.08],  // 01: İskelet & 50mm Taşyünü Panel
     [-1.8, -0.4, 1.08], // 02: Filtre Hücresi (G4 + F7/F9)
@@ -2063,6 +2286,13 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     [2.3, -1.25, 1.18]  // 04: Roof-Curb Kanal Bağlantısı
   ];
 
+  const galvanizKanalHotspotCoords = [
+    [1.35, 0.15, 0.75],  // 01: CNC Fiber Lazer Kesim Parçaları & Yönlendirici Kanatlar
+    [0.4, 0.52, 0.75],   // 02: Kendinden Flanşlı Monoblok TDF Flanş & Klemensler
+    [-0.8, 0.48, 0.75],  // 03: Sızdırmaz Mastik Enjeksiyonu & Pittsburgh Kenet
+    [-1.6, 0.48, 0.75]   // 04: Kanal Takviye Trapez Ribleri & Çapraz Kırma
+  ];
+
   const pinMeshes = [];
   rawHotspots.forEach((h, idx) => {
     const pinAnchor = new THREE.Group();
@@ -2073,6 +2303,8 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
       [px, py, pz] = thksHotspotCoords[idx];
     } else if (isRooftopProduct && rooftopHotspotCoords[idx]) {
       [px, py, pz] = rooftopHotspotCoords[idx];
+    } else if (isGalvanizKanal && galvanizKanalHotspotCoords[idx]) {
+      [px, py, pz] = galvanizKanalHotspotCoords[idx];
     } else {
       const total = rawHotspots.length;
       const isWideZ = size.z > size.x;
