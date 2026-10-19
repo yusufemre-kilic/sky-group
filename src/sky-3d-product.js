@@ -35,8 +35,8 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
   const width = container.clientWidth || 900;
   const height = container.clientHeight || 480;
 
-  const camera = new THREE.PerspectiveCamera(36, width / height, 0.1, 100);
-  camera.position.set(9.0, 4.2, 7.5);
+  const camera = new THREE.PerspectiveCamera(35, width / height, 0.1, 100);
+  camera.position.set(8.5, 4.2, 7.5);
 
   const renderer = new THREE.WebGLRenderer({
     antialias: true,
@@ -56,8 +56,8 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
   controls.enableDamping = true;
   controls.dampingFactor = 0.05;
   controls.maxPolarAngle = Math.PI / 2 - 0.05;
-  controls.minDistance = 2.5;
-  controls.maxDistance = 26.0;
+  controls.minDistance = 2.0;
+  controls.maxDistance = 28.0;
   controls.target.set(0, 0, 0);
   controls.autoRotate = true;
   controls.autoRotateSpeed = 0.6;
@@ -79,7 +79,7 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
   renderer.domElement.addEventListener('touchstart', pauseAutoRotate, { passive: true });
 
   // --- 3. STUDIO LIGHTING & SHADOW GROUND ---
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.85);
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
   scene.add(ambientLight);
 
   const keyLight = new THREE.DirectionalLight(0xffffff, 1.25);
@@ -111,13 +111,13 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
   grid.position.y = -1.64;
   scene.add(grid);
 
-  // --- 4. MATERIAL PALETTE ---
+  // --- 4. MATERIAL PALETTE (DoubleSide for hollow ducts/casings) ---
   const materials = {
-    aluFrame: new THREE.MeshStandardMaterial({ color: 0xd4d8dd, metalness: 0.75, roughness: 0.3 }),
-    galvSteel: new THREE.MeshStandardMaterial({ color: 0xc4cdd5, metalness: 0.65, roughness: 0.45 }),
-    stainless: new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.9, roughness: 0.2 }),
-    baseSkid: new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.8, roughness: 0.35 }),
-    panelSolid: new THREE.MeshStandardMaterial({ color: 0xf8fafc, metalness: 0.15, roughness: 0.4 }),
+    aluFrame: new THREE.MeshStandardMaterial({ color: 0xd4d8dd, metalness: 0.75, roughness: 0.3, side: THREE.DoubleSide }),
+    galvSteel: new THREE.MeshStandardMaterial({ color: 0xc4cdd5, metalness: 0.65, roughness: 0.45, side: THREE.DoubleSide }),
+    stainless: new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.9, roughness: 0.2, side: THREE.DoubleSide }),
+    baseSkid: new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.8, roughness: 0.35, side: THREE.DoubleSide }),
+    panelSolid: new THREE.MeshStandardMaterial({ color: 0xf8fafc, metalness: 0.15, roughness: 0.4, side: THREE.DoubleSide }),
     panelCutaway: new THREE.MeshPhysicalMaterial({
       color: 0xe0f2fe,
       transparent: true,
@@ -125,21 +125,22 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
       roughness: 0.08,
       metalness: 0.1,
       transmission: 0.85,
-      ior: 1.45
+      ior: 1.45,
+      side: THREE.DoubleSide
     }),
-    fanHousing: new THREE.MeshStandardMaterial({ color: 0x0284c7, metalness: 0.5, roughness: 0.35 }),
-    fanImpeller: new THREE.MeshStandardMaterial({ color: 0x38bdf8, metalness: 0.7, roughness: 0.25 }),
-    motorCast: new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.8, roughness: 0.3 }),
-    copperPipe: new THREE.MeshStandardMaterial({ color: 0xb45309, metalness: 0.85, roughness: 0.25 }),
-    coolingFin: new THREE.MeshStandardMaterial({ color: 0x38bdf8, metalness: 0.55, roughness: 0.4 }),
-    heatingFin: new THREE.MeshStandardMaterial({ color: 0xf87171, metalness: 0.55, roughness: 0.4 }),
-    rotorWheel: new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.7, roughness: 0.35 }),
-    filterCloth: new THREE.MeshStandardMaterial({ color: 0xf1f5f9, roughness: 0.9, metalness: 0.05 }),
-    damperBlade: new THREE.MeshStandardMaterial({ color: 0xa1a1aa, metalness: 0.8, roughness: 0.3 }),
+    fanHousing: new THREE.MeshStandardMaterial({ color: 0x0284c7, metalness: 0.5, roughness: 0.35, side: THREE.DoubleSide }),
+    fanImpeller: new THREE.MeshStandardMaterial({ color: 0x38bdf8, metalness: 0.7, roughness: 0.25, side: THREE.DoubleSide }),
+    motorCast: new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.8, roughness: 0.3, side: THREE.DoubleSide }),
+    copperPipe: new THREE.MeshStandardMaterial({ color: 0xb45309, metalness: 0.85, roughness: 0.25, side: THREE.DoubleSide }),
+    coolingFin: new THREE.MeshStandardMaterial({ color: 0x38bdf8, metalness: 0.55, roughness: 0.4, side: THREE.DoubleSide }),
+    heatingFin: new THREE.MeshStandardMaterial({ color: 0xf87171, metalness: 0.55, roughness: 0.4, side: THREE.DoubleSide }),
+    rotorWheel: new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.7, roughness: 0.35, side: THREE.DoubleSide }),
+    filterCloth: new THREE.MeshStandardMaterial({ color: 0xf1f5f9, roughness: 0.9, metalness: 0.05, side: THREE.DoubleSide }),
+    damperBlade: new THREE.MeshStandardMaterial({ color: 0xa1a1aa, metalness: 0.8, roughness: 0.3, side: THREE.DoubleSide }),
     actuatorOrange: new THREE.MeshStandardMaterial({ color: 0xea580c, metalness: 0.3, roughness: 0.4 }),
-    drainPan: new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.9, roughness: 0.2 }),
+    drainPan: new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.9, roughness: 0.2, side: THREE.DoubleSide }),
     doorHandle: new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.7, roughness: 0.3 }),
-    rubberBlack: new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.8, metalness: 0.1 }),
+    rubberBlack: new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.8, metalness: 0.1, side: THREE.DoubleSide }),
     brassGold: new THREE.MeshStandardMaterial({ color: 0xd97706, metalness: 0.85, roughness: 0.25 })
   };
 
@@ -149,7 +150,7 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
   scene.add(modelRoot);
 
   // Mesh creation helpers
-  function createBox(w, h, d, mat, x, y, z, cast = true, receive = true) {
+  function createBox(w, h, d, mat, x = 0, y = 0, z = 0, cast = true, receive = true) {
     const geo = new THREE.BoxGeometry(w, h, d);
     const mesh = new THREE.Mesh(geo, mat);
     mesh.position.set(x, y, z);
@@ -158,8 +159,8 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     return mesh;
   }
 
-  function createCyl(rTop, rBot, height, segs, mat, x, y, z, rotX = 0, rotZ = 0) {
-    const geo = new THREE.CylinderGeometry(rTop, rBot, height, segs);
+  function createCyl(rTop, rBot, height, segs, mat, x = 0, y = 0, z = 0, rotX = 0, rotZ = 0, open = false) {
+    const geo = new THREE.CylinderGeometry(rTop, rBot, height, segs, 1, open);
     const mesh = new THREE.Mesh(geo, mat);
     mesh.position.set(x, y, z);
     if (rotX) mesh.rotation.x = rotX;
@@ -212,7 +213,7 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
       createBox(0.05, H - 0.1, W - 0.1, materials.panelSolid, halfL - 0.03, 0, 0)
     );
 
-    // Front Cutaway Panels (3 Modules)
+    // Front Cutaway Panels (3 or 4 Modules)
     const doorCount = isHrv ? 3 : 4;
     const doorW = (L - 0.2) / doorCount;
     for (let d = 0; d < doorCount; d++) {
@@ -220,7 +221,7 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
       const cutDoor = createBox(doorW - 0.04, H - 0.18, 0.03, materials.panelCutaway, dx, 0, halfW - 0.02, false, false);
       parent.add(cutDoor);
       dynamicCutawayPanels.push(cutDoor);
-      // Handle & ring
+      // Handle & circular inspection porthole
       parent.add(createBox(0.04, 0.12, 0.04, materials.doorHandle, dx + doorW * 0.4, 0, halfW + 0.01));
       parent.add(createCyl(0.11, 0.11, 0.04, 16, materials.aluFrame, dx, 0.2, halfW, Math.PI / 2));
     }
@@ -231,21 +232,25 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
       const plateCore = createBox(1.5, 1.4, W - 0.35, materials.aluFrame, 0, 0, 0);
       plateCore.rotation.z = Math.PI / 4;
       parent.add(plateCore);
-      // Dual centrifugal fans
+      // Dual centrifugal EC fans
       [-1.4, 1.4].forEach((fx, idx) => {
         const fy = idx === 0 ? -0.35 : 0.35;
         const fan = createCyl(0.35, 0.35, 0.25, 20, materials.fanHousing, fx, fy, 0, 0, Math.PI / 2);
         parent.add(fan);
         animators.push(() => { fan.rotation.x += 0.1; });
       });
-      // Filters on sides
+      // Compact Filters on sides
       [-1.9, 1.9].forEach(px => {
         parent.add(createBox(0.06, H - 0.4, W - 0.4, materials.filterCloth, px, 0, 0));
       });
+      // 4 round spigot collars on top / sides
+      [[-halfL - 0.1, 0.4], [halfL + 0.1, -0.4]].forEach(([sx, sy]) => {
+        parent.add(createCyl(0.32, 0.32, 0.22, 24, materials.galvSteel, sx, sy, 0, 0, Math.PI / 2, true));
+      });
     } else if (isRooftop) {
-      // ROOFTOP: Top Condenser Fans + Compressor Compartment
+      // ROOFTOP: Top Condenser Fans with wire safety cowl + Compressors
       [-1.2, 1.2].forEach(fx => {
-        const topFanRim = createCyl(0.55, 0.55, 0.18, 24, materials.motorCast, fx, halfH + 0.09, 0);
+        const topFanRim = createCyl(0.55, 0.55, 0.18, 24, materials.motorCast, fx, halfH + 0.09, 0, 0, 0, true);
         const topFanBlades = createCyl(0.48, 0.48, 0.04, 4, materials.fanImpeller, fx, halfH + 0.12, 0);
         parent.add(topFanRim, topFanBlades);
         animators.push(() => { topFanBlades.rotation.y += 0.15; });
@@ -300,6 +305,14 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
         parent.add(bag);
       }
 
+      // Final HEPA & UV-C module for THKS Hygienic
+      if (isHygienic) {
+        parent.add(createBox(0.18, halfH - 0.3, W - 0.35, materials.stainless, 2.15, -halfH / 2, 0));
+        // UV-C lamp tube with blue tint
+        const uvLamp = createCyl(0.03, 0.03, W - 0.5, 12, materials.coolingFin, 1.1, -halfH / 2 + 0.2, 0, Math.PI / 2);
+        parent.add(uvLamp);
+      }
+
       // Dampers on left
       [-halfH / 2, halfH / 2].forEach(dy => {
         parent.add(createBox(0.08, halfH - 0.25, W - 0.3, materials.aluFrame, -halfL - 0.04, dy, 0));
@@ -319,64 +332,117 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
   // B. FANS & VENTILATION (TDF, YANGIN-FANI, JET-FAN)
   function buildFanModel(parent, type) {
     if (type === 'tdf') {
-      // TDF: Rectangular in-line duct fan with hollow casing
+      // TDF: Hollow rectangular in-line duct fan with flanged ends & service door
+      const L = 3.2, H = 2.0, W = 2.0;
       parent.add(
-        createBox(3.4, 2.2, 0.05, materials.galvSteel, 0, 0, -1.08),  // Back
-        createBox(3.4, 0.05, 2.2, materials.galvSteel, 0, 1.08, 0),   // Top
-        createBox(3.4, 0.05, 2.2, materials.galvSteel, 0, -1.08, 0),  // Bottom
-        createBox(0.05, 2.2, 2.2, materials.galvSteel, -1.68, 0, 0),  // Left with duct inlet
-        createBox(0.05, 2.2, 2.2, materials.galvSteel, 1.68, 0, 0)    // Right with duct outlet
+        createBox(L, 0.04, W, materials.galvSteel, 0, H / 2, 0),        // Top
+        createBox(L, 0.04, W, materials.galvSteel, 0, -H / 2, 0),       // Bottom
+        createBox(L, H, 0.04, materials.galvSteel, 0, 0, -W / 2)        // Back
       );
-      // Flanges on both ends
-      [-1.72, 1.72].forEach(fx => {
-        parent.add(createBox(0.08, 2.4, 2.4, materials.aluFrame, fx, 0, 0));
+      // Flanges on both open ends
+      [-L / 2, L / 2].forEach(fx => {
+        parent.add(
+          createBox(0.08, 0.12, W + 0.2, materials.aluFrame, fx, H / 2 + 0.04, 0),
+          createBox(0.08, 0.12, W + 0.2, materials.aluFrame, fx, -H / 2 - 0.04, 0),
+          createBox(0.08, H, 0.12, materials.aluFrame, fx, 0, W / 2 + 0.04),
+          createBox(0.08, H, 0.12, materials.aluFrame, fx, 0, -W / 2 - 0.04)
+        );
+        // Corner cleats
+        [-H / 2 - 0.04, H / 2 + 0.04].forEach(cy => {
+          [-W / 2 - 0.04, W / 2 + 0.04].forEach(cz => {
+            parent.add(createBox(0.1, 0.14, 0.14, materials.baseSkid, fx, cy, cz));
+          });
+        });
       });
-      // Cutaway service door on front
-      const door = createBox(3.3, 2.1, 0.04, materials.panelCutaway, 0, 0, 1.09, false, false);
+      // Front cutaway service door
+      const door = createBox(L - 0.1, H - 0.1, 0.03, materials.panelCutaway, 0, 0, W / 2, false, false);
       parent.add(door);
       dynamicCutawayPanels.push(door);
-      // Impeller & external rotor motor
-      const imp = createCyl(0.85, 0.85, 0.55, 24, materials.fanImpeller, 0, 0, 0, 0, Math.PI / 2);
-      const motor = createCyl(0.3, 0.3, 0.4, 16, materials.motorCast, 0.3, 0, 0, 0, Math.PI / 2);
+      // Quick release latches
+      [-0.8, 0.8].forEach(lx => {
+        parent.add(createBox(0.08, 0.12, 0.04, materials.doorHandle, lx, H / 2 - 0.1, W / 2 + 0.02));
+      });
+      // Backward-curved centrifugal impeller & external rotor motor in center
+      const imp = createCyl(0.78, 0.78, 0.45, 24, materials.fanImpeller, 0, 0, 0, 0, Math.PI / 2);
+      const motor = createCyl(0.28, 0.28, 0.35, 16, materials.motorCast, 0.25, 0, 0, 0, Math.PI / 2);
       parent.add(imp, motor);
       animators.push(() => { imp.rotation.x += 0.14; });
-      // Terminal box
-      parent.add(createBox(0.22, 0.22, 0.14, materials.fanHousing, -0.8, 1.15, 0.6));
+      // Terminal box on top
+      parent.add(createBox(0.24, 0.18, 0.16, materials.fanHousing, -0.6, H / 2 + 0.1, 0.4));
     } else if (type === 'yangin-fani') {
-      // Smoke fan 400°C/2h: Cylindrical hot-dip galvanized casing with aerofoil runner
-      const tube = createCyl(1.3, 1.3, 4.2, 32, materials.galvSteel, 0, 0, 0, 0, Math.PI / 2);
+      // 400°C/2h Smoke Exhaust: HOLLOW cylindrical tube (openEnded) with angle flanges & torpedo motor pod
+      const R = 1.25, L = 4.2;
+      const tube = createCyl(R, R, L, 32, materials.galvSteel, 0, 0, 0, 0, Math.PI / 2, true);
       parent.add(tube);
-      // Flange rings
-      [-2.12, 2.12].forEach(fx => {
-        parent.add(createCyl(1.48, 1.48, 0.08, 32, materials.baseSkid, fx, 0, 0, 0, Math.PI / 2));
+      // Drilled circular companion angle flanges on both open ends
+      [-L / 2, L / 2].forEach(fx => {
+        const flangeRing = createCyl(R + 0.18, R + 0.18, 0.06, 32, materials.baseSkid, fx, 0, 0, 0, Math.PI / 2, true);
+        parent.add(flangeRing);
+        for (let b = 0; b < 12; b++) {
+          const ang = (b / 12) * Math.PI * 2;
+          parent.add(createBox(0.08, 0.04, 0.04, materials.doorHandle, fx, Math.sin(ang) * (R + 0.09), Math.cos(ang) * (R + 0.09)));
+        }
       });
-      // Center Torpedo Motor Cowl
-      const motorPod = createCyl(0.5, 0.5, 2.2, 24, materials.motorCast, 0.2, 0, 0, 0, Math.PI / 2);
-      const runner = createCyl(1.22, 1.22, 0.14, 8, materials.fanImpeller, -0.6, 0, 0, 0, Math.PI / 2);
-      parent.add(motorPod, runner);
+      // Center Torpedo Motor Cowl with streamlined nose & tail
+      const motorPod = createCyl(0.46, 0.46, 2.0, 24, materials.motorCast, 0.1, 0, 0, 0, Math.PI / 2);
+      const noseCone = new THREE.Mesh(new THREE.ConeGeometry(0.46, 0.6, 20), materials.motorCast);
+      noseCone.rotateZ(-Math.PI / 2);
+      noseCone.position.set(-1.2, 0, 0);
+      parent.add(motorPod, noseCone);
+      // Aerofoil axial runner blades (8 blades) spinning
+      const runner = new THREE.Group();
+      runner.position.set(-0.6, 0, 0);
+      parent.add(runner);
+      const hub = createCyl(0.48, 0.48, 0.2, 20, materials.fanImpeller, 0, 0, 0, 0, Math.PI / 2);
+      runner.add(hub);
+      for (let b = 0; b < 8; b++) {
+        const ang = (b / 8) * Math.PI * 2;
+        const blade = createBox(0.04, 0.7, 0.16, materials.fanImpeller, 0, Math.sin(ang) * 0.78, Math.cos(ang) * 0.78);
+        blade.rotation.x = ang + 0.35;
+        runner.add(blade);
+      }
       animators.push(() => { runner.rotation.x += 0.15; });
-      // Mounting feet
-      parent.add(createBox(2.8, 0.15, 0.4, materials.baseSkid, 0, -1.35, 1.0));
-      parent.add(createBox(2.8, 0.15, 0.4, materials.baseSkid, 0, -1.35, -1.0));
-      // Terminal box
-      parent.add(createBox(0.25, 0.25, 0.16, materials.actuatorOrange, 0, 1.35, 0));
+      // Guide struts
+      for (let s = 0; s < 4; s++) {
+        const ang = (s / 4) * Math.PI * 2;
+        const strut = createBox(0.03, R - 0.46, 0.1, materials.baseSkid, 0.4, Math.sin(ang) * (R + 0.46) / 2, Math.cos(ang) * (R + 0.46) / 2);
+        strut.rotation.x = ang;
+        parent.add(strut);
+      }
+      // Channel mounting feet
+      parent.add(
+        createBox(2.8, 0.12, 0.35, materials.baseSkid, 0, -R - 0.1, 0.9),
+        createBox(2.8, 0.12, 0.35, materials.baseSkid, 0, -R - 0.1, -0.9)
+      );
+      // External IP55 fire terminal box
+      parent.add(createBox(0.24, 0.24, 0.16, materials.actuatorOrange, 0, R + 0.1, 0));
     } else {
-      // Jet fan: Long impulse tunnel fan with dual silencer pods
-      const mainTube = createCyl(0.65, 0.65, 5.4, 28, materials.galvSteel, 0, 0, 0, 0, Math.PI / 2);
+      // Jet Fan: Car park impulse tunnel fan with dual silencer pods & guide vanes
+      const R = 0.62, L = 5.2;
+      const mainTube = createCyl(R, R, L, 28, materials.galvSteel, 0, 0, 0, 0, Math.PI / 2, true);
       parent.add(mainTube);
-      // Silencer outer pods
-      [-1.8, 1.8].forEach(sx => {
-        parent.add(createCyl(0.78, 0.78, 1.6, 28, materials.aluFrame, sx, 0, 0, 0, Math.PI / 2));
+      // Dual silencer outer pods
+      [-1.7, 1.7].forEach(sx => {
+        parent.add(createCyl(R + 0.12, R + 0.12, 1.5, 28, materials.aluFrame, sx, 0, 0, 0, Math.PI / 2, true));
       });
-      // Center runner
-      const jetRunner = createCyl(0.6, 0.6, 0.12, 8, materials.fanImpeller, 0, 0, 0, 0, Math.PI / 2);
-      parent.add(jetRunner);
-      animators.push(() => { jetRunner.rotation.x += 0.16; });
+      // Central motor & axial runner
+      const motorCore = createCyl(0.28, 0.28, 1.2, 16, materials.motorCast, 0, 0, 0, 0, Math.PI / 2);
+      const runner = createCyl(R - 0.05, R - 0.05, 0.12, 8, materials.fanImpeller, 0, 0, 0, 0, Math.PI / 2);
+      parent.add(motorCore, runner);
+      animators.push(() => { runner.rotation.x += 0.16; });
       // Deflector vanes on discharge
-      parent.add(createBox(0.12, 0.6, 0.5, materials.damperBlade, 2.75, -0.1, 0));
+      for (let v = -0.3; v <= 0.3; v += 0.2) {
+        const vane = createBox(0.08, 0.04, 0.8, materials.damperBlade, L / 2 + 0.02, v, 0);
+        vane.rotation.z = -0.2;
+        parent.add(vane);
+      }
+      // Wire guard grilles on ends
+      [-L / 2 - 0.02, L / 2 + 0.02].forEach(gx => {
+        parent.add(createCyl(R + 0.02, R + 0.02, 0.04, 16, materials.aluFrame, gx, 0, 0, 0, Math.PI / 2, true));
+      });
       // Ceiling suspension brackets
       [-1.4, 1.4].forEach(bx => {
-        parent.add(createBox(0.1, 0.6, 0.3, materials.baseSkid, bx, 0.8, 0));
+        parent.add(createBox(0.08, 0.55, 0.25, materials.baseSkid, bx, R + 0.35, 0));
       });
     }
   }
@@ -385,229 +451,319 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
   function buildDuctModel(parent, type) {
     if (type === 'spiral-kanal') {
       // Spiromatic spiral round duct with 90° bend fitting & rubber gasket
-      const straightTube = createCyl(0.75, 0.75, 4.6, 32, materials.galvSteel, -0.6, 0, 0, 0, Math.PI / 2);
+      const R = 0.75, L = 4.4;
+      const straightTube = createCyl(R, R, L, 32, materials.galvSteel, -0.6, 0, 0, 0, Math.PI / 2, true);
       parent.add(straightTube);
-      // Spiral lockseam ridges
-      for (let r = -2.0; r <= 1.4; r += 0.5) {
-        parent.add(createCyl(0.765, 0.765, 0.03, 32, materials.aluFrame, r, 0, 0, 0, Math.PI / 2));
+      // Continuously spaced spiral lockseam ridges
+      for (let r = -2.6; r <= 1.2; r += 0.45) {
+        parent.add(createCyl(R + 0.015, R + 0.015, 0.025, 32, materials.aluFrame, r, 0, 0, 0, Math.PI / 2, true));
       }
-      // Gasketed collar
-      parent.add(createCyl(0.78, 0.78, 0.12, 32, materials.rubberBlack, 1.75, 0, 0, 0, Math.PI / 2));
-      // 90° segmented bend branch
-      const bend = createCyl(0.74, 0.74, 1.8, 28, materials.galvSteel, 2.4, 0.9, 0);
-      parent.add(bend);
-      // Suspension clamp
-      parent.add(createCyl(0.82, 0.82, 0.08, 32, materials.baseSkid, -0.8, 0, 0, 0, Math.PI / 2));
-      parent.add(createCyl(0.02, 0.02, 1.4, 8, materials.baseSkid, -0.8, 1.1, 0));
+      // Male spigot coupling with twin-lip EPDM black rubber gasket
+      parent.add(createCyl(R + 0.025, R + 0.025, 0.12, 32, materials.rubberBlack, 1.65, 0, 0, 0, Math.PI / 2, true));
+      // 90° segmented bend branch (open-ended vertical duct)
+      const bendTube = createCyl(R - 0.01, R - 0.01, 1.8, 28, materials.galvSteel, 2.2, 0.9, 0, 0, 0, true);
+      parent.add(bendTube);
+      // Suspension clamp with M8 threaded rod
+      parent.add(createCyl(R + 0.06, R + 0.06, 0.08, 32, materials.baseSkid, -0.8, 0, 0, 0, Math.PI / 2, true));
+      parent.add(createCyl(0.02, 0.02, 1.4, 8, materials.baseSkid, -0.8, R + 0.7, 0));
     } else if (type === 'paslanmaz-kanal') {
-      // Heavy-duty AISI 304/316 TIG welded round & rectangular duct
-      const sTube = createCyl(0.85, 0.85, 4.8, 32, materials.stainless, 0, 0, 0, 0, Math.PI / 2);
+      // Heavy-duty AISI 304/316 TIG welded HOLLOW round duct
+      const R = 0.85, L = 4.6;
+      const sTube = createCyl(R, R, L, 32, materials.stainless, 0, 0, 0, 0, Math.PI / 2, true);
       parent.add(sTube);
-      // TIG weld longitudinal line
-      parent.add(createBox(4.78, 0.02, 0.03, materials.aluFrame, 0, 0.85, 0));
-      // Heavy flat-bar companion angle ring flanges with bolts
-      [-2.38, 2.38].forEach(fx => {
-        parent.add(createCyl(1.05, 1.05, 0.08, 32, materials.stainless, fx, 0, 0, 0, Math.PI / 2));
+      // Continuous longitudinal TIG automated plasma weld bead
+      parent.add(createBox(L - 0.02, 0.02, 0.03, materials.aluFrame, 0, R, 0));
+      // Solid flat-bar companion ring flanges on both ends with 8 perimeter bolts
+      [-L / 2, L / 2].forEach(fx => {
+        parent.add(createCyl(R + 0.2, R + 0.2, 0.08, 32, materials.stainless, fx, 0, 0, 0, Math.PI / 2, true));
         for (let b = 0; b < 8; b++) {
           const ang = (b / 8) * Math.PI * 2;
-          parent.add(createBox(0.12, 0.04, 0.04, materials.doorHandle, fx, Math.sin(ang) * 0.95, Math.cos(ang) * 0.95));
+          parent.add(createBox(0.12, 0.04, 0.04, materials.doorHandle, fx, Math.sin(ang) * (R + 0.1), Math.cos(ang) * (R + 0.1)));
         }
       });
-      // Inspection cleaning hatch
-      parent.add(createCyl(0.35, 0.35, 0.06, 16, materials.stainless, 0, 0, 0.86, Math.PI / 2));
+      // Oval inspection cleaning hatch (müdahale kapağı) with tightening knobs
+      parent.add(createCyl(0.32, 0.32, 0.06, 16, materials.stainless, 0, 0, R + 0.02, Math.PI / 2));
+      [-0.15, 0.15].forEach(kx => {
+        parent.add(createBox(0.04, 0.08, 0.06, materials.doorHandle, kx, 0, R + 0.07));
+      });
     } else {
-      // Galvaniz: Self-flanged rectangular duct with cross-break beads & acoustic lining cutaway
-      const ductBox = createBox(4.8, 2.0, 2.4, materials.galvSteel, 0, 0, 0);
-      parent.add(ductBox);
-      // Self-flanged frame collars on ends
-      [-2.42, 2.42].forEach(fx => {
-        parent.add(createBox(0.08, 2.16, 2.56, materials.aluFrame, fx, 0, 0));
-        // Corner brackets (köşe takozları)
-        [-1.04, 1.04].forEach(cy => {
-          [-1.24, 1.24].forEach(cz => {
+      // Galvaniz: HOLLOW self-flanged rectangular air duct (completely open through both ends)
+      const L = 4.6, H = 2.0, W = 2.4;
+      parent.add(
+        createBox(L, 0.04, W, materials.galvSteel, 0, H / 2, 0),        // Top wall
+        createBox(L, 0.04, W, materials.galvSteel, 0, -H / 2, 0),       // Bottom wall
+        createBox(L, H, 0.04, materials.galvSteel, 0, 0, -W / 2)        // Back wall
+      );
+      // Front wall with cutaway acoustic lining window
+      const frontLeft = createBox(0.9, H, 0.04, materials.galvSteel, -L / 2 + 0.45, 0, W / 2);
+      const frontRight = createBox(0.9, H, 0.04, materials.galvSteel, L / 2 - 0.45, 0, W / 2);
+      const cutawayLining = createBox(L - 1.8, H - 0.3, 0.03, materials.panelCutaway, 0, 0, W / 2, false, false);
+      parent.add(frontLeft, frontRight, cutawayLining);
+      dynamicCutawayPanels.push(cutawayLining);
+      // Internal perforated acoustic sheet and rockwool visible through window
+      parent.add(createBox(L - 1.9, H - 0.4, 0.08, materials.filterCloth, 0, 0, W / 2 - 0.06));
+
+      // TDF roll-formed flanges on both open ends
+      [-L / 2, L / 2].forEach(fx => {
+        parent.add(
+          createBox(0.08, 0.14, W + 0.24, materials.aluFrame, fx, H / 2 + 0.05, 0),
+          createBox(0.08, 0.14, W + 0.24, materials.aluFrame, fx, -H / 2 - 0.05, 0),
+          createBox(0.08, H, 0.14, materials.aluFrame, fx, 0, W / 2 + 0.05),
+          createBox(0.08, H, 0.14, materials.aluFrame, fx, 0, -W / 2 - 0.05)
+        );
+        // Corner cleats (köşe takozları)
+        [-H / 2 - 0.05, H / 2 + 0.05].forEach(cy => {
+          [-W / 2 - 0.05, W / 2 + 0.05].forEach(cz => {
             parent.add(createBox(0.1, 0.16, 0.16, materials.baseSkid, fx, cy, cz));
           });
         });
       });
-      // Stiffening cross-break lines (trapez)
-      parent.add(createBox(3.6, 0.02, 0.02, materials.aluFrame, 0, 1.01, 0));
-      // Cutaway acoustic lining view on front
-      const cutawayLining = createBox(2.8, 1.4, 0.08, materials.filterCloth, 0, 0, 1.21);
-      parent.add(cutawayLining);
+      // Cross-break stiffness beads
+      parent.add(createBox(L - 0.8, 0.02, 0.02, materials.aluFrame, 0, H / 2 + 0.02, 0));
     }
   }
 
   // D. AIR DISTRIBUTION & DAMPERS (MENFEZ, DIFUZOR, DAMPER)
   function buildAirDistModel(parent, type) {
     if (type === 'menfez') {
-      // Double deflection grille with adjustable blades & OBD damper
-      const frame = createBox(0.12, 2.4, 3.6, materials.aluFrame, 0, 0, 0);
-      parent.add(frame);
-      // Front row: horizontal aerofoil blades
-      for (let y = -0.95; y <= 0.95; y += 0.22) {
-        const blade = createBox(0.08, 0.03, 3.3, materials.damperBlade, 0.03, y, 0);
-        blade.rotation.x = 0.25;
+      // Double deflection grille: OPEN perimeter frame with adjustable aerofoil blades & rear OBD damper
+      const H = 2.2, W = 3.4, D = 0.24;
+      // 4 perimeter extruded aluminum borders
+      parent.add(
+        createBox(D, 0.14, W + 0.2, materials.aluFrame, 0, H / 2 + 0.05, 0),   // Top
+        createBox(D, 0.14, W + 0.2, materials.aluFrame, 0, -H / 2 - 0.05, 0),  // Bottom
+        createBox(D, H, 0.14, materials.aluFrame, 0, 0, W / 2 + 0.05),         // Right
+        createBox(D, H, 0.14, materials.aluFrame, 0, 0, -W / 2 - 0.05)         // Left
+      );
+      // Front row: horizontal adjustable aerofoil louvers
+      for (let y = -H / 2 + 0.2; y <= H / 2 - 0.15; y += 0.24) {
+        const blade = createBox(0.08, 0.02, W - 0.1, materials.damperBlade, D / 2 - 0.03, y, 0);
+        blade.rotation.z = 0.22; // Deflect air up/down around longitudinal horizontal axis
         parent.add(blade);
       }
-      // Rear row: vertical aerofoil blades
-      for (let z = -1.5; z <= 1.5; z += 0.3) {
-        const vBlade = createBox(0.08, 2.1, 0.03, materials.damperBlade, -0.04, 0, z);
+      // Rear row: vertical adjustable aerofoil louvers
+      for (let z = -W / 2 + 0.25; z <= W / 2 - 0.2; z += 0.28) {
+        const vBlade = createBox(0.06, H - 0.05, 0.02, materials.damperBlade, 0, 0, z);
         vBlade.rotation.y = 0.2;
         parent.add(vBlade);
       }
-      // Rear opposed blade volume damper frame
-      parent.add(createBox(0.18, 2.1, 3.3, materials.motorCast, -0.16, 0, 0));
+      // Rear opposed blade volume damper (OBD) frame & gear adjuster
+      parent.add(
+        createBox(0.12, 0.08, W - 0.1, materials.motorCast, -D / 2 - 0.04, H / 2 - 0.04, 0),
+        createBox(0.12, 0.08, W - 0.1, materials.motorCast, -D / 2 - 0.04, -H / 2 + 0.04, 0)
+      );
+      parent.add(createBox(0.08, 0.12, 0.08, materials.brassGold, D / 2 + 0.02, H / 2 - 0.1, W / 2 - 0.1));
     } else if (type === 'difuzor') {
       // Linear Slot Diffuser with insulated plenum box & Swirl Anemostat
-      // Plenum box on top
-      const plenum = createBox(1.6, 1.4, 3.4, materials.galvSteel, 0, 0.6, 0);
-      parent.add(plenum);
-      // Circular spigot collar on side
-      parent.add(createCyl(0.45, 0.45, 0.35, 24, materials.galvSteel, -0.85, 0.6, 0, 0, Math.PI / 2));
+      // Top insulated plenum box (hollow galvanized sheet)
+      const pL = 3.4, pH = 1.3, pW = 1.5;
+      parent.add(
+        createBox(pL, 0.03, pW, materials.galvSteel, 0, pH / 2 + 0.3, 0),
+        createBox(pL, pH, 0.03, materials.galvSteel, 0, 0.3, -pW / 2),
+        createBox(pL, pH, 0.03, materials.galvSteel, 0, 0.3, pW / 2)
+      );
+      // Circular spigot collar on side of plenum box
+      parent.add(createCyl(0.42, 0.42, 0.35, 24, materials.galvSteel, -pL / 2 - 0.15, 0.3, 0, 0, Math.PI / 2, true));
       // 3-slot linear face plate on bottom
-      const face = createBox(1.8, 0.06, 3.6, materials.aluFrame, 0, -0.13, 0);
-      parent.add(face);
-      // Linear black deflector vanes
-      [-0.15, 0, 0.15].forEach(sx => {
-        parent.add(createBox(0.04, 0.05, 3.3, materials.doorHandle, sx, -0.15, 0));
+      parent.add(createBox(pL + 0.2, 0.06, pW + 0.2, materials.aluFrame, 0, -pH / 2 + 0.3, 0));
+      // 3 black aerodynamic directional deflection rollers
+      [-0.35, 0, 0.35].forEach(sz => {
+        parent.add(createBox(pL - 0.1, 0.04, 0.06, materials.doorHandle, 0, -pH / 2 + 0.26, sz));
       });
       // Side Swirl Anemostat display
-      const swirlPlate = createBox(1.8, 0.05, 1.8, materials.panelSolid, 0, -1.1, 0);
+      const swirlPlate = createBox(1.8, 0.04, 1.8, materials.panelSolid, 0, -1.0, 0);
       parent.add(swirlPlate);
       for (let s = 0; s < 16; s++) {
         const ang = (s / 16) * Math.PI * 2;
-        const sVane = createBox(0.04, 0.03, 0.38, materials.doorHandle, Math.sin(ang) * 0.55, -1.07, Math.cos(ang) * 0.55);
+        const sVane = createBox(0.03, 0.02, 0.36, materials.doorHandle, Math.sin(ang) * 0.55, -0.98, Math.cos(ang) * 0.55);
         sVane.rotation.y = ang + 0.5;
         parent.add(sVane);
       }
     } else {
-      // Fire & Smoke Damper: Galvanized sleeve, opposed blades, Belimo actuator
-      const sleeve = createBox(1.4, 2.4, 2.6, materials.galvSteel, 0, 0, 0);
-      parent.add(sleeve);
-      // Flanges
-      [-0.72, 0.72].forEach(fx => {
-        parent.add(createBox(0.08, 2.6, 2.8, materials.aluFrame, fx, 0, 0));
+      // Fire & Smoke Damper: HOLLOW rectangular sleeve casing with interlocking blades & Belimo actuator
+      const L = 1.4, H = 2.2, W = 2.4;
+      parent.add(
+        createBox(L, 0.04, W, materials.galvSteel, 0, H / 2, 0),        // Top sleeve
+        createBox(L, 0.04, W, materials.galvSteel, 0, -H / 2, 0),       // Bottom sleeve
+        createBox(L, H, 0.04, materials.galvSteel, 0, 0, -W / 2),       // Back sleeve
+        createBox(L, H, 0.04, materials.galvSteel, 0, 0, W / 2)         // Front sleeve
+      );
+      // Flanges on both open ends
+      [-L / 2, L / 2].forEach(fx => {
+        parent.add(
+          createBox(0.08, 0.14, W + 0.2, materials.aluFrame, fx, H / 2 + 0.05, 0),
+          createBox(0.08, 0.14, W + 0.2, materials.aluFrame, fx, -H / 2 - 0.05, 0),
+          createBox(0.08, H, 0.14, materials.aluFrame, fx, 0, W / 2 + 0.05),
+          createBox(0.08, H, 0.14, materials.aluFrame, fx, 0, -W / 2 - 0.05)
+        );
       });
-      // 4 Interlocking opposed blades
-      for (let b = -0.75; b <= 0.75; b += 0.5) {
-        const blade = createBox(0.18, 0.04, 2.35, materials.damperBlade, 0, b, 0);
-        blade.rotation.z = Math.PI / 5;
+      // 4 Interlocking opposed aerodynamic blades inside the sleeve
+      for (let b = -H / 2 + 0.35; b <= H / 2 - 0.25; b += 0.5) {
+        const blade = createBox(0.35, 0.04, W - 0.12, materials.damperBlade, 0, b, 0);
+        blade.rotation.z = 0.35;
         parent.add(blade);
       }
-      // Belimo spring-return actuator
-      const act = createBox(0.2, 0.32, 0.18, materials.actuatorOrange, 0.1, 0.2, 1.4);
+      // Internal side linkage rod
+      parent.add(createBox(0.03, H - 0.4, 0.03, materials.brassGold, 0.15, 0, W / 2 - 0.08));
+      // Belimo spring-return electric actuator (orange housing)
+      const act = createBox(0.22, 0.34, 0.18, materials.actuatorOrange, 0.1, 0.2, W / 2 + 0.14);
       parent.add(act);
-      // Thermal fusible link sensor
-      parent.add(createCyl(0.03, 0.03, 0.12, 12, materials.brassGold, -0.2, 0.2, 1.35, Math.PI / 2));
+      // Manual winding handle & shaft
+      parent.add(createCyl(0.025, 0.025, 0.15, 12, materials.motorCast, 0.1, 0.2, W / 2 + 0.04, Math.PI / 2));
+      // 72°C thermal fusible link sensor
+      parent.add(createCyl(0.03, 0.03, 0.12, 12, materials.brassGold, -0.2, 0.2, W / 2 + 0.08, Math.PI / 2));
     }
   }
 
   // E. FILTRATION (FILTRE)
   function buildFilterModel(parent) {
-    // Universal filter bank housing holding G4 cassette, F7/F9 pocket, H14 HEPA
-    const housing = createBox(4.2, 2.4, 2.4, materials.galvSteel, 0, 0, 0);
-    parent.add(housing);
-    // Cutaway view on front
-    const cutDoor = createBox(3.8, 2.1, 0.04, materials.panelCutaway, 0, 0, 1.21, false, false);
+    // Universal filter housing: HOLLOW casing with open airflow path & front cutaway door
+    const L = 4.4, H = 2.4, W = 2.2;
+    parent.add(
+      createBox(L, 0.04, W, materials.galvSteel, 0, H / 2, 0),        // Top
+      createBox(L, 0.04, W, materials.galvSteel, 0, -H / 2, 0),       // Bottom
+      createBox(L, H, 0.04, materials.galvSteel, 0, 0, -W / 2)        // Back
+    );
+    // End flanges
+    [-L / 2, L / 2].forEach(fx => {
+      parent.add(
+        createBox(0.08, 0.12, W + 0.2, materials.aluFrame, fx, H / 2 + 0.04, 0),
+        createBox(0.08, 0.12, W + 0.2, materials.aluFrame, fx, -H / 2 - 0.04, 0),
+        createBox(0.08, H, 0.12, materials.aluFrame, fx, 0, W / 2 + 0.04),
+        createBox(0.08, H, 0.12, materials.aluFrame, fx, 0, -W / 2 - 0.04)
+      );
+    });
+    // Front cutaway service door
+    const cutDoor = createBox(L - 0.1, H - 0.1, 0.03, materials.panelCutaway, 0, 0, W / 2, false, false);
     parent.add(cutDoor);
     dynamicCutawayPanels.push(cutDoor);
 
-    // 1. G4 Pleated Pre-filter (Left)
-    const g4Frame = createBox(0.12, 2.0, 2.0, materials.filterCloth, -1.4, 0, 0);
-    parent.add(g4Frame);
+    // 1. G4 Pleated Pre-filter (Left) with wire mesh
+    const g4Frame = createBox(0.12, H - 0.2, W - 0.2, materials.aluFrame, -1.4, 0, 0);
+    const g4Media = createBox(0.1, H - 0.25, W - 0.25, materials.filterCloth, -1.4, 0, 0);
+    parent.add(g4Frame, g4Media);
 
-    // 2. F7/F9 Pocket Bag Filter (Center)
-    parent.add(createBox(0.1, 2.0, 2.0, materials.aluFrame, -0.2, 0, 0));
+    // 2. F7/F9 Pocket Bag Filter (Center) with 4 deep fabric cones
+    parent.add(createBox(0.1, H - 0.2, W - 0.2, materials.aluFrame, -0.2, 0, 0));
     for (let bi = 0; bi < 4; bi++) {
-      const bz = -0.75 + bi * 0.5;
-      const bag = new THREE.Mesh(new THREE.ConeGeometry(0.22, 1.1, 4), materials.filterCloth);
+      const bz = -0.7 + bi * 0.46;
+      const bag = new THREE.Mesh(new THREE.ConeGeometry(0.2, 1.1, 4), materials.filterCloth);
       bag.rotateZ(-Math.PI / 2);
       bag.position.set(0.4, 0, bz);
+      bag.scale.set(1.0, 1.3, 0.75);
       parent.add(bag);
     }
 
-    // 3. H14 Absolute HEPA Filter (Right)
-    const hepaFrame = createBox(0.25, 2.0, 2.0, materials.aluFrame, 1.4, 0, 0);
-    const hepaCore = createBox(0.22, 1.9, 1.9, materials.filterCloth, 1.4, 0, 0);
-    const hepaGel = createBox(0.26, 2.02, 0.04, materials.coolingFin, 1.4, 0, 1.0);
+    // 3. H14 Absolute HEPA Filter (Right) with aluminum frame & continuous gasket
+    const hepaFrame = createBox(0.25, H - 0.2, W - 0.2, materials.aluFrame, 1.4, 0, 0);
+    const hepaCore = createBox(0.22, H - 0.26, W - 0.26, materials.filterCloth, 1.4, 0, 0);
+    const hepaGel = createBox(0.26, H - 0.18, 0.04, materials.coolingFin, 1.4, 0, W / 2 - 0.1);
     parent.add(hepaFrame, hepaCore, hepaGel);
 
-    // Differential pressure gauges
+    // Differential pressure gauges on front
     [-1.0, 0.6].forEach(gx => {
-      parent.add(createCyl(0.09, 0.09, 0.04, 16, materials.aluFrame, gx, 0.5, 1.24, Math.PI / 2));
+      parent.add(createCyl(0.09, 0.09, 0.04, 16, materials.aluFrame, gx, 0.6, W / 2 + 0.03, Math.PI / 2));
     });
   }
 
   // F. VRF & SPECIALTIES (VRF-DIS, VRF-IC, DAVLUMBAZ)
   function buildVrfModel(parent, type) {
     if (type === 'vrf-dis') {
-      // VRF Outdoor Unit with hollow cabinet & cutaway service door
+      // VRF Outdoor Unit: Hollow tower cabinet with top axial fan & compressors
+      const L = 3.2, H = 3.6, W = 2.0;
       parent.add(
-        createBox(3.4, 3.6, 0.05, materials.panelSolid, 0, 0, -0.98), // Back panel
-        createBox(3.4, 0.05, 2.0, materials.panelSolid, 0, 1.78, 0),  // Roof panel
-        createBox(3.4, 0.12, 2.0, materials.baseSkid, 0, -1.74, 0),   // Base frame skid
-        createBox(0.05, 3.4, 1.9, materials.coolingFin, -1.68, 0.05, 0), // Left coil
-        createBox(0.05, 3.4, 1.9, materials.coolingFin, 1.68, 0.05, 0)   // Right coil
+        createBox(L, H, 0.04, materials.panelSolid, 0, 0, -W / 2),      // Back
+        createBox(L, 0.04, W, materials.panelSolid, 0, H / 2, 0),       // Roof
+        createBox(L, 0.12, W, materials.baseSkid, 0, -H / 2, 0),        // Base frame
+        createBox(0.04, H - 0.2, W - 0.1, materials.coolingFin, -L / 2, 0.05, 0), // Left coil
+        createBox(0.04, H - 0.2, W - 0.1, materials.coolingFin, L / 2, 0.05, 0)   // Right coil
       );
-      // Cutaway front door
-      const cDoor = createBox(3.28, 3.38, 0.04, materials.panelCutaway, 0, 0.05, 0.99, false, false);
+      // Front cutaway service door
+      const cDoor = createBox(L - 0.1, H - 0.2, 0.03, materials.panelCutaway, 0, 0.05, W / 2, false, false);
       parent.add(cDoor);
       dynamicCutawayPanels.push(cDoor);
-      // Top discharge axial fan with protection grille
-      const topRim = createCyl(0.85, 0.85, 0.25, 28, materials.fanHousing, 0, 1.88, 0);
-      const topBlades = createCyl(0.75, 0.75, 0.05, 4, materials.fanImpeller, 0, 1.92, 0);
+
+      // Top discharge axial fan with protection cowl
+      const topRim = createCyl(0.82, 0.82, 0.22, 28, materials.fanHousing, 0, H / 2 + 0.11, 0, 0, 0, true);
+      const topBlades = createCyl(0.72, 0.72, 0.05, 4, materials.fanImpeller, 0, H / 2 + 0.14, 0);
       parent.add(topRim, topBlades);
       animators.push(() => { topBlades.rotation.y += 0.16; });
+
       // Inverter Scroll Compressors inside
       [-0.6, 0.6].forEach(cx => {
-        parent.add(createCyl(0.26, 0.26, 0.9, 16, materials.motorCast, cx, -0.9, -0.2));
+        parent.add(createCyl(0.26, 0.26, 0.9, 16, materials.motorCast, cx, -H / 2 + 0.6, -0.2));
       });
-      // Accumulator vessel
-      parent.add(createCyl(0.22, 0.22, 1.1, 16, materials.motorCast, -1.1, -0.8, 0.2));
-      // Heat exchanger blue fin coils along 3 sides
-      parent.add(createBox(3.3, 2.8, 0.12, materials.coolingFin, 0, 0.2, -0.9));
-      // Brass service valves
-      parent.add(createBox(0.25, 0.2, 0.15, materials.brassGold, 1.2, -1.2, 1.05));
+      // Accumulator vessel & oil separator
+      parent.add(createCyl(0.22, 0.22, 1.1, 16, materials.motorCast, -1.1, -H / 2 + 0.7, 0.2));
+      // Microchannel condenser blue fins along back
+      parent.add(createBox(L - 0.2, 2.6, 0.1, materials.coolingFin, 0, 0.2, -W / 2 + 0.08));
+      // Service valves
+      parent.add(createBox(0.22, 0.18, 0.14, materials.brassGold, 1.1, -H / 2 + 0.4, W / 2 + 0.05));
     } else if (type === 'vrf-ic') {
-      // 4-Way Ceiling Cassette Unit & Slim Ducted
+      // 4-Way Ceiling Cassette Unit: Tilted so the bottom architectural panel & louvers face the viewer!
+      const cassetteGroup = new THREE.Group();
+      cassetteGroup.rotation.x = -Math.PI + 0.55; // Invert so white decorative fascia faces user
+      parent.add(cassetteGroup);
+
       const cassBody = createBox(2.8, 0.8, 2.8, materials.galvSteel, 0, 0.5, 0);
       const cassFascia = createBox(3.2, 0.08, 3.2, materials.panelSolid, 0, 0.05, 0);
-      parent.add(cassBody, cassFascia);
-      // 4 motorized discharge louvers
+      cassetteGroup.add(cassBody, cassFascia);
+
+      // Center return intake grille with washable mesh
+      const centerGrille = createBox(1.6, 0.02, 1.6, materials.filterCloth, 0, 0.02, 0);
+      cassetteGroup.add(centerGrille);
+
+      // 4 motorized auto-swing discharge louvers around the perimeter
       [
-        [0, 1.4, 0], [0, -1.4, 0], [1.4, 0, Math.PI / 2], [-1.4, 0, Math.PI / 2]
+        [0, 1.35, 0], [0, -1.35, 0], [1.35, 0, Math.PI / 2], [-1.35, 0, Math.PI / 2]
       ].forEach(([lx, lz, rot]) => {
-        const louver = createBox(1.8, 0.02, 0.14, materials.doorHandle, lx, 0.01, lz);
+        const louver = createBox(1.7, 0.03, 0.16, materials.doorHandle, lx, 0.01, lz);
         louver.rotation.y = rot;
-        parent.add(louver);
+        cassetteGroup.add(louver);
       });
+
       // Internal centrifugal turbo fan
       const turboFan = createCyl(0.65, 0.65, 0.35, 20, materials.fanImpeller, 0, 0.5, 0);
-      parent.add(turboFan);
+      cassetteGroup.add(turboFan);
       animators.push(() => { turboFan.rotation.y += 0.14; });
-      // Condensate drain pump on side
-      parent.add(createBox(0.18, 0.22, 0.18, materials.actuatorOrange, 1.3, 0.5, 0.8));
+
+      // Drain pump & flare connections on side
+      cassetteGroup.add(createBox(0.18, 0.22, 0.18, materials.actuatorOrange, 1.3, 0.5, 0.8));
+      cassetteGroup.add(createCyl(0.04, 0.04, 0.3, 12, materials.copperPipe, 1.45, 0.5, -0.4, 0, Math.PI / 2));
     } else {
-      // Davlumbaz: AISI 304 Stainless Steel Kitchen Hood with Ansul Fire Suppression
-      const hood = createBox(4.6, 1.8, 2.8, materials.stainless, 0, 0, 0);
-      parent.add(hood);
-      // Sloped Baffle grease filters underneath
-      for (let f = -1.6; f <= 1.6; f += 0.8) {
-        const baffle = createBox(0.7, 0.06, 1.6, materials.stainless, f, -0.7, 0.2);
-        baffle.rotation.x = -0.3;
+      // Davlumbaz: Commercial kitchen wall/island hood with HOLLOW underside & Ansul Fire Suppression
+      const L = 4.6, H = 1.6, W = 2.6;
+      // Sloped front visor canopy hood profile
+      const hoodRoof = createBox(L, 0.04, W - 0.6, materials.stainless, 0, H / 2, -0.3);
+      const hoodBack = createBox(L, H, 0.04, materials.stainless, 0, 0, -W / 2);
+      const hoodLeft = createBox(0.04, H, W, materials.stainless, -L / 2, 0, 0);
+      const hoodRight = createBox(0.04, H, W, materials.stainless, L / 2, 0, 0);
+      // Sloped front visor
+      const hoodVisor = createBox(L, 0.9, 0.04, materials.stainless, 0, 0.25, W / 2 - 0.2);
+      hoodVisor.rotation.x = 0.5;
+      parent.add(hoodRoof, hoodBack, hoodLeft, hoodRight, hoodVisor);
+
+      // Top circular exhaust collar
+      parent.add(createCyl(0.55, 0.55, 0.3, 24, materials.stainless, 0, H / 2 + 0.15, -0.3, 0, 0, true));
+
+      // HOLLOW underside: sloped stainless steel baffle grease filters
+      for (let f = -L / 2 + 0.6; f <= L / 2 - 0.6; f += 0.75) {
+        const baffle = createBox(0.68, 0.04, 1.3, materials.aluFrame, f, -0.2, 0.1);
+        baffle.rotation.x = -0.4;
         parent.add(baffle);
       }
-      // Grease drain cup
-      parent.add(createCyl(0.12, 0.09, 0.18, 16, materials.stainless, 2.1, -0.9, 0.8));
-      // Ansul Fire Suppression stainless steel piping manifold
-      parent.add(createCyl(0.02, 0.02, 4.2, 12, materials.stainless, 0, -0.4, 1.1, 0, Math.PI / 2));
-      // 4 Brass spray discharge nozzles aimed downward
+      // Perimeter grease drain gutter & collection cup
+      parent.add(createCyl(0.1, 0.08, 0.18, 16, materials.stainless, L / 2 - 0.3, -H / 2 - 0.08, W / 2 - 0.2));
+
+      // Ansul R-102 fire suppression stainless steel piping manifold
+      parent.add(createCyl(0.02, 0.02, L - 0.6, 12, materials.stainless, 0, -0.05, 0.85, 0, Math.PI / 2));
+      // 4 Brass cone spray nozzles aimed downward
       [-1.4, -0.5, 0.5, 1.4].forEach(nx => {
-        const noz = createCyl(0.04, 0.025, 0.1, 10, materials.brassGold, nx, -0.48, 1.1);
+        const noz = createCyl(0.035, 0.02, 0.09, 10, materials.brassGold, nx, -0.12, 0.85);
         parent.add(noz);
       });
-      // Manual release pull box on hood corner
-      parent.add(createBox(0.14, 0.2, 0.08, materials.actuatorOrange, 2.32, -0.2, 1.2));
+      // Emergency red pull station box on hood corner
+      parent.add(createBox(0.14, 0.2, 0.08, materials.actuatorOrange, L / 2 + 0.03, -0.3, W / 2 - 0.2));
     }
   }
 
@@ -628,7 +784,31 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     buildAhuModel(modelRoot, 'tks');
   }
 
-  // --- 7. AERODYNAMIC CFD AIRFLOW SIMULATION ---
+  // --- 7. AUTO-FIT CAMERA & GROUND TO EXACT MODEL BOUNDING BOX ---
+  modelRoot.updateMatrixWorld(true);
+  const bbox = new THREE.Box3().setFromObject(modelRoot);
+  const size = bbox.getSize(new THREE.Vector3());
+  const center = bbox.getCenter(new THREE.Vector3());
+
+  // Center model at origin
+  modelRoot.position.sub(center);
+
+  // Position ground & grid just below the model bottom
+  const modelBottom = -size.y / 2;
+  ground.position.y = modelBottom - 0.05;
+  grid.position.y = modelBottom - 0.04;
+
+  // Compute camera distance based on max dimension
+  const maxDim = Math.max(size.x, size.y, size.z);
+  const fov = camera.fov * (Math.PI / 180);
+  let camDist = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 1.45;
+  camDist = Math.max(camDist, 4.8);
+  camera.position.set(camDist * 0.82, camDist * 0.42, camDist * 0.82);
+  camera.lookAt(0, 0, 0);
+  controls.target.set(0, 0, 0);
+  controls.update();
+
+  // --- 8. AERODYNAMIC CFD AIRFLOW SIMULATION ---
   const cfdGroup = new THREE.Group();
   scene.add(cfdGroup);
 
@@ -637,14 +817,18 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
   const pPositions = new Float32Array(particleCount * 3);
   const pColors = new Float32Array(particleCount * 3);
 
+  const halfLen = Math.max(2.0, size.x / 2 + 0.4);
+  const spanY = Math.max(1.0, size.y * 0.45);
+  const spanZ = Math.max(1.0, size.z * 0.45);
+
   for (let i = 0; i < particleCount; i++) {
     const isSupply = i < particleCount * 0.65;
     particles.push({
       isSupply,
       progress: Math.random(),
       speed: 0.005 + Math.random() * 0.004,
-      offsetY: (Math.random() - 0.5) * 0.6,
-      offsetZ: (Math.random() - 0.5) * 1.0
+      offsetY: (Math.random() - 0.5) * spanY,
+      offsetZ: (Math.random() - 0.5) * spanZ
     });
     if (isSupply) {
       pColors[i * 3] = 0.02; pColors[i * 3 + 1] = 0.65; pColors[i * 3 + 2] = 0.98;
@@ -657,7 +841,6 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
   pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
   pGeo.setAttribute('color', new THREE.BufferAttribute(pColors, 3));
 
-  // Procedural soft circle glow texture
   const pCanvas = document.createElement('canvas');
   pCanvas.width = 32; pCanvas.height = 32;
   const pCtx = pCanvas.getContext('2d');
@@ -692,14 +875,14 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
       const p = particles[i];
       p.progress += p.speed;
       if (p.progress > 1.0) p.progress = 0.0;
-      pos[i * 3] = -3.5 + p.progress * 7.0;
-      pos[i * 3 + 1] = (p.isSupply ? -0.4 : 0.4) + p.offsetY;
+      pos[i * 3] = -halfLen + p.progress * (halfLen * 2);
+      pos[i * 3 + 1] = (p.isSupply ? -0.2 : 0.2) + p.offsetY;
       pos[i * 3 + 2] = p.offsetZ;
     }
     pGeo.attributes.position.needsUpdate = true;
   });
 
-  // --- 8. DYNAMIC HOTSPOT PINS GENERATOR ---
+  // --- 9. DYNAMIC HOTSPOT PINS GENERATOR ---
   const pinsGroup = new THREE.Group();
   scene.add(pinsGroup);
 
@@ -735,11 +918,13 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
   const pinMeshes = [];
   rawHotspots.forEach((h, idx) => {
     const pinAnchor = new THREE.Group();
-    // Calculate spread along model
     const total = rawHotspots.length;
-    const px = -2.8 + (idx / Math.max(1, total - 1)) * 5.6;
-    const py = (idx % 2 === 0 ? -0.2 : 0.5);
-    const pz = 1.35;
+    const isWideZ = size.z > size.x;
+    const majorSpan = isWideZ ? size.z : size.x;
+    const majorOffset = (-majorSpan / 2 + 0.4) + (idx / Math.max(1, total - 1)) * (majorSpan - 0.8);
+    const px = isWideZ ? (size.x / 2 + 0.4) : majorOffset;
+    const py = (idx % 2 === 0 ? -0.2 : 0.4);
+    const pz = isWideZ ? majorOffset : (size.z / 2 + 0.4);
     pinAnchor.position.set(px, py, pz);
 
     const stalk = new THREE.Mesh(
@@ -748,101 +933,105 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     );
     stalk.position.y = -0.12;
 
-    const sprite = new THREE.Sprite(new THREE.SpriteMaterial({
+    const spriteMat = new THREE.SpriteMaterial({
       map: createPinBadgeTexture(h.num || `0${idx + 1}`),
       depthTest: false
-    }));
-    sprite.scale.set(0.32, 0.32, 1);
+    });
+    const sprite = new THREE.Sprite(spriteMat);
+    sprite.scale.set(0.42, 0.42, 1);
     sprite.position.y = 0.05;
-    sprite.userData = { hotspot: h, pos: [px, py, pz] };
 
+    sprite.userData = { hotspot: h, pos: [px, py, pz] };
     pinAnchor.add(stalk, sprite);
-    pinAnchor.userData = { hotspot: h, pos: [px, py, pz] };
     pinsGroup.add(pinAnchor);
+    pinAnchor.userData = { hotspot: h, pos: [px, py, pz] };
     pinMeshes.push(sprite);
   });
 
-  animators.push(() => {
-    const t = Date.now() * 0.003;
-    const s = 0.32 + Math.sin(t) * 0.025;
-    pinMeshes.forEach(p => p.scale.set(s, s, 1));
-  });
-
-  // Raycasting for pin clicks
+  // Pin click detection via Raycaster
   const raycaster = new THREE.Raycaster();
   const mouse = new THREE.Vector2();
 
-  function onPointerClick(event) {
+  function onCanvasClick(evt) {
     const rect = renderer.domElement.getBoundingClientRect();
-    mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-    mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+    mouse.x = ((evt.clientX - rect.left) / rect.width) * 2 - 1;
+    mouse.y = -((evt.clientY - rect.top) / rect.height) * 2 + 1;
+
     raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObjects(pinsGroup.children, true);
+    const intersects = raycaster.intersectObjects(pinMeshes, true);
+
     if (intersects.length > 0) {
       let hit = intersects[0].object;
       while (hit.parent && !hit.userData.hotspot) hit = hit.parent;
       if (hit && hit.userData.hotspot) {
         showHotspotCard(hit.userData.hotspot);
-        focusCamera(hit.userData.pos);
+        // Smooth zoom to hotspot
+        const targetPos = hit.userData.pos;
+        if (targetPos) {
+          controls.target.set(targetPos[0] * 0.5, targetPos[1], targetPos[2] * 0.5);
+        }
       }
     }
   }
-  renderer.domElement.addEventListener('click', onPointerClick);
+  renderer.domElement.addEventListener('click', onCanvasClick);
 
-  function focusCamera(targetPos) {
-    controls.autoRotate = false;
-    const offset = new THREE.Vector3(targetPos[0] + 3.0, targetPos[1] + 1.5, targetPos[2] + 4.0);
-    const startPos = camera.position.clone();
-    const startTarget = controls.target.clone();
-    const destTarget = new THREE.Vector3(targetPos[0], targetPos[1], targetPos[2]);
-    let progress = 0;
-    function step() {
-      progress += 0.04;
-      if (progress <= 1.0) {
-        camera.position.lerpVectors(startPos, offset, progress);
-        controls.target.lerpVectors(startTarget, destTarget, progress);
-        requestAnimationFrame(step);
-      }
-    }
-    step();
-  }
-
-  // --- 9. STATE & FLOATING UI ---
+  // --- 10. HUD OVERLAY & ACTION DISPATCHER ---
   const state = {
     autoRotate: true,
     cfdEnabled: true,
-    isCutaway: true
+    cutawayEnabled: true,
+    viewMode: '3d'
   };
 
-  function setCutawayMode(transparent) {
-    state.isCutaway = transparent;
-    dynamicCutawayPanels.forEach(p => {
-      p.material = transparent ? materials.panelCutaway : materials.panelSolid;
-    });
-  }
-
-  function resetCamera() {
-    controls.autoRotate = state.autoRotate;
-    controls.target.set(0, 0, 0);
-    camera.position.set(9.0, 4.2, 7.5);
-    hideHotspotCard();
-  }
-
-  createFloatingUI(container, {
-    productTitle: productData.title,
-    state,
-    controls,
-    setCutawayMode,
-    resetCamera,
-    onResize
+  injectHudStyles();
+  renderHud(container, productData, {
+    onToggleRotate: () => {
+      state.autoRotate = !state.autoRotate;
+      controls.autoRotate = state.autoRotate;
+      updateHudButton('btn-rotate', state.autoRotate);
+    },
+    onToggleCfd: () => {
+      state.cfdEnabled = !state.cfdEnabled;
+      updateHudButton('btn-cfd', state.cfdEnabled);
+    },
+    onToggleCutaway: () => {
+      state.cutawayEnabled = !state.cutawayEnabled;
+      dynamicCutawayPanels.forEach(panel => {
+        panel.material = state.cutawayEnabled ? materials.panelCutaway : materials.galvSteel;
+      });
+      updateHudButton('btn-cutaway', state.cutawayEnabled);
+    },
+    onToggleView: () => {
+      const view2d = document.getElementById('sky-product-2d-view');
+      const is2dVisible = view2d && window.getComputedStyle(view2d).display !== 'none';
+      if (view2d) {
+        if (is2dVisible) {
+          view2d.style.display = 'none';
+          container.style.display = 'block';
+          updateHudButton('btn-view', false);
+          onResize();
+        } else {
+          view2d.style.display = 'block';
+          container.style.display = 'none';
+          updateHudButton('btn-view', true);
+        }
+      }
+    },
+    onResetCamera: () => {
+      camera.position.set(camDist * 0.82, camDist * 0.42, camDist * 0.82);
+      controls.target.set(0, 0, 0);
+      controls.update();
+    }
   });
 
-  // --- 10. ANIMATION LOOP & RESIZE ---
-  let animId = null;
+  // --- 11. ANIMATION & RESIZE LOOPS ---
+  let reqId = null;
   function animate() {
-    animId = requestAnimationFrame(animate);
+    reqId = requestAnimationFrame(animate);
     controls.update();
-    animators.forEach(fn => fn());
+    for (let i = 0; i < animators.length; i++) {
+      animators[i]();
+    }
     renderer.render(scene, camera);
   }
   animate();
@@ -850,137 +1039,216 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
   function onResize() {
     if (!container) return;
     const w = container.clientWidth;
-    const h = container.clientHeight;
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
-    renderer.setSize(w, h);
+    const h = container.clientHeight || 480;
+    if (w > 0 && h > 0) {
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    }
   }
   window.addEventListener('resize', onResize);
 
   return {
-    scene,
-    camera,
-    renderer,
     destroy: () => {
-      cancelAnimationFrame(animId);
+      cancelAnimationFrame(reqId);
       window.removeEventListener('resize', onResize);
       renderer.dispose();
-      while (container.firstChild) container.removeChild(container.firstChild);
     }
   };
 }
 
-/**
- * Floating HUD Bar & Hotspot Callout Card
- */
-function createFloatingUI(container, actions) {
-  if (container.parentElement.querySelector('.sky-3d-hud')) return;
+// --- HUD TEMPLATES & UTILS ---
+function injectHudStyles() {
+  if (document.getElementById('sky-3d-hud-styles')) return;
+  const style = document.createElement('style');
+  style.id = 'sky-3d-hud-styles';
+  style.textContent = `
+    .sky-3d-hud-container {
+      position: absolute;
+      top: 12px;
+      left: 14px;
+      right: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: none;
+      z-index: 10;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .sky-3d-hud-left, .sky-3d-hud-right {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      pointer-events: auto;
+    }
+    .sky-3d-badge {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border: 1px solid #e2e8f0;
+      border-radius: 9999px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f172a;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .sky-3d-badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #0284c7;
+    }
+    .sky-3d-btn {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .sky-3d-btn:hover {
+      background: #f8fafc;
+      border-color: #0284c7;
+      color: #0284c7;
+    }
+    .sky-3d-btn.active {
+      background: #0284c7;
+      border-color: #0284c7;
+      color: #ffffff;
+    }
+    .sky-3d-callout-card {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      max-width: 320px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      border: 1px solid #e2e8f0;
+      border-left: 4px solid #0284c7;
+      border-radius: 10px;
+      padding: 12px 16px;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+      z-index: 15;
+      pointer-events: auto;
+      animation: fadeIn 0.2s ease;
+    }
+    .sky-3d-callout-num {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      color: #0284c7;
+      background: #e0f2fe;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-bottom: 4px;
+    }
+    .sky-3d-callout-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+    .sky-3d-callout-desc {
+      font-size: 12px;
+      color: #64748b;
+      line-height: 1.45;
+    }
+    .sky-3d-callout-close {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      color: #94a3b8;
+    }
+    .sky-3d-callout-close:hover {
+      color: #0f172a;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  `;
+  document.head.appendChild(style);
+}
 
+function renderHud(container, productData, actions) {
   const hud = document.createElement('div');
-  hud.className = 'sky-3d-hud';
+  hud.className = 'sky-3d-hud-container';
   hud.innerHTML = `
-    <!-- Top Left Status Badge -->
-    <div class="sky-3d-badge-bar">
-      <span class="sky-3d-pill">
-        <span class="sky-3d-dot live"></span>
-        ${actions.productTitle} • 3D CAD İkiz
-      </span>
-      <span class="sky-3d-pill text-muted">
-        360° Çevir • Yakınlaştır • İncele
-      </span>
-    </div>
-
-    <!-- Top Right Floating Action Controls -->
-    <div class="sky-3d-actions-bar">
-      <button type="button" id="sky-btn-rotate" class="sky-3d-action-btn active" title="Döndürmeyi Aç/Kapat">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-        <span>Döndür</span>
-      </button>
-
-      <button type="button" id="sky-btn-cfd" class="sky-3d-action-btn active" title="Aerodinamik Hava Akışını Göster">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-        <span>Hava Akışı</span>
-      </button>
-
-      <button type="button" id="sky-btn-casing" class="sky-3d-action-btn" title="Şeffaf Kesit / Kapalı Gövde">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-        <span id="sky-casing-text">Şeffaf Gövde</span>
-      </button>
-
-      <button type="button" id="sky-btn-toggle-view" class="sky-3d-action-btn" title="3D Model / 2D Katalog Çizimi Geçişi">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-        <span id="sky-view-toggle-text">2D Çizim</span>
-      </button>
-
-      <button type="button" id="sky-btn-reset" class="sky-3d-action-btn" title="Görünümü Sıfırla">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/></svg>
-        <span>Sıfırla</span>
-      </button>
-    </div>
-
-    <!-- Hotspot Callout Card (Floating Bottom Right) -->
-    <div id="sky-3d-hotspot-card" class="sky-3d-callout-card" style="display: none;">
-      <div class="sky-3d-callout-header">
-        <span class="sky-3d-callout-num" id="sky-card-num">01</span>
-        <h4 class="sky-3d-callout-title" id="sky-card-title">Bileşen Başlığı</h4>
-        <button type="button" class="sky-3d-callout-close" onclick="hideHotspotCard()">&times;</button>
+    <div class="sky-3d-hud-left">
+      <div class="sky-3d-badge">
+        <span class="sky-3d-badge-dot"></span>
+        <span id="sky-product-tag">${productData.title || '3D CAD Dijital İkiz'}</span>
       </div>
-      <p class="sky-3d-callout-desc" id="sky-card-desc">Bileşen mühendislik açıklaması.</p>
+      <div class="sky-3d-badge" style="font-weight: 500; font-size: 11px; color: #64748b;">
+        360° Çevir • Yakınlaştır • İncele
+      </div>
+    </div>
+    <div class="sky-3d-hud-right">
+      <button id="btn-rotate" class="sky-3d-btn" title="Otomatik Döndürmeyi Aç/Kapat">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+        Döndür
+      </button>
+      <button id="btn-cfd" class="sky-3d-btn active" title="Aerodinamik Hava Akışını Aç/Kapat">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Hava Akışı
+      </button>
+      <button id="btn-cutaway" class="sky-3d-btn" title="Gövdeyi Şeffaf / Katı Yap">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/></svg>
+        Şeffaf Gövde
+      </button>
+      <button id="btn-view" class="sky-3d-btn" title="2D Şema ile 3D Model Arasında Geçiş Yap">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        2D Çizim
+      </button>
+      <button id="btn-reset" class="sky-3d-btn" title="Varsayılan Kamera Açısına Dön">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        Sıfırla
+      </button>
     </div>
   `;
+  container.appendChild(hud);
 
-  container.parentElement.style.position = 'relative';
-  container.parentElement.appendChild(hud);
+  // Card element for hotspots
+  const card = document.createElement('div');
+  card.id = 'sky-3d-hotspot-card';
+  card.className = 'sky-3d-callout-card';
+  card.style.display = 'none';
+  card.innerHTML = `
+    <button class="sky-3d-callout-close" onclick="this.parentElement.style.display='none'">&times;</button>
+    <span id="sky-card-num" class="sky-3d-callout-num">01</span>
+    <div id="sky-card-title" class="sky-3d-callout-title">Bileşen Adı</div>
+    <div id="sky-card-desc" class="sky-3d-callout-desc">Bileşen teknik detay açıklaması.</div>
+  `;
+  container.appendChild(card);
 
-  const btnRotate = hud.querySelector('#sky-btn-rotate');
-  btnRotate.addEventListener('click', () => {
-    actions.state.autoRotate = !actions.state.autoRotate;
-    actions.controls.autoRotate = actions.state.autoRotate;
-    btnRotate.classList.toggle('active', actions.state.autoRotate);
-  });
+  // Wire buttons
+  document.getElementById('btn-rotate').addEventListener('click', actions.onToggleRotate);
+  document.getElementById('btn-cfd').addEventListener('click', actions.onToggleCfd);
+  document.getElementById('btn-cutaway').addEventListener('click', actions.onToggleCutaway);
+  document.getElementById('btn-view').addEventListener('click', actions.onToggleView);
+  document.getElementById('btn-reset').addEventListener('click', actions.onResetCamera);
+}
 
-  const btnCfd = hud.querySelector('#sky-btn-cfd');
-  btnCfd.addEventListener('click', () => {
-    actions.state.cfdEnabled = !actions.state.cfdEnabled;
-    btnCfd.classList.toggle('active', actions.state.cfdEnabled);
-  });
-
-  const btnCasing = hud.querySelector('#sky-btn-casing');
-  const casingText = hud.querySelector('#sky-casing-text');
-  btnCasing.addEventListener('click', () => {
-    actions.state.isCutaway = !actions.state.isCutaway;
-    actions.setCutawayMode(actions.state.isCutaway);
-    casingText.textContent = actions.state.isCutaway ? 'Şeffaf Gövde' : 'Kapalı Gövde';
-    btnCasing.classList.toggle('active', !actions.state.isCutaway);
-  });
-
-  const btnToggleView = hud.querySelector('#sky-btn-toggle-view');
-  const viewToggleText = hud.querySelector('#sky-view-toggle-text');
-  const canvasEl = document.getElementById('sky-product-3d-canvas');
-  const view2dEl = document.getElementById('sky-product-2d-view');
-
-  btnToggleView.addEventListener('click', () => {
-    if (view2dEl && canvasEl) {
-      const isShowing2D = window.getComputedStyle(view2dEl).display !== 'none';
-      if (isShowing2D) {
-        view2dEl.style.display = 'none';
-        canvasEl.style.display = 'block';
-        viewToggleText.textContent = '2D Çizim';
-        btnToggleView.classList.remove('active');
-        if (actions.onResize) actions.onResize();
-      } else {
-        view2dEl.style.display = 'flex';
-        canvasEl.style.display = 'none';
-        viewToggleText.textContent = '3D Model';
-        btnToggleView.classList.add('active');
-      }
-    }
-  });
-
-  const btnReset = hud.querySelector('#sky-btn-reset');
-  btnReset.addEventListener('click', () => {
-    actions.resetCamera();
-  });
+function updateHudButton(btnId, isActive) {
+  const btn = document.getElementById(btnId);
+  if (!btn) return;
+  if (isActive) btn.classList.add('active');
+  else btn.classList.remove('active');
 }
 
 window.showHotspotCard = function(hotspot) {
@@ -992,16 +1260,14 @@ window.showHotspotCard = function(hotspot) {
   card.style.display = 'block';
 };
 
-window.hideHotspotCard = function() {
+window.closeHotspotCard = function() {
   const card = document.getElementById('sky-3d-hotspot-card');
   if (card) card.style.display = 'none';
 };
 
-// Auto-run if container exists on page load
-if (typeof document !== 'undefined') {
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => initSky3DProduct());
-  } else {
-    initSky3DProduct();
-  }
+// Auto-boot on DOM ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => initSky3DProduct());
+} else {
+  initSky3DProduct();
 }
