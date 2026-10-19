@@ -1376,59 +1376,7 @@
         });
       }
 
-      // Quote Modal
-      const quoteModal = document.getElementById('sky-quote-modal');
-      const quoteClose = document.getElementById('sky-modal-close');
-      const quoteForm = document.getElementById('sky-quote-form');
-      const formSuccess = document.getElementById('sky-form-success');
-      const notesField = document.getElementById('sky-modal-notes');
-
-      window.openQuoteModal = function() {
-        if (quoteModal) {
-          quoteModal.classList.add('active');
-          quoteModal.setAttribute('aria-hidden', 'false');
-          document.body.style.overflow = 'hidden';
-        }
-      };
-
-      window.openQuoteForProject = function(itemTitle) {
-        if (notesField) {
-          notesField.value = itemTitle + ' hakkında teknik şartname ve fiyat teklifi talebi.';
-        }
-        window.openQuoteModal();
-      };
-
-      function closeQuoteModal() {
-        if (quoteModal) {
-          quoteModal.classList.remove('active');
-          quoteModal.setAttribute('aria-hidden', 'true');
-          document.body.style.overflow = '';
-        }
-      }
-
-      if (quoteClose) {
-        quoteClose.addEventListener('click', closeQuoteModal);
-      }
-
-      if (quoteModal) {
-        quoteModal.addEventListener('click', function(e) {
-          if (e.target === quoteModal) closeQuoteModal();
-        });
-      }
-
-      if (quoteForm) {
-        quoteForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-          if (formSuccess) {
-            formSuccess.classList.remove('hidden');
-            setTimeout(() => {
-              closeQuoteModal();
-              quoteForm.reset();
-              formSuccess.classList.add('hidden');
-            }, 3000);
-          }
-        });
-      }
+      // Quote modal handled globally via sky-product-spec-modal.js
 
       // Desktop Mega Menu Hover
       const sheet = document.querySelector('.bpc-nav-sheet');

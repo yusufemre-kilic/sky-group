@@ -885,18 +885,27 @@
   }
   </script>
 <script>
-      // Auto-play seasons grid video when scrolled into view
+      // Auto-play seasons grid video when scrolled into view or on first interaction
       (function() {
         const v = document.querySelector('.bcc-grid-seasons-video');
-        if (v && 'IntersectionObserver' in window) {
-          const obs = new IntersectionObserver(entries => {
-            entries.forEach(e => {
-              if (e.isIntersecting) {
+        if (v) {
+          if ('IntersectionObserver' in window) {
+            const obs = new IntersectionObserver(entries => {
+              entries.forEach(e => {
+                if (e.isIntersecting) {
+                  v.play().catch(() => {});
+                }
+              });
+            }, { threshold: 0.1 });
+            obs.observe(v);
+          }
+          ['touchstart', 'scroll', 'click'].forEach(evt => {
+            window.addEventListener(evt, () => {
+              if (v && v.paused) {
                 v.play().catch(() => {});
               }
-            });
-          }, { threshold: 0.1 });
-          obs.observe(v);
+            }, { passive: true, once: true });
+          });
         }
       })();
 </script>
@@ -1071,9 +1080,15 @@ Detayları Keşfedin
     <source media="(min-width: 768px) and (orientation: landscape)" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w" sizes="100vw">
     <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" alt="Sky Group 4 Mevsim İklimlendirme ve Havalandırma" width="1920" height="1080" loading="eager" decoding="async" style="width: 100%; height: 100%; object-fit: cover;">
   </picture>
-</div> <div class="bcc-grid-tiles bcc-grid-tiles-desktop" aria-hidden="true"> <div class="bcc-grid-tile" style="--c:2; --r:1; --ws:0.535"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:2; --r:0; --ws:0.5478"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:4; --r:1; --ws:0.5606"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile bcc-grid-tile-tl" style="--c:0; --r:0; --ws:0.5734"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:1; --r:2; --ws:0.5862"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile bcc-grid-tile-br" style="--c:4; --r:2; --ws:0.599"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:3; --r:1; --ws:0.6338"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile bcc-grid-tile-bl" style="--c:0; --r:2; --ws:0.6466"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:1; --r:0; --ws:0.6594"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:3; --r:2; --ws:0.6722"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:0; --r:1; --ws:0.685"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile bcc-grid-tile-tr" style="--c:4; --r:0; --ws:0.6978"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:2; --r:2; --ws:0.7106"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:1; --r:1; --ws:0.7234"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:3; --r:0; --ws:0.7362"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div> </div><div class="bcc-grid-tiles bcc-grid-tiles-mobile" aria-hidden="true"> <div class="bcc-grid-tile" style="--c:1; --r:1; --ws:0.535"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 480w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 780w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1170w" sizes="100vw" alt="" width="2925" height="4096" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile bcc-grid-tile-tl" style="--c:0; --r:0; --ws:0.5478"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 480w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 780w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1170w" sizes="100vw" alt="" width="2925" height="4096" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile bcc-grid-tile-bl" style="--c:0; --r:3; --ws:0.5606"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 480w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 780w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1170w" sizes="100vw" alt="" width="2925" height="4096" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:1; --r:2; --ws:0.6338"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 480w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 780w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1170w" sizes="100vw" alt="" width="2925" height="4096" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:0; --r:1; --ws:0.6466"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 480w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 780w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1170w" sizes="100vw" alt="" width="2925" height="4096" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile bcc-grid-tile-br" style="--c:1; --r:3; --ws:0.6594"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 480w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 780w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1170w" sizes="100vw" alt="" width="2925" height="4096" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:0; --r:2; --ws:0.6722"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 480w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 780w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1170w" sizes="100vw" alt="" width="2925" height="4096" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile bcc-grid-tile-tr" style="--c:1; --r:0; --ws:0.685"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 480w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 780w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1170w" sizes="100vw" alt="" width="2925" height="4096" loading="lazy" decoding="async"> </div> </div> <div class="bcc-grid-plate"> <div class="bcc-grid-scrim" aria-hidden="true"></div>  <div class="mb-3 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wider text-cyan-200 bg-slate-950/90 border border-cyan-400/60 backdrop-blur-md shadow-2xl">
+</div> <div class="bcc-grid-tiles bcc-grid-tiles-desktop" aria-hidden="true"> <div class="bcc-grid-tile" style="--c:2; --r:1; --ws:0.535"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:2; --r:0; --ws:0.5478"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:4; --r:1; --ws:0.5606"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile bcc-grid-tile-tl" style="--c:0; --r:0; --ws:0.5734"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:1; --r:2; --ws:0.5862"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile bcc-grid-tile-br" style="--c:4; --r:2; --ws:0.599"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:3; --r:1; --ws:0.6338"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile bcc-grid-tile-bl" style="--c:0; --r:2; --ws:0.6466"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:1; --r:0; --ws:0.6594"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:3; --r:2; --ws:0.6722"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:0; --r:1; --ws:0.685"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile bcc-grid-tile-tr" style="--c:4; --r:0; --ws:0.6978"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:2; --r:2; --ws:0.7106"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:1; --r:1; --ws:0.7234"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:3; --r:0; --ws:0.7362"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 820w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1280w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1920w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 2560w" sizes="100vw" alt="" width="4096" height="2731" loading="lazy" decoding="async"> </div> </div><div class="bcc-grid-tiles bcc-grid-tiles-mobile" aria-hidden="true"> <div class="bcc-grid-tile" style="--c:1; --r:1; --ws:0.535"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 480w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 780w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1170w" sizes="100vw" alt="" width="2925" height="4096" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile bcc-grid-tile-tl" style="--c:0; --r:0; --ws:0.5478"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 480w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 780w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1170w" sizes="100vw" alt="" width="2925" height="4096" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile bcc-grid-tile-bl" style="--c:0; --r:3; --ws:0.5606"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 480w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 780w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1170w" sizes="100vw" alt="" width="2925" height="4096" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:1; --r:2; --ws:0.6338"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 480w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 780w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1170w" sizes="100vw" alt="" width="2925" height="4096" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:0; --r:1; --ws:0.6466"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 480w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 780w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1170w" sizes="100vw" alt="" width="2925" height="4096" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile bcc-grid-tile-br" style="--c:1; --r:3; --ws:0.6594"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 480w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 780w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1170w" sizes="100vw" alt="" width="2925" height="4096" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile" style="--c:0; --r:2; --ws:0.6722"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 480w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 780w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1170w" sizes="100vw" alt="" width="2925" height="4096" loading="lazy" decoding="async"> </div><div class="bcc-grid-tile bcc-grid-tile-tr" style="--c:1; --r:0; --ws:0.685"> <img src="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg" srcset="./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 480w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 780w, ./_bpc/assets/base-core-concept/sky-rooftop-hvac-summer.jpg 1170w" sizes="100vw" alt="" width="2925" height="4096" loading="lazy" decoding="async"> </div> </div> <div class="bcc-grid-plate"> <div class="bcc-grid-scrim" aria-hidden="true"></div>  <div class="mb-2 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wider text-cyan-200 bg-slate-950/90 border border-cyan-400/60 backdrop-blur-md shadow-2xl">
   <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
   4 MEVSİM İKLİMLENDİRME &amp; MÜHENDİSLİK SİSTEMLERİ
+</div>
+<div class="mb-4 flex flex-wrap items-center justify-center gap-2">
+  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-amber-300 bg-slate-950/85 border border-amber-500/40 backdrop-blur-md shadow-sm">☀️ Yaz</span>
+  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-orange-300 bg-slate-950/85 border border-orange-500/40 backdrop-blur-md shadow-sm">🍂 Sonbahar</span>
+  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-cyan-300 bg-slate-950/85 border border-cyan-500/40 backdrop-blur-md shadow-sm">❄️ Kış</span>
+  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-emerald-300 bg-slate-950/85 border border-emerald-500/40 backdrop-blur-md shadow-sm">🌱 İlkbahar</span>
 </div>
 <h2 class="bcc-grid-title" style="--ws:0.8931"><span class="bcc-grid-meet">Keşfedin:</span> Sky Group<img src="./assets/sky-group-logo-arrow.png" alt="Sky Group" class="inline-block w-8 h-8 align-middle ml-2 object-contain filter drop-shadow-[0_2px_8px_rgba(9,189,227,0.4)]" width="32" height="32"></h2> <p class="bcc-grid-sub" style="--ws:0.9094">Türkiye'de Yerli İmalat &amp; Yüksek Standartlarda Mühendislik.</p> </div> </div> </div> </section>  <div class="bcc-after"> <section class="bcc-meet" data-bcc-scrub="runway" data-bcc-scrub-sm="travel" data-bcc-cue="0.72" data-bcc-cue-sm="0.36"> <div class="bcc-meet-screen" data-bcc-clear> <div class="bcc-meet-inner"> <h2 class="bcc-stmt-head bcc-meet-head">  <span class="bcc-meet-line" data-bcc-reveal><span class="bcc-meet-green"><span class="bcc-meet-w" style="--cd:0.05s">Doğru</span> <span class="bcc-meet-w" style="--cd:0.13s">mühendislik</span> <span class="bcc-meet-w" style="--cd:0.21s">ve</span> <span class="bcc-meet-mark"><span class="bcc-meet-w" style="--cd:0.29s">santraller</span><img class="bcc-meet-pic" src="./sm/ambar/urunler/tks-standart-klima-santrali-B.jpg" alt="" width="190" height="222" loading="lazy" decoding="async"></span></span></span> <span class="bcc-meet-w" style="--ws:0.1400">ile</span> <span class="bcc-meet-w" style="--ws:0.1600">binalarınızda</span> <span class="bcc-meet-w" style="--ws:0.1800">kesintisiz</span> <span class="bcc-meet-w" style="--ws:0.2000">temiz</span> <span class="bcc-meet-mark"><span class="bcc-meet-w" style="--ws:0.2200">hava</span><img class="bcc-meet-ico bcc-meet-ico-house" style="--ws:0.2500" src="./_bpc/assets/base-core-concept/meet-house.avif" alt="" width="268" height="162" loading="lazy" decoding="async"></span> <span class="bcc-meet-w" style="--ws:0.2400">ve</span> <span class="bcc-meet-w" style="--ws:0.2600">ideal</span> <span class="bcc-meet-w" style="--ws:0.2800">iklimlendirme</span> <span class="bcc-meet-w" style="--ws:0.3000">konforu</span> <span class="bcc-meet-mark"><span class="bcc-meet-w" style="--ws:0.3200">sağlıyoruz</span><img class="bcc-meet-ico bcc-meet-ico-bolt" style="--ws:0.3500" src="./_bpc/assets/base-core-concept/meet-icon-bolt.avif" alt="" width="112" height="186" loading="lazy" decoding="async"><span class="bcc-meet-w" style="--ws:0.3200">,</span></span> <span class="bcc-meet-w" style="--ws:0.3400">üstelik</span> <span class="bcc-meet-w" style="--ws:0.3600">yüksek</span> <span class="bcc-meet-w" style="--ws:0.3800">enerji</span> <span class="bcc-meet-mark"><span class="bcc-meet-w" style="--ws:0.4000">tasarrufuyla</span><img class="bcc-meet-ico bcc-meet-ico-dollar" style="--ws:0.4300" src="./_bpc/assets/base-core-concept/meet-icon-dollar.avif" alt="" width="189" height="182" loading="lazy" decoding="async"><span class="bcc-meet-w" style="--ws:0.4000">,</span></span> <span class="bcc-meet-w" style="--ws:0.4200">işletme</span> <span class="bcc-meet-w" style="--ws:0.4400">giderlerini</span> <span class="bcc-meet-w" style="--ws:0.4600">en</span> <span class="bcc-meet-w" style="--ws:0.4800">aza</span> <span class="bcc-meet-mark"><span class="bcc-meet-w" style="--ws:0.5000">indiriyoruz</span><img class="bcc-meet-ico bcc-meet-ico-tower" style="--ws:0.5300" src="./_bpc/assets/base-core-concept/meet-icon-tower.avif" alt="" width="152" height="156" loading="lazy" decoding="async"><span class="bcc-meet-w" style="--ws:0.5000">.</span></span> </h2> <div class="bcc-meet-sub" style="--ws:0.66; --wd:0.17"> <p class="bcc-meet-sub-bold">Sky Group; klima santralleri, VRF iklimlendirme ve hava kanallarında anahtar teslim çözümler sunar.</p> <p class="bcc-meet-sub-muted">Türkiye genelinde 250+ endüstriyel ve ticari referans proje.</p> </div> <div class="bcc-meet-cta" style="--ws:0.74; --wd:0.17"> <a class="inline-flex touch-manipulation items-center justify-center gap-2 font-semibold transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground disabled:pointer-events-none select-none whitespace-nowrap bg-brand-primary text-text-brand hover:bg-brand-primary-subtle disabled:bg-surface-subtle disabled:text-text-muted py-3 px-4 rounded text-body-lg bcc-meet-btn" href="#sky-quote-modal" data-sky-modal-trigger="teklif" data-bcc-pricing-modal>Ücretsiz Keşif &amp; Debi Analizi Talep Et</a> <a class="bcc-meet-more" href="#sky-quote-modal" data-sky-modal-trigger="kesif">Projeniz için yerinde ücretsiz keşif talep edin ›</a> </div> </div> </div> </section> <section id="bcc-bp" class="bcc-bp" data-bcc-scrub="runway" data-bcc-steps="4" data-bcc-snap data-bcc-snap-off="(max-width: 767.9px), (max-height: 720px), (pointer: coarse)" style="--n:4">  <i class="bcc-bp-stop bcc-bp-stop-out bcc-bp-stop-back" aria-hidden="true"></i> <i class="bcc-bp-stop bcc-bp-stop-seam" aria-hidden="true"></i> <i class="bcc-bp-stop" style="--at:0.125" aria-hidden="true"></i><i class="bcc-bp-stop" style="--at:0.375" aria-hidden="true"></i><i class="bcc-bp-stop" style="--at:0.625" aria-hidden="true"></i><i class="bcc-bp-stop" style="--at:0.875" aria-hidden="true"></i> <i class="bcc-bp-stop" style="--at:1" aria-hidden="true"></i> <i class="bcc-bp-stop bcc-bp-stop-out bcc-bp-stop-on" aria-hidden="true"></i> <div class="bcc-bp-screen" data-bcc-screen data-bcc-clear> <div class="bcc-bp-grid"> <div class="bcc-bp-card" data-bcc-reveal style="--rd:0.06s"> <img class="bcc-bp-img" data-shot="battery" src="./sm/ambar/urunler/tks-standart-klima-santrali-B.jpg" loading="eager" fetchpriority="high" srcset="./sm/ambar/urunler/tks-standart-klima-santrali-B.jpg 480w, ./sm/ambar/urunler/tks-standart-klima-santrali-B.jpg 960w, ./sm/ambar/urunler/tks-standart-klima-santrali-B.jpg 1360w" sizes="(min-width: 768px) min(52vw, 676px), calc(100vw - 44px)" alt="Sky Group Standart ve Hijyenik Klima Santrali Montajı" width="1360" height="1338" loading="lazy" decoding="async"><img class="bcc-bp-img" data-shot="install" style="--wb:0.2500" src="./sm/ambar/urunler/vrvvrf-sistemler-B.jpg" loading="eager" srcset="./sm/ambar/urunler/vrvvrf-sistemler-B.jpg 480w, ./sm/ambar/urunler/vrvvrf-sistemler-B.jpg 960w, ./sm/ambar/urunler/vrvvrf-sistemler-B.jpg 1360w" sizes="(min-width: 768px) min(52vw, 676px), calc(100vw - 44px)" alt="Sky Group VRF / VRV İklimlendirme Dış Ünite Sistemleri" width="1360" height="1338" loading="lazy" decoding="async"><img class="bcc-bp-img" data-shot="winter" style="--wb:0.5000" src="./sm/ambar/urunler/isi-geri-kazanim-cihazlari-hrv-B.jpg" loading="eager" srcset="./sm/ambar/urunler/isi-geri-kazanim-cihazlari-hrv-B.jpg 480w, ./sm/ambar/urunler/isi-geri-kazanim-cihazlari-hrv-B.jpg 960w, ./sm/ambar/urunler/isi-geri-kazanim-cihazlari-hrv-B.jpg 1360w" sizes="(min-width: 768px) min(52vw, 676px), calc(100vw - 44px)" alt="Sky Group Isı Geri Kazanım Cihazları ve Tesisat Montajı" width="1360" height="1338" loading="lazy" decoding="async"><img class="bcc-bp-img" data-shot="hand" style="--wb:0.7500" src="./sm/ambar/urunler/yangin-sondurme-sistemleri-B.jpg" loading="eager" srcset="./sm/ambar/urunler/yangin-sondurme-sistemleri-B.jpg 480w, ./sm/ambar/urunler/yangin-sondurme-sistemleri-B.jpg 960w, ./sm/ambar/urunler/yangin-sondurme-sistemleri-B.jpg 1360w" sizes="(min-width: 768px) min(52vw, 676px), calc(100vw - 44px)" alt="Sky Group Yangın ve Duman Tahliye Fan Sistemleri" width="1360" height="1338" loading="lazy" decoding="async"> </div> <div class="bcc-bp-copy">  <h2 class="bcc-bp-head" data-bcc-reveal> <span class="bcc-bp-line"><span class="bcc-bp-mark">Doğru iklimlendirme<svg width="100%" height="10" viewBox="44 149 212 19" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="none" class="block bcc-bp-stroke"><path d="M46.189 161.553C58.3867 161.345 70.6266 161.191 82.6133 158.867C120.776 155.148 158.334 150.869 196.547 150.155C215.572 149.797 234.873 150.048 253.67 151.024C257.336 154.132 250.725 155.061 248.351 155.261C228.982 156.892 206.756 155.168 186.983 155.781C141.587 157.188 96.8898 165.033 52.0009 166.516C49.9952 166.583 47.905 166.597 46.0849 165.638C44.7768 164.175 45.1425 162.963 46.1918 161.553L46.189 161.553Z" fill="#09bde3"></path></svg></span></span> Sky Group ile başlar:</h2>  <ol class="bcc-bp-list" data-bcc-reveal style="--rd:0.12s"> <li class="bcc-bp-step" style="--i:0"> <span class="bcc-bp-seg" aria-hidden="true"></span> <span class="bcc-bp-ico" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none"><g transform="translate(1 1)"><path d="M11 11c0-2.8 2.2-5 5-5s5 2.2 5 5-2.2 5-5 5-5-2.2-5-5z" fill="currentColor" opacity="0.9"/><path d="M11 11c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5z" fill="currentColor" opacity="0.9"/><path d="M11 11c0 2.8-2.2 5-5 5s-5-2.2-5-5 2.2-5 5-5 5 2.2 5 5z" fill="currentColor" opacity="0.9"/><path d="M11 11c2.8 0 5 2.2 5 5s-2.2 5-5 5-5-2.2-5-5 2.2-5 5-5z" fill="currentColor" opacity="0.9"/><circle cx="11" cy="11" r="2.5" fill="currentColor"/></g></svg> </span> <div class="bcc-bp-text"> <h3 class="bcc-bp-title">Merkezi Klima Santralleri (AHU)</h3> <div class="bcc-bp-clip"> <p class="bcc-bp-body"> <strong>120.000 m³/h</strong> debiye kadar çift cidarlı akustik gövde, yüksek enerji verimliliği ve hijyenik iç hava kalitesi. </p> </div> </div> </li><li class="bcc-bp-step" style="--i:1"> <span class="bcc-bp-seg" aria-hidden="true"></span> <span class="bcc-bp-ico" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none"><g transform="translate(1.25 1.25)"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.75 1.5C5.64 1.5 1.5 5.64 1.5 10.75C1.5 15.86 5.64 20 10.75 20C15.86 20 20 15.86 20 10.75C20 5.64 15.86 1.5 10.75 1.5ZM0 10.75C0 4.81 4.81 0 10.75 0C16.69 0 21.5 4.81 21.5 10.75C21.5 16.69 16.69 21.5 10.75 21.5C4.81 21.5 0 16.69 0 10.75Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M10.75 4C11.16 4 11.5 4.34 11.5 4.75V10.29L15.09 12.08C15.46 12.26 15.61 12.71 15.42 13.09C15.24 13.46 14.79 13.61 14.41 13.42L10.41 11.42C10.16 11.29 10 11.03 10 10.75V4.75C10 4.34 10.34 4 10.75 4Z" fill="currentColor"/></g></svg> </span> <div class="bcc-bp-text"> <h3 class="bcc-bp-title">VRV / VRF İklimlendirme Sistemleri</h3> <div class="bcc-bp-clip"> <p class="bcc-bp-body"> Çok bölgeli bağımsız sıcaklık kontrolü, yüksek sezonsal verimlilik (SEER/SCOP), inverter kompresör ve düşük işletme maliyeti ile maksimum tasarruf. </p> </div> </div> </li><li class="bcc-bp-step" style="--i:2"> <span class="bcc-bp-seg" aria-hidden="true"></span> <span class="bcc-bp-ico" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none"><g transform="translate(0.28 0.4)"><path d="M18.72 17.3C18.42 17.3 18.02 17.1 18.02 16.7C18.02 16.3 18.22 15.9 18.62 15.8C19.62 15.6 20.52 15 21.22 14.2C21.82 13.3 22.12 12.3 22.02 11.3C21.92 10.2 21.42 9.3 20.62 8.6C19.82 7.9 18.82 7.5 17.82 7.5H16.52C16.22 7.5 15.92 7.3 15.82 6.9C15.52 5.7 14.92 4.7 14.12 3.8C13.32 2.9 12.32 2.3 11.12 1.9C10.02 1.5 8.72 1.4 7.62 1.6C6.42 1.8 5.32 2.3 4.32 3C3.42 3.7 2.62 4.7 2.12 5.8C1.62 6.9 1.42 8.1 1.52 9.3C1.52 10.5 2.02 11.7 2.62 12.7C3.22 13.7 4.12 14.5 5.22 15.1C5.62 15.3 5.72 15.8 5.52 16.1C5.32 16.5 4.82 16.6 4.52 16.4C3.22 15.7 2.22 14.7 1.42 13.5C0.62 12.3 0.12 10.9 0.02 9.4C-0.08 8 0.12 6.5 0.72 5.2C1.32 3.9 2.22 2.7 3.32 1.8C4.42 0.9 5.82 0.3 7.22 0.1C8.62 -0.1 10.12 0 11.52 0.5C12.92 1 14.12 1.8 15.12 2.8C15.92 3.7 16.62 4.8 17.02 6H17.72C19.12 6 20.52 6.5 21.62 7.5C22.72 8.5 23.32 9.8 23.52 11.2C23.62 12.6 23.32 14 22.42 15.2C21.62 16.4 20.32 17.1 18.92 17.4C18.92 17.4 18.82 17.4 18.72 17.4V17.3Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M13.12 10C13.42 10.2 13.52 10.7 13.32 11L10.12 15.8H14.72C15.02 15.8 15.22 16 15.42 16.2C15.52 16.4 15.52 16.7 15.42 17L11.42 23C11.22 23.3 10.72 23.4 10.42 23.2C10.12 23 10.02 22.5 10.22 22.2L13.42 17.4H8.82C8.52 17.4 8.32 17.2 8.12 17C8.02 16.8 8.02 16.5 8.12 16.2L12.12 10.2C12.32 9.9 12.82 9.8 13.12 10Z" fill="currentColor"/></g></svg> </span> <div class="bcc-bp-text"> <h3 class="bcc-bp-title">Isı Geri Kazanım Cihazları (HRV)</h3> <div class="bcc-bp-clip"> <p class="bcc-bp-body"> %80’e varan ısıl geri kazanım verimiyle egzoz havasındaki termal enerjiyi taze havaya aktaran, enerji tüketimini minimize eden teknoloji. </p> </div> </div> </li><li class="bcc-bp-step" style="--i:3"> <span class="bcc-bp-seg" aria-hidden="true"></span> <span class="bcc-bp-ico" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none"><g transform="translate(1.5 1.5)"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 1c.5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.3 1-3 1.1 1.5 2.5 2 3.5 1.5 1.5-.7 1.5-2.5 1-4-.7-2.1.2-4.1 2.5-6.5z" fill="currentColor"/></g></svg> </span> <div class="bcc-bp-text"> <h3 class="bcc-bp-title">Yangın &amp; Duman Tahliye Sistemleri</h3> <div class="bcc-bp-clip"> <p class="bcc-bp-body"> 400°C/2h yangına dayanıklı duman egzoz fanları, yangın ve duman damperleri, merdiven ve asansör kovası basınçlandırma sistemleri. </p> </div> </div> </li> </ol> <div class="bcc-bp-cta" data-bcc-reveal style="--rd:0.2s"> <a class="inline-flex touch-manipulation items-center justify-center gap-2 font-semibold transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground disabled:pointer-events-none select-none whitespace-nowrap bg-brand-primary text-text-brand hover:bg-brand-primary-subtle disabled:bg-surface-subtle disabled:text-text-muted py-3 px-4 rounded text-body-lg border border-transparent bcc-bp-btn" href="#sky-quote-modal" data-sky-modal-trigger="teklif" data-bcc-pricing-modal>Ücretsiz Keşif &amp; Debi Analizi Talep Et</a> <a class="inline-flex touch-manipulation items-center justify-center gap-2 font-semibold transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary-foreground disabled:pointer-events-none select-none whitespace-nowrap bg-transparent border border-brand-primary-foreground text-text-brand hover:border-brand-primary-active hover:text-brand-primary-active disabled:border-text-disabled disabled:text-text-muted py-3 px-4 rounded text-body-lg bcc-bp-btn" href="#sky-quote-modal" data-sky-modal-trigger="teklif">Keşif Talebi Oluşturun</a> </div> </div> </div> </div> </section> <section id="bcc-witness" class="bcc-witness" style="--wit-cue:0.08">  <i class="bcc-witness-stop" aria-hidden="true"></i> <div class="bcc-witness-catch" data-bcc-scrub="runway" data-bcc-flip="0.58" data-bcc-cue="0.08" data-bcc-snap-soft> <div class="bcc-witness-scene" data-bcc-screen>  <i class="bcc-witness-clear" aria-hidden="true"></i> <div class="bcc-witness-frame bcc-witness-cols"> <div class="bcc-witness-card" data-bcc-reveal> <picture class="bcc-witness-img bcc-witness-img-day"> <source media="(min-width: 768px)" srcset="./sm/ambar/koca_fotogal_bb3b74f63d4c55312eb731d8454870d6.jpg 920w, ./sm/ambar/koca_fotogal_bb3b74f63d4c55312eb731d8454870d6.jpg 1840w" sizes="(min-width: 768px) min(63.7vw, 917px), calc(100vw - 56px)"> <img src="./sm/ambar/koca_fotogal_bb3b74f63d4c55312eb731d8454870d6.jpg" srcset="./sm/ambar/koca_fotogal_bb3b74f63d4c55312eb731d8454870d6.jpg 674w, ./sm/ambar/koca_fotogal_bb3b74f63d4c55312eb731d8454870d6.jpg 1348w" sizes="(min-width: 768px) min(63.7vw, 917px), calc(100vw - 56px)" alt="Sky Group Normal İşletme Şartlarında İklimlendirme ve Taze Hava Dağıtımı" width="1348" height="1312" loading="lazy" decoding="async"> </picture> <picture class="bcc-witness-img bcc-witness-img-night"> <source media="(min-width: 768px)" srcset="./sm/ambar/koca_fotogal_cc0e330caa9430309f63c45477f22e6f.jpg 920w, ./sm/ambar/koca_fotogal_cc0e330caa9430309f63c45477f22e6f.jpg 1840w" sizes="(min-width: 768px) min(63.7vw, 917px), calc(100vw - 56px)"> <img src="./sm/ambar/koca_fotogal_cc0e330caa9430309f63c45477f22e6f.jpg" srcset="./sm/ambar/koca_fotogal_cc0e330caa9430309f63c45477f22e6f.jpg 674w, ./sm/ambar/koca_fotogal_cc0e330caa9430309f63c45477f22e6f.jpg 1348w" sizes="(min-width: 768px) min(63.7vw, 917px), calc(100vw - 56px)" alt="Sky Group Acil Durum Duman Tahliye ve Otomasyon Sistemi Devrede" width="1348" height="1312" loading="lazy" decoding="async"> </picture> <label class="bcc-witness-toggle"> <input class="bcc-witness-switch" type="checkbox" role="switch" checked aria-label="Sistem durumu"> <span class="bcc-witness-toggle-label" aria-hidden="true">Sistem</span> <span class="bcc-witness-track" aria-hidden="true"> <span class="bcc-witness-word bcc-witness-word-on">On</span> <span class="bcc-witness-word bcc-witness-word-off">Off</span> <span class="bcc-witness-knob"></span> </span> </label> </div> <div class="bcc-witness-copy">  <div class="bcc-witness-copy-day"> <h2 class="bcc-witness-head bcc-witness-head-day">Normal İşletme Şartlarında:</h2> <p class="bcc-witness-body bcc-witness-body-day">
 Akıllı otomasyon sistemleri sayesinde enerji tüketimi minimumda tutulur, frekans invertörlü fanlar taze hava ihtiyacına göre debiyi hassas şekilde otomatik dengeler.
@@ -1216,180 +1231,144 @@ Yangın algılama veya acil durumda sistem anında tahliye moduna geçer; yangı
   }
 </style>
 
-<section id="bcc-how" class="bcc-how" aria-labelledby="bcc-how-head">
-  <div class="bcc-how-screen">
-    <div class="bcc-how-inner">
-      <div class="max-w-3xl mb-10">
-        <p class="text-xs font-bold uppercase tracking-wider text-[#0284c7] mb-2">MÜHENDİSLİK METODOLOJİSİ &amp; KALİTE TAAHHÜDÜ</p>
-        <h2 class="bcc-how-head" id="bcc-how-head">
-          Nasıl Çalışıyoruz? 6 Aşamalı Somut Çıktılı Sürecimiz
-        </h2>
-        <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
-          Sky Group olarak iklimlendirme projelerinizi basit imalat veya montaj seviyesinde değil; uluslararası normlara dayalı, şeffaf çıktılı ve akredite test raporlarıyla anahtar teslim mühendislik ortaklığı olarak yönetiyoruz.
-        </p>
-      </div>
-
-      <!-- 6 Aşamalı Borderless Grid -->
-      <ol class="bcc-how-grid">
-        
-        <!-- Adım 1 -->
-        <li class="bcc-how-step flex flex-col justify-between border-b border-slate-200/70 pb-6">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-cyan-50 text-[#0284c7] font-black text-sm border border-cyan-200">01</span>
-              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Süre: 24 – 48 Saat</span>
-            </div>
-            <h3 class="text-lg font-bold text-slate-900 mb-2">1. Ön Değerlendirme &amp; Keşif</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-              Mimari ve mekanik DWG/BIM paftaları detaylıca taranır. Şantiyede tavan kotları, kiriş geçişleri, şaft rezervasyonları, statik taşıma kapasitesi ve mahal temiz hava gereksinimleri lazerli ölçümle yerinde tespit edilir.
-            </p>
-            <div class="pt-3 border-t border-slate-200/50 space-y-1.5 text-xs">
-              <div class="flex items-baseline justify-between gap-2">
-                <span class="text-slate-500">Standart / Araç:</span>
-                <span class="font-semibold text-slate-900 text-right">TS EN 12599, Lazer &amp; Termal Ölçüm</span>
-              </div>
-              <div class="flex items-baseline justify-between gap-2">
-                <span class="text-slate-500">Teslim Edilen Belge:</span>
-                <span class="font-bold text-[#0284c7] text-right">Saha Keşif Raporu &amp; Fotoğraf Kaydı</span>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <!-- Adım 2 -->
-        <li class="bcc-how-step flex flex-col justify-between border-b border-slate-200/70 pb-6">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-cyan-50 text-[#0284c7] font-black text-sm border border-cyan-200">02</span>
-              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Süre: 2 – 3 İş Günü</span>
-            </div>
-            <h3 class="text-lg font-bold text-slate-900 mb-2">2. Yük &amp; Debi Analizi</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-              Mahal hacimleri, kişi yoğunluğu, aydınlatma ve proses ısı kazançları hesaplanır. Taze hava debisi (m³/h, CFM), statik basınç kayıpları ve kanal sürtünme katsayıları simüle edilerek hava dağılım senaryoları modellenir.
-            </p>
-            <div class="pt-3 border-t border-slate-200/50 space-y-1.5 text-xs">
-              <div class="flex items-baseline justify-between gap-2">
-                <span class="text-slate-500">Standart / Araç:</span>
-                <span class="font-semibold text-slate-900 text-right">ASHRAE 62.1, DIN 1946-4, EN 13779</span>
-              </div>
-              <div class="flex items-baseline justify-between gap-2">
-                <span class="text-slate-500">Teslim Edilen Belge:</span>
-                <span class="font-bold text-[#0284c7] text-right">Teknik Hesap Dosyası &amp; Psikrometrik Rapor</span>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <!-- Adım 3 -->
-        <li class="bcc-how-step flex flex-col justify-between border-b border-slate-200/70 pb-6">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-cyan-50 text-[#0284c7] font-black text-sm border border-cyan-200">03</span>
-              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Süre: 1 – 2 İş Günü</span>
-            </div>
-            <h3 class="text-lg font-bold text-slate-900 mb-2">3. Sistem Seçimi &amp; Optimizasyon</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-              Mahal ihtiyacına göre Klima Santrali (AHU), VRF, Isı Geri Kazanım (HRV) ve yangın duman tahliye kombinasyonları karşılaştırılır. Yatırım ve ömür boyu işletme enerjisi (LCC) optimizasyonu yapılarak en verimli cihaz tipi belirlenir.
-            </p>
-            <div class="pt-3 border-t border-slate-200/50 space-y-1.5 text-xs">
-              <div class="flex items-baseline justify-between gap-2">
-                <span class="text-slate-500">Standart / Araç:</span>
-                <span class="font-semibold text-slate-900 text-right">TSE EN 1886, Eurovent, ErP 2018 EcoDesign</span>
-              </div>
-              <div class="flex items-baseline justify-between gap-2">
-                <span class="text-slate-500">Teslim Edilen Belge:</span>
-                <span class="font-bold text-[#0284c7] text-right">Sistem Seçim Matrisi &amp; LCC Enerji Raporu</span>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <!-- Adım 4 -->
-        <li class="bcc-how-step flex flex-col justify-between border-b border-slate-200/70 pb-6">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-cyan-50 text-[#0284c7] font-black text-sm border border-cyan-200">04</span>
-              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Süre: 3 – 5 İş Günü</span>
-            </div>
-            <h3 class="text-lg font-bold text-slate-900 mb-2">4. Detaylı Projelendirme</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-              EN 1507 Class C standardında hava kanalı güzergâhı, menfez/anemostad yerleşimleri, akustik susturucu ve yangın damperi entegrasyonu çizilir. 3D Revit ortamında diğer tesisatlarla çakışma (clash detection) testleri tamamlanır.
-            </p>
-            <div class="pt-3 border-t border-slate-200/50 space-y-1.5 text-xs">
-              <div class="flex items-baseline justify-between gap-2">
-                <span class="text-slate-500">Standart / Araç:</span>
-                <span class="font-semibold text-slate-900 text-right">EN 1507 Class C, SMACNA, AutoCAD &amp; Revit MEP</span>
-              </div>
-              <div class="flex items-baseline justify-between gap-2">
-                <span class="text-slate-500">Teslim Edilen Belge:</span>
-                <span class="font-bold text-[#0284c7] text-right">Metrajlı Teknik Şartname + DWG/Revit Paftaları</span>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <!-- Adım 5 -->
-        <li class="bcc-how-step flex flex-col justify-between border-b border-slate-200/70 pb-6">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-cyan-50 text-[#0284c7] font-black text-sm border border-cyan-200">05</span>
-              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Süre: 1 – 2 İş Günü</span>
-            </div>
-            <h3 class="text-lg font-bold text-slate-900 mb-2">5. Müşteri Onayı &amp; Bütçe</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-              Teknik koordinasyon toplantısı ile yatırım bütçesine göre değer mühendisliği (Value Engineering) alternatifleri tartışılır. Aracı komisyonsuz, doğrudan Ankara İvedik OSB fabrika imalat fiyatlarıyla şeffaf teklif ve taahhüt sözleşmesi bağlanır.
-            </p>
-            <div class="pt-3 border-t border-slate-200/50 space-y-1.5 text-xs">
-              <div class="flex items-baseline justify-between gap-2">
-                <span class="text-slate-500">Standart / Araç:</span>
-                <span class="font-semibold text-slate-900 text-right">ISO 9001:2015 Kalite Yönetimi</span>
-              </div>
-              <div class="flex items-baseline justify-between gap-2">
-                <span class="text-slate-500">Teslim Edilen Belge:</span>
-                <span class="font-bold text-[#0284c7] text-right">Nihai İmalat Projesi + Net Teklif &amp; Gantt Takvimi</span>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <!-- Adım 6 -->
-        <li class="bcc-how-step flex flex-col justify-between border-b border-slate-200/70 pb-6">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-cyan-50 text-[#0284c7] font-black text-sm border border-cyan-200">06</span>
-              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Süre: Şantiye Takvimine Göre</span>
-            </div>
-            <h3 class="text-lg font-bold text-slate-900 mb-2">6. İmalat, Montaj &amp; TAB</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-              CNC plazma ve flanş hatlarımızda sıfır hata ile üretim yapılır. Sertifikalı montaj ekiplerimiz sahada kurulumu tamamlar; diferansiyel basınç testleri, anemometre ile menfez debi kalibrasyonu yapılarak sistem akredite teslim edilir.
-            </p>
-            <div class="pt-3 border-t border-slate-200/50 space-y-1.5 text-xs">
-              <div class="flex items-baseline justify-between gap-2">
-                <span class="text-slate-500">Standart / Araç:</span>
-                <span class="font-semibold text-slate-900 text-right">EN 12599, TSE EN 1886 D1/L1, NEBB TAB</span>
-              </div>
-              <div class="flex items-baseline justify-between gap-2">
-                <span class="text-slate-500">Teslim Edilen Belge:</span>
-                <span class="font-bold text-[#0284c7] text-right">Akredite TAB Raporu + 2 Yıl Garanti + İşletme Eğitimi</span>
-              </div>
-            </div>
-          </div>
-        </li>
-
-      </ol>
-
-      <!-- CTA Row -->
-      <div class="mt-12 flex flex-wrap items-center gap-4">
-        <a class="inline-flex touch-manipulation items-center justify-center gap-2 font-bold transition-all duration-150 select-none whitespace-nowrap bg-brand-primary text-text-brand hover:bg-brand-primary-subtle py-3.5 px-6 rounded text-sm sm:text-base cursor-pointer shadow-md" href="#sky-quote-modal" onclick="window.openQuoteModal('6 Aşamalı Süreç İçin Ücretsiz Keşif &amp; Debi Analizi')" aria-label="Hemen Teklif İsteyin">
-          <span>Ücretsiz Keşif &amp; Debi Analizi Talep Et</span>
-          <svg style="width: 16px !important; height: 16px !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        </a>
-        <a class="inline-flex touch-manipulation items-center justify-center gap-2 font-bold transition-all duration-150 select-none whitespace-nowrap border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 py-3.5 px-6 rounded text-sm sm:text-base" href="./projelendirme-muhendislik-danismanligi.html" aria-label="6 Aşamalı Süreç Detayları &amp; Şartname">
-          <span>Ayrıntılı Projelendirme Rehberi &amp; Şartname</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-        </a>
-      </div>
+<section id="bcc-how" class="sky-how-basepower py-16 md:py-24" style="background-color: #f7f6f2; background-image: radial-gradient(circle at center, rgba(6, 21, 39, 0.13) 0 1px, transparent 1.2px); background-size: 16px 16px;">
+  <div class="max-w-[1376px] mx-auto px-6 md:px-12">
+    
+    <!-- Header -->
+    <div class="max-w-3xl mb-12 md:mb-16">
+      <p class="text-xs font-bold uppercase tracking-widest text-[#0284c7] mb-2 flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-[#0284c7]"></span>
+        MÜHENDİSLİK METODOLOJİSİ &amp; KALİTE TAAHHÜDÜ
+      </p>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#061527] tracking-tight leading-tight">
+        Nasıl Çalışıyoruz?
+      </h2>
+      <p class="text-base sm:text-lg text-slate-600 mt-3 leading-relaxed">
+        Ön değerlendirmeden akredite TAB teslimine kadar 6 aşamalı, şeffaf çıktılı anahtar teslim mühendislik sürecimiz.
+      </p>
     </div>
+
+    <!-- 6-Step BasePower Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12">
+      
+      <!-- 01 -->
+      <div class="sky-how-card border-l-2 border-[#0284c7] pl-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-2.5 mb-2.5">
+            <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#061527] text-white font-bold text-xs shadow-xs">1</span>
+            <span class="text-xs font-bold text-[#0284c7] uppercase tracking-wider">Süre: 24 – 48 Saat</span>
+          </div>
+          <h3 class="text-xl font-bold text-[#061527] mb-2.5 leading-snug">1. Ön Değerlendirme &amp; Keşif</h3>
+          <p class="text-sm text-slate-700 leading-relaxed mb-4">
+            Mimari ve mekanik DWG/BIM paftaları detaylıca taranır. Şantiyede tavan kotları, kiriş geçişleri, şaft rezervasyonları, statik taşıma kapasitesi ve mahal temiz hava gereksinimleri lazerli ölçümle yerinde tespit edilir.
+          </p>
+        </div>
+        <div class="pt-3 border-t border-slate-300/70 space-y-1.5 text-xs">
+          <div><span class="font-bold text-slate-900">Standart / Araç:</span> <span class="text-slate-700">TS EN 12599, Lazer &amp; Termal Ölçüm</span></div>
+          <div><span class="font-bold text-[#0284c7]">Teslim Edilen Belge:</span> <span class="text-slate-900 font-semibold">Saha Keşif Raporu &amp; Fotoğraf Kaydı</span></div>
+        </div>
+      </div>
+
+      <!-- 02 -->
+      <div class="sky-how-card border-l-2 border-[#0284c7] pl-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-2.5 mb-2.5">
+            <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#061527] text-white font-bold text-xs shadow-xs">2</span>
+            <span class="text-xs font-bold text-[#0284c7] uppercase tracking-wider">Süre: 2 – 3 İş Günü</span>
+          </div>
+          <h3 class="text-xl font-bold text-[#061527] mb-2.5 leading-snug">2. Yük &amp; Debi Analizi</h3>
+          <p class="text-sm text-slate-700 leading-relaxed mb-4">
+            Mahal hacimleri, kişi yoğunluğu, aydınlatma ve proses ısı kazançları hesaplanır. Taze hava debisi (m³/h, CFM), statik basınç kayıpları ve kanal sürtünme katsayıları simüle edilerek hava dağılım senaryoları modellenir.
+          </p>
+        </div>
+        <div class="pt-3 border-t border-slate-300/70 space-y-1.5 text-xs">
+          <div><span class="font-bold text-slate-900">Standart / Araç:</span> <span class="text-slate-700">ASHRAE 62.1, DIN 1946-4, EN 13779</span></div>
+          <div><span class="font-bold text-[#0284c7]">Teslim Edilen Belge:</span> <span class="text-slate-900 font-semibold">Teknik Hesap Dosyası &amp; Psikrometrik Rapor</span></div>
+        </div>
+      </div>
+
+      <!-- 03 -->
+      <div class="sky-how-card border-l-2 border-[#0284c7] pl-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-2.5 mb-2.5">
+            <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#061527] text-white font-bold text-xs shadow-xs">3</span>
+            <span class="text-xs font-bold text-[#0284c7] uppercase tracking-wider">Süre: 1 – 2 İş Günü</span>
+          </div>
+          <h3 class="text-xl font-bold text-[#061527] mb-2.5 leading-snug">3. Sistem Seçimi &amp; Optimizasyon</h3>
+          <p class="text-sm text-slate-700 leading-relaxed mb-4">
+            Mahal ihtiyacına göre Klima Santrali (AHU), VRF, Isı Geri Kazanım (HRV) ve yangın duman tahliye kombinasyonları karşılaştırılır. Yatırım ve ömür boyu işletme enerjisi (LCC) optimizasyonu yapılarak en verimli cihaz tipi belirlenir.
+          </p>
+        </div>
+        <div class="pt-3 border-t border-slate-300/70 space-y-1.5 text-xs">
+          <div><span class="font-bold text-slate-900">Standart / Araç:</span> <span class="text-slate-700">TSE EN 1886, Eurovent, ErP 2018 EcoDesign</span></div>
+          <div><span class="font-bold text-[#0284c7]">Teslim Edilen Belge:</span> <span class="text-slate-900 font-semibold">Sistem Seçim Matrisi &amp; LCC Enerji Raporu</span></div>
+        </div>
+      </div>
+
+      <!-- 04 -->
+      <div class="sky-how-card border-l-2 border-[#0284c7] pl-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-2.5 mb-2.5">
+            <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#061527] text-white font-bold text-xs shadow-xs">4</span>
+            <span class="text-xs font-bold text-[#0284c7] uppercase tracking-wider">Süre: 3 – 5 İş Günü</span>
+          </div>
+          <h3 class="text-xl font-bold text-[#061527] mb-2.5 leading-snug">4. Detaylı Projelendirme</h3>
+          <p class="text-sm text-slate-700 leading-relaxed mb-4">
+            EN 1507 Class C standardında hava kanalı güzergâhı, menfez/anemostad yerleşimleri, akustik susturucu ve yangın damperi entegrasyonu çizilir. 3D Revit ortamında diğer tesisatlarla çakışma (clash detection) testleri tamamlanır.
+          </p>
+        </div>
+        <div class="pt-3 border-t border-slate-300/70 space-y-1.5 text-xs">
+          <div><span class="font-bold text-slate-900">Standart / Araç:</span> <span class="text-slate-700">EN 1507 Class C, SMACNA, AutoCAD &amp; Revit MEP</span></div>
+          <div><span class="font-bold text-[#0284c7]">Teslim Edilen Belge:</span> <span class="text-slate-900 font-semibold">Metrajlı Teknik Şartname + DWG/Revit Paftaları</span></div>
+        </div>
+      </div>
+
+      <!-- 05 -->
+      <div class="sky-how-card border-l-2 border-[#0284c7] pl-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-2.5 mb-2.5">
+            <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#061527] text-white font-bold text-xs shadow-xs">5</span>
+            <span class="text-xs font-bold text-[#0284c7] uppercase tracking-wider">Süre: 1 – 2 İş Günü</span>
+          </div>
+          <h3 class="text-xl font-bold text-[#061527] mb-2.5 leading-snug">5. Müşteri Onayı &amp; Bütçe</h3>
+          <p class="text-sm text-slate-700 leading-relaxed mb-4">
+            Teknik koordinasyon toplantısı ile yatırım bütçesine göre değer mühendisliği (Value Engineering) alternatifleri tartışılır. Aracı komisyonsuz, doğrudan Ankara İvedik OSB fabrika imalat fiyatlarıyla şeffaf teklif ve taahhüt sözleşmesi bağlanır.
+          </p>
+        </div>
+        <div class="pt-3 border-t border-slate-300/70 space-y-1.5 text-xs">
+          <div><span class="font-bold text-slate-900">Standart / Araç:</span> <span class="text-slate-700">ISO 9001:2015 Kalite Yönetimi</span></div>
+          <div><span class="font-bold text-[#0284c7]">Teslim Edilen Belge:</span> <span class="text-slate-900 font-semibold">Nihai İmalat Projesi + Net Teklif &amp; Gantt Takvimi</span></div>
+        </div>
+      </div>
+
+      <!-- 06 -->
+      <div class="sky-how-card border-l-2 border-[#0284c7] pl-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-2.5 mb-2.5">
+            <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#061527] text-white font-bold text-xs shadow-xs">6</span>
+            <span class="text-xs font-bold text-[#0284c7] uppercase tracking-wider">Süre: Şantiye Takvimine Göre</span>
+          </div>
+          <h3 class="text-xl font-bold text-[#061527] mb-2.5 leading-snug">6. İmalat, Montaj &amp; TAB</h3>
+          <p class="text-sm text-slate-700 leading-relaxed mb-4">
+            CNC plazma ve flanş hatlarımızda sıfır hata ile üretim yapılır. Sertifikalı montaj ekiplerimiz sahada kurulumu tamamlar; diferansiyel basınç testleri, anemometre ile menfez debi kalibrasyonu yapılarak sistem akredite teslim edilir.
+          </p>
+        </div>
+        <div class="pt-3 border-t border-slate-300/70 space-y-1.5 text-xs">
+          <div><span class="font-bold text-slate-900">Standart / Araç:</span> <span class="text-slate-700">EN 12599, TSE EN 1886 D1/L1, NEBB TAB</span></div>
+          <div><span class="font-bold text-[#0284c7]">Teslim Edilen Belge:</span> <span class="text-slate-900 font-semibold">Akredite TAB Raporu + 2 Yıl Garanti + İşletme Eğitimi</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Centered BasePower Pill CTA Button -->
+    <div class="mt-14 text-center">
+      <a href="#sky-quote-modal" data-sky-modal-trigger="kesif" class="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full font-bold text-sm sm:text-base text-[#04111f] bg-[#09bde3] hover:bg-[#38bdf8] shadow-lg transition-all hover:scale-105 cursor-pointer">
+        <span>Ücretsiz Keşif &amp; Debi Analizi Talep Et</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
+
   </div>
 </section> <section class="bcc-fact" id="bcc-fact" tabindex="-1" data-bcc-scrub="runway" data-bcc-cue="0.18"> <div class="bcc-fact-screen" data-bcc-screen> <div class="bcc-fact-box"> <div class="bcc-fact-media"> <picture>
 <source media="(max-width: 640px) and (orientation: portrait)" srcset="./_bpc/assets/base-core-concept/sky-factory-manufacturing-poster.jpg 480w, ./_bpc/assets/base-core-concept/sky-factory-manufacturing-poster.jpg 780w, ./_bpc/assets/base-core-concept/sky-factory-manufacturing-poster.jpg 1170w" sizes="100vw" width="1170" height="2534">
@@ -2104,237 +2083,10 @@ Türkiye genelinde endüstriyel ve ticari projelere anahtar teslim mühendislik 
     </div>
 </div><div class="flex flex-row-reverse items-end justify-between gap-6 md:flex-col md:items-end md:justify-between md:gap-0 shrink-0"><div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 border border-white/20 text-white font-bold text-xs tracking-wider shadow-sm"><span class="text-[#09bde3]">TSE</span> EN 1886 &bull; CE</div><div class="flex flex-col items-start md:items-end gap-2"><div class="w-8 h-8"><img src="./assets/sky-group-logo-s.png" alt="Sky Group" class="w-full h-full object-contain" width="32" height="32"></div><p class="bpc-clarendon text-brand-primary text-body-sm">Sky Group © 2026 | Ankara &amp; İstanbul, Türkiye</p></div></div></div></div></div></footer><!--astro:end--></astro-island> </div>  <!-- Visitor attribution + UTM persistence — runs at end of <body> (Webflow footer parity). -->  
     <!-- Sky Group Fiyat Teklifi & Keşif Talebi Modal -->
-    <div id="sky-quote-modal" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="modal-card relative w-full max-w-xl bg-white border border-slate-200/90 rounded-xl shadow-2xl p-5 sm:p-7 text-slate-800 max-h-[92vh] overflow-y-auto" style="border-radius: 12px !important;">
-    <!-- Close Button -->
-    <button type="button" id="sky-modal-close" onclick="closeQuoteModal()" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-800 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer" aria-label="Kapat">
-      <svg style="width: 20px !important; height: 20px !important; display: block !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-    </button>
-    
-    <!-- Modal Header -->
-    <div class="flex items-center gap-3.5 mb-4 pb-3 border-b border-slate-100">
-      <div class="w-11 h-11 rounded-lg bg-[#061527] flex items-center justify-center p-2 shadow-sm shrink-0">
-        <img src="./assets/sky-group-logo-s.png" alt="Sky Group" class="w-full h-full object-contain" width="44" height="44">
-      </div>
-      <div>
-        <span class="text-[10.5px] font-bold uppercase tracking-widest text-[#0284c7] block">MÜHENDİSLİK &amp; DOĞRUDAN FABRİKA İMALATI</span>
-        <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">Ücretsiz Keşif &amp; Debi Analizi</h3>
-      </div>
-    </div>
-
-    <!-- 3-Step Progress Indicator Bar -->
-    <div class="grid grid-cols-3 gap-2 mb-5 pb-3 border-b border-slate-100 text-center">
-      <div id="sky-step-tab-1" class="flex flex-col items-center gap-1 transition-all">
-        <div class="step-num w-6 h-6 rounded-full bg-[#09bde3] text-[#04111f] font-bold text-xs flex items-center justify-center shadow-xs">1</div>
-        <span class="step-text text-[11px] font-bold text-slate-900">Mahal &amp; Sektör</span>
-      </div>
-      <div id="sky-step-tab-2" class="flex flex-col items-center gap-1 transition-all opacity-45">
-        <div class="step-num w-6 h-6 rounded-full bg-slate-200 text-slate-600 font-bold text-xs flex items-center justify-center">2</div>
-        <span class="step-text text-[11px] font-semibold text-slate-500">İhtiyaç Kapsamı</span>
-      </div>
-      <div id="sky-step-tab-3" class="flex flex-col items-center gap-1 transition-all opacity-45">
-        <div class="step-num w-6 h-6 rounded-full bg-slate-200 text-slate-600 font-bold text-xs flex items-center justify-center">3</div>
-        <span class="step-text text-[11px] font-semibold text-slate-500">İletişim &amp; Teklif</span>
-      </div>
-    </div>
-
-    <!-- Form -->
-    <form id="sky-quote-form" onsubmit="return false;" class="space-y-4">
-      
-      <!-- STEP 1: Sektör & Mahal Büyüklüğü -->
-      <div id="sky-modal-step-1" class="space-y-4">
-        <div>
-          <label class="block text-xs font-bold text-slate-800 mb-2">1. Projenizin Yer Aldığı Sektör / Tesis Türü:</label>
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="sky-sector-options">
-            <button type="button" class="sky-choice-card text-left p-2.5 rounded-lg border border-[#0284c7] bg-cyan-50/60 ring-2 ring-[#09bde3]/30 transition-all cursor-pointer" data-sector="Endüstriyel & Fabrika">
-              <span class="block text-base mb-0.5">🏭</span>
-              <span class="block text-xs font-bold text-slate-900">Fabrika &amp; Sanayi</span>
-              <span class="block text-[10px] text-slate-500">Ağır proses, toz, kaynak</span>
-            </button>
-            <button type="button" class="sky-choice-card text-left p-2.5 rounded-lg border border-slate-200 bg-slate-50/80 hover:border-[#09bde3] hover:bg-cyan-50/30 transition-all cursor-pointer" data-sector="Sağlık & Temiz Oda">
-              <span class="block text-base mb-0.5">🏥</span>
-              <span class="block text-xs font-bold text-slate-900">Sağlık &amp; Temiz Oda</span>
-              <span class="block text-[10px] text-slate-500">Steril, ameliyathane, ilaç</span>
-            </button>
-            <button type="button" class="sky-choice-card text-left p-2.5 rounded-lg border border-slate-200 bg-slate-50/80 hover:border-[#09bde3] hover:bg-cyan-50/30 transition-all cursor-pointer" data-sector="Plaza & Ticari Bina">
-              <span class="block text-base mb-0.5">🏢</span>
-              <span class="block text-xs font-bold text-slate-900">Plaza &amp; Ofis</span>
-              <span class="block text-[10px] text-slate-500">4 borulu FCU, taze hava</span>
-            </button>
-            <button type="button" class="sky-choice-card text-left p-2.5 rounded-lg border border-slate-200 bg-slate-50/80 hover:border-[#09bde3] hover:bg-cyan-50/30 transition-all cursor-pointer" data-sector="AVM & Ticari Alan">
-              <span class="block text-base mb-0.5">🏬</span>
-              <span class="block text-xs font-bold text-slate-900">AVM &amp; Mağaza</span>
-              <span class="block text-[10px] text-slate-500">Yüksek debi, VRV/VRF</span>
-            </button>
-            <button type="button" class="sky-choice-card text-left p-2.5 rounded-lg border border-slate-200 bg-slate-50/80 hover:border-[#09bde3] hover:bg-cyan-50/30 transition-all cursor-pointer" data-sector="Otopark & Duman Tahliye">
-              <span class="block text-base mb-0.5">🚗</span>
-              <span class="block text-xs font-bold text-slate-900">Otopark &amp; Duman</span>
-              <span class="block text-[10px] text-slate-500">Jet fan, 400°C/2h</span>
-            </button>
-            <button type="button" class="sky-choice-card text-left p-2.5 rounded-lg border border-slate-200 bg-slate-50/80 hover:border-[#09bde3] hover:bg-cyan-50/30 transition-all cursor-pointer" data-sector="Mutfak & Restoran">
-              <span class="block text-base mb-0.5">🍽️</span>
-              <span class="block text-xs font-bold text-slate-900">Restoran &amp; Mutfak</span>
-              <span class="block text-[10px] text-slate-500">Davlumbaz, elektrostatik</span>
-            </button>
-          </div>
-          <input type="hidden" name="sector" id="sky-selected-sector" value="Endüstriyel & Fabrika">
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold text-slate-800 mb-2">2. Yaklaşık Mahal / Tesis Büyüklüğü:</label>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="sky-area-options">
-            <button type="button" class="sky-area-card py-2 px-3 rounded-lg border border-slate-200 bg-white text-center text-xs font-semibold text-slate-700 hover:border-[#09bde3] hover:bg-cyan-50/20 transition-all cursor-pointer" data-area="< 500 m²">
-              &lt; 500 m²
-            </button>
-            <button type="button" class="sky-area-card py-2 px-3 rounded-lg border border-[#0284c7] bg-cyan-50/60 text-[#0284c7] ring-1 ring-[#09bde3] text-center text-xs font-semibold transition-all cursor-pointer" data-area="500 - 2.000 m²">
-              500 - 2.000 m²
-            </button>
-            <button type="button" class="sky-area-card py-2 px-3 rounded-lg border border-slate-200 bg-white text-center text-xs font-semibold text-slate-700 hover:border-[#09bde3] hover:bg-cyan-50/20 transition-all cursor-pointer" data-area="2.000 - 10.000 m²">
-              2.000 - 10.000 m²
-            </button>
-            <button type="button" class="sky-area-card py-2 px-3 rounded-lg border border-slate-200 bg-white text-center text-xs font-semibold text-slate-700 hover:border-[#09bde3] hover:bg-cyan-50/20 transition-all cursor-pointer" data-area="10.000+ m²">
-              10.000+ m²
-            </button>
-          </div>
-          <input type="hidden" name="area" id="sky-selected-area" value="500 - 2.000 m²">
-        </div>
-
-        <button type="button" onclick="goToModalStep(2)" style="background-color: #09bde3 !important; color: #04111f !important;" class="w-full py-3.5 px-5 rounded-lg font-bold text-sm shadow-md hover:bg-[#38bdf8] transition-all flex items-center justify-center gap-2 cursor-pointer mt-3">
-          <span>Devam Et: İhtiyaç Kapsamı</span>
-          <svg style="width: 16px !important; height: 16px !important; display: inline-block !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        </button>
-      </div>
-
-      <!-- STEP 2: Cihaz & Mühendislik Kapsamı -->
-      <div id="sky-modal-step-2" class="space-y-4 hidden">
-        <div>
-          <label class="block text-xs font-bold text-slate-800 mb-2">Hangi Sistem ve Hizmetlere İhtiyacınız Var? (Birden fazla seçilebilir):</label>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="sky-system-checkboxes">
-            <label class="sky-checkbox-card flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-cyan-50/20 transition-all cursor-pointer">
-              <input type="checkbox" name="systems" value="Klima Santrali (AHU)" class="mt-0.5 rounded border-slate-300 text-[#0284c7] focus:ring-[#09bde3]" checked>
-              <span class="text-xs text-slate-800 font-medium">Klima Santralleri (AHU - Çift Cidarlı)</span>
-            </label>
-            <label class="sky-checkbox-card flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-cyan-50/20 transition-all cursor-pointer">
-              <input type="checkbox" name="systems" value="Hava Kanalı (EN 1507 Class C)" class="mt-0.5 rounded border-slate-300 text-[#0284c7] focus:ring-[#09bde3]" checked>
-              <span class="text-xs text-slate-800 font-medium">Hava Kanalları (Class C Galvaniz / Spiral)</span>
-            </label>
-            <label class="sky-checkbox-card flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-cyan-50/20 transition-all cursor-pointer">
-              <input type="checkbox" name="systems" value="VRF / VRV İklimlendirme" class="mt-0.5 rounded border-slate-300 text-[#0284c7] focus:ring-[#09bde3]">
-              <span class="text-xs text-slate-800 font-medium">VRV / VRF Değişken Debili İklimlendirme</span>
-            </label>
-            <label class="sky-checkbox-card flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-cyan-50/20 transition-all cursor-pointer">
-              <input type="checkbox" name="systems" value="Isı Geri Kazanım (HRV)" class="mt-0.5 rounded border-slate-300 text-[#0284c7] focus:ring-[#09bde3]">
-              <span class="text-xs text-slate-800 font-medium">Isı Geri Kazanım Cihazları (HRV - ErP 2018)</span>
-            </label>
-            <label class="sky-checkbox-card flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-cyan-50/20 transition-all cursor-pointer">
-              <input type="checkbox" name="systems" value="Yangın & Duman Tahliye" class="mt-0.5 rounded border-slate-300 text-[#0284c7] focus:ring-[#09bde3]">
-              <span class="text-xs text-slate-800 font-medium">Yangın &amp; Duman Tahliyesi (400°C/2h Jet Fan)</span>
-            </label>
-            <label class="sky-checkbox-card flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-cyan-50/20 transition-all cursor-pointer">
-              <input type="checkbox" name="systems" value="Ücretsiz Yerinde Keşif & TAB" class="mt-0.5 rounded border-slate-300 text-[#0284c7] focus:ring-[#09bde3]" checked>
-              <span class="text-xs text-slate-800 font-medium">Ücretsiz Keşif &amp; Debi Analizi (TAB Raporu)</span>
-            </label>
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold text-slate-800 mb-1.5">Mevcut Proje Durumunuz:</label>
-          <div class="grid grid-cols-3 gap-2" id="sky-status-options">
-            <button type="button" class="sky-status-card py-2 px-2 rounded-lg border border-[#0284c7] bg-cyan-50/60 text-[#0284c7] ring-1 ring-[#09bde3] text-center text-[11px] font-semibold transition-all cursor-pointer" data-status="DWG / BIM Çizimim Hazır">
-              📐 DWG Çizim Hazır
-            </button>
-            <button type="button" class="sky-status-card py-2 px-2 rounded-lg border border-slate-200 bg-white text-center text-[11px] font-semibold text-slate-700 hover:border-[#09bde3] hover:bg-cyan-50/20 transition-all cursor-pointer" data-status="Fikir / Tasarım Aşaması">
-              💡 Fikir / Keşif İhtiyacı
-            </button>
-            <button type="button" class="sky-status-card py-2 px-2 rounded-lg border border-slate-200 bg-white text-center text-[11px] font-semibold text-slate-700 hover:border-[#09bde3] hover:bg-cyan-50/20 transition-all cursor-pointer" data-status="Mevcut Tesis Revizyonu">
-              🔄 Tesis Renovasyonu
-            </button>
-          </div>
-          <input type="hidden" name="status" id="sky-selected-status" value="DWG / BIM Çizimim Hazır">
-        </div>
-
-        <div class="flex items-center gap-2.5 pt-2">
-          <button type="button" onclick="goToModalStep(1)" class="w-1/3 py-3 px-4 rounded-lg font-semibold text-xs border border-slate-200 text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer">
-            ← Geri
-          </button>
-          <button type="button" onclick="goToModalStep(3)" style="background-color: #09bde3 !important; color: #04111f !important;" class="w-2/3 py-3 px-5 rounded-lg font-bold text-sm shadow-md hover:bg-[#38bdf8] transition-all flex items-center justify-center gap-2 cursor-pointer">
-            <span>Devam Et: İletişim Bilgileri</span>
-            <svg style="width: 16px !important; height: 16px !important; display: inline-block !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- STEP 3: İletişim & Şartname Talebi -->
-      <div id="sky-modal-step-3" class="space-y-3 hidden">
-        <div>
-          <label class="block text-[11px] font-bold text-slate-700 mb-1">Ad Soyad / Firma Ünvanı *</label>
-          <input type="text" name="name" id="sky-modal-name" required placeholder="Örn: Ahmet Yılmaz / ABC İnşaat A.Ş." class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#09bde3] focus:ring-2 focus:ring-[#09bde3]/20 transition-all font-medium">
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-          <div>
-            <label class="block text-[11px] font-bold text-slate-700 mb-1">Telefon Numarası *</label>
-            <input type="tel" name="phone" id="sky-modal-phone" required placeholder="0 (5XX) XXX XX XX" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#09bde3] focus:ring-2 focus:ring-[#09bde3]/20 transition-all font-medium">
-          </div>
-          <div>
-            <label class="block text-[11px] font-bold text-slate-700 mb-1">E-Posta Adresi</label>
-            <input type="email" name="email" id="sky-modal-email" placeholder="ornek@firma.com" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#09bde3] focus:ring-2 focus:ring-[#09bde3]/20 transition-all font-medium">
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-[11px] font-bold text-slate-700 mb-1">Teknik Not / Metraj / DWG Açıklaması:</label>
-          <textarea name="notes" id="sky-modal-notes" rows="2" placeholder="Projenizin hava debisi (m³/h), tavan yüksekliği veya varsa özel şartname talepleriniz..." class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#09bde3] focus:ring-2 focus:ring-[#09bde3]/20 transition-all resize-none font-medium"></textarea>
-        </div>
-
-        <!-- Direct Manufacturer Guarantee Banner -->
-        <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200 text-[11px] text-slate-600 leading-relaxed flex items-center gap-2">
-          <span class="text-base shrink-0">🏭</span>
-          <span><strong>Doğrudan İmalatçı Güvencesi:</strong> Aracı komisyonsuz fabrika imalat fiyatı, 24 saatte net metrajlı şartname ve resmi kabul garantili TAB teslimatı.</span>
-        </div>
-
-        <div class="flex items-center gap-2.5 pt-1">
-          <button type="button" onclick="goToModalStep(2)" class="w-1/3 py-3.5 px-4 rounded-lg font-semibold text-xs border border-slate-200 text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer">
-            ← Geri
-          </button>
-          <button type="button" onclick="submitMultiStepForm()" style="background-color: #09bde3 !important; color: #04111f !important;" class="w-2/3 py-3.5 px-5 rounded-lg font-bold text-sm shadow-md hover:bg-[#38bdf8] transition-all flex items-center justify-center gap-2 cursor-pointer">
-            <span>Talebi Tamamla (24 Saatte Teklif)</span>
-            <svg style="width: 16px !important; height: 16px !important; display: inline-block !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- SUCCESS SCREEN -->
-      <div id="sky-form-success" class="hidden py-6 text-center space-y-3">
-        <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-xl font-black">
-          ✓
-        </div>
-        <h4 class="text-lg font-bold text-slate-900">Keşif &amp; Analiz Talebiniz Başarıyla Alındı!</h4>
-        <p class="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-          Mekanik tesisat mühendisimiz en geç <strong>24 saat içinde</strong> telefon numaranızdan sizinle iletişime geçecek; mimari çizimleriniz üzerinden net metrajlı teknik şartname ve imalat teklifinizi hazırlayacaktır.
-        </p>
-        <div class="pt-3">
-          <button type="button" onclick="closeQuoteModal()" class="py-2 px-6 rounded-lg bg-slate-900 text-white font-semibold text-xs hover:bg-slate-800 transition-colors cursor-pointer">
-            Pencereyi Kapat
-          </button>
-        </div>
-      </div>
-
-    </form>
-
-    <!-- Bottom Contact Line -->
-    <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between text-xs text-slate-500 gap-2">
-      <span class="flex items-center gap-1.5 text-[11px]">
-        <svg style="width: 13px !important; height: 13px !important; display: inline-block !important;" class="text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-        Bilgileriniz KVKK kapsamında şifrelenir
-      </span>
-      <div class="flex items-center gap-3 text-xs">
-        <a href="https://wa.me/905419221991" target="_blank" rel="noopener noreferrer" class="text-emerald-600 hover:text-emerald-700 font-bold flex items-center gap-1">
-          WhatsApp: 0 (541) 922 19 91
-        </a>
-      </div>
-    </div>
-  </div>
+    <!-- Sky Group Interactive 3D Product & Technical Spec Modal -->
+<div id="sky-quote-modal" aria-hidden="true" role="dialog" aria-modal="true"></div>
+<script src="./src/sky-products-data.js"></script>
+<script src="./src/sky-product-spec-modal.js"></script>
 </div>
     
 <script>
