@@ -42,7 +42,7 @@
               <div class="sky-spec-view-tabs" role="tablist">
                 <button type="button" class="sky-spec-tab active" data-tab="cutaway">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"/></svg>
-                  <span>3D Kesit &amp; Şema</span>
+                  <span>Teknik Şema &amp; Kesit</span>
                 </button>
                 <button type="button" class="sky-spec-tab" data-tab="specs">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
@@ -58,11 +58,11 @@
             <!-- Main Stage Canvas / View Container -->
             <div class="sky-spec-main-viewport">
               
-              <!-- Tab 1: 3D CAD Cutaway with Hotspots -->
+              <!-- Tab 1: CAD Cutaway with Hotspots -->
               <div id="sky-pane-cutaway" class="sky-spec-pane active">
                 <div class="sky-spec-schematic-wrap">
                   <div class="sky-spec-image-stage">
-                    <img id="sky-spec-main-img" src="" alt="3D CAD Kesit Görünümü" class="sky-spec-schematic-img">
+                    <img id="sky-spec-main-img" src="" alt="Teknik Kesit Görünümü" class="sky-spec-schematic-img">
                     
                     <!-- Hotspot Pins Container -->
                     <div id="sky-spec-hotspots-layer" class="sky-spec-hotspots-layer"></div>
@@ -600,24 +600,24 @@
         }
       }
 
-      /* LEFT STAGE */
+      /* LEFT STAGE (WHITE BACKGROUND - SADE & KLASİK) */
       .sky-spec-left-stage {
-        background: #090d16 !important;
+        background: #ffffff !important;
         display: flex !important;
         flex-direction: column !important;
         overflow: hidden !important;
-        border-bottom: 1px solid #1e293b !important;
+        border-bottom: 1px solid #e2e8f0 !important;
       }
       @media (min-width: 900px) {
         .sky-spec-left-stage {
           border-bottom: none !important;
-          border-right: 1px solid #1e293b !important;
+          border-right: 1px solid #e2e8f0 !important;
         }
       }
       .sky-spec-stage-topbar {
         padding: 10px 16px !important;
-        background: #0f172a !important;
-        border-bottom: 1px solid #1e293b !important;
+        background: #f8fafc !important;
+        border-bottom: 1px solid #e2e8f0 !important;
         display: flex !important;
         align-items: center !important;
         justify-content: space-between !important;
@@ -638,18 +638,19 @@
         font-weight: 600 !important;
         background: transparent !important;
         border: 1px solid transparent !important;
-        color: #94a3b8 !important;
+        color: #64748b !important;
         cursor: pointer !important;
         transition: all 0.15s ease !important;
       }
       .sky-spec-tab:hover {
-        color: #ffffff !important;
-        background: #1e293b !important;
+        color: #0f172a !important;
+        background: #e2e8f0 !important;
       }
       .sky-spec-tab.active {
-        background: #1e293b !important;
-        border-color: #334155 !important;
-        color: #38bdf8 !important;
+        background: #ffffff !important;
+        border-color: #cbd5e1 !important;
+        color: #0284c7 !important;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06) !important;
       }
 
       /* Viewport */
@@ -659,7 +660,7 @@
         min-height: 380px !important;
         max-height: 500px !important;
         overflow-y: auto !important;
-        background-color: #020617 !important;
+        background-color: #ffffff !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
@@ -700,7 +701,7 @@
         object-fit: contain !important;
         border-radius: 4px !important;
         display: block !important;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+        box-shadow: none !important;
       }
       .sky-spec-hotspots-layer {
         position: absolute !important;
@@ -781,9 +782,9 @@
       .sky-spec-hotspot-hint {
         padding: 8px 14px !important;
         font-size: 11px !important;
-        color: #94a3b8 !important;
-        background: #0f172a !important;
-        border-top: 1px solid #1e293b !important;
+        color: #64748b !important;
+        background: #f8fafc !important;
+        border-top: 1px solid #e2e8f0 !important;
         display: flex !important;
         align-items: center !important;
         gap: 8px !important;
@@ -869,8 +870,8 @@
       /* Bottom Thumbnail Strip */
       .sky-spec-thumb-strip-wrap {
         padding: 8px 14px !important;
-        background: #0f172a !important;
-        border-top: 1px solid #1e293b !important;
+        background: #f8fafc !important;
+        border-top: 1px solid #e2e8f0 !important;
         display: flex !important;
         align-items: center !important;
         gap: 10px !important;
@@ -894,9 +895,9 @@
         height: 36px !important;
         border-radius: 4px !important;
         overflow: hidden !important;
-        border: 1px solid #334155 !important;
+        border: 1px solid #cbd5e1 !important;
         cursor: pointer !important;
-        opacity: 0.65 !important;
+        opacity: 0.75 !important;
         flex-shrink: 0 !important;
         transition: all 0.15s ease !important;
       }

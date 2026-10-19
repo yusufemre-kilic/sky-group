@@ -231,42 +231,180 @@
       margin: 0 0 32px 0;
     }
 
-    /* Hero Photo */
+    /* Hero Technical Schematic Stage (Pure White Background, Classic & Clean) */
     .sky-vlog-hero {
       position: relative;
       width: 100%;
-      aspect-ratio: 16 / 9;
-      max-height: 520px;
+      min-height: 340px;
+      max-height: 480px;
       border-radius: 8px;
       overflow: hidden;
       border: 1px solid #e2e8f0;
-      background-color: #061527;
-      box-shadow: 0 10px 30px -10px rgba(6, 21, 39, 0.12);
-      margin-bottom: 48px;
-    }
-    @media (min-width: 768px) {
-      .sky-vlog-hero {
-        aspect-ratio: 21 / 9;
-      }
+      background-color: #ffffff;
+      box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.05);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 20px;
     }
     .sky-vlog-hero img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      max-width: 100%;
+      max-height: 420px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
       display: block;
+      margin: 0 auto;
     }
-    .sky-vlog-hero-badge {
+    .sky-hero-inspect-btn {
       position: absolute;
       bottom: 16px;
-      left: 20px;
-      padding: 6px 14px;
+      right: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
       border-radius: 4px;
-      background: rgba(6, 21, 39, 0.85);
-      backdrop-filter: blur(8px);
-      color: #ffffff;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: #0284c7;
       font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      transition: all 0.15s ease;
+    }
+    .sky-hero-inspect-btn:hover {
+      background: #f8fafc;
+      border-color: #0284c7;
+      color: #0369a1;
+    }
+    .sky-hero-badge {
+      position: absolute;
+      top: 16px;
+      left: 20px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      color: #475569;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* Technical Features Panel Underneath Hero */
+    .sky-hero-specs-panel {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 48px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+    .sky-hero-specs-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #f1f5f9;
+      margin-bottom: 20px;
+    }
+    .sky-hero-specs-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+    .sky-hero-specs-subtitle {
+      font-size: 11px;
+      font-weight: 700;
+      color: #0284c7;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .sky-hero-quick-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    @media (min-width: 768px) {
+      .sky-hero-quick-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    .sky-hero-quick-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 12px 14px;
+    }
+    .sky-hero-quick-card .label {
+      font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.02em;
+      color: #64748b;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .sky-hero-quick-card .val {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f172a;
+      display: block;
+    }
+    .sky-hero-components-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid #f1f5f9;
+    }
+    @media (min-width: 640px) {
+      .sky-hero-components-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .sky-hero-components-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .sky-hero-component-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 14px;
+      transition: border-color 0.15s ease;
+    }
+    .sky-hero-component-card:hover {
+      border-color: #cbd5e1;
+    }
+    .sky-hero-component-card .comp-num {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      color: #0284c7;
+      margin-bottom: 4px;
+    }
+    .sky-hero-component-card .comp-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+    .sky-hero-component-card .comp-desc {
+      font-size: 12px;
+      line-height: 1.55;
+      color: #475569;
+      margin: 0;
     }
 
     /* 2-Column Vlog Grid Layout */
@@ -920,12 +1058,68 @@
 
     </section>
 
-    <!-- FULL HERO IMAGE -->
+    <!-- PRODUCT TECHNICAL SCHEMATIC HERO & SPECS (SADE & BEYAZ ARKA PLAN) -->
     <section class="sky-vlog-container">
       <div class="sky-vlog-hero">
-        <img src="./sm/ambar/urunler/isi-geri-kazanim-cihazlari-hrv.jpg" alt="Plakalı Isı Geri Kazanım Cihazları (HRV)">
-        <div class="sky-vlog-hero-badge">
-          <span>%80 Tasarruf • Sky Group Mühendislik &amp; İmalat Güvencesi</span>
+        <span class="sky-hero-badge">Enerji Geri Kazanımı • HRV Plakalı Seri (500 - 5.000 m³/h)</span>
+        <img src="./assets/images/hrv-3d-cad-cutaway.jpg" alt="Plakalı Isı Geri Kazanım Cihazları (HRV) Teknik Kesit Görünümü">
+        <button type="button" onclick="openProductSpecModal('hrv', 'cutaway')" class="sky-hero-inspect-btn">
+          <svg style="width: 14px; height: 14px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+          <span>Teknik Kesiti ve Şartnameyi İncele</span>
+        </button>
+      </div>
+
+      <!-- TECHNICAL SPECIFICATIONS & COMPONENT BREAKDOWN (DOĞRUDAN GÖRSELİN ALTINDA) -->
+      <div class="sky-hero-specs-panel">
+        <div class="sky-hero-specs-header">
+          <div>
+            <span class="sky-hero-specs-subtitle">Mühendislik Standartları ve Donanım Mimarisi</span>
+            <h2 class="sky-hero-specs-title">Plakalı Isı Geri Kazanım Cihazları (HRV) — Temel Teknik Parametreler</h2>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="sky-badge-neutral">%80 Enerji Geri Kazanımı</span><span class="sky-badge-neutral">ErP 2018 EcoDesign</span><span class="sky-badge-neutral">Tak-Çalıştır</span>
+          </div>
+        </div>
+
+        <!-- 4 Key Technical Metrics -->
+        <div class="sky-hero-quick-grid">
+          
+          <div class="sky-hero-quick-card">
+            <span class="label">Hava Debisi</span>
+            <span class="val">500 – 5.000 m³/h</span>
+          </div>
+          <div class="sky-hero-quick-card">
+            <span class="label">Eşanjör Verimi</span>
+            <span class="val">%70 - %82 duyulur ısı geri kazanımı</span>
+          </div>
+          <div class="sky-hero-quick-card">
+            <span class="label">Fan Tipi</span>
+            <span class="val">Doğrudan akuple düşük sesli çift emişli radyal veya EC fan</span>
+          </div>
+          <div class="sky-hero-quick-card">
+            <span class="label">İzolasyon</span>
+            <span class="val">Ses ve ısı izolasyonlu galvaniz sac kaset</span>
+          </div>
+        </div>
+
+        <!-- Component Highlights -->
+        <div class="sky-hero-components-grid">
+          
+          <div class="sky-hero-component-card">
+            <span class="comp-num">01.</span>
+            <div class="comp-title">Alüminyum Çapraz Akışlı Eşanjör</div>
+            <p class="comp-desc">Taze hava ve egzoz havasını birbirine karıştırmadan sadece ısı transferi yapan hijyenik plaka demeti.</p>
+          </div>
+          <div class="sky-hero-component-card">
+            <span class="comp-num">02.</span>
+            <div class="comp-title">G4 Değiştirilebilir Kaset Filtreler</div>
+            <p class="comp-desc">Eşanjörü ve iç ortam havasını koruyan kolay temizlenebilir çift kademeli filtre rayları.</p>
+          </div>
+          <div class="sky-hero-component-card">
+            <span class="comp-num">03.</span>
+            <div class="comp-title">Kompakt Asma Tavan Askı Aparatları</div>
+            <p class="comp-desc">Kazan dairesi istemeyen, tavan arasına kolayca gizlenen sessiz gövde yapısı.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -996,44 +1190,7 @@
             </div>
           </div>
 
-                    <!-- Interactive 3D Exploded CAD Architecture Section -->
-          <div class="sky-vlog-3d-cad-card" style="margin: 36px 0; background: #040e1a; border: 1px solid rgba(9, 189, 227, 0.35); border-radius: 12px; padding: 22px; box-shadow: 0 15px 40px rgba(0,0,0,0.5);">
-            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px;">
-              <div>
-                <span style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #09bde3; display: block;">3D MÜHENDİSLİK &amp; CAD MİMARİSİ</span>
-                <h3 style="font-size: 19px; font-weight: 800; color: #ffffff; margin: 4px 0 0 0;">3D Patlatılmış Kesit ve Bileşen Anatomisi</h3>
-              </div>
-              <button type="button" onclick="openProductSpecModal('hrv', 'cutaway')" style="background: rgba(9, 189, 227, 0.15); border: 1px solid #09bde3; color: #09bde3; padding: 7px 16px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
-                <svg style="width: 14px; height: 14px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"/></svg>
-                <span>3D İnteraktif Modele Geç &amp; Şartname Al</span>
-              </button>
-            </div>
-            
-            <div style="position: relative; width: 100%; border-radius: 8px; overflow: hidden; background: radial-gradient(rgba(9, 189, 227, 0.14) 1px, #020912 1px); background-size: 18px 18px; border: 1px solid rgba(255,255,255,0.06); text-align: center; padding: 14px; cursor: pointer;" onclick="openProductSpecModal('hrv', 'cutaway')">
-              <img src="./sm/ambar/urungaleri/B_ufot_8c0249866ae9bb4ad8e4bf6b5a5a240a.jpg" alt="Plakalı Isı Geri Kazanım Cihazları (HRV) 3D Patlatılmış Kesit" style="max-width: 100%; max-height: 440px; object-fit: contain; margin: 0 auto; display: block; border-radius: 6px; filter: drop-shadow(0 10px 25px rgba(0,0,0,0.6));">
-              <div style="position: absolute; bottom: 12px; right: 12px; background: rgba(4, 14, 26, 0.85); border: 1px solid rgba(9, 189, 227, 0.4); border-radius: 6px; padding: 5px 10px; font-size: 11px; font-weight: 700; color: #09bde3; display: flex; align-items: center; gap: 5px;">
-                <span>🔍 Tıkla ve 3D İnteraktif İncele</span>
-              </div>
-            </div>
-
-            <!-- Hotspot Components Summary -->
-            <div style="margin-top: 14px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px;">
-              <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; padding: 10px;">
-                <span style="color: #09bde3; font-weight: 800; font-size: 11px;">01. Alüminyum Çapraz Akışlı Eşanjör</span>
-                <p style="font-size: 11px; color: #94a3b8; margin: 2px 0 0 0;">Taze hava ve egzoz havasını birbirine karıştırmadan sadece ısı transferi yapan hijyenik plaka demeti.</p>
-              </div>
-              <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; padding: 10px;">
-                <span style="color: #09bde3; font-weight: 800; font-size: 11px;">02. G4 Değiştirilebilir Kaset Filtreler</span>
-                <p style="font-size: 11px; color: #94a3b8; margin: 2px 0 0 0;">Eşanjörü ve iç ortam havasını koruyan kolay temizlenebilir çift kademeli filtre rayları.</p>
-              </div>
-              <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; padding: 10px;">
-                <span style="color: #09bde3; font-weight: 800; font-size: 11px;">03. Kompakt Asma Tavan Askı Aparatları</span>
-                <p style="font-size: 11px; color: #94a3b8; margin: 2px 0 0 0;">Kazan dairesi istemeyen, tavan arasına kolayca gizlenen sessiz gövde yapısı.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Section 3: Engineering Gallery -->
+                    <!-- Section 3: Engineering Gallery -->
           <div>
             <h2 class="sky-vlog-section-title">
               3. İmalat ve Uygulama Detayları

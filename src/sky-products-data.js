@@ -484,7 +484,7 @@ window.SKY_PRODUCTS_DATA = {
     "title": "Endüstriyel Torba, Kaset & HEPA Filtreler",
     "category": "Filtrasyon & Hava Kalitesi",
     "lead": "Klima santralleri ve temiz odalar için G4 kaset, M5-F9 torba/kompakt ve H13-H14 mutlak HEPA/ULPA filtre grupları.",
-    "cutaway3D": "./sm/ambar/urungaleri/B_ufot_936fd7be41c37622c64b52a48f633fae.jpg",
+    "cutaway3D": "./assets/images/filtre-3d-cad-cutaway.jpg",
     "badges": [
       "EN 779 / ISO 16890",
       "EN 1822 HEPA",
@@ -587,7 +587,7 @@ window.SKY_PRODUCTS_DATA = {
     "title": "Lineer Slot Difüzör & Swirl Anemostad",
     "category": "Hava Dağıtım Elemanları",
     "lead": "Mimari asma tavanlara kusursuz uyum sağlayan, yönlendirici kanatlarıyla yatay ve dikey hava atışını optimize eden difüzör ve anemostadlar.",
-    "cutaway3D": "./sm/ambar/urungaleri/B_ufot_0d93e10a4914562e549a4a0cc02427fb.jpg",
+    "cutaway3D": "./assets/images/difuzor-3d-cad-cutaway.jpg",
     "badges": [
       "6063 Ekstrüde Alüminyum",
       "1 - 4 Slot Seçenekleri",
@@ -670,7 +670,7 @@ window.SKY_PRODUCTS_DATA = {
       },
       {
         "k": "Ses Seviyesi",
-        "v": "< NC 25 - NC 35 (Sessiz çalışma şartı)"
+        "v": "≤ NC 25 - NC 35 (Sessiz çalışma şartı)"
       }
     ],
     "gallery": [
@@ -691,7 +691,7 @@ window.SKY_PRODUCTS_DATA = {
     "title": "Çift Sıra Ayarlı Menfez & Dış Panjurlar",
     "category": "Hava Menfezleri & Panjurlar",
     "lead": "Yatay ve dikey bağımsız ayarlanabilir kanatları ile hava üfleme menfezleri ve dış hava şartlarına dayanıklı koruyucu panjurlar.",
-    "cutaway3D": "./sm/ambar/urungaleri/B_ufot_9d77392a0d3bd2f8d25f42bcfc7d9127.jpg",
+    "cutaway3D": "./assets/images/menfez-3d-cad-cutaway.jpg",
     "badges": [
       "Çift Sıra Kanat",
       "Alüminyum 6063",
@@ -788,7 +788,7 @@ window.SKY_PRODUCTS_DATA = {
     "title": "Rooftop Paket Çatı Tipi Klima",
     "category": "Paket Çatı Santralleri",
     "lead": "İç mekânda kazan veya soğutma dairesi gerektirmeyen, çatı kaidesi üzerine tek parça montajla tüm binanın taze hava ve iklimlendirmesini çözen paket santral.",
-    "cutaway3D": "./assets/images/commercial_rooftop_hvac_system_1792187202526.jpg",
+    "cutaway3D": "./assets/images/rooftop-3d-cad-cutaway.jpg",
     "badges": [
       "Paket Çatı Tipi",
       "20 - 300 kW",
@@ -888,7 +888,7 @@ window.SKY_PRODUCTS_DATA = {
     "title": "Kendinden Flanşlı Galvaniz Hava Kanalı",
     "category": "Hava Kanalı İmalatı",
     "lead": "Ankara İvedik OSB fabrikamızda CNC fiber lazer ve otomatik kanal hatlarında sıfır hata ile üretilen, kendinden flanşlı Class C sızdırmaz hava kanalları.",
-    "cutaway3D": "./hvac_manufacturing_factory_cnc_laser_1792260262324.jpg",
+    "cutaway3D": "./assets/images/galvaniz-kanal-3d-cad-cutaway.jpg",
     "badges": [
       "EN 1507 Class C",
       "SMACNA Sertifikalı",
@@ -981,7 +981,7 @@ window.SKY_PRODUCTS_DATA = {
     "title": "Spiromatic Contalı Spiral Yuvarlak Kanal",
     "category": "Hava Kanalı İmalatı",
     "lead": "Modern mimari açık tavanlar için estetik, düşük sürtünme katsayılı, kendinden EPDM çift dudaklı contalı Class D sızdırmaz spiral kanallar.",
-    "cutaway3D": "./spiromatic_spiral_duct_forming_line_1792260262657.jpg",
+    "cutaway3D": "./assets/images/spiral-kanal-3d-cad-cutaway.jpg",
     "badges": [
       "Eurovent Class D",
       "EPDM Çift Dudaklı Conta",
@@ -1069,7 +1069,7 @@ window.SKY_PRODUCTS_DATA = {
     "title": "Paslanmaz Çelik & Kaynaklı Hava Kanalı",
     "category": "Özel Hava Kanalları",
     "lead": "Endüstriyel mutfak egzozları, kimyasal laboratuvarlar ve korozif ortamlar için sürekli sızdırmaz TIG kaynaklı paslanmaz çelik kanallar.",
-    "cutaway3D": "./assets/images/commercial_kitchen_exhaust.jpg",
+    "cutaway3D": "./assets/images/paslanmaz-kanal-3d-cad-cutaway.jpg",
     "badges": [
       "AISI 304 / 316L",
       "TIG Sızdırmaz Kaynak",
@@ -1141,7 +1141,7 @@ window.SKY_PRODUCTS_DATA = {
     "title": "Yangın ve Duman Damperleri",
     "category": "Yangın & Can Güvenliği",
     "lead": "EN 1366-2 ve EN 13501-3 sertifikalı, 72°C eriyebilir sigortalı veya 24V/230V Belimo servomotorlu yangın ve duman damperleri.",
-    "cutaway3D": "./sm/ambar/urungaleri/B_ufot_7b0c277ea4d97bb0c4472cb9f646aac4.jpg",
+    "cutaway3D": "./assets/images/damper-3d-cad-cutaway.jpg",
     "badges": [
       "EN 1366-2 EI 120S",
       "EN 13501-3",
@@ -1152,7 +1152,7 @@ window.SKY_PRODUCTS_DATA = {
     "quickSpecs": [
       {
         "label": "Yangın Dayanımı",
-        "val": "EI 120 (ve ho i <-> o) S / EI 180 Dakika"
+        "val": "EI 120 (ve ho i ↔ o) S / EI 180 Dakika"
       },
       {
         "label": "Standart",
@@ -1217,7 +1217,7 @@ window.SKY_PRODUCTS_DATA = {
     "title": "Yangın ve Duman Tahliye Fanları (400°C/2h)",
     "category": "Duman Tahliye Sistemleri",
     "lead": "Yangın anında kaçış koridorlarını ve bina merdiven boşluklarını dumandan arındıran, 400°C sıcaklıkta 2 saat kesintisiz çalışan sertifikalı aksiyel fanlar.",
-    "cutaway3D": "./sm/ambar/urungaleri/B_ufot_0f2fdbffbf7b603e7567d4bd4b543ac9.jpg",
+    "cutaway3D": "./assets/images/yangin-fani-3d-cad-cutaway.jpg",
     "badges": [
       "EN 12101-3 F400",
       "400°C / 2h",
@@ -1290,7 +1290,7 @@ window.SKY_PRODUCTS_DATA = {
     "title": "Kapalı Otopark Jet Fan Sistemleri",
     "category": "Otopark Havalandırma",
     "lead": "Kanal tesisatı gerektirmeyen, hava itki prensibiyle CO gazını ve yangın dumanını şaftlara yönlendiren akıllı jet fan ve CFD simülasyon çözümleri.",
-    "cutaway3D": "./assets/images/parking_garage_ventilation.jpg",
+    "cutaway3D": "./assets/images/jet-fan-3d-cad-cutaway.jpg",
     "badges": [
       "Kanalsız Otopark Tasarımı",
       "F300 / F400 Dayanım",
@@ -1362,7 +1362,7 @@ window.SKY_PRODUCTS_DATA = {
     "title": "Otomatik Mutfak Davlumbaz Yangın Söndürme",
     "category": "Mutfak Yangın Güvenliği",
     "lead": "Otel ve restoran mutfaklarında fritöz ve ızgaralarda başlayan yağ yangınlarını algılayarak saniyeler içinde köpükle boğan UL 300 onaylı otomatik sistem.",
-    "cutaway3D": "./sm/ambar/urunler/davlumbaz-sondurme-sistemi.jpg",
+    "cutaway3D": "./assets/images/davlumbaz-3d-cad-cutaway.jpg",
     "badges": [
       "UL 300 Sertifikalı",
       "NFPA 96 & NFPA 17A",
@@ -1434,7 +1434,7 @@ window.SKY_PRODUCTS_DATA = {
     "title": "VRV / VRF Değişken Debili Dış Üniteler",
     "category": "Merkezi İklimlendirme",
     "lead": "Plaza, otel ve hastanelerde her odanın bağımsız iklimlendirilmesini sağlayan, DC inverter kompresörlü yüksek sezonsal verimli VRV/VRF dış üniteler.",
-    "cutaway3D": "./sm/ambar/urunler/vrvvrf-sistemler.jpg",
+    "cutaway3D": "./assets/images/vrf-dis-3d-cad-cutaway.jpg",
     "badges": [
       "DC Inverter Scroll",
       "SEER > 8.0 / SCOP > 5.0",
@@ -1506,7 +1506,7 @@ window.SKY_PRODUCTS_DATA = {
     "title": "VRF İç Üniteler (Kaset, Kanallı & Gizli Tavan)",
     "category": "Merkezi İklimlendirme",
     "lead": "360° üflemeli 4 yöne kaset, yüksek statik basınçlı gizli tavan tipi kanallı ve estetik duvar tipi sessiz VRF iç üniteleri.",
-    "cutaway3D": "./assets/images/commercial_office_interior.jpg",
+    "cutaway3D": "./assets/images/vrf-ic-3d-cad-cutaway.jpg",
     "badges": [
       "360° Dairesel Üfleme",
       "21 dB(A) Fısıltı Sessizliği",
