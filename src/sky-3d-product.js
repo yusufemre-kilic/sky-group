@@ -113,35 +113,41 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
 
   // --- 4. MATERIAL PALETTE (DoubleSide for hollow ducts/casings) ---
   const materials = {
-    aluFrame: new THREE.MeshStandardMaterial({ color: 0xd4d8dd, metalness: 0.75, roughness: 0.3, side: THREE.DoubleSide }),
+    aluFrame: new THREE.MeshStandardMaterial({ color: 0xd4d8dd, metalness: 0.8, roughness: 0.25, side: THREE.DoubleSide }),
     galvSteel: new THREE.MeshStandardMaterial({ color: 0xc4cdd5, metalness: 0.65, roughness: 0.45, side: THREE.DoubleSide }),
-    stainless: new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.9, roughness: 0.2, side: THREE.DoubleSide }),
-    baseSkid: new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.8, roughness: 0.35, side: THREE.DoubleSide }),
-    panelSolid: new THREE.MeshStandardMaterial({ color: 0xf8fafc, metalness: 0.15, roughness: 0.4, side: THREE.DoubleSide }),
+    stainless: new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.95, roughness: 0.15, side: THREE.DoubleSide }),
+    baseSkid: new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.75, roughness: 0.35, side: THREE.DoubleSide }),
+    panelSolid: new THREE.MeshStandardMaterial({ color: 0xf8fafc, metalness: 0.15, roughness: 0.35, side: THREE.DoubleSide }),
     panelCutaway: new THREE.MeshPhysicalMaterial({
       color: 0xe0f2fe,
       transparent: true,
-      opacity: 0.22,
+      opacity: 0.2,
       roughness: 0.08,
       metalness: 0.1,
       transmission: 0.85,
       ior: 1.45,
+      depthWrite: false,
       side: THREE.DoubleSide
     }),
-    fanHousing: new THREE.MeshStandardMaterial({ color: 0x0284c7, metalness: 0.5, roughness: 0.35, side: THREE.DoubleSide }),
-    fanImpeller: new THREE.MeshStandardMaterial({ color: 0x38bdf8, metalness: 0.7, roughness: 0.25, side: THREE.DoubleSide }),
-    motorCast: new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.8, roughness: 0.3, side: THREE.DoubleSide }),
-    copperPipe: new THREE.MeshStandardMaterial({ color: 0xb45309, metalness: 0.85, roughness: 0.25, side: THREE.DoubleSide }),
-    coolingFin: new THREE.MeshStandardMaterial({ color: 0x38bdf8, metalness: 0.55, roughness: 0.4, side: THREE.DoubleSide }),
-    heatingFin: new THREE.MeshStandardMaterial({ color: 0xf87171, metalness: 0.55, roughness: 0.4, side: THREE.DoubleSide }),
-    rotorWheel: new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.7, roughness: 0.35, side: THREE.DoubleSide }),
-    filterCloth: new THREE.MeshStandardMaterial({ color: 0xf1f5f9, roughness: 0.9, metalness: 0.05, side: THREE.DoubleSide }),
-    damperBlade: new THREE.MeshStandardMaterial({ color: 0xa1a1aa, metalness: 0.8, roughness: 0.3, side: THREE.DoubleSide }),
-    actuatorOrange: new THREE.MeshStandardMaterial({ color: 0xea580c, metalness: 0.3, roughness: 0.4 }),
-    drainPan: new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.9, roughness: 0.2, side: THREE.DoubleSide }),
-    doorHandle: new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.7, roughness: 0.3 }),
-    rubberBlack: new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.8, metalness: 0.1, side: THREE.DoubleSide }),
-    brassGold: new THREE.MeshStandardMaterial({ color: 0xd97706, metalness: 0.85, roughness: 0.25 })
+    fanHousing: new THREE.MeshStandardMaterial({ color: 0x0284c7, metalness: 0.6, roughness: 0.3, side: THREE.DoubleSide }),
+    fanImpeller: new THREE.MeshStandardMaterial({ color: 0x38bdf8, metalness: 0.75, roughness: 0.25, side: THREE.DoubleSide }),
+    motorCast: new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.85, roughness: 0.3, side: THREE.DoubleSide }),
+    copperPipe: new THREE.MeshStandardMaterial({ color: 0xc2410c, metalness: 0.9, roughness: 0.2, side: THREE.DoubleSide }),
+    coolingFin: new THREE.MeshStandardMaterial({ color: 0x38bdf8, metalness: 0.55, roughness: 0.35, side: THREE.DoubleSide }),
+    heatingFin: new THREE.MeshStandardMaterial({ color: 0xf87171, metalness: 0.55, roughness: 0.35, side: THREE.DoubleSide }),
+    rotorWheel: new THREE.MeshStandardMaterial({ color: 0x64748b, metalness: 0.7, roughness: 0.4, side: THREE.DoubleSide }),
+    filterCloth: new THREE.MeshStandardMaterial({ color: 0xf8fafc, roughness: 0.95, metalness: 0.05, side: THREE.DoubleSide }),
+    filterG4: new THREE.MeshStandardMaterial({ color: 0xe2e8f0, roughness: 0.9, metalness: 0.05, side: THREE.DoubleSide }),
+    damperBlade: new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.8, roughness: 0.25, side: THREE.DoubleSide }),
+    actuatorOrange: new THREE.MeshStandardMaterial({ color: 0xea580c, metalness: 0.2, roughness: 0.4 }),
+    drainPan: new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.95, roughness: 0.15, side: THREE.DoubleSide }),
+    doorHandle: new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.8, roughness: 0.3 }),
+    rubberBlack: new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.85, metalness: 0.1, side: THREE.DoubleSide }),
+    brassGold: new THREE.MeshStandardMaterial({ color: 0xd97706, metalness: 0.85, roughness: 0.25 }),
+    springSilver: new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.95, roughness: 0.2 }),
+    yellowSafety: new THREE.MeshStandardMaterial({ color: 0xeab308, metalness: 0.2, roughness: 0.4 }),
+    gaugeFace: new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.2 }),
+    touchscreen: new THREE.MeshBasicMaterial({ color: 0x0284c7 })
   };
 
   const animators = [];
@@ -170,10 +176,365 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     return mesh;
   }
 
+  function registerCutawayPanel(mesh, solidMat = materials.panelSolid, cutawayMat = materials.panelCutaway) {
+    mesh.userData.solidMat = solidMat;
+    mesh.userData.cutawayMat = cutawayMat;
+    dynamicCutawayPanels.push(mesh);
+    return mesh;
+  }
+
+  // --- SPECIALIZED DEDICATED MODEL: TKS STANDART KLİMA SANTRALİ (5-MODULE CAD TWIN) ---
+  function buildTksDetailedModel(parent) {
+    const L = 8.4;
+    const H = 2.6;
+    const W = 2.0;
+    const halfL = L / 2; // 4.2
+    const halfH = H / 2; // 1.3
+    const halfW = W / 2; // 1.0
+
+    // 1. BASE SKID (Galvanized structural C-channel with forklift pockets and corner lifting brackets)
+    const skidH = 0.22;
+    const skidY = -halfH - skidH / 2;
+    const frontRail = createBox(L + 0.2, skidH, 0.1, materials.baseSkid, 0, skidY, halfW - 0.05);
+    const backRail = createBox(L + 0.2, skidH, 0.1, materials.baseSkid, 0, skidY, -halfW + 0.05);
+    parent.add(frontRail, backRail);
+
+    // Cross beams tying the base frame together
+    const crossX = [-halfL, -2.5, -0.8, 0.8, 2.5, halfL];
+    crossX.forEach(cx => {
+      parent.add(createBox(0.12, skidH, W - 0.2, materials.baseSkid, cx, skidY, 0));
+    });
+
+    // Forklift lifting pockets (rectangular cutouts with reinforcement trim)
+    [-2.5, 0.8].forEach(fx => {
+      parent.add(createBox(0.28, 0.12, 0.12, materials.aluFrame, fx, skidY, halfW - 0.04));
+      parent.add(createBox(0.28, 0.12, 0.12, materials.aluFrame, fx, skidY, -halfW + 0.04));
+    });
+
+    // 4 Corner crane lifting lugs
+    [[-halfL - 0.05, halfW - 0.02], [-halfL - 0.05, -halfW + 0.02], [halfL + 0.05, halfW - 0.02], [halfL + 0.05, -halfW + 0.02]].forEach(([lx, lz]) => {
+      parent.add(createBox(0.08, 0.18, 0.08, materials.yellowSafety, lx, skidY + 0.06, lz));
+    });
+
+    // 2. THERMAL-BREAK EXTRUDED ALUMINUM PROFILE FRAMEWORK & CORNER BLOCKS
+    const pSize = 0.08;
+    // 4 Long horizontal outer edge profiles (top front, top back, bottom front, bottom back)
+    parent.add(
+      createBox(L, pSize, pSize, materials.aluFrame, 0, -halfH + pSize / 2, halfW - pSize / 2),
+      createBox(L, pSize, pSize, materials.aluFrame, 0, -halfH + pSize / 2, -halfW + pSize / 2),
+      createBox(L, pSize, pSize, materials.aluFrame, 0, halfH - pSize / 2, halfW - pSize / 2),
+      createBox(L, pSize, pSize, materials.aluFrame, 0, halfH - pSize / 2, -halfW + pSize / 2)
+    );
+
+    // 6 Vertical dividing posts along front and back (creating 5 modular bays)
+    crossX.forEach(px => {
+      parent.add(
+        createBox(pSize, H, pSize, materials.aluFrame, px, 0, halfW - pSize / 2),
+        createBox(pSize, H, pSize, materials.aluFrame, px, 0, -halfW + pSize / 2),
+        // Transverse cross tie beams at top and bottom
+        createBox(pSize, pSize, W - pSize * 2, materials.aluFrame, px, halfH - pSize / 2, 0),
+        createBox(pSize, pSize, W - pSize * 2, materials.aluFrame, px, -halfH + pSize / 2, 0)
+      );
+    });
+
+    // Internal horizontal floor dividing upper deck and lower deck in Modules 1, 2, 3
+    const midDeckL = 5.0; // from x = -4.2 to +0.8
+    const midDeck = createBox(midDeckL, 0.05, W - 0.16, materials.galvSteel, -halfL + midDeckL / 2, 0, 0);
+    parent.add(midDeck);
+
+    // 3. SOLID CASING PANELS (Rear wall, floor, end walls)
+    // Rear double-skin insulated wall
+    parent.add(createBox(L - 0.1, H - 0.1, 0.05, materials.panelSolid, 0, 0, -halfW + 0.04));
+    // Floor panel
+    parent.add(createBox(L - 0.1, 0.05, W - 0.16, materials.galvSteel, 0, -halfH + 0.03, 0));
+    // Right end wall with discharge collar
+    parent.add(createBox(0.05, H - 0.1, W - 0.16, materials.panelSolid, halfL - 0.03, 0, 0));
+    const dischargeCollar = createBox(0.18, 1.2, 1.2, materials.galvSteel, halfL + 0.09, -0.2, 0);
+    parent.add(dischargeCollar);
+
+    // Left end wall with two large rectangular cutout damper penetrations
+    parent.add(createBox(0.05, H - 0.1, W - 0.16, materials.panelSolid, -halfL + 0.03, 0, 0));
+
+    // 4. MODULAR ROOF & FRONT DOORS (Togglable via Şeffaf Gövde)
+    const modCenters = [
+      (-4.2 + -2.5) / 2, // Mod 1: -3.35
+      (-2.5 + -0.8) / 2, // Mod 2: -1.65
+      (-0.8 + 0.8) / 2,  // Mod 3: 0.0
+      (0.8 + 2.5) / 2,   // Mod 4: 1.65
+      (2.5 + 4.2) / 2    // Mod 5: 3.35
+    ];
+    const modWidths = [1.7, 1.7, 1.6, 1.7, 1.7];
+
+    modCenters.forEach((cx, idx) => {
+      const mw = modWidths[idx] - 0.08;
+      // Roof panel
+      const roofPanel = createBox(mw, 0.04, W - 0.16, materials.panelCutaway, cx, halfH - 0.02, 0, false, false);
+      parent.add(roofPanel);
+      registerCutawayPanel(roofPanel, materials.panelSolid, materials.panelCutaway);
+
+      // Front service door
+      const doorPanel = createBox(mw, H - 0.18, 0.03, materials.panelCutaway, cx, 0, halfW - 0.02, false, false);
+      parent.add(doorPanel);
+      registerCutawayPanel(doorPanel, materials.panelSolid, materials.panelCutaway);
+
+      // Door aluminum perimeter frame
+      const frameThick = 0.04;
+      parent.add(
+        createBox(mw, frameThick, 0.02, materials.aluFrame, cx, (H - 0.18) / 2, halfW),
+        createBox(mw, frameThick, 0.02, materials.aluFrame, cx, -(H - 0.18) / 2, halfW),
+        createBox(frameThick, H - 0.18, 0.02, materials.aluFrame, cx - mw / 2, 0, halfW),
+        createBox(frameThick, H - 0.18, 0.02, materials.aluFrame, cx + mw / 2, 0, halfW)
+      );
+
+      // Heavy-duty black compression turn handles (2 per door)
+      [-0.45, 0.45].forEach(hy => {
+        parent.add(createBox(0.04, 0.14, 0.05, materials.doorHandle, cx + mw / 2 - 0.1, hy, halfW + 0.02));
+      });
+      // Cast hinges on the left edge (2 per door)
+      [-0.55, 0.55].forEach(hy => {
+        parent.add(createBox(0.03, 0.1, 0.03, materials.aluFrame, cx - mw / 2 + 0.04, hy, halfW + 0.01));
+      });
+    });
+
+    // Circular inspection portholes on Door 1 (upper fan), Door 3 (rotary wheel), Door 5 (supply fan)
+    [[-3.35, 0.55], [0.0, 0.2], [3.35, -0.45]].forEach(([px, py]) => {
+      const portBezel = createCyl(0.14, 0.14, 0.04, 24, materials.aluFrame, px, py, halfW, Math.PI / 2);
+      const portGlass = createCyl(0.11, 0.11, 0.045, 20, materials.panelCutaway, px, py, halfW, Math.PI / 2);
+      parent.add(portBezel, portGlass);
+    });
+
+    // Magnehelic differential pressure gauges on Door 2 (Filter) and Door 5 (Supply Fan)
+    [[-1.65, 0.1], [3.35, 0.35]].forEach(([gx, gy]) => {
+      const gaugeRing = createCyl(0.08, 0.08, 0.03, 20, materials.aluFrame, gx, gy, halfW + 0.015, Math.PI / 2);
+      const gaugeFace = createCyl(0.07, 0.07, 0.035, 20, materials.gaugeFace, gx, gy, halfW + 0.015, Math.PI / 2);
+      parent.add(gaugeRing, gaugeFace);
+      // Dual clear silicone tubing running from gauge into plenum
+      parent.add(createCyl(0.008, 0.008, 0.22, 8, materials.panelCutaway, gx - 0.03, gy - 0.12, halfW + 0.01));
+      parent.add(createCyl(0.008, 0.008, 0.22, 8, materials.panelCutaway, gx + 0.03, gy - 0.12, halfW + 0.01));
+    });
+
+    // Front DDC PLC Control Cabinet on Door 5 (Supply Fan)
+    const plcW = 0.48, plcH = 0.68, plcD = 0.18;
+    const plcBox = createBox(plcW, plcH, plcD, materials.galvSteel, 2.75, 0.45, halfW + plcD / 2);
+    // Graphic touchscreen
+    const plcScreen = createBox(0.24, 0.16, 0.01, materials.touchscreen, 2.75, 0.56, halfW + plcD + 0.005);
+    // 3 pilot LEDs (Green, Yellow, Red)
+    const ledG = createCyl(0.014, 0.014, 0.02, 10, materials.coolingFin, 2.65, 0.42, halfW + plcD + 0.01, Math.PI / 2);
+    const ledY = createCyl(0.014, 0.014, 0.02, 10, materials.yellowSafety, 2.75, 0.42, halfW + plcD + 0.01, Math.PI / 2);
+    const ledR = createCyl(0.014, 0.014, 0.02, 10, materials.heatingFin, 2.85, 0.42, halfW + plcD + 0.01, Math.PI / 2);
+    // Rotary main disconnect switch (red knob on yellow plate)
+    const isolatorPlate = createBox(0.08, 0.08, 0.01, materials.yellowSafety, 2.75, 0.3, halfW + plcD + 0.005);
+    const isolatorKnob = createBox(0.04, 0.06, 0.03, materials.heatingFin, 2.75, 0.3, halfW + plcD + 0.02);
+    parent.add(plcBox, plcScreen, ledG, ledY, ledR, isolatorPlate, isolatorKnob);
+
+    // --- MODULE 1 INTERNALS: DAMPERS, G4 FILTER & UPPER EXHAUST FAN ---
+    // Lower Fresh Air Intake Damper
+    const lowerDamperY = -halfH / 2 - 0.05;
+    const damperW = W - 0.35, damperH = 0.85;
+    const lowerDamperFrame = createBox(0.12, damperH, damperW, materials.aluFrame, -halfL - 0.06, lowerDamperY, 0);
+    parent.add(lowerDamperFrame);
+    // 5 Aerofoil damper blades
+    for (let b = 0; b < 5; b++) {
+      const by = lowerDamperY - damperH / 2 + 0.1 + b * ((damperH - 0.2) / 4);
+      const blade = createBox(0.08, 0.015, damperW - 0.06, materials.damperBlade, -halfL - 0.06, by, 0);
+      blade.rotation.z = 0.55;
+      parent.add(blade);
+    }
+    // Belimo orange actuator motor on lower damper
+    const belimo1 = createBox(0.16, 0.2, 0.14, materials.actuatorOrange, -halfL - 0.06, lowerDamperY, halfW + 0.06);
+    parent.add(belimo1);
+
+    // G4 Pleated pre-filter bank inside lower plenum
+    const g4Bank = createBox(0.1, halfH - 0.35, W - 0.35, materials.aluFrame, -3.7, lowerDamperY, 0);
+    const g4Media = createBox(0.08, halfH - 0.4, W - 0.4, materials.filterG4, -3.7, lowerDamperY, 0);
+    parent.add(g4Bank, g4Media);
+
+    // Upper Exhaust Damper
+    const upperDamperY = halfH / 2 - 0.05;
+    const upperDamperFrame = createBox(0.12, damperH, damperW, materials.aluFrame, -halfL - 0.06, upperDamperY, 0);
+    parent.add(upperDamperFrame);
+    for (let b = 0; b < 5; b++) {
+      const by = upperDamperY - damperH / 2 + 0.1 + b * ((damperH - 0.2) / 4);
+      const blade = createBox(0.08, 0.015, damperW - 0.06, materials.damperBlade, -halfL - 0.06, by, 0);
+      blade.rotation.z = -0.55;
+      parent.add(blade);
+    }
+    const belimo2 = createBox(0.16, 0.2, 0.14, materials.actuatorOrange, -halfL - 0.06, upperDamperY, halfW + 0.06);
+    parent.add(belimo2);
+
+    // Upper Deck Return/Exhaust Plug Fan
+    const exFanGroup = new THREE.Group();
+    exFanGroup.position.set(-2.85, upperDamperY, 0);
+    parent.add(exFanGroup);
+    // Suction cone / bellmouth
+    const exBell = createCyl(0.38, 0.3, 0.12, 24, materials.aluFrame, 0.2, 0, 0, 0, Math.PI / 2);
+    // Rotating impeller
+    const exImpeller = createCyl(0.42, 0.42, 0.28, 20, materials.fanImpeller, 0, 0, 0, 0, Math.PI / 2);
+    exFanGroup.add(exBell, exImpeller);
+    // Fan motor
+    const exMotor = createCyl(0.18, 0.18, 0.34, 16, materials.motorCast, -0.32, 0, 0, 0, Math.PI / 2);
+    exFanGroup.add(exMotor);
+    // Yellow wire safety cage around suction
+    const exGuard = createCyl(0.46, 0.46, 0.1, 16, materials.yellowSafety, 0.28, 0, 0, 0, Math.PI / 2, true);
+    exFanGroup.add(exGuard);
+    animators.push(() => { exImpeller.rotation.x += 0.14; });
+
+    // --- MODULE 2 INTERNALS: FINE FILTRATION (F7/F9 BAG FILTERS) ---
+    // Aluminum grid header frame
+    const f7Frame = createBox(0.1, halfH - 0.35, W - 0.35, materials.aluFrame, -2.4, lowerDamperY, 0);
+    parent.add(f7Frame);
+    // 6 deep tapered synthetic pocket bags extending horizontally downstream
+    for (let row = 0; row < 2; row++) {
+      for (let col = 0; col < 3; col++) {
+        const bagY = lowerDamperY - 0.22 + row * 0.44;
+        const bagZ = -halfW + 0.35 + col * ((W - 0.7) / 2);
+        // Tapered pocket cone pointing in +X direction
+        const bagGeo = new THREE.ConeGeometry(0.18, 0.85, 4);
+        const bagMesh = new THREE.Mesh(bagGeo, materials.filterCloth);
+        bagMesh.position.set(-1.9, bagY, bagZ);
+        bagMesh.rotation.z = -Math.PI / 2;
+        bagMesh.scale.set(0.9, 1.2, 0.7);
+        parent.add(bagMesh);
+      }
+    }
+
+    // --- MODULE 3 INTERNALS: ROTARY HEAT RECOVERY WHEEL ---
+    const wheelAssembly = new THREE.Group();
+    wheelAssembly.position.set(0, 0, 0);
+    parent.add(wheelAssembly);
+
+    // Outer wheel casing & perimeter seals
+    const wheelCasing = createBox(0.38, H - 0.2, W - 0.2, materials.aluFrame, 0, 0, 0);
+    parent.add(wheelCasing);
+
+    // Rotating wheel drum
+    const wheelRim = createCyl(1.12, 1.12, 0.32, 36, materials.aluFrame, 0, 0, 0, 0, Math.PI / 2);
+    const wheelCore = createCyl(1.08, 1.08, 0.3, 32, materials.rotorWheel, 0, 0, 0, 0, Math.PI / 2);
+    wheelAssembly.add(wheelRim, wheelCore);
+
+    // 12 Radial aluminum spoke ribs
+    for (let s = 0; s < 12; s++) {
+      const ang = (s / 12) * Math.PI * 2;
+      const spoke = createBox(0.025, 2.12, 0.02, materials.aluFrame, 0, 0, 0);
+      spoke.rotation.x = ang;
+      wheelAssembly.add(spoke);
+    }
+    // Drive pulley and gearmotor on top corner
+    const driveMotor = createCyl(0.09, 0.09, 0.22, 12, materials.motorCast, 0.22, 1.05, 0.75, 0, Math.PI / 2);
+    const driveBelt = createCyl(0.02, 0.02, 0.3, 8, materials.doorHandle, 0.22, 0.95, 0.75);
+    parent.add(driveMotor, driveBelt);
+    animators.push(() => { wheelAssembly.rotation.x += 0.01; });
+
+    // --- MODULE 4 INTERNALS: THERMAL CONDITIONING (COILS, ELIMINATOR, DRAIN PAN) ---
+    // 1. Chilled Water Cooling Coil
+    const coilW = W - 0.35, coilH = halfH - 0.35;
+    const coolCoilFin = createBox(0.24, coilH, coilW, materials.coolingFin, 1.15, lowerDamperY, 0);
+    parent.add(coolCoilFin);
+
+    // Copper supply/return vertical distribution headers with valves
+    [-0.5, 0.5].forEach(hz => {
+      const coolHeader = createCyl(0.045, 0.045, coilH + 0.1, 14, materials.copperPipe, 1.15, lowerDamperY, hz);
+      parent.add(coolHeader);
+    });
+
+    // 16 Real copper U-bend return hairpin loops visible on the front face!
+    for (let ui = 0; ui < 8; ui++) {
+      const uy = lowerDamperY - coilH / 2 + 0.1 + ui * ((coilH - 0.2) / 7);
+      const ubend = new THREE.Mesh(
+        new THREE.TorusGeometry(0.032, 0.012, 8, 12, Math.PI),
+        materials.copperPipe
+      );
+      ubend.position.set(1.15, uy, halfW - 0.18);
+      ubend.rotation.y = Math.PI / 2;
+      ubend.rotation.x = Math.PI / 2;
+      parent.add(ubend);
+    }
+
+    // 2. Condensate Drain Pan (AISI 304 Stainless steel with sloped floor)
+    const pan = createBox(1.3, 0.09, coilW + 0.1, materials.drainPan, 1.5, -halfH + 0.1, 0);
+    parent.add(pan);
+    // Drain siphon / P-trap pipe
+    const drainStub = createCyl(0.02, 0.02, 0.18, 10, materials.stainless, 1.8, -halfH + 0.06, halfW - 0.05, 0, 0);
+    parent.add(drainStub);
+
+    // 3. Droplet Eliminator (Mist Eliminator) with vertical wave louvers
+    const elimFin = createBox(0.12, coilH, coilW, materials.aluFrame, 1.45, lowerDamperY, 0);
+    parent.add(elimFin);
+    for (let el = 0; el < 12; el++) {
+      const ez = -halfW + 0.3 + el * ((coilW - 0.2) / 11);
+      const blade = createBox(0.08, coilH - 0.05, 0.012, materials.aluFrame, 1.45, lowerDamperY, ez);
+      blade.rotation.y = 0.35;
+      parent.add(blade);
+    }
+
+    // 4. Hot Water Heating Coil
+    const heatCoilFin = createBox(0.18, coilH, coilW, materials.heatingFin, 1.85, lowerDamperY, 0);
+    parent.add(heatCoilFin);
+    // Red painted supply/return pipe stubs
+    [-0.4, 0.4].forEach(hz => {
+      const heatHeader = createCyl(0.04, 0.04, coilH + 0.1, 14, materials.copperPipe, 1.85, lowerDamperY, hz);
+      parent.add(heatHeader);
+    });
+
+    // --- MODULE 5 INTERNALS: DIRECT-DRIVE EC PLUG FAN & SILENCER ---
+    const fanAssembly = new THREE.Group();
+    fanAssembly.position.set(2.85, lowerDamperY, 0);
+    parent.add(fanAssembly);
+
+    // Spun aluminum aerodynamic inlet bellmouth (suction nozzle)
+    const bellmouth = createCyl(0.48, 0.38, 0.18, 28, materials.aluFrame, -0.4, 0, 0, 0, Math.PI / 2);
+    // Piezometer ring for airflow measurement
+    const piezoRing = createCyl(0.44, 0.44, 0.03, 24, materials.copperPipe, -0.38, 0, 0, 0, Math.PI / 2, true);
+    fanAssembly.add(bellmouth, piezoRing);
+
+    // Direct-drive backward curved EC plug fan impeller (rotating in render loop)
+    const plugImpeller = createCyl(0.52, 0.52, 0.36, 24, materials.fanHousing, -0.05, 0, 0, 0, Math.PI / 2);
+    const centerSpinner = createCyl(0.14, 0.05, 0.16, 16, materials.aluFrame, -0.25, 0, 0, 0, Math.PI / 2);
+    fanAssembly.add(plugImpeller, centerSpinner);
+    animators.push(() => { plugImpeller.rotation.x += 0.15; });
+
+    // Cast iron IE4 electric motor with cooling ribs
+    const fanMotor = createCyl(0.24, 0.24, 0.45, 18, materials.motorCast, 0.32, 0, 0, 0, Math.PI / 2);
+    const termBox = createBox(0.14, 0.12, 0.14, materials.motorCast, 0.32, 0.26, 0);
+    fanAssembly.add(fanMotor, termBox);
+
+    // Fan rigid base frame
+    const fanBase = createBox(1.1, 0.08, 0.8, materials.baseSkid, 0.05, -coilH / 2 + 0.08, 0);
+    fanAssembly.add(fanBase);
+
+    // 4 Corner heavy-duty open helical steel spring vibration isolators
+    [[-0.4, -0.3], [-0.4, 0.3], [0.4, -0.3], [0.4, 0.3]].forEach(([sx, sz]) => {
+      const springBase = createBox(0.12, 0.03, 0.12, materials.motorCast, sx, -coilH / 2 + 0.02, sz);
+      const springCoil = createCyl(0.04, 0.04, 0.12, 10, materials.springSilver, sx, -coilH / 2 + 0.08, sz);
+      fanAssembly.add(springBase, springCoil);
+    });
+
+    // Flexible duct connector sleeve (canvas collar)
+    const flexCollar = createBox(0.1, coilH, coilW, materials.rubberBlack, 2.35, lowerDamperY, 0);
+    parent.add(flexCollar);
+
+    // Yellow safety guard handrail in fan section
+    const rail1 = createBox(1.2, 0.03, 0.03, materials.yellowSafety, 2.9, lowerDamperY + 0.4, halfW - 0.25);
+    const rail2 = createBox(1.2, 0.03, 0.03, materials.yellowSafety, 2.9, lowerDamperY, halfW - 0.25);
+    parent.add(rail1, rail2);
+
+    // Acoustic Sound Attenuator Splitters on discharge
+    for (let si = -1; si <= 1; si++) {
+      const sz = si * 0.45;
+      const pod = createBox(0.65, coilH - 0.1, 0.22, materials.galvSteel, 3.8, lowerDamperY, sz);
+      const nose = createCyl(0.11, 0.11, coilH - 0.1, 16, materials.aluFrame, 3.47, lowerDamperY, sz);
+      parent.add(pod, nose);
+    }
+  }
+
   // --- 5. CATEGORY-BASED PROCEDURAL GENERATORS ---
 
   // A. AIR HANDLING & RECOVERY UNITS (TKS, THKS, THRV-DX, HRV, ROOFTOP)
   function buildAhuModel(parent, type) {
+    if (type === 'tks') {
+      buildTksDetailedModel(parent);
+      return;
+    }
     const isHygienic = type === 'thks';
     const isDx = type === 'thrv-dx';
     const isHrv = type === 'hrv';
@@ -768,7 +1129,9 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
   }
 
   // --- 6. ROUTE PRODUCT ID TO MODEL GENERATOR ---
-  if (['tks', 'thks', 'thrv-dx', 'hrv', 'rooftop'].includes(productId)) {
+  if (productId === 'tks') {
+    buildTksDetailedModel(modelRoot);
+  } else if (['thks', 'thrv-dx', 'hrv', 'rooftop'].includes(productId)) {
     buildAhuModel(modelRoot, productId);
   } else if (['tdf', 'yangin-fani', 'jet-fan'].includes(productId)) {
     buildFanModel(modelRoot, productId);
@@ -781,7 +1144,7 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
   } else if (['vrf-dis', 'vrf-ic', 'davlumbaz'].includes(productId)) {
     buildVrfModel(modelRoot, productId);
   } else {
-    buildAhuModel(modelRoot, 'tks');
+    buildTksDetailedModel(modelRoot);
   }
 
   // --- 7. AUTO-FIT CAMERA & GROUND TO EXACT MODEL BOUNDING BOX ---
@@ -801,12 +1164,34 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
   // Compute camera distance based on max dimension
   const maxDim = Math.max(size.x, size.y, size.z);
   const fov = camera.fov * (Math.PI / 180);
-  let camDist = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 1.45;
-  camDist = Math.max(camDist, 4.8);
-  camera.position.set(camDist * 0.82, camDist * 0.42, camDist * 0.82);
-  camera.lookAt(0, 0, 0);
-  controls.target.set(0, 0, 0);
+  let camDist = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 1.05;
+  camDist = Math.max(camDist, 3.8);
+  const defaultCamPos = new THREE.Vector3(camDist * 0.72, camDist * 0.38, camDist * 0.74);
+  const defaultTarget = new THREE.Vector3(0, 0, 0);
+  camera.position.copy(defaultCamPos);
+  camera.lookAt(defaultTarget);
+  controls.target.copy(defaultTarget);
   controls.update();
+
+  // Camera smooth tween helper
+  let cameraTween = null;
+  function tweenCameraTo(targetCamPos, targetLookAt, duration = 650) {
+    const startCamPos = camera.position.clone();
+    const startLookAt = controls.target.clone();
+    const startTime = performance.now();
+    cameraTween = {
+      update: (now) => {
+        const elapsed = now - startTime;
+        const t = Math.min(1.0, elapsed / duration);
+        // smoothstep easing
+        const ease = t * t * (3 - 2 * t);
+        camera.position.lerpVectors(startCamPos, targetCamPos, ease);
+        controls.target.lerpVectors(startLookAt, targetLookAt, ease);
+        controls.update();
+        if (t >= 1.0) cameraTween = null;
+      }
+    };
+  }
 
   // --- 8. AERODYNAMIC CFD AIRFLOW SIMULATION ---
   const cfdGroup = new THREE.Group();
@@ -817,18 +1202,19 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
   const pPositions = new Float32Array(particleCount * 3);
   const pColors = new Float32Array(particleCount * 3);
 
+  const isTksProduct = productId === 'tks';
   const halfLen = Math.max(2.0, size.x / 2 + 0.4);
   const spanY = Math.max(1.0, size.y * 0.45);
   const spanZ = Math.max(1.0, size.z * 0.45);
 
   for (let i = 0; i < particleCount; i++) {
-    const isSupply = i < particleCount * 0.65;
+    const isSupply = isTksProduct ? (i < particleCount * 0.7) : (i < particleCount * 0.65);
     particles.push({
       isSupply,
       progress: Math.random(),
-      speed: 0.005 + Math.random() * 0.004,
-      offsetY: (Math.random() - 0.5) * spanY,
-      offsetZ: (Math.random() - 0.5) * spanZ
+      speed: (isTksProduct ? 0.006 : 0.005) + Math.random() * 0.004,
+      offsetY: (Math.random() - 0.5) * (isTksProduct ? 0.35 : spanY),
+      offsetZ: (Math.random() - 0.5) * (isTksProduct ? 0.7 : spanZ)
     });
     if (isSupply) {
       pColors[i * 3] = 0.02; pColors[i * 3 + 1] = 0.65; pColors[i * 3 + 2] = 0.98;
@@ -856,7 +1242,7 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     size: 0.15,
     map: pTex,
     transparent: true,
-    opacity: 0.8,
+    opacity: 0.85,
     vertexColors: true,
     blending: THREE.AdditiveBlending,
     depthWrite: false
@@ -875,9 +1261,24 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
       const p = particles[i];
       p.progress += p.speed;
       if (p.progress > 1.0) p.progress = 0.0;
-      pos[i * 3] = -halfLen + p.progress * (halfLen * 2);
-      pos[i * 3 + 1] = (p.isSupply ? -0.2 : 0.2) + p.offsetY;
-      pos[i * 3 + 2] = p.offsetZ;
+
+      if (isTksProduct) {
+        if (p.isSupply) {
+          // Fresh air: flows from intake (-4.2) along lower deck to discharge (+4.2)
+          pos[i * 3] = -4.2 + p.progress * 8.4;
+          pos[i * 3 + 1] = -0.65 + Math.sin(p.progress * Math.PI * 4) * 0.08 + p.offsetY;
+          pos[i * 3 + 2] = p.offsetZ;
+        } else {
+          // Exhaust air: flows from return (1.2) through heat wheel to exhaust fan/damper (-4.2)
+          pos[i * 3] = 1.2 - p.progress * 5.4;
+          pos[i * 3 + 1] = 0.65 + p.offsetY;
+          pos[i * 3 + 2] = p.offsetZ;
+        }
+      } else {
+        pos[i * 3] = -halfLen + p.progress * (halfLen * 2);
+        pos[i * 3 + 1] = (p.isSupply ? -0.2 : 0.2) + p.offsetY;
+        pos[i * 3 + 2] = p.offsetZ;
+      }
     }
     pGeo.attributes.position.needsUpdate = true;
   });
@@ -915,16 +1316,31 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
         { num: '03', title: 'Hava Dağıtım & Kontrol', desc: 'Hassas debi kalibrasyonu ve sızdırmaz bağlantı elemanları.' }
       ];
 
+  // Specific 3D positions for TKS hotspots
+  const tksHotspotCoords = [
+    [-3.8, 1.1, 1.08],  // 01: İskelet & 50mm Taşyünü Panel
+    [-1.8, -0.4, 1.08], // 02: Filtre Hücresi (G4 + F7/F9)
+    [0.0, 0.2, 1.08],   // 03: Isı Geri Kazanım Eşanjörü
+    [1.3, -0.4, 1.08],  // 04: Isıtma & Soğutma Serpantinleri
+    [2.8, -0.4, 1.08],  // 05: Plug Fan & EC Motor Grubu
+    [-3.8, -0.5, 1.08]  // 06: Otomasyon & Hava Ayar Damperi
+  ];
+
   const pinMeshes = [];
   rawHotspots.forEach((h, idx) => {
     const pinAnchor = new THREE.Group();
-    const total = rawHotspots.length;
-    const isWideZ = size.z > size.x;
-    const majorSpan = isWideZ ? size.z : size.x;
-    const majorOffset = (-majorSpan / 2 + 0.4) + (idx / Math.max(1, total - 1)) * (majorSpan - 0.8);
-    const px = isWideZ ? (size.x / 2 + 0.4) : majorOffset;
-    const py = (idx % 2 === 0 ? -0.2 : 0.4);
-    const pz = isWideZ ? majorOffset : (size.z / 2 + 0.4);
+    let px, py, pz;
+    if (isTksProduct && tksHotspotCoords[idx]) {
+      [px, py, pz] = tksHotspotCoords[idx];
+    } else {
+      const total = rawHotspots.length;
+      const isWideZ = size.z > size.x;
+      const majorSpan = isWideZ ? size.z : size.x;
+      const majorOffset = (-majorSpan / 2 + 0.4) + (idx / Math.max(1, total - 1)) * (majorSpan - 0.8);
+      px = isWideZ ? (size.x / 2 + 0.4) : majorOffset;
+      py = (idx % 2 === 0 ? -0.2 : 0.4);
+      pz = isWideZ ? majorOffset : (size.z / 2 + 0.4);
+    }
     pinAnchor.position.set(px, py, pz);
 
     const stalk = new THREE.Mesh(
@@ -965,10 +1381,12 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
       while (hit.parent && !hit.userData.hotspot) hit = hit.parent;
       if (hit && hit.userData.hotspot) {
         showHotspotCard(hit.userData.hotspot);
-        // Smooth zoom to hotspot
-        const targetPos = hit.userData.pos;
-        if (targetPos) {
-          controls.target.set(targetPos[0] * 0.5, targetPos[1], targetPos[2] * 0.5);
+        // Smooth camera tween to hotspot
+        const pos = hit.userData.pos;
+        if (pos) {
+          const targetLook = new THREE.Vector3(pos[0], pos[1], pos[2]);
+          const targetCam = new THREE.Vector3(pos[0] * 0.8 + 1.2, pos[1] + 0.5, pos[2] + 2.8);
+          tweenCameraTo(targetCam, targetLook, 700);
         }
       }
     }
@@ -997,38 +1415,52 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     onToggleCutaway: () => {
       state.cutawayEnabled = !state.cutawayEnabled;
       dynamicCutawayPanels.forEach(panel => {
-        panel.material = state.cutawayEnabled ? materials.panelCutaway : materials.galvSteel;
+        const sMat = panel.userData.solidMat || materials.panelSolid;
+        const cMat = panel.userData.cutawayMat || materials.panelCutaway;
+        panel.material = state.cutawayEnabled ? cMat : sMat;
       });
       updateHudButton('btn-cutaway', state.cutawayEnabled);
     },
     onToggleView: () => {
-      const view2d = document.getElementById('sky-product-2d-view');
+      const stage = container.closest('.sky-vlog-hero') || container.parentElement || container;
+      const view2d = stage.querySelector('#sky-product-2d-view') || document.getElementById('sky-product-2d-view');
       const is2dVisible = view2d && window.getComputedStyle(view2d).display !== 'none';
       if (view2d) {
         if (is2dVisible) {
           view2d.style.display = 'none';
           container.style.display = 'block';
+          state.viewMode = '3d';
           updateHudButton('btn-view', false);
           onResize();
         } else {
-          view2d.style.display = 'block';
+          view2d.style.display = 'flex';
           container.style.display = 'none';
+          state.viewMode = '2d';
           updateHudButton('btn-view', true);
         }
       }
     },
     onResetCamera: () => {
-      camera.position.set(camDist * 0.82, camDist * 0.42, camDist * 0.82);
-      controls.target.set(0, 0, 0);
-      controls.update();
+      tweenCameraTo(defaultCamPos, defaultTarget, 650);
+      window.closeHotspotCard();
     }
   });
+
+  // Set initial HUD button active states to match state
+  updateHudButton('btn-rotate', state.autoRotate);
+  updateHudButton('btn-cfd', state.cfdEnabled);
+  updateHudButton('btn-cutaway', state.cutawayEnabled);
+  updateHudButton('btn-view', state.viewMode === '2d');
 
   // --- 11. ANIMATION & RESIZE LOOPS ---
   let reqId = null;
   function animate() {
     reqId = requestAnimationFrame(animate);
-    controls.update();
+    if (cameraTween) {
+      cameraTween.update(performance.now());
+    } else {
+      controls.update();
+    }
     for (let i = 0; i < animators.length; i++) {
       animators[i]();
     }
@@ -1129,8 +1561,8 @@ function injectHudStyles() {
     }
     .sky-3d-callout-card {
       position: absolute;
-      bottom: 16px;
-      left: 16px;
+      bottom: 20px;
+      right: 20px;
       max-width: 320px;
       background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(10px);
@@ -1139,7 +1571,7 @@ function injectHudStyles() {
       border-radius: 10px;
       padding: 12px 16px;
       box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
-      z-index: 15;
+      z-index: 30;
       pointer-events: auto;
       animation: fadeIn 0.2s ease;
     }
@@ -1186,7 +1618,11 @@ function injectHudStyles() {
 }
 
 function renderHud(container, productData, actions) {
-  const hud = document.createElement('div');
+  const stage = container.closest('.sky-vlog-hero') || container.parentElement || container;
+  let hud = stage.querySelector('.sky-3d-hud-container');
+  if (hud) hud.remove();
+
+  hud = document.createElement('div');
   hud.className = 'sky-3d-hud-container';
   hud.innerHTML = `
     <div class="sky-3d-hud-left">
@@ -1203,7 +1639,7 @@ function renderHud(container, productData, actions) {
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
         Döndür
       </button>
-      <button id="btn-cfd" class="sky-3d-btn active" title="Aerodinamik Hava Akışını Aç/Kapat">
+      <button id="btn-cfd" class="sky-3d-btn" title="Aerodinamik Hava Akışını Aç/Kapat">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         Hava Akışı
       </button>
@@ -1221,20 +1657,22 @@ function renderHud(container, productData, actions) {
       </button>
     </div>
   `;
-  container.appendChild(hud);
+  stage.appendChild(hud);
 
   // Card element for hotspots
-  const card = document.createElement('div');
+  let card = stage.querySelector('#sky-3d-hotspot-card');
+  if (card) card.remove();
+  card = document.createElement('div');
   card.id = 'sky-3d-hotspot-card';
   card.className = 'sky-3d-callout-card';
   card.style.display = 'none';
   card.innerHTML = `
-    <button class="sky-3d-callout-close" onclick="this.parentElement.style.display='none'">&times;</button>
+    <button class="sky-3d-callout-close" onclick="window.closeHotspotCard()">&times;</button>
     <span id="sky-card-num" class="sky-3d-callout-num">01</span>
     <div id="sky-card-title" class="sky-3d-callout-title">Bileşen Adı</div>
     <div id="sky-card-desc" class="sky-3d-callout-desc">Bileşen teknik detay açıklaması.</div>
   `;
-  container.appendChild(card);
+  stage.appendChild(card);
 
   // Wire buttons
   document.getElementById('btn-rotate').addEventListener('click', actions.onToggleRotate);
