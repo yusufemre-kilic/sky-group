@@ -7,7 +7,7 @@ window.SKY_PRODUCTS_DATA = {
     "title": "TKS Standart Klima Santrali",
     "category": "Klima Santralleri (AHU)",
     "lead": "1.500 m³/h ile 120.000 m³/h debi aralığında, 50mm çift cidarlı taşyünü izolasyonlu, Eurovent ve TSE EN 1886 D1/L1 sertifikalı endüstriyel klima santrali.",
-    "cutaway3D": "./sm/ambar/urungaleri/B_ufot_7b794479c3f7dfdee7c670979e050d04.jpg",
+    "cutaway3D": "./assets/images/tks-3d-cad-cutaway.jpg",
     "badges": [
       "Eurovent",
       "TSE EN 1886 D1/L1",
@@ -44,43 +44,43 @@ window.SKY_PRODUCTS_DATA = {
     "hotspots": [
       {
         "num": "01",
-        "x": 18,
-        "y": 28,
+        "x": 12,
+        "y": 35,
         "title": "İskelet & 50mm Taşyünü Panel Mimarisi",
         "desc": "Korozyona dirençli alüminyum karkas profil, 50mm taşyünü dolgulu çift cidarlı galvaniz kaset. EN 1886 D1 mekanik dayanım ve L1 hava kaçağı sınıfı."
       },
       {
         "num": "02",
-        "x": 32,
-        "y": 48,
+        "x": 23,
+        "y": 55,
         "title": "Filtre Hücresi (G4 + F7/F9)",
         "desc": "G4 kaset ön filtre ile iri partiküller tutulur; F7/F9 kompakt torba filtre hücresi ile PM2.5 ve mikron mertebesindeki tozlar EN 779 / ISO 16890 normunda temizlenir."
       },
       {
         "num": "03",
-        "x": 50,
-        "y": 36,
+        "x": 42,
+        "y": 38,
         "title": "Isı Geri Kazanım Eşanjörü",
         "desc": "Egzoz havasının ısısını taze havaya aktaran yüksek verimli higroskopik rotorlu veya çapraz akışlı alüminyum plakalı eşanjör (%85 verim)."
       },
       {
         "num": "04",
-        "x": 64,
-        "y": 56,
+        "x": 58,
+        "y": 50,
         "title": "Isıtma & Soğutma Serpantinleri",
         "desc": "Dikişsiz bakır boru ve dalgalı alüminyum lameller. 25 bar basınç testli, hidrofilik kaplamalı paslanmaz yoğuşma tavalı bataryalar."
       },
       {
         "num": "05",
-        "x": 82,
-        "y": 42,
+        "x": 78,
+        "y": 45,
         "title": "Plug Fan & EC Motor Grubu",
         "desc": "Kayış-kasnaksız direkt akuple EC Plug Fan. IE4 süper premium verim seviyesi, dinamik balanslı rotor ve titreşim izolatörlü montaj."
       },
       {
         "num": "06",
         "x": 92,
-        "y": 22,
+        "y": 38,
         "title": "Otomasyon & Hava Ayar Damperi",
         "desc": "EN 1751 Class 3 sızdırmaz hava ayar damperi, oransal Belimo servomotor entegrasyonu ve diferansiyel basınç sensörleri."
       }
@@ -153,7 +153,7 @@ window.SKY_PRODUCTS_DATA = {
     "title": "THKS Hijyenik Klima Santrali",
     "category": "Hijyenik Klima Santralleri",
     "lead": "Hastane ameliyathaneleri, yoğun bakım üniteleri, temiz odalar ve ilaç laboratuvarları için DIN 1946-4, EN 13053 ve VDI 6022 standartlarına uygun hijyenik klima santrali.",
-    "cutaway3D": "./sm/ambar/urungaleri/B_ufot_4ec0b2850d1d2d436a5ca372cfc00386.jpg",
+    "cutaway3D": "./assets/images/thks-3d-cad-cutaway.jpg",
     "badges": [
       "DIN 1946-4",
       "VDI 6022",
@@ -269,7 +269,7 @@ window.SKY_PRODUCTS_DATA = {
     "title": "THRV-DX Isı Pompalı Isı Geri Kazanım Santrali",
     "category": "Isı Pompalı Isı Geri Kazanım",
     "lead": "Dahili DX soğutma/ısıtma devresi ve plakalı eşanjörü sayesinde dış üniteye gerek duymadan yazın 20°C, kışın 25°C şartlandırılmış konforlu taze hava sağlayan paket santral.",
-    "cutaway3D": "./sm/ambar/urungaleri/B_ufot_28c4c32b76247d41acbda24133304ecd.jpg",
+    "cutaway3D": "./assets/images/thrv-dx-3d-cad-cutaway.jpg",
     "badges": [
       "Dahili Isı Pompası",
       "R410A / R32",
@@ -379,7 +379,7 @@ window.SKY_PRODUCTS_DATA = {
     "title": "TDF Dikdörtgen Kanal Tipi Radyal Fanlar",
     "category": "Endüstriyel Fan Sistemleri",
     "lead": "Kendinden flanşlı galvaniz gövdesi, geriye eğik seyrek kanatlı radyal rotoru ve açılabilir servis kapağı ile havalandırma kanallarına direkt bağlanan kompakt fan.",
-    "cutaway3D": "./sm/ambar/urungaleri/B_ufot_f51c45c46909522bee054af9c1c53ccc.jpg",
+    "cutaway3D": "./assets/images/tdf-3d-cad-cutaway.jpg",
     "badges": [
       "IP 54 Koruma",
       "Kendinden Flanşlı",
@@ -1578,7 +1578,7 @@ window.SKY_PRODUCTS_DATA = {
     "title": "Plakalı Isı Geri Kazanım Cihazları (HRV)",
     "category": "Enerji Geri Kazanımı",
     "lead": "Ofis, kafe, okul ve konutlarda iç ortam havasını tazelerken egzoz havasındaki ısıyı %80 verimle taze havaya aktaran enerji tasarruflu cihazlar.",
-    "cutaway3D": "./sm/ambar/urungaleri/B_ufot_8c0249866ae9bb4ad8e4bf6b5a5a240a.jpg",
+    "cutaway3D": "./assets/images/hrv-3d-cad-cutaway.jpg",
     "badges": [
       "%80 Enerji Geri Kazanımı",
       "ErP 2018 EcoDesign",

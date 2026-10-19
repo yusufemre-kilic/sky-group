@@ -37,12 +37,12 @@
           <!-- LEFT: 3D CAD & SCHEMATIC VIEWER (58%) -->
           <div class="sky-spec-left-stage">
             
-            <!-- Stage Top Bar: Tabs & Product Status -->
+            <!-- Stage Top Bar: Tabs -->
             <div class="sky-spec-stage-topbar">
               <div class="sky-spec-view-tabs" role="tablist">
                 <button type="button" class="sky-spec-tab active" data-tab="cutaway">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"/></svg>
-                  <span>3D CAD Kesit</span>
+                  <span>3D Kesit &amp; Şema</span>
                 </button>
                 <button type="button" class="sky-spec-tab" data-tab="specs">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
@@ -53,11 +53,6 @@
                   <span>İmalat Galerisi</span>
                 </button>
               </div>
-
-              <div class="sky-spec-live-badge">
-                <span class="sky-spec-pulse-dot"></span>
-                <span>Canlı CAD Verisi</span>
-              </div>
             </div>
 
             <!-- Main Stage Canvas / View Container -->
@@ -66,18 +61,20 @@
               <!-- Tab 1: 3D CAD Cutaway with Hotspots -->
               <div id="sky-pane-cutaway" class="sky-spec-pane active">
                 <div class="sky-spec-schematic-wrap">
-                  <img id="sky-spec-main-img" src="" alt="3D CAD Kesit Görünümü" class="sky-spec-schematic-img">
-                  
-                  <!-- Hotspot Pins Container -->
-                  <div id="sky-spec-hotspots-layer" class="sky-spec-hotspots-layer"></div>
-                  
-                  <!-- Floating Component Tooltip -->
-                  <div id="sky-spec-tooltip" class="sky-spec-tooltip hidden">
-                    <div class="sky-spec-tooltip-header">
-                      <span id="sky-tt-num" class="sky-spec-tt-num">01</span>
-                      <span id="sky-tt-title" class="sky-spec-tt-title">Bileşen Adı</span>
+                  <div class="sky-spec-image-stage">
+                    <img id="sky-spec-main-img" src="" alt="3D CAD Kesit Görünümü" class="sky-spec-schematic-img">
+                    
+                    <!-- Hotspot Pins Container -->
+                    <div id="sky-spec-hotspots-layer" class="sky-spec-hotspots-layer"></div>
+                    
+                    <!-- Floating Component Tooltip -->
+                    <div id="sky-spec-tooltip" class="sky-spec-tooltip hidden">
+                      <div class="sky-spec-tooltip-header">
+                        <span id="sky-tt-num" class="sky-spec-tt-num">01</span>
+                        <span id="sky-tt-title" class="sky-spec-tt-title">Bileşen Adı</span>
+                      </div>
+                      <p id="sky-tt-desc" class="sky-spec-tt-desc">Bileşen teknik detay açıklaması.</p>
                     </div>
-                    <p id="sky-tt-desc" class="sky-spec-tt-desc">Bileşen teknik detay açıklaması.</p>
                   </div>
                 </div>
 
@@ -412,7 +409,6 @@
       pin.setAttribute('aria-label', hp.title);
 
       pin.innerHTML = `
-        <span class="sky-pin-ring"></span>
         <span class="sky-pin-core">${hp.num}</span>
       `;
 
@@ -537,14 +533,14 @@
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        padding: 12px sm:16px md:24px !important;
-        background: rgba(3, 9, 20, 0.88) !important;
-        backdrop-filter: blur(16px) !important;
-        -webkit-backdrop-filter: blur(16px) !important;
+        padding: 12px !important;
+        background: rgba(15, 23, 42, 0.75) !important;
+        backdrop-filter: blur(8px) !important;
+        -webkit-backdrop-filter: blur(8px) !important;
         opacity: 0 !important;
         visibility: hidden !important;
         pointer-events: none !important;
-        transition: opacity 0.28s ease, visibility 0.28s ease !important;
+        transition: opacity 0.2s ease, visibility 0.2s ease !important;
       }
       .sky-spec-modal-backdrop.active {
         opacity: 1 !important;
@@ -554,49 +550,48 @@
       .sky-spec-modal-dialog {
         position: relative !important;
         width: 100% !important;
-        max-width: 1200px !important;
-        max-height: 94vh !important;
-        background: #040e1a !important;
-        border: 1px solid rgba(9, 189, 227, 0.35) !important;
-        border-radius: 14px !important;
-        box-shadow: 0 30px 90px -10px rgba(0, 0, 0, 0.9), 0 0 45px rgba(9, 189, 227, 0.15) !important;
+        max-width: 1140px !important;
+        max-height: 92vh !important;
+        background: #0f172a !important;
+        border: 1px solid #334155 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
         overflow: hidden !important;
         display: flex !important;
         flex-direction: column !important;
-        transform: scale(0.97) !important;
-        transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
-        color: #f1f5f9 !important;
+        transform: scale(0.98) !important;
+        transition: transform 0.2s ease !important;
+        color: #f8fafc !important;
       }
       .sky-spec-modal-backdrop.active .sky-spec-modal-dialog {
         transform: scale(1) !important;
       }
       .sky-spec-modal-close-btn {
         position: absolute !important;
-        top: 14px !important;
-        right: 14px !important;
+        top: 12px !important;
+        right: 12px !important;
         z-index: 50 !important;
-        width: 36px !important;
-        height: 36px !important;
+        width: 32px !important;
+        height: 32px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        border-radius: 50% !important;
-        background: rgba(255, 255, 255, 0.08) !important;
-        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 4px !important;
+        background: #1e293b !important;
+        border: 1px solid #334155 !important;
         color: #94a3b8 !important;
         cursor: pointer !important;
-        transition: all 0.2s ease !important;
+        transition: all 0.15s ease !important;
       }
       .sky-spec-modal-close-btn:hover {
-        background: rgba(239, 68, 68, 0.2) !important;
-        border-color: rgba(239, 68, 68, 0.5) !important;
-        color: #f87171 !important;
+        background: #334155 !important;
+        color: #ffffff !important;
       }
       .sky-spec-modal-grid {
         display: grid !important;
         grid-template-columns: 1fr !important;
         overflow-y: auto !important;
-        max-height: 94vh !important;
+        max-height: 92vh !important;
       }
       @media (min-width: 900px) {
         .sky-spec-modal-grid {
@@ -607,82 +602,54 @@
 
       /* LEFT STAGE */
       .sky-spec-left-stage {
-        background: #020912 !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+        background: #090d16 !important;
         display: flex !important;
         flex-direction: column !important;
         overflow: hidden !important;
+        border-bottom: 1px solid #1e293b !important;
       }
       @media (min-width: 900px) {
         .sky-spec-left-stage {
           border-bottom: none !important;
-          border-right: 1px solid rgba(9, 189, 227, 0.25) !important;
+          border-right: 1px solid #1e293b !important;
         }
       }
       .sky-spec-stage-topbar {
-        padding: 12px 18px !important;
-        background: rgba(4, 14, 26, 0.8) !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+        padding: 10px 16px !important;
+        background: #0f172a !important;
+        border-bottom: 1px solid #1e293b !important;
         display: flex !important;
         align-items: center !important;
         justify-content: space-between !important;
-        gap: 10px !important;
+        gap: 8px !important;
       }
       .sky-spec-view-tabs {
         display: flex !important;
         align-items: center !important;
-        gap: 6px !important;
+        gap: 4px !important;
       }
       .sky-spec-tab {
         display: inline-flex !important;
         align-items: center !important;
         gap: 6px !important;
         padding: 6px 12px !important;
-        border-radius: 6px !important;
-        font-size: 11px !important;
-        font-weight: 700 !important;
-        letter-spacing: 0.03em !important;
-        text-transform: uppercase !important;
+        border-radius: 4px !important;
+        font-size: 12px !important;
+        font-weight: 600 !important;
         background: transparent !important;
         border: 1px solid transparent !important;
         color: #94a3b8 !important;
         cursor: pointer !important;
-        transition: all 0.2s ease !important;
+        transition: all 0.15s ease !important;
       }
       .sky-spec-tab:hover {
         color: #ffffff !important;
-        background: rgba(255, 255, 255, 0.05) !important;
+        background: #1e293b !important;
       }
       .sky-spec-tab.active {
-        background: rgba(9, 189, 227, 0.15) !important;
-        border-color: rgba(9, 189, 227, 0.4) !important;
-        color: #09bde3 !important;
-      }
-      .sky-spec-live-badge {
-        display: none !important;
-        align-items: center !important;
-        gap: 6px !important;
-        font-size: 10px !important;
-        font-weight: 700 !important;
-        text-transform: uppercase !important;
-        letter-spacing: 0.05em !important;
+        background: #1e293b !important;
+        border-color: #334155 !important;
         color: #38bdf8 !important;
-      }
-      @media (min-width: 640px) {
-        .sky-spec-live-badge { display: inline-flex !important; }
-      }
-      .sky-spec-pulse-dot {
-        width: 7px !important;
-        height: 7px !important;
-        border-radius: 50% !important;
-        background: #09bde3 !important;
-        box-shadow: 0 0 10px #09bde3 !important;
-        animation: sky-pulse 2s infinite !important;
-      }
-      @keyframes sky-pulse {
-        0% { transform: scale(0.95); opacity: 1; }
-        50% { transform: scale(1.35); opacity: 0.5; }
-        100% { transform: scale(0.95); opacity: 1; }
       }
 
       /* Viewport */
@@ -690,11 +657,9 @@
         position: relative !important;
         flex: 1 !important;
         min-height: 380px !important;
-        max-height: 520px !important;
+        max-height: 500px !important;
         overflow-y: auto !important;
-        background-color: #030a14 !important;
-        background-image: radial-gradient(rgba(9, 189, 227, 0.12) 1px, transparent 1px) !important;
-        background-size: 20px 20px !important;
+        background-color: #020617 !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
@@ -717,15 +682,25 @@
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        padding: 10px !important;
+        padding: 16px !important;
+      }
+      .sky-spec-image-stage {
+        position: relative !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
       }
       .sky-spec-schematic-img {
         max-width: 100% !important;
-        max-height: 480px !important;
+        max-height: 440px !important;
+        width: auto !important;
+        height: auto !important;
         object-fit: contain !important;
-        border-radius: 6px !important;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
-        filter: drop-shadow(0 0 15px rgba(9, 189, 227, 0.12)) !important;
+        border-radius: 4px !important;
+        display: block !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
       }
       .sky-spec-hotspots-layer {
         position: absolute !important;
@@ -733,104 +708,82 @@
         pointer-events: auto !important;
       }
 
-      /* Hotspot Pins */
+      /* Hotspot Pins (SADE & KLASİK) */
       .sky-spec-hotspot-pin {
         position: absolute !important;
-        width: 28px !important;
-        height: 28px !important;
+        width: 24px !important;
+        height: 24px !important;
         transform: translate(-50%, -50%) !important;
         background: transparent !important;
         border: none !important;
         cursor: pointer !important;
         z-index: 20 !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-      }
-      .sky-pin-ring {
-        position: absolute !important;
-        inset: 0 !important;
-        border-radius: 50% !important;
-        border: 2px solid #09bde3 !important;
-        box-shadow: 0 0 14px #09bde3 !important;
-        animation: sky-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite !important;
-      }
-      @keyframes sky-ping {
-        75%, 100% {
-          transform: scale(1.85);
-          opacity: 0;
-        }
+        padding: 0 !important;
       }
       .sky-pin-core {
-        position: relative !important;
-        width: 22px !important;
-        height: 22px !important;
-        border-radius: 50% !important;
-        background: #09bde3 !important;
-        color: #040e1a !important;
-        font-size: 10px !important;
-        font-weight: 900 !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        box-shadow: 0 0 8px #09bde3 !important;
-        transition: transform 0.15s ease !important;
+        width: 24px !important;
+        height: 24px !important;
+        border-radius: 50% !important;
+        background-color: #0284c7 !important;
+        color: #ffffff !important;
+        font-size: 11px !important;
+        font-weight: 700 !important;
+        border: 2px solid #ffffff !important;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35) !important;
+        transition: transform 0.15s ease, background-color 0.15s ease !important;
       }
       .sky-spec-hotspot-pin:hover .sky-pin-core {
-        transform: scale(1.2) !important;
-        background: #ffffff !important;
-        color: #0284c7 !important;
+        transform: scale(1.15) !important;
+        background-color: #0369a1 !important;
       }
 
       /* Tooltip */
       .sky-spec-tooltip {
         position: absolute !important;
         z-index: 40 !important;
-        max-width: 290px !important;
-        background: rgba(4, 14, 26, 0.95) !important;
-        border: 1px solid rgba(9, 189, 227, 0.5) !important;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(9, 189, 227, 0.25) !important;
-        border-radius: 8px !important;
-        padding: 12px !important;
+        max-width: 280px !important;
+        background: #1e293b !important;
+        border: 1px solid #475569 !important;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5) !important;
+        border-radius: 6px !important;
+        padding: 12px 14px !important;
         color: #ffffff !important;
         pointer-events: none !important;
-        animation: sky-fade-in 0.2s ease !important;
-      }
-      @keyframes sky-fade-in {
-        from { opacity: 0; transform: translateY(4px); }
-        to { opacity: 1; transform: translateY(0); }
       }
       .sky-spec-tooltip-header {
         display: flex !important;
         align-items: center !important;
         gap: 8px !important;
-        margin-bottom: 6px !important;
+        margin-bottom: 4px !important;
       }
       .sky-spec-tt-num {
-        background: #09bde3 !important;
-        color: #040e1a !important;
+        background: #0284c7 !important;
+        color: #ffffff !important;
         font-size: 10px !important;
-        font-weight: 800 !important;
+        font-weight: 700 !important;
         padding: 1px 6px !important;
-        border-radius: 4px !important;
+        border-radius: 3px !important;
       }
       .sky-spec-tt-title {
         font-size: 13px !important;
         font-weight: 700 !important;
-        color: #09bde3 !important;
+        color: #ffffff !important;
       }
       .sky-spec-tt-desc {
         font-size: 11px !important;
         line-height: 1.5 !important;
-        color: #cbd5e1 !important;
+        color: #94a3b8 !important;
         margin: 0 !important;
       }
       .sky-spec-hotspot-hint {
         padding: 8px 14px !important;
         font-size: 11px !important;
         color: #94a3b8 !important;
-        background: rgba(4, 14, 26, 0.75) !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+        background: #0f172a !important;
+        border-top: 1px solid #1e293b !important;
         display: flex !important;
         align-items: center !important;
         gap: 8px !important;
@@ -850,19 +803,19 @@
         font-size: 12px !important;
       }
       .sky-spec-full-table th {
-        background: rgba(9, 189, 227, 0.12) !important;
-        color: #09bde3 !important;
+        background: #1e293b !important;
+        color: #38bdf8 !important;
         text-align: left !important;
-        padding: 8px 12px !important;
+        padding: 10px 14px !important;
         font-size: 11px !important;
-        font-weight: 700 !important;
+        font-weight: 600 !important;
         text-transform: uppercase !important;
         letter-spacing: 0.05em !important;
-        border-bottom: 1px solid rgba(9, 189, 227, 0.25) !important;
+        border-bottom: 1px solid #334155 !important;
       }
       .sky-spec-full-table td {
-        padding: 9px 12px !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+        padding: 9px 14px !important;
+        border-bottom: 1px solid #1e293b !important;
       }
       .sky-spec-full-table tr:hover {
         background: rgba(255, 255, 255, 0.03) !important;
@@ -881,9 +834,9 @@
       .sky-spec-gal-card {
         position: relative !important;
         aspect-ratio: 4 / 3 !important;
-        border-radius: 6px !important;
+        border-radius: 4px !important;
         overflow: hidden !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border: 1px solid #334155 !important;
         cursor: pointer !important;
         background: #061527 !important;
       }
@@ -894,20 +847,20 @@
         transition: transform 0.25s ease !important;
       }
       .sky-spec-gal-card:hover img {
-        transform: scale(1.06) !important;
+        transform: scale(1.04) !important;
       }
       .sky-spec-gal-overlay {
         position: absolute !important;
         inset: 0 !important;
-        background: rgba(3, 9, 20, 0.6) !important;
+        background: rgba(15, 23, 42, 0.7) !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         opacity: 0 !important;
         transition: opacity 0.2s ease !important;
         font-size: 11px !important;
-        font-weight: 700 !important;
-        color: #09bde3 !important;
+        font-weight: 600 !important;
+        color: #38bdf8 !important;
       }
       .sky-spec-gal-card:hover .sky-spec-gal-overlay {
         opacity: 1 !important;
@@ -916,16 +869,16 @@
       /* Bottom Thumbnail Strip */
       .sky-spec-thumb-strip-wrap {
         padding: 8px 14px !important;
-        background: rgba(4, 14, 26, 0.95) !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+        background: #0f172a !important;
+        border-top: 1px solid #1e293b !important;
         display: flex !important;
         align-items: center !important;
         gap: 10px !important;
       }
       .sky-spec-strip-label {
-        font-size: 9px !important;
-        font-weight: 800 !important;
-        letter-spacing: 0.08em !important;
+        font-size: 10px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.05em !important;
         color: #64748b !important;
         white-space: nowrap !important;
       }
@@ -941,7 +894,7 @@
         height: 36px !important;
         border-radius: 4px !important;
         overflow: hidden !important;
-        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border: 1px solid #334155 !important;
         cursor: pointer !important;
         opacity: 0.65 !important;
         flex-shrink: 0 !important;
@@ -954,14 +907,13 @@
       }
       .sky-spec-thumb:hover, .sky-spec-thumb.active {
         opacity: 1 !important;
-        border-color: #09bde3 !important;
-        box-shadow: 0 0 8px rgba(9, 189, 227, 0.5) !important;
+        border-color: #0284c7 !important;
       }
 
       /* RIGHT CONSOLE */
       .sky-spec-right-console {
         padding: 20px 22px !important;
-        background: #040e1a !important;
+        background: #0f172a !important;
         display: flex !important;
         flex-direction: column !important;
         gap: 12px !important;
@@ -972,25 +924,25 @@
       }
       .sky-spec-category-tag {
         font-size: 10px !important;
-        font-weight: 800 !important;
-        letter-spacing: 0.08em !important;
-        color: #09bde3 !important;
-        background: rgba(9, 189, 227, 0.1) !important;
-        border: 1px solid rgba(9, 189, 227, 0.25) !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.05em !important;
+        color: #38bdf8 !important;
+        background: #1e293b !important;
+        border: 1px solid #334155 !important;
         padding: 2px 7px !important;
         border-radius: 4px !important;
       }
       .sky-spec-code-tag {
         font-size: 10px !important;
-        font-weight: 700 !important;
+        font-weight: 600 !important;
         color: #94a3b8 !important;
       }
       .sky-spec-title {
-        font-size: 19px !important;
-        font-weight: 800 !important;
+        font-size: 18px !important;
+        font-weight: 700 !important;
         color: #ffffff !important;
         margin: 6px 0 4px 0 !important;
-        line-height: 1.25 !important;
+        line-height: 1.3 !important;
       }
       .sky-spec-lead {
         font-size: 12px !important;
@@ -1006,27 +958,24 @@
         gap: 4px !important;
       }
       .sky-spec-product-switcher label {
-        font-size: 10px !important;
-        font-weight: 700 !important;
-        text-transform: uppercase !important;
-        letter-spacing: 0.05em !important;
-        color: #64748b !important;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        color: #94a3b8 !important;
       }
       .sky-spec-select-box {
         width: 100% !important;
-        padding: 7px 10px !important;
-        background: #071526 !important;
-        border: 1px solid rgba(9, 189, 227, 0.25) !important;
-        border-radius: 6px !important;
+        padding: 8px 10px !important;
+        background: #1e293b !important;
+        border: 1px solid #334155 !important;
+        border-radius: 4px !important;
         color: #ffffff !important;
         font-size: 12px !important;
-        font-weight: 600 !important;
+        font-weight: 500 !important;
         outline: none !important;
         cursor: pointer !important;
       }
       .sky-spec-select-box:focus {
-        border-color: #09bde3 !important;
-        box-shadow: 0 0 10px rgba(9, 189, 227, 0.3) !important;
+        border-color: #0284c7 !important;
       }
 
       /* Quick Specs Grid */
@@ -1036,26 +985,25 @@
         gap: 8px !important;
       }
       .sky-spec-quick-item {
-        background: rgba(255, 255, 255, 0.03) !important;
-        border: 1px solid rgba(255, 255, 255, 0.06) !important;
-        border-radius: 6px !important;
-        padding: 7px 9px !important;
+        background: #1e293b !important;
+        border: 1px solid #334155 !important;
+        border-radius: 4px !important;
+        padding: 8px 10px !important;
       }
       .sky-spec-quick-item .label {
         display: block !important;
-        font-size: 9px !important;
-        font-weight: 700 !important;
-        color: #09bde3 !important;
-        text-transform: uppercase !important;
-        letter-spacing: 0.04em !important;
+        font-size: 10px !important;
+        font-weight: 600 !important;
+        color: #38bdf8 !important;
+        letter-spacing: 0.02em !important;
         margin-bottom: 2px !important;
       }
       .sky-spec-quick-item .val {
         display: block !important;
         font-size: 11px !important;
-        font-weight: 700 !important;
-        color: #f1f5f9 !important;
-        line-height: 1.25 !important;
+        font-weight: 600 !important;
+        color: #f8fafc !important;
+        line-height: 1.3 !important;
       }
 
       /* Form */
@@ -1063,9 +1011,9 @@
         display: flex !important;
         flex-direction: column !important;
         gap: 8px !important;
-        background: rgba(255, 255, 255, 0.02) !important;
-        border: 1px solid rgba(255, 255, 255, 0.07) !important;
-        border-radius: 8px !important;
+        background: #090d16 !important;
+        border: 1px solid #1e293b !important;
+        border-radius: 6px !important;
         padding: 12px !important;
       }
       .sky-spec-form-title {
@@ -1073,8 +1021,8 @@
         align-items: center !important;
         gap: 6px !important;
         font-size: 11px !important;
-        font-weight: 800 !important;
-        color: #ffffff !important;
+        font-weight: 700 !important;
+        color: #f8fafc !important;
         text-transform: uppercase !important;
         letter-spacing: 0.04em !important;
         margin-bottom: 2px !important;
@@ -1089,18 +1037,17 @@
       }
       .sky-spec-input, .sky-spec-textarea {
         width: 100% !important;
-        padding: 7px 10px !important;
-        background: #020912 !important;
-        border: 1px solid rgba(255, 255, 255, 0.12) !important;
-        border-radius: 6px !important;
+        padding: 8px 10px !important;
+        background: #0f172a !important;
+        border: 1px solid #334155 !important;
+        border-radius: 4px !important;
         color: #ffffff !important;
         font-size: 12px !important;
         outline: none !important;
         transition: border-color 0.15s ease !important;
       }
       .sky-spec-input:focus, .sky-spec-textarea:focus {
-        border-color: #09bde3 !important;
-        box-shadow: 0 0 8px rgba(9, 189, 227, 0.25) !important;
+        border-color: #0284c7 !important;
       }
       .sky-spec-textarea {
         resize: none !important;
@@ -1108,19 +1055,17 @@
       .sky-spec-submit-btn {
         width: 100% !important;
         padding: 10px 14px !important;
-        border-radius: 6px !important;
-        background: #09bde3 !important;
-        color: #040e1a !important;
+        border-radius: 4px !important;
+        background: #0284c7 !important;
+        color: #ffffff !important;
         font-size: 12px !important;
-        font-weight: 800 !important;
+        font-weight: 700 !important;
         border: none !important;
         cursor: pointer !important;
-        transition: opacity 0.15s ease, transform 0.15s ease !important;
-        box-shadow: 0 4px 14px rgba(9, 189, 227, 0.35) !important;
+        transition: background-color 0.15s ease !important;
       }
       .sky-spec-submit-btn:hover {
-        opacity: 0.92 !important;
-        transform: translateY(-1px) !important;
+        background: #0369a1 !important;
       }
       .sky-spec-success {
         display: flex !important;
@@ -1129,7 +1074,7 @@
         background: rgba(16, 185, 129, 0.15) !important;
         border: 1px solid rgba(16, 185, 129, 0.4) !important;
         padding: 8px 10px !important;
-        border-radius: 6px !important;
+        border-radius: 4px !important;
         font-size: 11px !important;
         color: #6ee7b7 !important;
       }
@@ -1149,16 +1094,16 @@
         justify-content: center !important;
         gap: 6px !important;
         padding: 8px 10px !important;
-        border-radius: 6px !important;
-        background: #10b981 !important;
+        border-radius: 4px !important;
+        background: #16a34a !important;
         color: #ffffff !important;
         font-size: 11px !important;
-        font-weight: 700 !important;
+        font-weight: 600 !important;
         text-decoration: none !important;
-        transition: background 0.15s ease !important;
+        transition: background-color 0.15s ease !important;
       }
       .sky-spec-wa-btn:hover {
-        background: #059669 !important;
+        background: #15803d !important;
       }
       .sky-spec-phone-btn {
         display: inline-flex !important;
@@ -1166,18 +1111,17 @@
         justify-content: center !important;
         gap: 6px !important;
         padding: 8px 10px !important;
-        border-radius: 6px !important;
-        background: rgba(255, 255, 255, 0.05) !important;
-        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 4px !important;
+        background: #1e293b !important;
+        border: 1px solid #334155 !important;
         color: #ffffff !important;
         font-size: 11px !important;
-        font-weight: 700 !important;
+        font-weight: 600 !important;
         text-decoration: none !important;
-        transition: all 0.15s ease !important;
+        transition: background-color 0.15s ease !important;
       }
       .sky-spec-phone-btn:hover {
-        background: rgba(255, 255, 255, 0.1) !important;
-        border-color: #09bde3 !important;
+        background: #334155 !important;
       }
 
       /* Trust Footer */
@@ -1186,10 +1130,10 @@
         align-items: center !important;
         justify-content: space-between !important;
         font-size: 10px !important;
-        font-weight: 600 !important;
+        font-weight: 500 !important;
         color: #64748b !important;
         padding-top: 6px !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+        border-top: 1px solid #1e293b !important;
       }
     `;
     document.head.appendChild(style);
