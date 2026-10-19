@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host --port 3000",
-    "bundle:3d": "esbuild src/sky-3d-hero.js --bundle --minify --format=esm --outfile=assets/sky-3d-hero.bundle.js",
-    "build": "esbuild src/sky-3d-hero.js --bundle --minify --format=esm --outfile=assets/sky-3d-hero.bundle.js && vite build",
+    "bundle:3d": "esbuild src/sky-3d-hero.js --bundle --minify --format=esm --outfile=assets/sky-3d-hero.bundle.js && esbuild src/sky-3d-product.js --bundle --minify --format=esm --outfile=assets/sky-3d-product.bundle.js",
+    "build": "esbuild src/sky-3d-hero.js --bundle --minify --format=esm --outfile=assets/sky-3d-hero.bundle.js && esbuild src/sky-3d-product.js --bundle --minify --format=esm --outfile=assets/sky-3d-product.bundle.js && vite build",
     "preview": "vite preview --host --port 3000"
   },
   "devDependencies": {

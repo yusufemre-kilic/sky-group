@@ -232,11 +232,12 @@
     }
 
     /* Hero Technical Schematic Stage (Pure White Background, Classic & Clean) */
+    /* Hero Technical 3D Digital Twin Stage (Pure White Background, Classic & Clean) */
     .sky-vlog-hero {
       position: relative;
       width: 100%;
-      min-height: 340px;
-      max-height: 480px;
+      min-height: 480px;
+      height: 520px;
       border-radius: 8px;
       overflow: hidden;
       border: 1px solid #e2e8f0;
@@ -244,11 +245,38 @@
       box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.05);
       margin-bottom: 24px;
       display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: stretch;
+      padding: 0;
+    }
+    #sky-product-3d-canvas {
+      width: 100%;
+      height: 100%;
+      min-height: 480px;
+      display: block;
+      cursor: grab;
+      outline: none;
+    }
+    #sky-product-3d-canvas:active {
+      cursor: grabbing;
+    }
+    #sky-product-3d-canvas canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+    }
+    #sky-product-2d-view {
+      width: 100%;
+      height: 100%;
+      min-height: 480px;
+      display: none;
       align-items: center;
       justify-content: center;
       padding: 28px 20px;
+      background: #ffffff;
     }
-    .sky-vlog-hero img {
+    #sky-product-2d-view img {
       max-width: 100%;
       max-height: 420px;
       width: auto;
@@ -257,16 +285,167 @@
       display: block;
       margin: 0 auto;
     }
-    .sky-hero-inspect-btn {
+
+    /* 3D Floating HUD */
+    .sky-3d-hud {
       position: absolute;
-      bottom: 16px;
-      right: 20px;
+      inset: 0;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 16px 20px;
+      z-index: 20;
+    }
+    .sky-3d-badge-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      pointer-events: auto;
+      flex-wrap: wrap;
+    }
+    .sky-3d-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 8px 16px;
-      border-radius: 4px;
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid #e2e8f0;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #0f172a;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+    .sky-3d-pill.text-muted {
+      color: #64748b;
+      font-weight: 500;
+    }
+    .sky-3d-dot.live {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #0284c7;
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
+    }
+    .sky-3d-actions-bar {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      pointer-events: auto;
+      flex-wrap: wrap;
+    }
+    .sky-3d-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      transition: all 0.15s ease;
+    }
+    .sky-3d-action-btn:hover {
       background: #ffffff;
+      color: #0284c7;
+      border-color: #0284c7;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.07);
+    }
+    .sky-3d-action-btn.active {
+      background: #f0f9ff;
+      color: #0284c7;
+      border-color: #7dd3fc;
+    }
+    .sky-3d-action-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+    .sky-3d-callout-card {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      max-width: 320px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 14px 16px;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 4px 10px rgba(0,0,0,0.05);
+      pointer-events: auto;
+      animation: skyCalloutPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 25;
+    }
+    @keyframes skyCalloutPop {
+      from { opacity: 0; transform: translateY(8px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .sky-3d-callout-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .sky-3d-callout-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      background: #0284c7;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .sky-3d-callout-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0;
+      flex: 1;
+    }
+    .sky-3d-callout-close {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0 4px;
+    }
+    .sky-3d-callout-close:hover {
+      color: #0f172a;
+    }
+    .sky-3d-callout-desc {
+      font-size: 12px;
+      line-height: 1.5;
+      color: #475569;
+      margin: 0;
+    }
+
+    .sky-hero-inspect-btn {
+      position: absolute;
+      bottom: 16px;
+      left: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.94);
       border: 1px solid #cbd5e1;
       color: #0284c7;
       font-size: 12px;
@@ -274,11 +453,13 @@
       cursor: pointer;
       box-shadow: 0 2px 6px rgba(0,0,0,0.06);
       transition: all 0.15s ease;
+      z-index: 22;
     }
     .sky-hero-inspect-btn:hover {
-      background: #f8fafc;
+      background: #ffffff;
       border-color: #0284c7;
       color: #0369a1;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     }
     .sky-hero-badge {
       position: absolute;
@@ -1058,14 +1239,21 @@
 
     </section>
 
-    <!-- PRODUCT TECHNICAL SCHEMATIC HERO & SPECS (SADE & BEYAZ ARKA PLAN) -->
+    <!-- PRODUCT TECHNICAL 3D HERO & SPECS (SADE & BEYAZ ARKA PLAN) -->
     <section class="sky-vlog-container">
-      <div class="sky-vlog-hero">
-        <span class="sky-hero-badge">Klima Santralleri (AHU) • TKS 7-7 / 22-22 (26 Boyut)</span>
-        <img src="./assets/images/tks-3d-cad-cutaway.jpg" alt="TKS Standart Klima Santrali Teknik Kesit Görünümü">
-        <button type="button" onclick="openProductSpecModal('tks', 'cutaway')" class="sky-hero-inspect-btn">
+      <div class="sky-vlog-hero" id="sky-product-3d-stage">
+        <!-- 3D Interactive WebGL Canvas Container -->
+        <div id="sky-product-3d-canvas" data-product="tks" title="360° Döndürmek için sürükleyin • Yakınlaştırın"></div>
+
+        <!-- 2D High-Res Engineering Cutaway View (Togglable) -->
+        <div id="sky-product-2d-view">
+          <img src="./assets/images/tks-3d-cad-cutaway.jpg" alt="TKS Standart Klima Santrali Teknik Kesit Görünümü">
+        </div>
+
+        <!-- Inspect Button -->
+        <button type="button" onclick="openProductSpecModal('tks', 'cutaway')" class="sky-hero-inspect-btn" title="Detaylı Teknik Şartname & Paftayı İncele">
           <svg style="width: 14px; height: 14px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-          <span>Teknik Kesiti ve Şartnameyi İncele</span>
+          <span>Teknik Kesit & Şartname Paftası</span>
         </button>
       </div>
 
@@ -1503,6 +1691,7 @@
 <div id="sky-quote-modal" aria-hidden="true" role="dialog" aria-modal="true"></div>
 <script src="./src/sky-products-data.js"></script>
 <script src="./src/sky-product-spec-modal.js"></script>
+<script type="module" src="./assets/sky-3d-product.bundle.js"></script>
 </div>
 
 
