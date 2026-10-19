@@ -527,12 +527,328 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     }
   }
 
+  // --- SPECIALIZED DEDICATED MODEL: THKS HİJYENİK KLİMA SANTRALİ (DIN 1946-4 CLEANROOM TWIN) ---
+  function buildThksDetailedModel(parent) {
+    const L = 8.6;
+    const H = 2.6;
+    const W = 2.0;
+    const halfL = L / 2; // 4.3
+    const halfH = H / 2; // 1.3
+    const halfW = W / 2; // 1.0
+
+    // 1. BASE SKID (Galvanized structural C-channel with forklift slots and yellow crane lifting brackets)
+    const skidH = 0.22;
+    const skidY = -halfH - skidH / 2;
+    const frontRail = createBox(L + 0.2, skidH, 0.1, materials.baseSkid, 0, skidY, halfW - 0.05);
+    const backRail = createBox(L + 0.2, skidH, 0.1, materials.baseSkid, 0, skidY, -halfW + 0.05);
+    parent.add(frontRail, backRail);
+
+    const crossX = [-halfL, -2.6, -0.9, 0.8, 2.6, halfL];
+    crossX.forEach(cx => {
+      parent.add(createBox(0.12, skidH, W - 0.2, materials.baseSkid, cx, skidY, 0));
+    });
+
+    // Forklift lifting pockets
+    [-2.6, 0.8].forEach(fx => {
+      parent.add(createBox(0.28, 0.12, 0.12, materials.stainless, fx, skidY, halfW - 0.04));
+      parent.add(createBox(0.28, 0.12, 0.12, materials.stainless, fx, skidY, -halfW + 0.04));
+    });
+
+    // 4 Corner crane lifting lugs
+    [[-halfL - 0.05, halfW - 0.02], [-halfL - 0.05, -halfW + 0.02], [halfL + 0.05, halfW - 0.02], [halfL + 0.05, -halfW + 0.02]].forEach(([lx, lz]) => {
+      parent.add(createBox(0.08, 0.18, 0.08, materials.yellowSafety, lx, skidY + 0.06, lz));
+    });
+
+    // 2. THERMAL-BREAK EXTRUDED STAINLESS / ANODIZED FRAMEWORK
+    const pSize = 0.08;
+    parent.add(
+      createBox(L, pSize, pSize, materials.stainless, 0, -halfH + pSize / 2, halfW - pSize / 2),
+      createBox(L, pSize, pSize, materials.stainless, 0, -halfH + pSize / 2, -halfW + pSize / 2),
+      createBox(L, pSize, pSize, materials.stainless, 0, halfH - pSize / 2, halfW - pSize / 2),
+      createBox(L, pSize, pSize, materials.stainless, 0, halfH - pSize / 2, -halfW + pSize / 2)
+    );
+
+    crossX.forEach(px => {
+      parent.add(
+        createBox(pSize, H, pSize, materials.stainless, px, 0, halfW - pSize / 2),
+        createBox(pSize, H, pSize, materials.stainless, px, 0, -halfW + pSize / 2),
+        createBox(pSize, pSize, W - pSize * 2, materials.stainless, px, halfH - pSize / 2, 0),
+        createBox(pSize, pSize, W - pSize * 2, materials.stainless, px, -halfH + pSize / 2, 0)
+      );
+    });
+
+    // 3. SEAMLESS AISI 304 STAINLESS STEEL INTERIOR LINING & COVED CORNER PROFILES
+    const midDeckL = 5.1; // x = -4.3 to 0.8
+    const midDeck = createBox(midDeckL, 0.05, W - 0.16, materials.stainless, -halfL + midDeckL / 2, 0, 0);
+    parent.add(midDeck);
+
+    // Rear wall (outer solid panel + inner stainless sheet)
+    parent.add(createBox(L - 0.1, H - 0.1, 0.04, materials.panelSolid, 0, 0, -halfW + 0.03));
+    parent.add(createBox(L - 0.12, H - 0.12, 0.01, materials.stainless, 0, 0, -halfW + 0.055));
+
+    // Floor panel (gleaming stainless steel AISI 304)
+    parent.add(createBox(L - 0.1, 0.05, W - 0.16, materials.stainless, 0, -halfH + 0.03, 0));
+
+    // Coved corner radius profiles (R20 coved hygiene corners) along floor-wall intersections
+    const coveBack = createCyl(0.04, 0.04, L - 0.2, 12, materials.stainless, 0, -halfH + 0.07, -halfW + 0.07, 0, Math.PI / 2);
+    parent.add(coveBack);
+
+    // Right discharge end wall with flanged stainless collar
+    parent.add(createBox(0.05, H - 0.1, W - 0.16, materials.panelSolid, halfL - 0.03, 0, 0));
+    const dischargeCollar = createBox(0.18, 1.2, 1.2, materials.stainless, halfL + 0.09, -0.2, 0);
+    parent.add(dischargeCollar);
+
+    // Left end wall with two damper cutouts
+    parent.add(createBox(0.05, H - 0.1, W - 0.16, materials.panelSolid, -halfL + 0.03, 0, 0));
+
+    // 4. MODULAR ROOF & FRONT SERVICE DOORS (Togglable via Şeffaf Gövde)
+    const modCenters = [
+      (-4.3 + -2.6) / 2, // Mod 1: -3.45
+      (-2.6 + -0.9) / 2, // Mod 2: -1.75
+      (-0.9 + 0.8) / 2,  // Mod 3: -0.05
+      (0.8 + 2.6) / 2,   // Mod 4: 1.70
+      (2.6 + 4.3) / 2    // Mod 5: 3.45
+    ];
+    const modWidths = [1.7, 1.7, 1.7, 1.8, 1.7];
+
+    modCenters.forEach((cx, idx) => {
+      const mw = modWidths[idx] - 0.08;
+      // Roof panel
+      const roofPanel = createBox(mw, 0.04, W - 0.16, materials.panelCutaway, cx, halfH - 0.02, 0, false, false);
+      parent.add(roofPanel);
+      registerCutawayPanel(roofPanel, materials.panelSolid, materials.panelCutaway);
+
+      // Front service door
+      const doorPanel = createBox(mw, H - 0.18, 0.03, materials.panelCutaway, cx, 0, halfW - 0.02, false, false);
+      parent.add(doorPanel);
+      registerCutawayPanel(doorPanel, materials.panelSolid, materials.panelCutaway);
+
+      // Stainless perimeter door frame
+      const frameThick = 0.04;
+      parent.add(
+        createBox(mw, frameThick, 0.02, materials.stainless, cx, (H - 0.18) / 2, halfW),
+        createBox(mw, frameThick, 0.02, materials.stainless, cx, -(H - 0.18) / 2, halfW),
+        createBox(frameThick, H - 0.18, 0.02, materials.stainless, cx - mw / 2, 0, halfW),
+        createBox(frameThick, H - 0.18, 0.02, materials.stainless, cx + mw / 2, 0, halfW)
+      );
+
+      // Heavy-duty black compression turn handles with keylocks
+      [-0.45, 0.45].forEach(hy => {
+        parent.add(createBox(0.04, 0.14, 0.05, materials.doorHandle, cx + mw / 2 - 0.1, hy, halfW + 0.02));
+      });
+      // Stainless steel heavy-duty hinges
+      [-0.55, 0.55].forEach(hy => {
+        parent.add(createBox(0.03, 0.1, 0.03, materials.stainless, cx - mw / 2 + 0.04, hy, halfW + 0.01));
+      });
+    });
+
+    // Circular inspection portholes on Door 1 (upper fan), Door 3 (heat recovery), Door 5 (supply fan)
+    [[-3.45, 0.55], [-0.05, 0.2], [3.45, -0.45]].forEach(([px, py]) => {
+      const portBezel = createCyl(0.14, 0.14, 0.04, 24, materials.stainless, px, py, halfW, Math.PI / 2);
+      const portGlass = createCyl(0.11, 0.11, 0.045, 20, materials.panelCutaway, px, py, halfW, Math.PI / 2);
+      parent.add(portBezel, portGlass);
+    });
+
+    // Magnehelic differential pressure gauges on Door 2 (Pre/Fine Filters) and Door 5 (HEPA Filter & Fan)
+    [[-1.75, 0.1], [3.45, 0.35]].forEach(([gx, gy]) => {
+      const gaugeRing = createCyl(0.08, 0.08, 0.03, 20, materials.stainless, gx, gy, halfW + 0.015, Math.PI / 2);
+      const gaugeFace = createCyl(0.07, 0.07, 0.035, 20, materials.gaugeFace, gx, gy, halfW + 0.015, Math.PI / 2);
+      parent.add(gaugeRing, gaugeFace);
+      parent.add(createCyl(0.008, 0.008, 0.22, 8, materials.panelCutaway, gx - 0.03, gy - 0.12, halfW + 0.01));
+      parent.add(createCyl(0.008, 0.008, 0.22, 8, materials.panelCutaway, gx + 0.03, gy - 0.12, halfW + 0.01));
+    });
+
+    // Front DDC PLC Control Cabinet on Door 5 (Hygienic Control)
+    const plcW = 0.48, plcH = 0.68, plcD = 0.18;
+    const plcBox = createBox(plcW, plcH, plcD, materials.stainless, 2.85, 0.45, halfW + plcD / 2);
+    const plcScreen = createBox(0.24, 0.16, 0.01, materials.touchscreen, 2.85, 0.56, halfW + plcD + 0.005);
+    const ledG = createCyl(0.014, 0.014, 0.02, 10, materials.coolingFin, 2.75, 0.42, halfW + plcD + 0.01, Math.PI / 2);
+    const ledY = createCyl(0.014, 0.014, 0.02, 10, materials.yellowSafety, 2.85, 0.42, halfW + plcD + 0.01, Math.PI / 2);
+    const ledR = createCyl(0.014, 0.014, 0.02, 10, materials.heatingFin, 2.95, 0.42, halfW + plcD + 0.01, Math.PI / 2);
+    const isolatorPlate = createBox(0.08, 0.08, 0.01, materials.yellowSafety, 2.85, 0.3, halfW + plcD + 0.005);
+    const isolatorKnob = createBox(0.04, 0.06, 0.03, materials.heatingFin, 2.85, 0.3, halfW + plcD + 0.02);
+    parent.add(plcBox, plcScreen, ledG, ledY, ledR, isolatorPlate, isolatorKnob);
+
+    // --- MODULE 1 INTERNALS: DAMPERS, G4 FILTER & UPPER EXHAUST FAN ---
+    const lowerDamperY = -halfH / 2 - 0.05;
+    const damperW = W - 0.35, damperH = 0.85;
+    const lowerDamperFrame = createBox(0.12, damperH, damperW, materials.stainless, -halfL - 0.06, lowerDamperY, 0);
+    parent.add(lowerDamperFrame);
+    for (let b = 0; b < 5; b++) {
+      const by = lowerDamperY - damperH / 2 + 0.1 + b * ((damperH - 0.2) / 4);
+      const blade = createBox(0.08, 0.015, damperW - 0.06, materials.damperBlade, -halfL - 0.06, by, 0);
+      blade.rotation.z = 0.55;
+      parent.add(blade);
+    }
+    const belimo1 = createBox(0.16, 0.2, 0.14, materials.actuatorOrange, -halfL - 0.06, lowerDamperY, halfW + 0.06);
+    parent.add(belimo1);
+
+    // G4 synthetic pleated panel pre-filter bank in stainless frame
+    const g4Bank = createBox(0.1, halfH - 0.35, W - 0.35, materials.stainless, -3.8, lowerDamperY, 0);
+    const g4Media = createBox(0.08, halfH - 0.4, W - 0.4, materials.filterG4, -3.8, lowerDamperY, 0);
+    parent.add(g4Bank, g4Media);
+
+    // Upper Exhaust Damper
+    const upperDamperY = halfH / 2 - 0.05;
+    const upperDamperFrame = createBox(0.12, damperH, damperW, materials.stainless, -halfL - 0.06, upperDamperY, 0);
+    parent.add(upperDamperFrame);
+    for (let b = 0; b < 5; b++) {
+      const by = upperDamperY - damperH / 2 + 0.1 + b * ((damperH - 0.2) / 4);
+      const blade = createBox(0.08, 0.015, damperW - 0.06, materials.damperBlade, -halfL - 0.06, by, 0);
+      blade.rotation.z = -0.55;
+      parent.add(blade);
+    }
+    const belimo2 = createBox(0.16, 0.2, 0.14, materials.actuatorOrange, -halfL - 0.06, upperDamperY, halfW + 0.06);
+    parent.add(belimo2);
+
+    // Upper Return/Exhaust Plug Fan
+    const exFanGroup = new THREE.Group();
+    exFanGroup.position.set(-2.95, upperDamperY, 0);
+    parent.add(exFanGroup);
+    const exBell = createCyl(0.38, 0.3, 0.12, 24, materials.stainless, 0.2, 0, 0, 0, Math.PI / 2);
+    const exImpeller = createCyl(0.42, 0.42, 0.28, 20, materials.fanImpeller, 0, 0, 0, 0, Math.PI / 2);
+    exFanGroup.add(exBell, exImpeller);
+    const exMotor = createCyl(0.18, 0.18, 0.34, 16, materials.motorCast, -0.32, 0, 0, 0, Math.PI / 2);
+    exFanGroup.add(exMotor);
+    const exGuard = createCyl(0.46, 0.46, 0.1, 16, materials.yellowSafety, 0.28, 0, 0, 0, Math.PI / 2, true);
+    exFanGroup.add(exGuard);
+    animators.push(() => { exImpeller.rotation.x += 0.14; });
+
+    // --- MODULE 2 INTERNALS: FINE FILTRATION (F7/F9 POCKET BAG FILTER) ---
+    const f7Frame = createBox(0.1, halfH - 0.35, W - 0.35, materials.stainless, -2.5, lowerDamperY, 0);
+    parent.add(f7Frame);
+    for (let row = 0; row < 2; row++) {
+      for (let col = 0; col < 3; col++) {
+        const bagY = lowerDamperY - 0.22 + row * 0.44;
+        const bagZ = -halfW + 0.35 + col * ((W - 0.7) / 2);
+        const bagGeo = new THREE.ConeGeometry(0.18, 0.85, 4);
+        const bagMesh = new THREE.Mesh(bagGeo, materials.filterCloth);
+        bagMesh.position.set(-2.0, bagY, bagZ);
+        bagMesh.rotation.z = -Math.PI / 2;
+        bagMesh.scale.set(0.9, 1.2, 0.7);
+        parent.add(bagMesh);
+      }
+    }
+
+    // --- MODULE 3 INTERNALS: HEAT RECOVERY & RUN-AROUND / PLATE EXCHANGER ---
+    const plateCore = createBox(1.5, 1.4, W - 0.35, materials.stainless, -0.05, 0, 0);
+    plateCore.rotation.z = Math.PI / 4;
+    parent.add(plateCore);
+    const diagBaffle = createBox(2.2, 0.04, W - 0.3, materials.stainless, -0.05, 0, 0);
+    diagBaffle.rotation.z = -Math.PI / 4;
+    parent.add(diagBaffle);
+
+    // --- MODULE 4 INTERNALS: UV-C STERILIZATION & COILS & PASLANMAZ DRAIN PAN ---
+    const coilW = W - 0.35, coilH = halfH - 0.35;
+
+    // 1. GERMICIDAL UV-C LAMP ARRAY (Quartz tubes emitting soft sterilizing glow)
+    for (let u = 0; u < 3; u++) {
+      const uy = lowerDamperY - 0.25 + u * 0.25;
+      const uvTube = createCyl(0.02, 0.02, coilW - 0.1, 12, materials.coolingFin, 0.95, uy, 0, Math.PI / 2);
+      parent.add(uvTube);
+      parent.add(createBox(0.04, 0.04, 0.04, materials.stainless, 0.95, uy, halfW - 0.2));
+      parent.add(createBox(0.04, 0.04, 0.04, materials.stainless, 0.95, uy, -halfW + 0.2));
+    }
+
+    // 2. Chilled Water Cooling Coil
+    const coolCoilFin = createBox(0.24, coilH, coilW, materials.coolingFin, 1.25, lowerDamperY, 0);
+    parent.add(coolCoilFin);
+
+    [-0.5, 0.5].forEach(hz => {
+      const coolHeader = createCyl(0.045, 0.045, coilH + 0.1, 14, materials.copperPipe, 1.25, lowerDamperY, hz);
+      parent.add(coolHeader);
+    });
+
+    // 16 Copper U-bend hairpins on front face
+    for (let ui = 0; ui < 8; ui++) {
+      const uy = lowerDamperY - coilH / 2 + 0.1 + ui * ((coilH - 0.2) / 7);
+      const ubend = new THREE.Mesh(
+        new THREE.TorusGeometry(0.032, 0.012, 8, 12, Math.PI),
+        materials.copperPipe
+      );
+      ubend.position.set(1.25, uy, halfW - 0.18);
+      ubend.rotation.y = Math.PI / 2;
+      ubend.rotation.x = Math.PI / 2;
+      parent.add(ubend);
+    }
+
+    // 3. AISI 304 Stainless Steel Dual-Slope Condensate Drain Pan
+    const pan = createBox(1.3, 0.09, coilW + 0.1, materials.stainless, 1.6, -halfH + 0.1, 0);
+    parent.add(pan);
+    const drainStub = createCyl(0.025, 0.025, 0.2, 12, materials.stainless, 1.9, -halfH + 0.06, halfW - 0.05);
+    parent.add(drainStub);
+
+    // 4. Wave-Profile Stainless Droplet Eliminator
+    const elimFin = createBox(0.12, coilH, coilW, materials.stainless, 1.55, lowerDamperY, 0);
+    parent.add(elimFin);
+    for (let el = 0; el < 12; el++) {
+      const ez = -halfW + 0.3 + el * ((coilW - 0.2) / 11);
+      const blade = createBox(0.08, coilH - 0.05, 0.012, materials.stainless, 1.55, lowerDamperY, ez);
+      blade.rotation.y = 0.35;
+      parent.add(blade);
+    }
+
+    // 5. Hot Water Heating Coil
+    const heatCoilFin = createBox(0.18, coilH, coilW, materials.heatingFin, 1.95, lowerDamperY, 0);
+    parent.add(heatCoilFin);
+    [-0.4, 0.4].forEach(hz => {
+      const heatHeader = createCyl(0.04, 0.04, coilH + 0.1, 14, materials.copperPipe, 1.95, lowerDamperY, hz);
+      parent.add(heatHeader);
+    });
+
+    // --- MODULE 5 INTERNALS: DIRECT-DRIVE EC PLUG FAN & TERMINAL H14 HEPA FILTER ---
+    const fanAssembly = new THREE.Group();
+    fanAssembly.position.set(2.85, lowerDamperY, 0);
+    parent.add(fanAssembly);
+
+    const bellmouth = createCyl(0.48, 0.38, 0.18, 28, materials.stainless, -0.4, 0, 0, 0, Math.PI / 2);
+    const piezoRing = createCyl(0.44, 0.44, 0.03, 24, materials.copperPipe, -0.38, 0, 0, 0, Math.PI / 2, true);
+    fanAssembly.add(bellmouth, piezoRing);
+
+    const plugImpeller = createCyl(0.52, 0.52, 0.36, 24, materials.fanHousing, -0.05, 0, 0, 0, Math.PI / 2);
+    const centerSpinner = createCyl(0.14, 0.05, 0.16, 16, materials.stainless, -0.25, 0, 0, 0, Math.PI / 2);
+    fanAssembly.add(plugImpeller, centerSpinner);
+    animators.push(() => { plugImpeller.rotation.x += 0.15; });
+
+    const fanMotor = createCyl(0.24, 0.24, 0.45, 18, materials.motorCast, 0.32, 0, 0, 0, Math.PI / 2);
+    const termBox = createBox(0.14, 0.12, 0.14, materials.motorCast, 0.32, 0.26, 0);
+    fanAssembly.add(fanMotor, termBox);
+
+    const fanBase = createBox(1.1, 0.08, 0.8, materials.stainless, 0.05, -coilH / 2 + 0.08, 0);
+    fanAssembly.add(fanBase);
+
+    [[-0.4, -0.3], [-0.4, 0.3], [0.4, -0.3], [0.4, 0.3]].forEach(([sx, sz]) => {
+      const springBase = createBox(0.12, 0.03, 0.12, materials.motorCast, sx, -coilH / 2 + 0.02, sz);
+      const springCoil = createCyl(0.04, 0.04, 0.12, 10, materials.springSilver, sx, -coilH / 2 + 0.08, sz);
+      fanAssembly.add(springBase, springCoil);
+    });
+
+    const flexCollar = createBox(0.1, coilH, coilW, materials.rubberBlack, 2.35, lowerDamperY, 0);
+    parent.add(flexCollar);
+
+    // TERMINAL H14 HEPA FILTER BANK (DIN 1946-4 Hospital Cleanroom Filter)
+    const hepaFrame = createBox(0.2, coilH - 0.1, coilW - 0.1, materials.stainless, 3.65, lowerDamperY, 0);
+    const hepaCore = createBox(0.16, coilH - 0.15, coilW - 0.15, materials.filterCloth, 3.65, lowerDamperY, 0);
+    parent.add(hepaFrame, hepaCore);
+
+    // Hygienic Acoustic Sound Attenuator with glass fabric anti-erosion cover
+    for (let si = -1; si <= 1; si += 2) {
+      const sz = si * 0.4;
+      const pod = createBox(0.42, coilH - 0.1, 0.2, materials.stainless, 4.05, lowerDamperY, sz);
+      parent.add(pod);
+    }
+  }
+
   // --- 5. CATEGORY-BASED PROCEDURAL GENERATORS ---
 
   // A. AIR HANDLING & RECOVERY UNITS (TKS, THKS, THRV-DX, HRV, ROOFTOP)
   function buildAhuModel(parent, type) {
     if (type === 'tks') {
       buildTksDetailedModel(parent);
+      return;
+    }
+    if (type === 'thks') {
+      buildThksDetailedModel(parent);
       return;
     }
     const isHygienic = type === 'thks';
@@ -1131,7 +1447,9 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
   // --- 6. ROUTE PRODUCT ID TO MODEL GENERATOR ---
   if (productId === 'tks') {
     buildTksDetailedModel(modelRoot);
-  } else if (['thks', 'thrv-dx', 'hrv', 'rooftop'].includes(productId)) {
+  } else if (productId === 'thks') {
+    buildThksDetailedModel(modelRoot);
+  } else if (['thrv-dx', 'hrv', 'rooftop'].includes(productId)) {
     buildAhuModel(modelRoot, productId);
   } else if (['tdf', 'yangin-fani', 'jet-fan'].includes(productId)) {
     buildFanModel(modelRoot, productId);
@@ -1203,18 +1521,20 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
   const pColors = new Float32Array(particleCount * 3);
 
   const isTksProduct = productId === 'tks';
+  const isThksProduct = productId === 'thks';
+  const isAhuDual = isTksProduct || isThksProduct;
   const halfLen = Math.max(2.0, size.x / 2 + 0.4);
   const spanY = Math.max(1.0, size.y * 0.45);
   const spanZ = Math.max(1.0, size.z * 0.45);
 
   for (let i = 0; i < particleCount; i++) {
-    const isSupply = isTksProduct ? (i < particleCount * 0.7) : (i < particleCount * 0.65);
+    const isSupply = isAhuDual ? (i < particleCount * 0.7) : (i < particleCount * 0.65);
     particles.push({
       isSupply,
       progress: Math.random(),
-      speed: (isTksProduct ? 0.006 : 0.005) + Math.random() * 0.004,
-      offsetY: (Math.random() - 0.5) * (isTksProduct ? 0.35 : spanY),
-      offsetZ: (Math.random() - 0.5) * (isTksProduct ? 0.7 : spanZ)
+      speed: (isAhuDual ? 0.006 : 0.005) + Math.random() * 0.004,
+      offsetY: (Math.random() - 0.5) * (isAhuDual ? 0.35 : spanY),
+      offsetZ: (Math.random() - 0.5) * (isAhuDual ? 0.7 : spanZ)
     });
     if (isSupply) {
       pColors[i * 3] = 0.02; pColors[i * 3 + 1] = 0.65; pColors[i * 3 + 2] = 0.98;
@@ -1262,15 +1582,15 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
       p.progress += p.speed;
       if (p.progress > 1.0) p.progress = 0.0;
 
-      if (isTksProduct) {
+      if (isAhuDual) {
         if (p.isSupply) {
-          // Fresh air: flows from intake (-4.2) along lower deck to discharge (+4.2)
-          pos[i * 3] = -4.2 + p.progress * 8.4;
+          // Fresh air: flows from intake (-4.3) along lower deck to discharge (+4.3)
+          pos[i * 3] = -4.3 + p.progress * 8.6;
           pos[i * 3 + 1] = -0.65 + Math.sin(p.progress * Math.PI * 4) * 0.08 + p.offsetY;
           pos[i * 3 + 2] = p.offsetZ;
         } else {
-          // Exhaust air: flows from return (1.2) through heat wheel to exhaust fan/damper (-4.2)
-          pos[i * 3] = 1.2 - p.progress * 5.4;
+          // Exhaust air: flows from return (1.2) through heat wheel/plate to exhaust fan/damper (-4.3)
+          pos[i * 3] = 1.2 - p.progress * 5.5;
           pos[i * 3 + 1] = 0.65 + p.offsetY;
           pos[i * 3 + 2] = p.offsetZ;
         }
@@ -1316,7 +1636,7 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
         { num: '03', title: 'Hava Dağıtım & Kontrol', desc: 'Hassas debi kalibrasyonu ve sızdırmaz bağlantı elemanları.' }
       ];
 
-  // Specific 3D positions for TKS hotspots
+  // Specific 3D positions for TKS & THKS hotspots
   const tksHotspotCoords = [
     [-3.8, 1.1, 1.08],  // 01: İskelet & 50mm Taşyünü Panel
     [-1.8, -0.4, 1.08], // 02: Filtre Hücresi (G4 + F7/F9)
@@ -1326,12 +1646,21 @@ export function initSky3DProduct(containerId = 'sky-product-3d-canvas') {
     [-3.8, -0.5, 1.08]  // 06: Otomasyon & Hava Ayar Damperi
   ];
 
+  const thksHotspotCoords = [
+    [-3.6, 1.1, 1.08],  // 01: AISI 304 Paslanmaz Pürüzsüz İç Yüzey
+    [-1.8, -0.4, 1.08], // 02: 3 Kademeli Hijyenik Filtrasyon
+    [1.3, -0.4, 1.08],  // 03: Hijyenik Paslanmaz Damla Tutucu & Yoğuşma Tavası
+    [2.8, -0.4, 1.08]   // 04: EC Plug Fan & Hijyenik Susturucu Hücresi
+  ];
+
   const pinMeshes = [];
   rawHotspots.forEach((h, idx) => {
     const pinAnchor = new THREE.Group();
     let px, py, pz;
     if (isTksProduct && tksHotspotCoords[idx]) {
       [px, py, pz] = tksHotspotCoords[idx];
+    } else if (isThksProduct && thksHotspotCoords[idx]) {
+      [px, py, pz] = thksHotspotCoords[idx];
     } else {
       const total = rawHotspots.length;
       const isWideZ = size.z > size.x;
